@@ -3,7 +3,7 @@ COMMONMARK ?= cmark-0.12
 EXT ?= $(COMMONMARK)/src
 
 cmark.so: cmark_wrap.c
-	luarocks make
+	$(CC) -o $@ -shared -I/usr/include -I$(EXT) -I. -lcmark -llua $<
 
 cmark_wrap.c: cmark.i
 	$(SWIG) -o $@ -includeall -lua -I$(EXT) -Idummy $<
