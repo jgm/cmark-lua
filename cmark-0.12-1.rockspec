@@ -12,23 +12,20 @@ description = {
 dependencies = {
 }
 build = {
-    type = "builtin",
-    modules = {
-        cmark = {
-             sources = { "cmark_wrap.c",
-                         "ext/cmark.c",
-                         "ext/references.c",
-                         "ext/scanners.c",
-                         "ext/blocks.c", "ext/print.c", "ext/inlines.c",
-                         "ext/node.c",
-                         "ext/utf8.c",
-                         "ext/buffer.c",
-                         "ext/houdini_html_e.c",
-                         "ext/houdini_href_e.c",
-                         "ext/houdini_html_u.c",
-                         "ext/html.c",
-                         },
-             incdirs = { ".", "ext" }
-        }
-    }
+   type = "make",
+     build_variables = {
+        CFLAGS="$(CFLAGS)",
+        LIBFLAG="$(LIBFLAG)",
+        LUA_LIBDIR="$(LUA_LIBDIR)",
+        LUA_BINDIR="$(LUA_BINDIR)",
+        LUA_INCDIR="$(LUA_INCDIR)",
+        LUA="$(LUA)",
+     },
+     install_variables = {
+        INST_PREFIX="$(PREFIX)",
+        INST_BINDIR="$(BINDIR)",
+        INST_LIBDIR="$(LIBDIR)",
+        INST_LUADIR="$(LUADIR)",
+        INST_CONFDIR="$(CONFDIR)",
+     }
 }
