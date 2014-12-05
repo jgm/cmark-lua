@@ -1,4 +1,4 @@
-CFLAGS = -fPIC -O3
+CFLAGS = -fPIC -O3 -I$(EXT) -I.
 LIBFLAG = -shared
 LUA_LIBDIR = /usr/local/lib/lua/5.2
 LUA_BINDIR = /usr/local/bin
@@ -12,16 +12,18 @@ INST_CONFDIR = $(INST_PREFIX)/etc
 SWIG ?= swig
 COMMONMARK ?= cmark-0.12
 EXT ?= $(COMMONMARK)/src
+SOURCES = $(wildcard $(EXT)/*.c)
+OBJS = $(subst .c,.o,$(SOURCES))
 
 .PHONY: all, clean, distclean, test, install
 
 all: cmark.so
 
-cmark.so: cmark_wrap.o
-	$(CC) $(LIBFLAG) -o $@ -L$(EXT) -L$(LUA_LIBDIR) -lcmark -llua $<
+cmark.so: cmark_wrap.o $(OBJS)
+	$(CC) $(LIBFLAG) -o $@ -L$(EXT) -L$(LUA_LIBDIR) -I$(EXT) -I. -llua $^
 
 cmark.o: cmark_wrap.c
-	$(CC) -c $(CFLAGS) $(LUA_INCDIR) -I. -I$(EXT) $< -o $@
+	$(CC) -c $(CFLAGS) $< -o $@
 
 install: cmark.so
 	install -d $(INST_LIBDIR)
