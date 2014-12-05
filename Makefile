@@ -26,4 +26,4 @@ test:
 	python $(COMMONMARK)/test/spec_tests.py --spec $(COMMONMARK)/spec.txt --prog ./wrap.lua
 
 clean:
-	rm -rf cmark.so cmark_wrap.c dummy
+	rm -rf cmark.so dummy
