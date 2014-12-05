@@ -28,7 +28,7 @@ build = {
                          "ext/houdini_html_u.c",
                          "ext/html.c",
                          },
-             incdirs = { "." }
+             incdirs = { ".", "ext" }
         }
     }
 }
