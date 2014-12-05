@@ -22,7 +22,7 @@ all: cmark.so
 cmark.so: cmark_wrap.o $(OBJS)
 	$(CC) $(LIBFLAG) -o $@ -L$(EXT) -L$(LUA_LIBDIR) -I$(EXT) -I. -llua $^
 
-cmark.o: cmark_wrap.c
+cmark.o: cmark_wrap.c cmark.i
 	$(CC) -c $(CFLAGS) $< -o $@
 
 install: cmark.so
