@@ -209,19 +209,15 @@ function Cursor.new(pointer)
       if direction == 'start' or
          (direction == 'begin' and cursor.first_child()) or
          cursor.next() then
-            local node_type = cursor.get_type_string()
-            if can_have_children[node_type] then
-               return 'begin', node_type
-            else
-               return 'leaf', node_type
-            end
+            return 'begin', cursor
       elseif cursor.parent() then
-            return 'end', cursor.get_type_string()
+            return 'end', cursor
       end
    end
 
    function C.walk()
-      return iter, C, 'start'
+      local cur = Cursor.new(C.pointer)
+      return iter, cur, 'start'
    end
 
 --[[
