@@ -160,6 +160,10 @@ function Cursor.new()
       return cmark.cmark_render_html(C.pointer)
    end
 
+   -- TODO insert_before(type?, another cursor?), insert_after(type)
+   -- delete, append_child, prepend_child
+   -- walk,
+
    return C
 end
 
