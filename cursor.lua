@@ -184,27 +184,6 @@ function Cursor.new(pointer)
       C.pointer = next
    end
 
-   local can_have_children = {
-              document = true,
-              block_quote = true,
-              list = true,
-              list_item = true,
-              header = true,
-              paragraph = true,
-              emph = true,
-              strong = true,
-              link = true,
-              image = true }
-
-   local function format_direction(cursor, direction)
-      local node_type = cursor.get_type_string()
-      if can_have_children[node_type] then
-         return node_type, direction
-      else
-         return node_type, direction
-      end
-   end
-
    local function iter(cursor, direction)
       if direction == 'start' or
          (direction == 'begin' and cursor.first_child()) or
@@ -263,15 +242,14 @@ function Cursor.new(pointer)
    return C
 end
 
-function cmark.new_node(node_type)
+function Cursor.new_node(node_type)
    return cmark.cmark_node_new(node_type)
 end
 
-function cmark.parse_string(s)
+function Cursor.parse_string(s)
    local pointer = cmark.cmark_parse_document(s, string.len(s))
    return Cursor.new(pointer)
 end
 
--- testing:
+return Cursor
 
-cur = cmark.parse_string("* hi")
