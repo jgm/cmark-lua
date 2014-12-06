@@ -27,10 +27,10 @@ local type_table = {
    'image',
 }
 
-function Cursor.new()
+function Cursor.new(pointer)
    local C = {}
 
-   C.pointer = nil
+   C.pointer = pointer
 
    C.top = function()
       while C.parent() do end
@@ -160,17 +160,120 @@ function Cursor.new()
       return cmark.cmark_render_html(C.pointer)
    end
 
-   -- TODO insert_before(type?, another cursor?), insert_after(type)
-   -- delete, append_child, prepend_child
-   -- walk,
+   C.insert_before = function(pointer)
+      return cmark.cmark_node_insert_before(C.pointer, pointer)
+   end
+
+   C.insert_after = function(pointer)
+      return cmark.cmark_node_insert_after(C.pointer, pointer)
+   end
+
+   C.append_child = function(pointer)
+      return cmark.cmark_node_append_child(C.pointer, pointer)
+   end
+
+   C.prepend_child = function(pointer)
+      return cmark.cmark_node_prepend_child(C.pointer, pointer)
+   end
+
+   C.delete = function()
+      local next = cmark.cmark_node_next(C.pointer) or
+         cmark.cmark_node_previous(C.pointer) or
+         cmark.cmark_node_parent(C.pointer)
+      cmark.cmark_node_free(C.pointer)
+      C.pointer = next
+   end
+
+   local can_have_children = {
+              document = true,
+              block_quote = true,
+              list = true,
+              list_item = true,
+              header = true,
+              paragraph = true,
+              emph = true,
+              strong = true,
+              link = true,
+              image = true }
+
+   local function format_direction(cursor, direction)
+      local node_type = cursor.get_type_string()
+      if can_have_children[node_type] then
+         return node_type, direction
+      else
+         return node_type, direction
+      end
+   end
+
+   local function iter(cursor, direction)
+      if direction == 'start' or
+         (direction == 'begin' and cursor.first_child()) or
+         cursor.next() then
+            local node_type = cursor.get_type_string()
+            if can_have_children[node_type] then
+               return 'begin', node_type
+            else
+               return 'leaf', node_type
+            end
+      elseif cursor.parent() then
+            return 'end', cursor.get_type_string()
+      end
+   end
+
+   function C.walk()
+      return iter, C, 'start'
+   end
+
+--[[
+   local walk_ast = function(cur)
+      while cur ~= nil do
+         if can_have_children(cur) then
+            coroutine.yield(cur, 'begin')
+            child = cmark.node_first_child(cur)
+            if child == nil then
+               coroutine.yield(cur, 'end')
+            end
+         else
+            coroutine.yield(cur, nil)
+            child = nil
+         end
+         if child == nil then
+            next = cmark.node_next(cur)
+            while next == nil do
+               cur = cmark.node_parent(cur)
+               if cur == nil then
+                  break
+               else
+                  coroutine.yield(cur, 'end')
+                  next = cmark.node_next(cur)
+               end
+            end
+            cur = next
+         else
+            cur = child
+         end
+      end
+   end
+
+   C.walk = function()
+      local co = coroutine.create(function() walk_ast(cur) end)
+      return function()  -- iterator
+         local status, direction, node = coroutine.resume(co)
+         return direction, node
+      end
+   end
+--]]
 
    return C
 end
 
+function cmark.new_node(node_type)
+   return cmark.cmark_node_new(node_type)
+end
+
 function cmark.parse_string(s)
-   local cursor = Cursor.new()
-   cursor.pointer = cmark.cmark_parse_document(s, string.len(s))
-   return cursor
+   local pointer = cmark.cmark_parse_document(s, string.len(s))
+   return Cursor.new(pointer)
 end
 
 -- testing:
