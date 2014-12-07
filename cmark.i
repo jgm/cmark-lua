@@ -13,21 +13,33 @@
 
 %luacode {
 
---[[
-local function iter(cursor, direction)
-   if direction == 'start' or
-      (direction == 'begin' and cursor.first_child()) or
-      cursor.next() then
-         return 'begin', cursor
-   elseif cursor.parent() then
-         return 'end', cursor
+function cmark.walk(node)
+   local direction = 'begin'
+   local current_node = node
+   local depth = 0
+   return function()
+      while current_node ~= nil do
+         local first_child = cmark.node_first_child(current_node)
+         local nextnode = cmark.node_next(current_node)
+         if direction == 'begin' and first_child ~= nil then
+            depth = depth + 1
+            current_node = first_child
+         elseif nextnode ~= nil then
+            direction = 'begin'
+            current_node = nextnode
+         else
+            direction = 'end'
+            depth = depth - 1
+            current_node = cmark.node_parent(current_node)
+         end
+         if depth == 0 then
+            return nil
+         else
+            return current_node, direction
+         end
+      end
    end
 end
-
-function cmark.walk(node)
-   return iter, node, 'start'
-end
---]]
 
 function cmark.parse_string(s)
    return cmark.parse_document(s, string.len(s))
