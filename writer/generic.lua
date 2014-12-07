@@ -1,5 +1,7 @@
 local cmark = require('cmark')
 local insert = table.insert
+local get_type = cmark.node_get_type
+local get_string_content = cmark.node_get_string_content
 
 local M = {}
 
@@ -26,7 +28,7 @@ local type_table = {
 }
 
 local type_to_s = function(node)
-   return type_table[tonumber(cmark.node_get_type(node))]
+   return type_table[tonumber(get_type(node))]
 end
 
 --- Returns a table with functions defining a generic writer,
@@ -168,7 +170,7 @@ function M.new(options)
   end
 
   function W.begin_text(node)
-     out(cmark.node_get_string_content(node))
+     out(get_string_content(node))
   end
 
   function W.begin_softbreak(node)

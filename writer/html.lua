@@ -1,5 +1,7 @@
 local cmark = require('cmark')
 local xml = require('writer.xml')
+local get_type = cmark.node_get_type
+local get_string_content = cmark.node_get_string_content
 
 local M = {}
 
@@ -49,7 +51,7 @@ function M.new(options)
         return false
      else
         local parent = cmark.node_parent(node)
-        local parent_type = cmark.node_get_type(parent)
+        local parent_type = get_type(parent)
         if parent_type == cmark.LIST or parent_type == cmark.LIST_ITEM then
            return (tight_stack[#tight_stack] == 1)
         else
@@ -173,7 +175,7 @@ function M.new(options)
      end
      opentag('pre')(node)
      opentag('code',attrs)(node)
-     out(escape(cmark.node_get_string_content(node)))
+     out(escape(get_string_content(node)))
      closetag('code')(node)
      closetag('pre')(node)
      cr()
@@ -181,7 +183,7 @@ function M.new(options)
 
   function W.begin_html(node)
      cr()
-     out(cmark.node_get_string_content(node))
+     out(get_string_content(node))
   end
 
   function W.begin_paragraph(node)
@@ -216,7 +218,7 @@ function M.new(options)
   end
 
   function W.begin_text(node)
-     out(escape(cmark.node_get_string_content(node)))
+     out(escape(get_string_content(node)))
   end
 
   W.begin_softbreak = function(node)
@@ -230,12 +232,12 @@ function M.new(options)
 
   function W.begin_inline_code(node)
      opentag('code')(node)
-     out(escape(cmark.node_get_string_content(node)))
+     out(escape(get_string_content(node)))
      closetag('code')(node)
   end
 
   function W.begin_inline_html(node)
-     out(cmark.node_get_string_content(node))
+     out(get_string_content(node))
   end
 
   W.begin_emph = opentag('em')

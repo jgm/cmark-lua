@@ -1,5 +1,6 @@
 local cmark = require('cmark')
 local generic = require('writer.generic')
+local get_string_content = cmark.node_get_string_content
 
 local M = {}
 
@@ -102,12 +103,12 @@ function M.new(options)
 
   function W.begin_code_block(node)
      selfclosingtag('code_block',
-                    {text = cmark.node_get_string_content(node)})
+                    {text = get_string_content(node)})
   end
 
   function W.begin_html(node)
      selfclosingtag('html',
-                    {text = cmark.node_get_string_content(node)})
+                    {text = get_string_content(node)})
   end
 
   W.begin_paragraph = opentag('paragraph')
@@ -125,7 +126,7 @@ function M.new(options)
   W.hrule = selfclosingtag('hrule')
 
   function W.begin_text(node)
-     local t = cmark.node_get_string_content(node)
+     local t = get_string_content(node)
      W.tag_selfclosing('text', {text = t})
      W.cr()
   end
@@ -136,12 +137,12 @@ function M.new(options)
 
   function W.begin_inline_code(node)
      selfclosingtag('inline_code',
-                    {text = cmark.node_get_string_content(node)})(node)
+                    {text = get_string_content(node)})(node)
   end
 
   function W.begin_inline_html(node)
      selfclosingtag('inline_html',
-                    {text = cmark.node_get_string_content(node)})(node)
+                    {text = get_string_content(node)})(node)
   end
 
   W.begin_emph = opentag('emph')
