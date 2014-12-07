@@ -13,14 +13,18 @@
 
 %luacode {
 
+local node_first_child = cmark.node_first_child
+local node_next = cmark.node_next
+local node_parent = cmark.node_parent
+
 function cmark.walk(node)
    local direction = 'begin'
    local current_node = node
    local depth = 0
    return function()
       while current_node ~= nil do
-         local first_child = cmark.node_first_child(current_node)
-         local nextnode = cmark.node_next(current_node)
+         local first_child = node_first_child(current_node)
+         local nextnode = node_next(current_node)
          if direction == 'begin' and first_child ~= nil then
             depth = depth + 1
             current_node = first_child
@@ -30,7 +34,7 @@ function cmark.walk(node)
          else
             direction = 'end'
             depth = depth - 1
-            current_node = cmark.node_parent(current_node)
+            current_node = node_parent(current_node)
          end
          if depth == 0 then
             return nil
