@@ -25,28 +25,28 @@ local node_next = cmark.node_next
 local node_parent = cmark.node_parent
 
 function cmark.walk(node)
-   local direction = 'begin'
+   local begin = true
    local current_node = node
    local depth = 0
    return function()
       while current_node ~= nil do
          local first_child = node_first_child(current_node)
          local nextnode = node_next(current_node)
-         if direction == 'begin' and first_child ~= nil then
+         if begin and first_child ~= nil then
             depth = depth + 1
             current_node = first_child
          elseif nextnode ~= nil then
-            direction = 'begin'
+            begin = true
             current_node = nextnode
          else
-            direction = 'end'
+            begin = false
             depth = depth - 1
             current_node = node_parent(current_node)
          end
          if depth == 0 then
             return nil
          else
-            return current_node, direction
+            return current_node, begin
          end
       end
    end
