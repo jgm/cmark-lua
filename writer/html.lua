@@ -2,6 +2,7 @@ local cmark = require('cmark')
 local xml = require('writer.xml')
 local get_type = cmark.node_get_type
 local get_string_content = cmark.node_get_string_content
+local gsub = string.gsub
 
 local M = {}
 
@@ -14,7 +15,7 @@ function M.new(options)
   local notags = 0
 
   local escape = function(s)
-     return string.gsub(s, '[<>&"]',
+     return gsub(s, '[<>&"]',
                   function(c)
                      if c == '<' then return "&lt;"
                      elseif c == '>' then return "&gt;"
@@ -26,8 +27,8 @@ function M.new(options)
 
   function urlencode(str)
      if (str) then
-        str = string.gsub(str, "\n", "\r\n")
-        str = string.gsub(str, "([^%w_.@/:%%+()*?&=-])",
+        str = gsub(str, "\n", "\r\n")
+        str = gsub(str, "([^%w_.@/:%%+()*?&=-])",
                           function(c)
                              if #c == 1 then
                                 return string.format("%%%02X",
@@ -171,7 +172,7 @@ function M.new(options)
      local info = cmark.node_get_fence_info(node)
      attrs = {}
      if #info > 0 then
-        attrs.class = 'language-' .. string.gsub(info,' .*$','')
+        attrs.class = 'language-' .. gsub(info,' .*$','')
      end
      opentag('pre')(node)
      opentag('code',attrs)(node)
