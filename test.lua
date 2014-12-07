@@ -1,4 +1,4 @@
--- local html = require'writer.html'
+local html = require'writer.html'
 
 -- 'doc' is set automatically by cmark-lua
 
@@ -19,5 +19,5 @@ for node,dir in cmark.walk(doc) do
    end
 end
 
-print(cmark.render_html(doc))
--- io.write(html.new().render(d))
+-- print(cmark.render_html(doc))
+io.write(html.new().render(doc))

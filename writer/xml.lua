@@ -1,4 +1,3 @@
-local cmark = require('cmark')
 local generic = require('writer.generic')
 local get_string_content = cmark.node_get_string_content
 

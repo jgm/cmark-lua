@@ -1,4 +1,3 @@
-local cmark = require('cmark')
 local xml = require('writer.xml')
 local get_type = cmark.node_get_type
 local get_string_content = cmark.node_get_string_content
