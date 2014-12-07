@@ -12,7 +12,7 @@ INST_CONFDIR = $(INST_PREFIX)/etc
 SWIG ?= swig
 COMMONMARK ?= cmark-0.12
 EXT ?= $(COMMONMARK)/src
-SOURCES = $(wildcard $(EXT)/*.c)
+SOURCES = $(filter-out $(EXT)/main.c,$(wildcard $(EXT)/*.c)) main.c
 OBJS = $(subst .c,.o,$(SOURCES))
 
 .PHONY: all, clean, distclean, test, install
@@ -24,6 +24,9 @@ cmark.so: cmark_wrap.o $(OBJS)
 
 cmark.o: cmark_wrap.c cmark.i
 	$(CC) -c $(CFLAGS) $< -o $@
+
+cmark-lua: main.o cmark_wrap.o $(OBJS)
+	$(CC) -o $@ -L$(EXT) -L$(LUA_LIBDIR) -I$(EXT) -I. -llua $^
 
 install: cmark.so
 	install -d $(INST_LIBDIR)
