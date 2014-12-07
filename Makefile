@@ -27,8 +27,8 @@ cmark.o: cmark_wrap.c cmark.i
 	$(CC) -c $(CFLAGS) $< -o $@
 
 $(LUADIR)/liblua.a: $(wildcard $(LUADIR)/*.h) $(wildcard $(LUADIR)/*.c) $(LUADIR)/Makefile
-	make liblua.a -C $(LUADIR) MYCFLAGS=-DLUA_USE_LINUX
-        # note: LUA_USE_LINUX is recommended for linux, osx, freebsd
+	make liblua.a -C $(LUADIR) MYCFLAGS="-DLUA_USE_LINUX" CC=$(CC)
+	# note: LUA_USE_LINUX is recommended for linux, osx, freebsd
 
 cmark-lua: main.o cmark_wrap.o $(OBJS) $(LUADIR)/liblua.a
 	$(CC) -o $@ -L$(EXT) -I$(EXT) -I. $^
@@ -45,4 +45,4 @@ test:
 	python $(COMMONMARK)/test/spec_tests.py --spec $(COMMONMARK)/spec.txt --prog ./wrap.lua
 
 clean:
-	rm -rf cmark.so *.o $(EXT)/*.o $(LUADIR)/*.o
+	rm -rf cmark.so *.o $(EXT)/*.o $(LUADIR)/*.[oa] cmark-lua

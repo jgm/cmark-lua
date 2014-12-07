@@ -11,6 +11,13 @@
 
 %include "cmark.h"
 
+%{
+extern void push_cmark_node(lua_State *L, cmark_node *node)
+{
+        SWIG_NewPointerObj(L,node,SWIGTYPE_p_cmark_node,0);
+}
+%}
+
 %luacode {
 
 local node_first_child = cmark.node_first_child

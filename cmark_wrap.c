@@ -2629,6 +2629,12 @@ SWIGINTERN int SWIG_lua_isnilstring(lua_State *L, int idx) {
   return ret;
 }
 
+
+extern void push_cmark_node(lua_State *L, cmark_node *node)
+{
+        SWIG_NewPointerObj(L,node,SWIGTYPE_p_cmark_node,0);
+}
+
 #ifdef __cplusplus
 extern "C" {
 #endif

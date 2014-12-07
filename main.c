@@ -13,6 +13,7 @@
 #include "bench.h"
 
 extern int luaopen_cmark(lua_State *L);
+extern void push_cmark_node(lua_State *L, cmark_node *node);
 
 void print_usage()
 {
@@ -119,8 +120,10 @@ int main(int argc, char *argv[])
 	if (luafile) {
 
 		lua_State *L = luaL_newstate();
-		luaopen_base(L);
+		luaL_openlibs(L);
 		luaopen_cmark(L);
+		push_cmark_node(L, document);
+		lua_setglobal(L, "doc");
 		if (luaL_loadfile(L,argv[luafile])==0) {
 			lua_pcall(L,0,0,0);
 		} else {
@@ -133,12 +136,12 @@ int main(int argc, char *argv[])
 		start_timer();
 		print_document(document, ast);
 		end_timer("print_document");
+
 	}
 
 	start_timer();
 	cmark_node_free(document);
 	end_timer("free_blocks");
-
 	free(files);
 
 	return 0;
