@@ -3,6 +3,7 @@ local xml = require('writer.xml')
 local get_type = cmark.node_get_type
 local get_string_content = cmark.node_get_string_content
 local gsub = string.gsub
+local format = string.format
 
 local M = {}
 
@@ -31,8 +32,7 @@ function M.new(options)
         str = gsub(str, "([^%w_.@/:%%+()*?&=-])",
                           function(c)
                              if #c == 1 then
-                                return string.format("%%%02X",
-                                                     string.byte(c))
+                                return format("%%%02X", string.byte(c))
                              end
         end)
      end
