@@ -16,9 +16,11 @@ EXT ?= $(COMMONMARK)/src
 SOURCES = $(filter-out $(EXT)/main.c,$(wildcard $(EXT)/*.c)) main.c
 OBJS = $(subst .c,.o,$(SOURCES))
 
-.PHONY: all, clean, distclean, test, install
+.PHONY: shared, standalone, clean, distclean, test, install
 
-all: cmark.so
+shared: cmark.so
+
+standalone: cmark-lua
 
 cmark.so: cmark_wrap.o $(OBJS)
 	$(CC) $(LIBFLAG) -o $@ -L$(EXT) -L$(LUA_LIBDIR) -I$(EXT) -I. -llua $^
