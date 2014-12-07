@@ -4,6 +4,7 @@ LUA_LIBDIR = /usr/local/lib/lua/5.2
 LUA_BINDIR = /usr/local/bin
 LUA_INCDIR = /usr/local/include
 LUA = lua
+LUADIR = lua
 INST_PREFIX = /usr/local
 INST_BINDIR = $(INST_PREFIX)/bin
 INST_LIBDIR = $(INST_PREFIX)/lib/lua/5.2
@@ -25,8 +26,12 @@ cmark.so: cmark_wrap.o $(OBJS)
 cmark.o: cmark_wrap.c cmark.i
 	$(CC) -c $(CFLAGS) $< -o $@
 
-cmark-lua: main.o cmark_wrap.o $(OBJS)
-	$(CC) -o $@ -L$(EXT) -L$(LUA_LIBDIR) -I$(EXT) -I. -llua $^
+$(LUADIR)/liblua.a: $(wildcard $(LUADIR)/*.h) $(wildcard $(LUADIR)/*.c) $(LUADIR)/Makefile
+	make liblua.a -C $(LUADIR) MYCFLAGS=-DLUA_USE_LINUX
+        # note: LUA_USE_LINUX is recommended for linux, osx, freebsd
+
+cmark-lua: main.o cmark_wrap.o $(OBJS) $(LUADIR)/liblua.a
+	$(CC) -o $@ -L$(EXT) -I$(EXT) -I. $^
 
 install: cmark.so
 	install -d $(INST_LIBDIR)
@@ -40,4 +45,4 @@ test:
 	python $(COMMONMARK)/test/spec_tests.py --spec $(COMMONMARK)/spec.txt --prog ./wrap.lua
 
 clean:
-	rm -rf cmark.so *.o ext/*.o
+	rm -rf cmark.so *.o $(EXT)/*.o $(LUADIR)/*.o
