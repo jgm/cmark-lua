@@ -1,4 +1,5 @@
-cmark = require('cmark')
+local cmark = require('cmark')
+local insert = table.insert
 
 local M = {}
 
@@ -40,13 +41,13 @@ function M.new(options)
 
    meta.__index =
       function(_, key)
-         table.insert(warnings, string.format("Undefined writer function '%s'",key))
+         insert(warnings, string.format("Undefined writer function '%s'",key))
          return (function(node) end)
       end
    setmetatable(W, meta)
 
    local out = function(s)
-      table.insert(buffer, s)
+      insert(buffer, s)
    end
    W.out = out
 

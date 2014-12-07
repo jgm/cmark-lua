@@ -1,5 +1,5 @@
-cmark = require('cmark')
-generic = require('writer.generic')
+local cmark = require('cmark')
+local generic = require('writer.generic')
 
 local M = {}
 

@@ -1,5 +1,5 @@
-cmark = require('cmark')
-xml = require('writer.xml')
+local cmark = require('cmark')
+local xml = require('writer.xml')
 
 local M = {}
 
