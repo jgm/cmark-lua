@@ -1,6 +1,8 @@
 -- TODO: remove these two lines when we integrate into cmark.i
-cmark = require'cmark'
-doc = cmark.parse_string(io.read("*all"))
+if cmark == nil then
+   cmark = require'cmark'
+   doc = cmark.parse_string(io.read("*all"))
+end
 
 local M = {}
 
