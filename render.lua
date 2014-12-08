@@ -3,6 +3,8 @@ if cmark == nil then
    cmark = require'cmark'
    doc = cmark.parse_string(io.read("*all"))
 end
+-- for testing:
+local gsub, format, byte = string.gsub, string.format, string.byte
 
 local Renderer = {}
 
@@ -15,6 +17,7 @@ function Renderer.new()
       buffer[#buffer + 1] = s
    end
 
+   M.notags = 0
    M.out = out
 
    function M.render(d)
@@ -172,60 +175,106 @@ end
 
 -- return Renderer
 
--- for testing:
-local gsub, format, byte = string.gsub, string.format, string.byte
+local Html = {}
 
-local escape = function(s)
-   if string.find(s, '[<>&"]') then
-      local new_s = gsub(s, '[<>&"]',
-                         function(c)
-                            if c == '<' then return "&lt;"
-                            elseif c == '>' then return "&gt;"
-                            elseif c == '&' then return "&amp;"
-                            elseif c == '"' then return "&quot;"
-                            end
-      end)
-      return new_s
-   else
-      return s
+function Html.new()
+   M = Renderer.new()
+
+   local escape = function(s)
+      if string.find(s, '[<>&"]') then
+         local new_s = gsub(s, '[<>&"]',
+                            function(c)
+                               if c == '<' then return "&lt;"
+                               elseif c == '>' then return "&gt;"
+                               elseif c == '&' then return "&amp;"
+                               elseif c == '"' then return "&quot;"
+                               end
+         end)
+         return new_s
+      else
+         return s
+      end
    end
-end
+   M.escape = escape
 
-local urlencode = function(str)
-   if (str) then
-      str = gsub(str, "\n", "\r\n")
-      str = gsub(str, "([^%w_.@/:%%+()*?&=-])",
-                        function(c)
-                           if #c == 1 then
-                              return format("%%%02X", byte(c))
-                           end
-      end)
+   local urlencode = function(str)
+      if (str) then
+         str = gsub(str, "\n", "\r\n")
+         str = gsub(str, "([^%w_.@/:%%+()*?&=-])",
+                    function(c)
+                       if #c == 1 then
+                          return format("%%%02X", byte(c))
+                       end
+         end)
+      end
+      return str
    end
-   return str
+   M.urlencode = urlencode
+
+   local out = M.out
+   local cr = M.cr
+
+   function M.tag_open(tag, attrs)
+      if M.notags > 0 then return end
+      out('<' .. tag)
+      if attrs then
+         for k, v in pairs(attrs) do
+            out(' ' .. k .. '="' .. escape(v) .. '"')
+         end
+      end
+      out('>')
+   end
+
+   function M.tag_close(tag)
+      if M.notags > 0 then return end
+      out('</' .. tag .. '>')
+   end
+
+   function M.tag_selfclosing(tag, attrs)
+      if M.notags > 0 then return end
+      out('<' .. tag)
+      if attrs then
+         for k, v in pairs(attrs) do
+            out(' ' .. k .. '="' .. escape(v) .. '"')
+         end
+      end
+      out(' />')
+   end
+
+   local tag_open, tag_close, tag_selfclosing = M.tag_open, M.tag_close, M.tag_selfclosing
+
+   function M.begin_document()
+   end
+
+   function M.end_document()
+   end
+
+   function M.begin_paragraph()
+      tag_open('p')
+   end
+
+   function M.end_paragraph()
+      tag_close('p')
+      cr()
+   end
+
+   function M.begin_block_quote()
+      tag_open('blockquote')
+      cr()
+   end
+
+   function M.end_block_quote()
+      cr()
+      tag_close('blockquote')
+      cr()
+   end
+
+   function M.text(s)
+      out(escape(s))
+   end
+
+   return M
 end
 
-local M = Renderer.new()
-
-local out = M.out
-local cr = M.cr
-
-function M.begin_document()
-end
-
-function M.end_document()
-end
-
-function M.begin_paragraph()
-   out('<p>')
-end
-
-function M.end_paragraph()
-   out('</p>')
-   cr()
-end
-
-function M.text(s)
-   out(escape(s))
-end
-
-io.write(M.render(doc))
+local writer = Html.new()
+io.write(writer.render(doc))
