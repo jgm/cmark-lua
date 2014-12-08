@@ -140,17 +140,16 @@ function Renderer.new()
   end
 
    -- ensure a newline if there isn't one already
-   local cr = function()
+   function M.cr()
       local laststr = buffer[#buffer]
       if not laststr then return end
       if laststr:sub(-1) ~= '\n' then
          out('\n')
       end
    end
-   M.cr = cr
 
    -- ensure a blankline if there isn't one already
-   local blankline = function()
+   function M.blankline()
       local laststr = buffer[#buffer]
       if not laststr then return end
       if laststr:sub(-1) ~= '\n' then
@@ -159,7 +158,6 @@ function Renderer.new()
          out('\n')
       end
    end
-   M.blankline = blankline
 
    meta = {}
    meta.__index =
