@@ -9,11 +9,13 @@ local Renderer = {}
 function Renderer.new()
    local M = {}
 
-   M.buffer = {}
+   buffer = {}
 
-   function M.out(s)
+   function out(s)
       buffer[#buffer + 1] = s
    end
+
+   M.out = out
 
    function M.render(d)
 
@@ -119,8 +121,45 @@ function Renderer.new()
             io.stderr:write(string.format("Encountered unknown node type %d\n", ntype))
          end
       end
-      return table.concat(M.buffer)
+      return table.concat(buffer)
    end
+
+  M.indent_level = 0
+  M.indent_step = 2
+
+  function M.indent()
+     M.out(string.rep(' ', M.indent_level * M.indent_step))
+  end
+
+  function M.increase_indent()
+     M.indent_level = M.indent_level + 1
+  end
+
+  function M.decrease_indent()
+     M.indent_level = M.indent_level - 1
+  end
+
+   -- ensure a newline if there isn't one already
+   local cr = function()
+      local laststr = buffer[#buffer]
+      if not laststr then return end
+      if laststr:sub(-1) ~= '\n' then
+         out('\n')
+      end
+   end
+   M.cr = cr
+
+   -- ensure a blankline if there isn't one already
+   local blankline = function()
+      local laststr = buffer[#buffer]
+      if not laststr then return end
+      if laststr:sub(-1) ~= '\n' then
+         out('\n\n')
+      elseif laststr:sub(-2,-2) ~= '\n' then
+         out('\n')
+      end
+   end
+   M.blankline = blankline
 
    meta = {}
    meta.__index =
@@ -167,9 +206,10 @@ local urlencode = function(str)
    return str
 end
 
-local out = io.write
-
 local M = Renderer.new()
+
+local out = M.out
+local cr = M.cr
 
 function M.begin_document()
 end
@@ -183,7 +223,7 @@ end
 
 function M.end_paragraph()
    out('</p>')
-   out('\n')
+   cr()
 end
 
 function M.text(s)
