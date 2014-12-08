@@ -9,6 +9,12 @@ local Renderer = {}
 function Renderer.new()
    local M = {}
 
+   M.buffer = {}
+
+   function M.out(s)
+      buffer[#buffer + 1] = s
+   end
+
    function M.render(d)
 
       for node, begin in cmark.walk(d) do
@@ -112,8 +118,8 @@ function Renderer.new()
          else
             -- missing renderer
          end
-
       end
+      return table.concat(M.buffer)
    end
 
    meta = {}
@@ -184,4 +190,4 @@ function M.text(s)
    out(escape(s))
 end
 
-M.render(doc)
+io.write(M.render(doc))
