@@ -269,8 +269,68 @@ function Html.new()
       cr()
    end
 
+   function M.begin_header(level)
+      tag_open('h' .. level)
+   end
+
+   function M.end_header(level)
+      tag_close('h' .. level)
+      cr()
+   end
+
+   function M.code_block(s, info)
+      cr()
+      attrs = {}
+      if #info > 0 then
+         attrs.class = 'language-' .. gsub(info,' .*$','')
+      end
+      tag_open('pre')
+      tag_open('code', attrs)
+      out(escape(s))
+      tag_close('code')
+      tag_close('pre')
+      cr()
+   end
+
+   function M.begin_hrule()
+      cr()
+      tag_selfclosing('hr')
+      cr()
+   end
+
    function M.text(s)
       out(escape(s))
+   end
+
+   function M.softbreak()
+      out('\n')
+   end
+
+   function M.linebreak()
+      tag_selfclosing('br')
+      cr()
+   end
+
+   function M.inline_code(s)
+      tag_open('code')
+      out(escape(s))
+      tag_close('code')
+   end
+
+   function M.begin_emph()
+      tag_open('em')
+   end
+
+   function M.end_emph()
+      tag_close('em')
+   end
+
+   function M.end_strong()
+      tag_close('strong')
+   end
+
+   function M.end_strong()
+      tag_close('strong')
    end
 
    return M
