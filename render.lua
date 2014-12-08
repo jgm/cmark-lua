@@ -116,7 +116,7 @@ function Renderer.new()
                M.end_image(url, title)
             end
          else
-            -- missing renderer
+            io.stderr:write(string.format("Encountered unknown node type %d\n", ntype))
          end
       end
       return table.concat(M.buffer)
