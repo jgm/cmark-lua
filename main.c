@@ -46,6 +46,7 @@ int main(int argc, char *argv[])
 	size_t bytes;
 	cmark_node *document;
 	int luafile = 0;
+	int status = 0;
 
 	parser = cmark_parser_new();
 	files = (int *)malloc(argc * sizeof(*files));
@@ -125,7 +126,14 @@ int main(int argc, char *argv[])
 		push_cmark_node(L, document);
 		lua_setglobal(L, "doc");
 		if (luaL_loadfile(L,argv[luafile])==0) {
-			lua_pcall(L,0,0,0);
+			status = lua_pcall(L,0,0,0);
+			if (status == LUA_ERRRUN) {
+				fprintf(stderr, "Error at %s\n",
+					lua_tostring(L, -1));
+			} else if (status != 0) {
+				fprintf(stderr, "Error evaluating %s\n",
+					argv[1]);
+			}
 		} else {
 			fprintf(stderr, "Unable to load %s\n", argv[1]);
 		}
