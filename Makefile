@@ -13,7 +13,7 @@ INST_CONFDIR = $(INST_PREFIX)/etc
 SWIG ?= swig
 COMMONMARK ?= cmark-0.12
 EXT ?= $(COMMONMARK)/src
-SOURCES = $(filter-out $(EXT)/main.c,$(wildcard $(EXT)/*.c)) main.c
+SOURCES = $(filter-out $(EXT)/main.c,$(wildcard $(EXT)/*.c))
 OBJS = $(subst .c,.o,$(SOURCES))
 
 .PHONY: shared, standalone, clean, distclean, test, install
