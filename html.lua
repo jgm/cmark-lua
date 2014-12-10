@@ -84,6 +84,7 @@ function Html.end_paragraph(tight)
 end
 
 function Html.begin_block_quote()
+   cr()
    tag_open('blockquote')
    cr()
 end
