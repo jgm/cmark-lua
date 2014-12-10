@@ -1,8 +1,3 @@
--- TODO: remove these two lines when we integrate into cmark.i
-if cmark == nil then
-   cmark = require'cmark'
-   doc = cmark.parse_string(io.read("*all"))
-end
 -- for testing:
 local gsub, format, byte = string.gsub, string.format, string.byte
 
