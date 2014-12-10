@@ -133,7 +133,11 @@ function Html.begin_list(stype, tight, start)
    cr()
    local tag
    if stype == 'bullet' then tag = 'ul' else tag = 'ol' end
-   tag_open(tag)
+   local attrs = {}
+   if start > 1 then
+      attrs.start = start
+   end
+   tag_open(tag, attrs)
    cr()
 end
 
