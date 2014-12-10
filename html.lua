@@ -115,9 +115,43 @@ function Html.code_block(s, info)
    cr()
 end
 
+function Html.html(s)
+   cr()
+   out(s)
+   cr()
+end
+
 function Html.begin_hrule()
    cr()
    tag_selfclosing('hr')
+   cr()
+end
+
+function Html.begin_list(stype, tight, start)
+   cr()
+   local tag
+   if stype == 'bullet' then tag = 'ul' else tag = 'ol' end
+   tag_open(tag)
+   cr()
+end
+
+function Html.end_list(stype)
+   cr()
+   local tag
+   if stype == 'bullet' then tag = 'ul' else tag = 'ol' end
+   tag_close(tag)
+   cr()
+end
+
+function Html.begin_list_item()
+   cr()
+   tag_open('li')
+   cr()
+end
+
+function Html.end_list_item()
+   cr()
+   tag_close('li')
    cr()
 end
 
@@ -148,8 +182,8 @@ function Html.end_emph()
    tag_close('em')
 end
 
-function Html.end_strong()
-   tag_close('strong')
+function Html.begin_strong()
+   tag_open('strong')
 end
 
 function Html.end_strong()
