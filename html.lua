@@ -21,11 +21,13 @@ end
 Html.urlencode = function(str)
    if (str) then
       str = gsub(str, "\n", "\r\n")
-      str = gsub(str, "([^%w_.@/:%%+()*?&=-])",
+      str = gsub(str, "[^A-Za-z0-9_.@/:%%+()*?&=-]",
                  function(c)
-                    if #c == 1 then
-                       return format("%%%02X", byte(c))
+                    buf = {}
+                    for i = 1, #c do
+                       buf[#buf + 1] = format("%%%02X", byte(c, i))
                     end
+                    return table.concat(buf)
       end)
    end
    return str
