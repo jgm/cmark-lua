@@ -72,13 +72,15 @@ end
 function Html.end_document()
 end
 
-function Html.begin_paragraph()
-   tag_open('p')
+function Html.begin_paragraph(tight)
+   if not tight then tag_open('p') end
 end
 
-function Html.end_paragraph()
-   tag_close('p')
-   cr()
+function Html.end_paragraph(tight)
+   if not tight then
+      tag_close('p')
+      cr()
+   end
 end
 
 function Html.begin_block_quote()
@@ -143,14 +145,14 @@ function Html.end_list(stype)
    cr()
 end
 
-function Html.begin_list_item()
+function Html.begin_list_item(tight)
    cr()
    tag_open('li')
-   cr()
+   if not tight then cr() end
 end
 
-function Html.end_list_item()
-   cr()
+function Html.end_list_item(tight)
+   if not tight then cr() end
    tag_close('li')
    cr()
 end

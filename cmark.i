@@ -98,17 +98,18 @@ function Renderer.new()
                stype = 'ordered'
             end
             local start = cmark.node_get_list_start(node)
-            local tight = cmark.node_get_list_tight(node)
+            local tight = cmark.node_get_list_tight(node) == 1
             if begin then
                M.begin_list(stype, tight, start)
             else
                M.end_list(stype, tight, start)
             end
          elseif ntype == cmark.LIST_ITEM then
+            local tight = cmark.node_get_list_tight(node_parent(node)) == 1
             if begin then
-               M.begin_list_item()
+               M.begin_list_item(tight)
             else
-               M.end_list_item()
+               M.end_list_item(tight)
             end
          elseif ntype == cmark.CODE_BLOCK then
             M.code_block(cmark.node_get_string_content(node),
@@ -116,10 +117,11 @@ function Renderer.new()
          elseif ntype == cmark.HTML then
             M.html(cmark.node_get_string_content(node))
          elseif ntype == cmark.PARAGRAPH then
+            local tight = cmark.node_get_list_tight(node_parent(node_parent(node))) == 1
             if begin then
-               M.begin_paragraph()
+               M.begin_paragraph(tight)
             else
-               M.end_paragraph()
+               M.end_paragraph(tight)
             end
          elseif ntype == cmark.HEADER then
             local level = cmark.node_get_header_level(node)
