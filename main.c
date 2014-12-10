@@ -123,10 +123,9 @@ int main(int argc, char *argv[])
 		lua_State *L = luaL_newstate();
 		luaL_openlibs(L);
 		luaopen_cmark(L);
-		push_cmark_node(L, document);
-		lua_setglobal(L, "doc");
+		// lua_setglobal(L, "doc");
 		if (luaL_loadfile(L,argv[luafile])==0) {
-			status = lua_pcall(L,0,0,0);
+			status = lua_pcall(L,0,1,0);
 			if (status == LUA_ERRRUN) {
 				fprintf(stderr, "Error at %s\n",
 					lua_tostring(L, -1));
@@ -134,6 +133,12 @@ int main(int argc, char *argv[])
 				fprintf(stderr, "Error evaluating %s\n",
 					argv[1]);
 			}
+			lua_getfield(L, -1, "render");
+			push_cmark_node(L, document);
+			if (lua_pcall(L, 1, 1, 0) != 0) {
+				fprintf(stderr, "Error running render\n");
+			}
+			printf("%s", lua_tostring(L, -1));
 		} else {
 			fprintf(stderr, "Unable to load %s\n", argv[1]);
 		}

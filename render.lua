@@ -156,4 +156,5 @@ function Html.end_strong()
    tag_close('strong')
 end
 
-io.write(Html.render(doc))
+-- render = Html.render
+return Html
