@@ -234,5 +234,4 @@ function Html.end_image(url, title)
    end
 end
 
--- render = Html.render
 return Html

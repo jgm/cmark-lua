@@ -127,7 +127,7 @@ function Man.html(s)
    cr()
 end
 
-function Man.begin_hrule()
+function Man.hrule()
    cr()
    tag_selfclosing('hr')
    cr()
@@ -137,7 +137,11 @@ function Man.begin_list(stype, tight, start)
    cr()
    local tag
    if stype == 'bullet' then tag = 'ul' else tag = 'ol' end
-   tag_open(tag)
+   local attrs = {}
+   if start > 1 then
+      attrs.start = start
+   end
+   tag_open(tag, attrs)
    cr()
 end
 
@@ -180,6 +184,10 @@ function Man.inline_code(s)
    tag_close('code')
 end
 
+function Man.inline_html(s)
+   out(s)
+end
+
 function Man.begin_emph()
    tag_open('em')
 end
@@ -197,7 +205,11 @@ function Man.end_strong()
 end
 
 function Man.begin_link(url, title)
-   tag_open('a', {url = url, title = title})
+   local attrs = {href = url}
+   if #title > 0 then
+      attrs.title = title
+   end
+   tag_open('a', attrs)
 end
 
 function Man.end_link(url, title)
@@ -205,16 +217,18 @@ function Man.end_link(url, title)
 end
 
 function Man.begin_image(url, title)
-   out('<img src="')
-   out(urlencode(url))
-   out('"')
-   if #title > 0 then
-      out(' title="')
-      out(escape(title))
+   if Man.notags == 0 then
+      out('<img src="')
+      out(urlencode(url))
       out('"')
+      if #title > 0 then
+         out(' title="')
+         out(escape(title))
+         out('"')
+      end
+      out(' alt="')
+      Man.notags = Man.notags + 1
    end
-   out(' alt="')
-   Man.notags = Man.notags + 1
 end
 
 function Man.end_image(url, title)
@@ -224,5 +238,4 @@ function Man.end_image(url, title)
    end
 end
 
--- render = Man.render
 return Man
