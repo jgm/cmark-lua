@@ -1,18 +1,18 @@
 local Html = cmark.Renderer.new()
 
-local gsub, format, byte = string.gsub, string.format, string.byte
+local gsub, find, format, byte = string.gsub, string.find,
+                                 string.format, string.byte
 
 Html.escape = function(s)
-   if string.find(s, '[<>&"]') then
-      local new_s = gsub(s, '[<>&"]',
-                         function(c)
-                            if c == '<' then return "&lt;"
-                            elseif c == '>' then return "&gt;"
-                            elseif c == '&' then return "&amp;"
-                            elseif c == '"' then return "&quot;"
-                            end
+   if find(s, '[<>&"]') then
+      return gsub(s, '[<>&"]',
+                  function(c)
+                     if c == '<' then return "&lt;"
+                     elseif c == '>' then return "&gt;"
+                     elseif c == '&' then return "&amp;"
+                     elseif c == '"' then return "&quot;"
+                     end
       end)
-      return new_s
    else
       return s
    end
