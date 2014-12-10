@@ -77,14 +77,14 @@ function Man.end_document()
 end
 
 function Man.begin_paragraph(tight)
-   if not tight then tag_open('p') end
+   if not tight then
+      out(".PP")
+      cr()
+   end
 end
 
 function Man.end_paragraph(tight)
-   if not tight then
-      tag_close('p')
-      cr()
-   end
+   cr()
 end
 
 function Man.begin_block_quote()
@@ -99,11 +99,15 @@ function Man.end_block_quote()
 end
 
 function Man.begin_header(level)
-   tag_open('h' .. level)
+   if level == 1 then
+      out(".SH")
+   else
+      out(".SS")
+   end
+   cr()
 end
 
 function Man.end_header(level)
-   tag_close('h' .. level)
    cr()
 end
 
