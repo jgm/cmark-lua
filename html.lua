@@ -123,7 +123,7 @@ function Html.html(s)
    cr()
 end
 
-function Html.begin_hrule()
+function Html.hrule()
    cr()
    tag_selfclosing('hr')
    cr()
