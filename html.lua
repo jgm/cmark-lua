@@ -192,5 +192,33 @@ function Html.end_strong()
    tag_close('strong')
 end
 
+function Html.begin_link(url, title)
+   tag_open('a', {url = url, title = title})
+end
+
+function Html.end_link(url, title)
+   tag_close('a')
+end
+
+function Html.begin_image(url, title)
+   out('<img src="')
+   out(urlencode(url))
+   out('"')
+   if #title > 0 then
+      out(' title="')
+      out(escape(title))
+      out('"')
+   end
+   out(' alt="')
+   Html.notags = Html.notags + 1
+end
+
+function Html.end_image(url, title)
+   Html.notags = Html.notags - 1
+   if Html.notags == 0 then
+      out('" />')
+   end
+end
+
 -- render = Html.render
 return Html

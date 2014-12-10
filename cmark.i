@@ -214,6 +214,9 @@ function Renderer.new()
       end
    end
 
+   function M.reference_def()
+   end
+
    meta = {}
    meta.__index =
       function(_, key)
