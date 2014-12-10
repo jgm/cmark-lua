@@ -176,6 +176,10 @@ function Html.inline_code(s)
    tag_close('code')
 end
 
+function Html.inline_html(s)
+   out(s)
+end
+
 function Html.begin_emph()
    tag_open('em')
 end
@@ -193,7 +197,11 @@ function Html.end_strong()
 end
 
 function Html.begin_link(url, title)
-   tag_open('a', {url = url, title = title})
+   local attrs = {href = url}
+   if #title > 0 then
+      attrs.title = title
+   end
+   tag_open('a', attrs)
 end
 
 function Html.end_link(url, title)

@@ -24,6 +24,14 @@ local node_first_child = cmark.node_first_child
 local node_next = cmark.node_next
 local node_parent = cmark.node_parent
 
+local is_leaf_node = function(node)
+   local ntype = cmark.node_get_type(node)
+   return (ntype == cmark.HTML or ntype == cmark.HRULE or
+           ntype == cmark.REFERENCE_DEF or ntype == cmark.TEXT or
+           ntype == cmark.SOFTBREAK or ntype == cmark.LINEBREAK or
+           ntype == cmark.INLINE_CODE or ntype == cmark.INLINE_HTML)
+end
+
 function cmark.walk(node)
    local begin = true
    local current_node = node
@@ -31,17 +39,23 @@ function cmark.walk(node)
    return function()
       while current_node ~= nil do
          local first_child = node_first_child(current_node)
-         local nextnode = node_next(current_node)
-         if begin and first_child ~= nil then
-            depth = depth + 1
-            current_node = first_child
-         elseif nextnode ~= nil then
-            begin = true
-            current_node = nextnode
-         else
-            begin = false
-            depth = depth - 1
-            current_node = node_parent(current_node)
+         if begin and not is_leaf_node(current_node) then
+            if first_child == nil then
+               begin = false -- stay on this node
+            else
+               depth = depth + 1
+               current_node = first_child
+            end
+	 else
+            local nextnode = node_next(current_node)
+            if nextnode ~= nil then
+               begin = true
+               current_node = nextnode
+            else
+               begin = false
+               depth = depth - 1
+               current_node = node_parent(current_node)
+            end
          end
          if depth == 0 then
             return nil
@@ -92,9 +106,9 @@ function Renderer.new()
          elseif ntype == cmark.LIST then
             local ltype = cmark.node_get_list_type(node)
             local stype
-            if ltype == cmark.BULLET_LIST then
+            if ltype == 1 then
                stype = 'bullet'
-            elseif ltype == cmark.ORDERED_LIST then
+            elseif ltype == 2 then
                stype = 'ordered'
             end
             local start = cmark.node_get_list_start(node)
