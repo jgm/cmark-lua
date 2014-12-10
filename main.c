@@ -13,6 +13,7 @@
 #include "bench.h"
 
 extern int luaopen_cmark(lua_State *L);
+extern int luaopen_utf8(lua_State *L);
 extern void push_cmark_node(lua_State *L, cmark_node *node);
 
 void print_usage()
@@ -122,7 +123,8 @@ int main(int argc, char *argv[])
 
 		lua_State *L = luaL_newstate();
 		luaL_openlibs(L);
-		luaopen_cmark(L);
+		luaL_requiref(L, "utf8", luaopen_utf8, 1);
+		luaL_requiref(L, "cmark", luaopen_cmark, 1);
 		status = luaL_loadfile(L, argv[luafile]) ||
 			lua_pcall(L, 0, 1, 0);
 		if (status != 0) {
@@ -132,7 +134,7 @@ int main(int argc, char *argv[])
 			lua_getfield(L, -1, "render");
 			push_cmark_node(L, document);
 			if (lua_pcall(L, 1, 1, 0) != 0) {
-				fprintf(stderr, "Error running render\n");
+				fprintf(stderr, "Error running render: %s\n", lua_tostring(L, -1));
 				return 5;
 			}
 			printf("%s", lua_tostring(L, -1));

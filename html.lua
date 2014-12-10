@@ -1,7 +1,7 @@
 local Html = cmark.Renderer.new()
 
-local gsub, find, format, byte = string.gsub, string.find,
-                                 string.format, string.byte
+local gsub, find, format, byte = utf8.gsub, utf8.find,
+                                 string.format, utf8.byte
 
 Html.escape = function(s)
    if find(s, '[<>&"]') then

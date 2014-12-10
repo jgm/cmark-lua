@@ -248,5 +248,4 @@ function Renderer.new()
 end
 
 cmark.Renderer = Renderer
-
 }

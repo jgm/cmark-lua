@@ -26,11 +26,14 @@ cmark.so: cmark_wrap.o $(OBJS)
 cmark.o: cmark_wrap.c cmark.i
 	$(CC) -c $(CFLAGS) $< -o $@
 
+luautf8/lutf8lib.o: luautf8/lutf8lib.c
+	$(CC) -c $(CFLAGS) -I$(LUA) $< -o $@
+
 $(LUADIR)/liblua.a: $(wildcard $(LUADIR)/*.h) $(wildcard $(LUADIR)/*.c) $(LUADIR)/Makefile
 	make liblua.a -C $(LUADIR) MYCFLAGS="-DLUA_USE_LINUX" CC=$(CC)
 	# note: LUA_USE_LINUX is recommended for linux, osx, freebsd
 
-cmark-lua: main.o cmark_wrap.o $(OBJS) $(LUADIR)/liblua.a
+cmark-lua: main.o cmark_wrap.o $(OBJS) $(LUADIR)/liblua.a luautf8/lutf8lib.o
 	$(CC) -o $@ -L$(EXT) -I$(EXT) -I. $^
 
 install: cmark.so
@@ -45,4 +48,4 @@ test:
 	python $(COMMONMARK)/test/spec_tests.py --spec $(COMMONMARK)/spec.txt --prog ./wrap.lua
 
 clean:
-	rm -rf cmark.so *.o $(EXT)/*.o $(LUADIR)/*.[oa] cmark-lua
+	rm -rf cmark.so *.o $(EXT)/*.o $(LUADIR)/*.[oa] cmark-lua luautf8/*.o
