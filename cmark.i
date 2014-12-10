@@ -27,6 +27,7 @@ local node_parent = cmark.node_parent
 local is_leaf_node = function(node)
    local ntype = cmark.node_get_type(node)
    return (ntype == cmark.HTML or ntype == cmark.HRULE or
+           ntype == cmark.CODE_BLOCK or
            ntype == cmark.REFERENCE_DEF or ntype == cmark.TEXT or
            ntype == cmark.SOFTBREAK or ntype == cmark.LINEBREAK or
            ntype == cmark.INLINE_CODE or ntype == cmark.INLINE_HTML)

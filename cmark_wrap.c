@@ -4135,6 +4135,7 @@ const char* SWIG_LUACODE=
   "local is_leaf_node = function(node)\n"
   "   local ntype = cmark.node_get_type(node)\n"
   "   return (ntype == cmark.HTML or ntype == cmark.HRULE or\n"
+  "           ntype == cmark.CODE_BLOCK or\n"
   "           ntype == cmark.REFERENCE_DEF or ntype == cmark.TEXT or\n"
   "           ntype == cmark.SOFTBREAK or ntype == cmark.LINEBREAK or\n"
   "           ntype == cmark.INLINE_CODE or ntype == cmark.INLINE_HTML)\n"
