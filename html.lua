@@ -1,7 +1,7 @@
 local Html = cmark.Renderer.new()
 
-local gsub, find, format, byte = utf8.gsub, utf8.find,
-                                 string.format, utf8.byte
+local gsub, find, format, byte = string.gsub, string.find,
+                                 string.format, string.byte
 
 Html.escape = function(s)
    if find(s, '[<>&"]') then
@@ -204,7 +204,7 @@ function Html.end_strong()
 end
 
 function Html.begin_link(url, title)
-   local attrs = {href = url}
+   local attrs = {href = urlencode(url)}
    if #title > 0 then
       attrs.title = title
    end
