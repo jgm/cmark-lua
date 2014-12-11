@@ -37,10 +37,13 @@ function cmark.walk(node)
    local begin = true
    local current_node = node
    local depth = 0
+   local start = true
    return function()
-      while current_node ~= nil do
-         local first_child = node_first_child(current_node)
-         if begin and not is_leaf_node(current_node) then
+      while current_node ~= nil and depth >= 0 do
+         if start then
+            start = false -- stay on this node
+         elseif begin and not is_leaf_node(current_node) then
+            local first_child = node_first_child(current_node)
             if first_child == nil then
                begin = false -- stay on this node
             else
@@ -58,11 +61,7 @@ function cmark.walk(node)
                current_node = node_parent(current_node)
             end
          end
-         if depth == 0 then
-            return nil
-         else
-            return current_node, begin
-         end
+         return current_node, begin
       end
    end
 end
@@ -91,7 +90,6 @@ function Renderer.new()
 
          M.current = node
          local ntype = cmark.node_get_type(node)
-
          if ntype == cmark.DOCUMENT then
             if begin then
                M.begin_document()
