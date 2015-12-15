@@ -59,7 +59,7 @@ cmark_wrap.c: cmark.i $(CBITS)/cmark.h
 	$(SWIG) -o $@ -includeall -lua -I$(CBITS) -Idummy $<
 
 test:
-	python $(CMARK)/test/spec_tests.py --spec $(CMARK)/spec.txt --prog ./wrap.lua
+	python3 $(CMARK)/test/spec_tests.py --spec $(CMARK)/test/spec.txt --prog ./wrap.lua
 
 clean:
 	rm -rf cmark.so *.o $(CBITS)/*.o $(LUADIR)/*.[oa] cmark-lua luautf8/*.o
