@@ -4,10 +4,9 @@
 %}
 
 // Renames:
-// CMARK_NODE_PARAGRAPH -> PARAGRAPH
-// CMARK_BULLET_LIST -> BULLET_LIST
+// CMARK_NODE_PARAGRAPH -> NODE_PARAGRAPH
 // cmark_parse_document -> parse_document
-%rename("%(regex:/^(cmark|CMARK_NODE|CMARK)_(.*)/\\2/)s") "";
+%rename("%(regex:/^(cmark|CMARK)_(.*)/\\2/)s") "";
 
 %include "cmark.h"
 
