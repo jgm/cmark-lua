@@ -23,9 +23,6 @@ all: cmark.so cmark-lua
 cmark.so: cmark_wrap.o $(OBJS)
 	$(CC) $(LIBFLAG) -o $@ -L$(CBITS) -L$(LUA_LIBDIR) -I$(CBITS) -I. -llua $^
 
-cmark.o: cmark_wrap.c
-	$(CC) -c $(CFLAGS) $< -o $@
-
 luautf8/lutf8lib.o: luautf8/lutf8lib.c
 	$(CC) -c $(CFLAGS) -I$(LUA) $< -o $@
 
