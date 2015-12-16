@@ -53,7 +53,7 @@ install: cmark.so
 	# cp lua file to $(INST_LUADIR)
 
 cmark_wrap.c: cmark.i $(CBITS)/cmark.h
-	$(SWIG) -o $@ -includeall -lua -I$(CBITS) -Idummy $<
+	$(SWIG) -o $@ -includeall -lua -I$(CBITS) -Idummy -DCMARK_STATIC_DEFINE=1 $<
 
 test:
 	python3 $(CMARK)/test/spec_tests.py --spec $(CMARK)/test/spec.txt --prog ./wrap.lua
