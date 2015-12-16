@@ -86,6 +86,7 @@ int main(int argc, char *argv[]) {
   int options = CMARK_OPT_DEFAULT;
   int status = 0;
   bool skip_rendering = false;
+  char *format = "html";
 
 #if defined(_WIN32) && !defined(__CYGWIN__)
   _setmode(_fileno(stdout), _O_BINARY);
@@ -138,6 +139,7 @@ int main(int argc, char *argv[]) {
     } else if ((strcmp(argv[i], "-t") == 0) || (strcmp(argv[i], "--to") == 0)) {
       i += 1;
       if (i < argc) {
+        format = argv[i];
         if (strcmp(argv[i], "man") == 0) {
           writer = FORMAT_MAN;
         } else if (strcmp(argv[i], "html") == 0) {
@@ -201,12 +203,11 @@ int main(int argc, char *argv[]) {
   cmark_parser_free(parser);
 
   /* A cmark filter is a lua file that returns
-     a function with one argument, the document node.
-     The function may modify the document node,
+     a function with two argument, the document node
+     and the format. The function may modify the document node,
      print values, or whatever. */
 
   for (i = 0; i < numluafps; i++) {
-    fprintf(stderr, "Running filter %s\n", argv[luafiles[i]]);
     lua_State *L = luaL_newstate();
     luaL_openlibs(L);
     luaL_requiref(L, "utf8", luaopen_utf8, 1);
@@ -218,7 +219,8 @@ int main(int argc, char *argv[]) {
       return 3;
     } else {
       push_cmark_node(L, document);
-      if (lua_pcall(L, 1, 1, 0) != 0) {
+      lua_pushstring(L, format);
+      if (lua_pcall(L, 2, 1, 0) != 0) {
         fprintf(stderr, "Error running filter %s: %s\n",
                 argv[luafiles[i]], lua_tostring(L, -1));
         return 5;
