@@ -159,12 +159,6 @@ int main(int argc, char *argv[]) {
     } else { // treat as file argument
       files[numfps++] = i;
     }
-    if (numfps >= 256) {
-      fprintf(stderr, "Limit of 256 input files exceeded\n");
-    }
-    if (numluafps >= 256) {
-      fprintf(stderr, "Limit of 256 lua files exceeded\n");
-    }
   }
 
   parser = cmark_parser_new(options);
