@@ -85,6 +85,7 @@ int main(int argc, char *argv[]) {
   writer_format writer = FORMAT_HTML;
   int options = CMARK_OPT_DEFAULT;
   int status = 0;
+  bool skip_rendering = false;
 
 #if defined(_WIN32) && !defined(__CYGWIN__)
   _setmode(_fileno(stdout), _O_BINARY);
@@ -222,13 +223,19 @@ int main(int argc, char *argv[]) {
                 argv[luafiles[i]], lua_tostring(L, -1));
         return 5;
       }
+      if (lua_isnumber(L, -1)) {
+        // if filter returns -1, we skip rendering
+        skip_rendering = (lua_tonumber(L, -1) == -1);
+      }
     }
     lua_close(L);
   }
 
-  start_timer();
-  print_document(document, writer, options, width);
-  end_timer("print_document");
+  if (!skip_rendering) {
+    start_timer();
+    print_document(document, writer, options, width);
+    end_timer("print_document");
+  }
 
   start_timer();
   cmark_node_free(document);
