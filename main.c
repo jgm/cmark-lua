@@ -72,8 +72,9 @@ static void print_document(cmark_node *document, writer_format writer,
 }
 
 int main(int argc, char *argv[]) {
-  int i, numfps = 0;
+  int i, numfps, numluafps = 0;
   int *files;
+  int *luafiles;
   char buffer[4096];
   cmark_parser *parser;
   size_t bytes;
@@ -88,6 +89,7 @@ int main(int argc, char *argv[]) {
 #endif
 
   files = (int *)malloc(argc * sizeof(*files));
+  luafiles = (int *)malloc(argc * sizeof(*files));
 
   for (i = 1; i < argc; i++) {
     if (strcmp(argv[i], "--version") == 0) {
@@ -106,7 +108,14 @@ int main(int argc, char *argv[]) {
       options |= CMARK_OPT_NORMALIZE;
     } else if (strcmp(argv[i], "--validate-utf8") == 0) {
       options |= CMARK_OPT_VALIDATE_UTF8;
-    } else if ((strcmp(argv[i], "--help") == 0) ||
+    } else if (strcmp(argv[i], "--lua") == 0) {
+      if (i + 1 < argc) {
+        luafiles[numluafps++] = i++;
+      } else {
+        fprintf(stderr, "No --lua file specified\n");
+        exit(1);
+      }
+   } else if ((strcmp(argv[i], "--help") == 0) ||
                (strcmp(argv[i], "-h") == 0)) {
       print_usage();
       exit(0);
@@ -149,6 +158,12 @@ int main(int argc, char *argv[]) {
       exit(1);
     } else { // treat as file argument
       files[numfps++] = i;
+    }
+    if (numfps >= 256) {
+      fprintf(stderr, "Limit of 256 input files exceeded\n");
+    }
+    if (numluafps >= 256) {
+      fprintf(stderr, "Limit of 256 lua files exceeded\n");
     }
   }
 
@@ -197,6 +212,6 @@ int main(int argc, char *argv[]) {
   end_timer("free_blocks");
 
   free(files);
-
+  free(luafiles);
   return 0;
 }
