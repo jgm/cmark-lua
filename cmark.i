@@ -37,4 +37,12 @@ function cmark.walk(node)
    end
 end
 
+setmetatable(_G, {
+  __index = function(_,f)
+      if not f:find("cmark.") then
+        return cmark[f]
+      end
+    end,
+})
+
 }

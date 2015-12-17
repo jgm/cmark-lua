@@ -4695,7 +4695,15 @@ const char* SWIG_LUACODE=
   "     cmark.iter_free(iter)\n"
   "     return nil\n"
   "   end\n"
-  "end";
+  "end\n"
+  "\n"
+  "setmetatable(_G, {\n"
+  "  __index = function(_,f)\n"
+  "      if not f:find(\"cmark.\") then\n"
+  "        return cmark[f]\n"
+  "      end\n"
+  "    end,\n"
+  "})";
 
 void SWIG_init_user(lua_State* L)
 {
