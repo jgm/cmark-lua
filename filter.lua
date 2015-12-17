@@ -13,7 +13,7 @@ return function(doc, format)
 
    -- cmark-lua has a built-in iterator to walk over
    -- all the node of the document.
-   for cur, entering in cmark.walker(doc) do
+   for cur, entering in cmark.walk(doc) do
       -- Increment links if we're entering a link node:
       if cmark.node_get_type(cur) == cmark.NODE_LINK and not entering then
           links = links + 1

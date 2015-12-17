@@ -23,7 +23,7 @@ function cmark.parse_string(s, opts)
    return cmark.parse_document(s, string.len(s), opts)
 end
 
-function cmark.walker(node)
+function cmark.walk(node)
    local iter = cmark.iter_new(node)
    return function()
      while true do

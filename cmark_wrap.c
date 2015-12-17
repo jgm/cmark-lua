@@ -4683,7 +4683,7 @@ const char* SWIG_LUACODE=
   "   return cmark.parse_document(s, string.len(s), opts)\n"
   "end\n"
   "\n"
-  "function cmark.walker(node)\n"
+  "function cmark.walk(node)\n"
   "   local iter = cmark.iter_new(node)\n"
   "   return function()\n"
   "     while true do\n"
