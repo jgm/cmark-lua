@@ -4690,7 +4690,7 @@ const char* SWIG_LUACODE=
   "         local et = cmark.iter_next(iter)\n"
   "         if et == cmark.EVENT_DONE then break end\n"
   "         local cur = cmark.iter_get_node(iter)\n"
-  "         return (et == cmark.EVENT_ENTER), cur\n"
+  "         return cur, (et == cmark.EVENT_ENTER)\n"
   "     end\n"
   "     cmark.iter_free(iter)\n"
   "     return nil\n"
