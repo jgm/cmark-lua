@@ -30,7 +30,7 @@ function cmark.walker(node)
          local et = cmark.iter_next(iter)
          if et == cmark.EVENT_DONE then break end
          local cur = cmark.iter_get_node(iter)
-         return et, cur
+         return (et == cmark.EVENT_ENTER), cur
      end
      cmark.iter_free(iter)
      return nil
