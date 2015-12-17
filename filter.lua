@@ -8,20 +8,11 @@
 return function(doc, format)
    local cur
    local links = 0
-   -- Create an iterator to walk the node tree:
-   local iter = cmark.iter_new(doc)
-   -- Get the next event from the iterator (et = event type)
-   local et = cmark.iter_next(iter)
-   while (et ~= cmark.EVENT_DONE)
-   do
-       -- Get the current node:
-      cur = cmark.iter_get_node(iter)
+   for et, cur in cmark.walker(doc) do
       -- Increment links if we're entering a link node:
       if cmark.node_get_type(cur) == cmark.NODE_LINK and et == cmark.EVENT_ENTER
           then links = links + 1
       end
-      -- Advance to the next node:
-      et = cmark.iter_next(iter)
    end
 
    -- Now we need to add a paragraph at the end of the

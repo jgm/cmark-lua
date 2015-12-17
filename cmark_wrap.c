@@ -4679,8 +4679,22 @@ SWIGEXPORT int SWIG_init(lua_State* L) /* default Lua action */
 const char* SWIG_LUACODE=
   "\n"
   "\n"
-  "function cmark.parse_string(s)\n"
-  "   return cmark.parse_document(s, string.len(s))\n"
+  "function cmark.parse_string(s, opts)\n"
+  "   return cmark.parse_document(s, string.len(s), opts)\n"
+  "end\n"
+  "\n"
+  "function cmark.walker(node)\n"
+  "   local iter = cmark.iter_new(node)\n"
+  "   return function()\n"
+  "     while true do\n"
+  "         local et = cmark.iter_next(iter)\n"
+  "         if et == cmark.EVENT_DONE then break end\n"
+  "         local cur = cmark.iter_get_node(iter)\n"
+  "         return et, cur\n"
+  "     end\n"
+  "     cmark.iter_free(iter)\n"
+  "     return nil\n"
+  "   end\n"
   "end";
 
 void SWIG_init_user(lua_State* L)

@@ -19,8 +19,22 @@ extern void push_cmark_node(lua_State *L, cmark_node *node)
 
 %luacode {
 
-function cmark.parse_string(s)
-   return cmark.parse_document(s, string.len(s))
+function cmark.parse_string(s, opts)
+   return cmark.parse_document(s, string.len(s), opts)
+end
+
+function cmark.walker(node)
+   local iter = cmark.iter_new(node)
+   return function()
+     while true do
+         local et = cmark.iter_next(iter)
+         if et == cmark.EVENT_DONE then break end
+         local cur = cmark.iter_get_node(iter)
+         return et, cur
+     end
+     cmark.iter_free(iter)
+     return nil
+   end
 end
 
 }
