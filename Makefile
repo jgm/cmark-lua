@@ -1,6 +1,6 @@
 CBITS = ext
 CFLAGS = -fPIC -O3 -I$(CBITS) -I.
-LUADIR = lua-5.2.4/src
+LUADIR = lua-5.2.4
 INST_PREFIX = /usr/local
 INST_BINDIR = $(INST_PREFIX)/bin
 INST_LIBDIR = $(INST_PREFIX)/lib/lua/5.2
@@ -21,15 +21,15 @@ cmark.so: cmark_wrap.o $(OBJS)
 $(LUADIR):
 	curl http://www.lua.org/ftp/lua-5.2.4.tar.gz | tar xvz
 
-$(LUADIR)/liblua.a: $(LUADIR)
-	make liblua.a -C $(LUADIR) MYCFLAGS="-DLUA_USE_LINUX" CC=$(CC)
+$(LUADIR)/src/liblua.a: $(LUADIR)
+	make liblua.a -C $(LUADIR)/src MYCFLAGS="-DLUA_USE_LINUX" CC=$(CC)
 	# note: LUA_USE_LINUX is recommended for linux, osx, freebsd
 
 cmark-lua: main.o cmark_wrap.o $(OBJS)
 	$(CC) -o $@ -I$(CBITS) -I. -llua $^
 
-cmark-lua-static: main.o cmark_wrap.o $(OBJS) $(LUADIR)/liblua.a
-	$(CC) -o $@ -I$(CBITS) -I. -I$(LUADIR) $^
+cmark-lua-static: main.o cmark_wrap.o $(OBJS) $(LUADIR)/src/liblua.a
+	$(CC) -o $@ -I$(CBITS) -I. -I$(LUADIR)/src $^
 
 update-c-sources: $(C_SOURCES)
 
@@ -53,7 +53,7 @@ cmark_wrap.c: cmark.i $(CBITS)/cmark.h
 	$(SWIG) -o $@ -includeall -lua -I$(CBITS) -Idummy -DCMARK_STATIC_DEFINE=1 $<
 
 test:
-	python3 $(CMARK)/test/spec_tests.py --spec $(CMARK)/test/spec.txt --prog ./wrap.lua
+	python3 $(CMARK_DIR)/test/spec_tests.py --spec $(CMARK_DIR)/test/spec.txt --prog ./wrap.lua
 
 clean:
-	rm -rf cmark.so *.o $(CBITS)/*.o $(LUADIR) cmark-lua
+	rm -rf cmark.so *.o $(CBITS)/*.o $(LUADIR) cmark-lua cmark-lua-static
