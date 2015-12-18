@@ -8,14 +8,15 @@
 -- whose arguments are a cmark node and a string giving
 -- the target format.
 return function(doc, format)
-   local cur
+   local cur, node_type, entering
    local links = 0
 
    -- cmark-lua has a built-in iterator to walk over
    -- all the node of the document.
-   for cur, entering in walk(doc) do
+   for cur, entering, node_type in walk(doc) do
       -- Increment links if we're entering a link node:
-      if node_get_type(cur) == NODE_LINK and not entering then
+      node_type = node_get_type(cur)
+      if node_type == NODE_LINK and not entering then
           links = links + 1
           -- insert " (link #n)" after the link:
           local t = node_new(NODE_TEXT)
@@ -29,11 +30,11 @@ return function(doc, format)
    -- found.  We'll need to create a paragraph node,
    -- and a text node to go in it, and we'll add the
    -- text as the literal content of the text node.
-   local p = cmark.node_new(cmark.NODE_PARAGRAPH)
-   local t = cmark.node_new(cmark.NODE_TEXT)
-   cmark.node_set_literal(t, string.format("%d links found in this %s document.", links, format))
-   cmark.node_append_child(p, t)
-   cmark.node_append_child(doc, p)
+   local p = node_new(NODE_PARAGRAPH)
+   local t = node_new(NODE_TEXT)
+   node_set_literal(t, string.format("%d links found in this %s document.", links, format))
+   node_append_child(p, t)
+   node_append_child(doc, p)
 
 end
 
