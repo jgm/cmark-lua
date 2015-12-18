@@ -16,7 +16,7 @@
 #include <lualib.h>
 
 extern int luaopen_cmark(lua_State *L);
-extern int luaopen_utf8(lua_State *L);
+// extern int luaopen_utf8(lua_State *L);
 extern void push_cmark_node(lua_State *L, cmark_node *node);
 
 typedef enum {
@@ -210,7 +210,7 @@ int main(int argc, char *argv[]) {
   for (i = 0; i < numluafps; i++) {
     lua_State *L = luaL_newstate();
     luaL_openlibs(L);
-    luaL_requiref(L, "utf8", luaopen_utf8, 1);
+//    luaL_requiref(L, "utf8", luaopen_utf8, 1);
     luaL_requiref(L, "cmark", luaopen_cmark, 1);
     status = luaL_loadfile(L, argv[luafiles[i]]) ||
       lua_pcall(L, 0, 1, 0);

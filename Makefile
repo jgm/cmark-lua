@@ -1,8 +1,4 @@
 CFLAGS = -fPIC -O3 -I$(CBITS) -I.
-LIBFLAG = -shared
-LUA_LIBDIR = /usr/local/lib/lua/5.2
-LUA_BINDIR = /usr/local/bin
-LUA_INCDIR = /usr/local/include
 LUA = lua
 LUADIR = lua
 INST_PREFIX = /usr/local
@@ -21,17 +17,14 @@ CBITS = cbits
 all: cmark.so cmark-lua
 
 cmark.so: cmark_wrap.o $(OBJS)
-	$(CC) $(LIBFLAG) -o $@ -L$(CBITS) -L$(LUA_LIBDIR) -I$(CBITS) -I. -llua $^
-
-luautf8/lutf8lib.o: luautf8/lutf8lib.c
-	$(CC) -c $(CFLAGS) -I$(LUA) $< -o $@
+	$(CC) -shared -o $@ -L$(CBITS) -I$(CBITS) -I. -llua $^
 
 $(LUADIR)/liblua.a: $(wildcard $(LUADIR)/*.h) $(wildcard $(LUADIR)/*.c) $(LUADIR)/Makefile
 	make liblua.a -C $(LUADIR) MYCFLAGS="-DLUA_USE_LINUX" CC=$(CC)
 	# note: LUA_USE_LINUX is recommended for linux, osx, freebsd
 
-cmark-lua: main.o cmark_wrap.o $(OBJS) $(LUADIR)/liblua.a luautf8/lutf8lib.o
-	$(CC) -o $@ -L$(CBITS) -I$(CBITS) -I. $^
+cmark-lua: main.o cmark_wrap.o $(OBJS)
+	$(CC) -o $@ -I$(CBITS) -I. -llua $^
 
 update-c-sources: $(C_SOURCES)
 
@@ -59,4 +52,4 @@ test:
 	python3 $(CMARK)/test/spec_tests.py --spec $(CMARK)/test/spec.txt --prog ./wrap.lua
 
 clean:
-	rm -rf cmark.so *.o $(CBITS)/*.o $(LUADIR)/*.[oa] cmark-lua luautf8/*.o
+	rm -rf cmark.so *.o $(CBITS)/*.o $(LUADIR)/*.[oa] cmark-lua
