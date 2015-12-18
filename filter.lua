@@ -15,7 +15,6 @@ return function(doc, format)
    -- all the node of the document.
    for cur, entering, node_type in walk(doc) do
       -- Increment links if we're entering a link node:
-      node_type = node_get_type(cur)
       if node_type == NODE_LINK and not entering then
           links = links + 1
           -- insert " (link #n)" after the link:
