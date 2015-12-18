@@ -1,3 +1,4 @@
+CBITS = ext
 CFLAGS = -fPIC -O3 -I$(CBITS) -I.
 LUADIR = lua-5.2.4/src
 INST_PREFIX = /usr/local
@@ -9,7 +10,6 @@ SWIG ?= swig
 CMARK_DIR ?= ../cmark
 OBJS = $(subst .c,.o,$(wildcard $(CBITS)/*.c))
 C_SOURCES=$(wildcard $(CBITS)/*.*)
-CBITS = cbits
 
 .PHONY: clean, distclean, test, install, all
 
