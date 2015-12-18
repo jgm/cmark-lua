@@ -39,6 +39,7 @@ void print_usage() {
   printf("  --safe           Suppress raw HTML and dangerous URLs\n");
   printf("  --smart          Use smart punctuation\n");
   printf("  --normalize      Consolidate adjacent text nodes\n");
+  printf("  --lua FILE       Run the specified lua filter before rendering\n");
   printf("  --help, -h       Print usage information\n");
   printf("  --version        Print version\n");
 }
