@@ -4,6 +4,7 @@ SWIG ?= swig
 CMARK_DIR ?= ../cmark
 OBJS = $(subst .c,.o,$(wildcard $(CBITS)/*.c))
 C_SOURCES=$(wildcard $(CBITS)/*.*)
+LUASTATIC=lua-5.2.4/src/liblua.a
 
 .PHONY: clean, distclean, test, all, update-c-sources
 
@@ -11,6 +12,9 @@ all: cmark.so
 
 cmark.so: cmark_wrap.o $(OBJS)
 	$(CC) -shared -o $@ -I$(CBITS) -llua $^
+
+cmark.a: cmark_wrap.o $(OBJS)
+	ar rcs $@ $^ $(LUASTATIC)
 
 cmark_wrap.c: cmark.i $(CBITS)/cmark.h
 	$(SWIG) -o $@ -lua -I$(CBITS) -DCMARK_EXPORT='' $<
