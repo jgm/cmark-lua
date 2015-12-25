@@ -3173,19 +3173,19 @@ fail:
 }
 
 
-static int _wrap_node_get_header_level(lua_State* L) {
+static int _wrap_node_get_heading_level(lua_State* L) {
   int SWIG_arg = 0;
   cmark_node *arg1 = (cmark_node *) 0 ;
   int result;
   
-  SWIG_check_num_args("cmark_node_get_header_level",1,1)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("cmark_node_get_header_level",1,"cmark_node *");
+  SWIG_check_num_args("cmark_node_get_heading_level",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("cmark_node_get_heading_level",1,"cmark_node *");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_cmark_node,0))){
-    SWIG_fail_ptr("node_get_header_level",1,SWIGTYPE_p_cmark_node);
+    SWIG_fail_ptr("node_get_heading_level",1,SWIGTYPE_p_cmark_node);
   }
   
-  result = (int)cmark_node_get_header_level(arg1);
+  result = (int)cmark_node_get_heading_level(arg1);
   lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
   return SWIG_arg;
   
@@ -3197,22 +3197,22 @@ fail:
 }
 
 
-static int _wrap_node_set_header_level(lua_State* L) {
+static int _wrap_node_set_heading_level(lua_State* L) {
   int SWIG_arg = 0;
   cmark_node *arg1 = (cmark_node *) 0 ;
   int arg2 ;
   int result;
   
-  SWIG_check_num_args("cmark_node_set_header_level",2,2)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("cmark_node_set_header_level",1,"cmark_node *");
-  if(!lua_isnumber(L,2)) SWIG_fail_arg("cmark_node_set_header_level",2,"int");
+  SWIG_check_num_args("cmark_node_set_heading_level",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("cmark_node_set_heading_level",1,"cmark_node *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("cmark_node_set_heading_level",2,"int");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_cmark_node,0))){
-    SWIG_fail_ptr("node_set_header_level",1,SWIGTYPE_p_cmark_node);
+    SWIG_fail_ptr("node_set_heading_level",1,SWIGTYPE_p_cmark_node);
   }
   
   arg2 = (int)lua_tonumber(L, 2);
-  result = (int)cmark_node_set_header_level(arg1,arg2);
+  result = (int)cmark_node_set_heading_level(arg1,arg2);
   lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
   return SWIG_arg;
   
@@ -3570,6 +3570,108 @@ static int _wrap_node_set_title(lua_State* L) {
   
   arg2 = (char *)lua_tostring(L, 2);
   result = (int)cmark_node_set_title(arg1,(char const *)arg2);
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_node_get_on_enter(lua_State* L) {
+  int SWIG_arg = 0;
+  cmark_node *arg1 = (cmark_node *) 0 ;
+  char *result = 0 ;
+  
+  SWIG_check_num_args("cmark_node_get_on_enter",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("cmark_node_get_on_enter",1,"cmark_node *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_cmark_node,0))){
+    SWIG_fail_ptr("node_get_on_enter",1,SWIGTYPE_p_cmark_node);
+  }
+  
+  result = (char *)cmark_node_get_on_enter(arg1);
+  lua_pushstring(L,(const char *)result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_node_set_on_enter(lua_State* L) {
+  int SWIG_arg = 0;
+  cmark_node *arg1 = (cmark_node *) 0 ;
+  char *arg2 = (char *) 0 ;
+  int result;
+  
+  SWIG_check_num_args("cmark_node_set_on_enter",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("cmark_node_set_on_enter",1,"cmark_node *");
+  if(!SWIG_lua_isnilstring(L,2)) SWIG_fail_arg("cmark_node_set_on_enter",2,"char const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_cmark_node,0))){
+    SWIG_fail_ptr("node_set_on_enter",1,SWIGTYPE_p_cmark_node);
+  }
+  
+  arg2 = (char *)lua_tostring(L, 2);
+  result = (int)cmark_node_set_on_enter(arg1,(char const *)arg2);
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_node_get_on_exit(lua_State* L) {
+  int SWIG_arg = 0;
+  cmark_node *arg1 = (cmark_node *) 0 ;
+  char *result = 0 ;
+  
+  SWIG_check_num_args("cmark_node_get_on_exit",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("cmark_node_get_on_exit",1,"cmark_node *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_cmark_node,0))){
+    SWIG_fail_ptr("node_get_on_exit",1,SWIGTYPE_p_cmark_node);
+  }
+  
+  result = (char *)cmark_node_get_on_exit(arg1);
+  lua_pushstring(L,(const char *)result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_node_set_on_exit(lua_State* L) {
+  int SWIG_arg = 0;
+  cmark_node *arg1 = (cmark_node *) 0 ;
+  char *arg2 = (char *) 0 ;
+  int result;
+  
+  SWIG_check_num_args("cmark_node_set_on_exit",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("cmark_node_set_on_exit",1,"cmark_node *");
+  if(!SWIG_lua_isnilstring(L,2)) SWIG_fail_arg("cmark_node_set_on_exit",2,"char const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_cmark_node,0))){
+    SWIG_fail_ptr("node_set_on_exit",1,SWIGTYPE_p_cmark_node);
+  }
+  
+  arg2 = (char *)lua_tostring(L, 2);
+  result = (int)cmark_node_set_on_exit(arg1,(char const *)arg2);
   lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
   return SWIG_arg;
   
@@ -4180,9 +4282,6 @@ static swig_lua_attribute swig_SwigModule_attributes[] = {
     {0,0,0}
 };
 static swig_lua_const_info swig_SwigModule_constants[]= {
-    {SWIG_LUA_CONSTTAB_INT("DEFINE_NO_DEPRECATED", 0)},
-    {SWIG_LUA_CONSTTAB_INT("VERSION", ((0 << 16)|(22 << 8)|0))},
-    {SWIG_LUA_CONSTTAB_STRING("VERSION_STRING", "0.22.0")},
     {SWIG_LUA_CONSTTAB_INT("NODE_NONE", CMARK_NODE_NONE)},
     {SWIG_LUA_CONSTTAB_INT("NODE_DOCUMENT", CMARK_NODE_DOCUMENT)},
     {SWIG_LUA_CONSTTAB_INT("NODE_BLOCK_QUOTE", CMARK_NODE_BLOCK_QUOTE)},
@@ -4190,9 +4289,10 @@ static swig_lua_const_info swig_SwigModule_constants[]= {
     {SWIG_LUA_CONSTTAB_INT("NODE_ITEM", CMARK_NODE_ITEM)},
     {SWIG_LUA_CONSTTAB_INT("NODE_CODE_BLOCK", CMARK_NODE_CODE_BLOCK)},
     {SWIG_LUA_CONSTTAB_INT("NODE_HTML", CMARK_NODE_HTML)},
+    {SWIG_LUA_CONSTTAB_INT("NODE_CUSTOM_BLOCK", CMARK_NODE_CUSTOM_BLOCK)},
     {SWIG_LUA_CONSTTAB_INT("NODE_PARAGRAPH", CMARK_NODE_PARAGRAPH)},
-    {SWIG_LUA_CONSTTAB_INT("NODE_HEADER", CMARK_NODE_HEADER)},
-    {SWIG_LUA_CONSTTAB_INT("NODE_HRULE", CMARK_NODE_HRULE)},
+    {SWIG_LUA_CONSTTAB_INT("NODE_HEADING", CMARK_NODE_HEADING)},
+    {SWIG_LUA_CONSTTAB_INT("NODE_THEMATIC_BREAK", CMARK_NODE_THEMATIC_BREAK)},
     {SWIG_LUA_CONSTTAB_INT("NODE_FIRST_BLOCK", CMARK_NODE_FIRST_BLOCK)},
     {SWIG_LUA_CONSTTAB_INT("NODE_LAST_BLOCK", CMARK_NODE_LAST_BLOCK)},
     {SWIG_LUA_CONSTTAB_INT("NODE_TEXT", CMARK_NODE_TEXT)},
@@ -4200,6 +4300,7 @@ static swig_lua_const_info swig_SwigModule_constants[]= {
     {SWIG_LUA_CONSTTAB_INT("NODE_LINEBREAK", CMARK_NODE_LINEBREAK)},
     {SWIG_LUA_CONSTTAB_INT("NODE_CODE", CMARK_NODE_CODE)},
     {SWIG_LUA_CONSTTAB_INT("NODE_INLINE_HTML", CMARK_NODE_INLINE_HTML)},
+    {SWIG_LUA_CONSTTAB_INT("NODE_CUSTOM_INLINE", CMARK_NODE_CUSTOM_INLINE)},
     {SWIG_LUA_CONSTTAB_INT("NODE_EMPH", CMARK_NODE_EMPH)},
     {SWIG_LUA_CONSTTAB_INT("NODE_STRONG", CMARK_NODE_STRONG)},
     {SWIG_LUA_CONSTTAB_INT("NODE_LINK", CMARK_NODE_LINK)},
@@ -4217,12 +4318,12 @@ static swig_lua_const_info swig_SwigModule_constants[]= {
     {SWIG_LUA_CONSTTAB_INT("EVENT_ENTER", CMARK_EVENT_ENTER)},
     {SWIG_LUA_CONSTTAB_INT("EVENT_EXIT", CMARK_EVENT_EXIT)},
     {SWIG_LUA_CONSTTAB_INT("OPT_DEFAULT", 0)},
-    {SWIG_LUA_CONSTTAB_INT("OPT_SOURCEPOS", 1)},
-    {SWIG_LUA_CONSTTAB_INT("OPT_HARDBREAKS", 2)},
-    {SWIG_LUA_CONSTTAB_INT("OPT_NORMALIZE", 4)},
-    {SWIG_LUA_CONSTTAB_INT("OPT_SMART", 8)},
-    {SWIG_LUA_CONSTTAB_INT("OPT_VALIDATE_UTF8", 16)},
-    {SWIG_LUA_CONSTTAB_INT("OPT_SAFE", 32)},
+    {SWIG_LUA_CONSTTAB_INT("OPT_SOURCEPOS", (1 << 1))},
+    {SWIG_LUA_CONSTTAB_INT("OPT_HARDBREAKS", (1 << 2))},
+    {SWIG_LUA_CONSTTAB_INT("OPT_SAFE", (1 << 3))},
+    {SWIG_LUA_CONSTTAB_INT("OPT_NORMALIZE", (1 << 8))},
+    {SWIG_LUA_CONSTTAB_INT("OPT_VALIDATE_UTF8", (1 << 9))},
+    {SWIG_LUA_CONSTTAB_INT("OPT_SMART", (1 << 10))},
     {0,0,0,0,0,0}
 };
 static swig_lua_method swig_SwigModule_methods[]= {
@@ -4247,8 +4348,8 @@ static swig_lua_method swig_SwigModule_methods[]= {
     { "node_get_type_string", _wrap_node_get_type_string},
     { "node_get_literal", _wrap_node_get_literal},
     { "node_set_literal", _wrap_node_set_literal},
-    { "node_get_header_level", _wrap_node_get_header_level},
-    { "node_set_header_level", _wrap_node_set_header_level},
+    { "node_get_heading_level", _wrap_node_get_heading_level},
+    { "node_set_heading_level", _wrap_node_set_heading_level},
     { "node_get_list_type", _wrap_node_get_list_type},
     { "node_set_list_type", _wrap_node_set_list_type},
     { "node_get_list_delim", _wrap_node_get_list_delim},
@@ -4263,6 +4364,10 @@ static swig_lua_method swig_SwigModule_methods[]= {
     { "node_set_url", _wrap_node_set_url},
     { "node_get_title", _wrap_node_get_title},
     { "node_set_title", _wrap_node_set_title},
+    { "node_get_on_enter", _wrap_node_get_on_enter},
+    { "node_set_on_enter", _wrap_node_set_on_enter},
+    { "node_get_on_exit", _wrap_node_get_on_exit},
+    { "node_set_on_exit", _wrap_node_set_on_exit},
     { "node_get_start_line", _wrap_node_get_start_line},
     { "node_get_start_column", _wrap_node_get_start_column},
     { "node_get_end_line", _wrap_node_get_end_line},
