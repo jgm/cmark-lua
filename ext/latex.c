@@ -264,9 +264,9 @@ static int S_render_node(cmark_renderer *renderer, cmark_node *node,
     }
     break;
 
-  case CMARK_NODE_HEADER:
+  case CMARK_NODE_HEADING:
     if (entering) {
-      switch (cmark_node_get_header_level(node)) {
+      switch (cmark_node_get_heading_level(node)) {
       case 1:
         LIT("\\section");
         break;
@@ -303,7 +303,14 @@ static int S_render_node(cmark_renderer *renderer, cmark_node *node,
   case CMARK_NODE_HTML:
     break;
 
-  case CMARK_NODE_HRULE:
+  case CMARK_NODE_CUSTOM_BLOCK:
+    CR();
+    OUT(entering ? cmark_node_get_on_enter(node) : cmark_node_get_on_exit(node),
+        false, LITERAL);
+    CR();
+    break;
+
+  case CMARK_NODE_THEMATIC_BREAK:
     BLANKLINE();
     LIT("\\begin{center}\\rule{0.5\\linewidth}{\\linethickness}\\end{center}");
     BLANKLINE();
@@ -339,6 +346,11 @@ static int S_render_node(cmark_renderer *renderer, cmark_node *node,
     break;
 
   case CMARK_NODE_INLINE_HTML:
+    break;
+
+  case CMARK_NODE_CUSTOM_INLINE:
+    OUT(entering ? cmark_node_get_on_enter(node) : cmark_node_get_on_exit(node),
+        false, LITERAL);
     break;
 
   case CMARK_NODE_STRONG:

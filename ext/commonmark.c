@@ -95,7 +95,7 @@ static int shortest_unused_backtick_sequence(const char *code) {
     used = used >> 1;
     i++;
   }
-  return i;
+  return (int)i;
 }
 
 static bool is_autolink(cmark_node *node) {
@@ -228,9 +228,9 @@ static int S_render_node(cmark_renderer *renderer, cmark_node *node,
     }
     break;
 
-  case CMARK_NODE_HEADER:
+  case CMARK_NODE_HEADING:
     if (entering) {
-      for (int i = cmark_node_get_header_level(node); i > 0; i--) {
+      for (i = cmark_node_get_heading_level(node); i > 0; i--) {
         LIT("#");
       }
       LIT(" ");
@@ -285,7 +285,14 @@ static int S_render_node(cmark_renderer *renderer, cmark_node *node,
     BLANKLINE();
     break;
 
-  case CMARK_NODE_HRULE:
+  case CMARK_NODE_CUSTOM_BLOCK:
+    BLANKLINE();
+    OUT(entering ? cmark_node_get_on_enter(node) : cmark_node_get_on_exit(node),
+        false, LITERAL);
+    BLANKLINE();
+    break;
+
+  case CMARK_NODE_THEMATIC_BREAK:
     BLANKLINE();
     LIT("-----");
     BLANKLINE();
@@ -339,6 +346,11 @@ static int S_render_node(cmark_renderer *renderer, cmark_node *node,
     OUT(cmark_node_get_literal(node), false, LITERAL);
     break;
 
+  case CMARK_NODE_CUSTOM_INLINE:
+    OUT(entering ? cmark_node_get_on_enter(node) : cmark_node_get_on_exit(node),
+        false, LITERAL);
+    break;
+
   case CMARK_NODE_STRONG:
     if (entering) {
       LIT("**");
@@ -368,9 +380,9 @@ static int S_render_node(cmark_renderer *renderer, cmark_node *node,
       if (entering) {
         LIT("<");
         if (strncmp(cmark_node_get_url(node), "mailto:", 7) == 0) {
-          LIT((char *)cmark_node_get_url(node) + 7);
+          LIT((const char *)cmark_node_get_url(node) + 7);
         } else {
-          LIT((char *)cmark_node_get_url(node));
+          LIT((const char *)cmark_node_get_url(node));
         }
         LIT(">");
         // return signal to skip contents of node...

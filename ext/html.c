@@ -43,8 +43,8 @@ static int S_render_node(cmark_node *node, cmark_event_type ev_type,
   cmark_node *parent;
   cmark_node *grandparent;
   cmark_strbuf *html = state->html;
-  char start_header[] = "<h0";
-  char end_header[] = "</h0";
+  char start_heading[] = "<h0";
+  char end_heading[] = "</h0";
   bool tight;
   char buffer[100];
 
@@ -127,16 +127,16 @@ static int S_render_node(cmark_node *node, cmark_event_type ev_type,
     }
     break;
 
-  case CMARK_NODE_HEADER:
+  case CMARK_NODE_HEADING:
     if (entering) {
       cr(html);
-      start_header[2] = (char)('0' + node->as.header.level);
-      cmark_strbuf_puts(html, start_header);
+      start_heading[2] = (char)('0' + node->as.heading.level);
+      cmark_strbuf_puts(html, start_heading);
       S_render_sourcepos(node, html, options);
       cmark_strbuf_putc(html, '>');
     } else {
-      end_header[3] = (char)('0' + node->as.header.level);
-      cmark_strbuf_puts(html, end_header);
+      end_heading[3] = (char)('0' + node->as.heading.level);
+      cmark_strbuf_puts(html, end_heading);
       cmark_strbuf_puts(html, ">\n");
     }
     break;
@@ -176,7 +176,19 @@ static int S_render_node(cmark_node *node, cmark_event_type ev_type,
     cr(html);
     break;
 
-  case CMARK_NODE_HRULE:
+  case CMARK_NODE_CUSTOM_BLOCK:
+    cr(html);
+    if (entering) {
+      cmark_strbuf_put(html, node->as.custom.on_enter.data,
+                       node->as.custom.on_enter.len);
+    } else {
+      cmark_strbuf_put(html, node->as.custom.on_exit.data,
+                       node->as.custom.on_exit.len);
+    }
+    cr(html);
+    break;
+
+  case CMARK_NODE_THEMATIC_BREAK:
     cr(html);
     cmark_strbuf_puts(html, "<hr");
     S_render_sourcepos(node, html, options);
@@ -230,6 +242,16 @@ static int S_render_node(cmark_node *node, cmark_event_type ev_type,
       cmark_strbuf_puts(html, "<!-- raw HTML omitted -->");
     } else {
       cmark_strbuf_put(html, node->as.literal.data, node->as.literal.len);
+    }
+    break;
+
+  case CMARK_NODE_CUSTOM_INLINE:
+    if (entering) {
+      cmark_strbuf_put(html, node->as.custom.on_enter.data,
+                       node->as.custom.on_enter.len);
+    } else {
+      cmark_strbuf_put(html, node->as.custom.on_exit.data,
+                       node->as.custom.on_exit.len);
     }
     break;
 
