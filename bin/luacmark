@@ -1,4 +1,7 @@
 #!/usr/bin/env lua
+
+local defaultEnv = _ENV
+
 -- TODO add testing mode with something like
 -- package.cpath = "../?.so;" .. package.cpath
 
@@ -33,6 +36,10 @@ TODO description here.
 * `--output,-o` *file*
 
     Write output to *file*.
+
+* `--filter,-F` *file[,file]*
+
+    Filter the parsed AST using a lua script.  TODO details.
 
 * `--template,-T` *file*
 
@@ -148,6 +155,8 @@ local cmark = require("cmark")
 local alt_getopt = require("alt_getopt")
 local cosmo = require("cosmo")
 
+table.insert(defaultEnv, cmark)
+
 local function err(msg, exit_code)
   io.stderr:write("luacmark: " .. msg .. "\n")
   os.exit(exit_code or 1)
@@ -226,6 +235,7 @@ Options:
   --smart,-s                 Smart punctuation
   --metadata,-m              Lua metadata
   --output,-o FILE           Output file
+  --filter,-F FILE,[,FILE]   Lua script to filter AST
   --template,-T FILE         Insert output into template
   --data,-d K=V[,K=V..]      Set metadata to be passed to template
   --version,-V               Version information
@@ -244,13 +254,14 @@ local long_opts = {
   smart = "s",
   metadata = "m",
   output = "o",
+  filter = "F",
   template = "T",
   data = "d",
   version = "V",
   help = "h"
 }
 
-local short_opts = "t:l:o:T:d:msVh"
+local short_opts = "t:l:o:F:T:d:msVh"
 
 local optarg,optind = alt_getopt.get_opts(arg, short_opts, long_opts)
 
@@ -321,6 +332,16 @@ if inp:find("\r",1,true) then
 end
 
 local doc = cmark.parse_document(inp, string.len(inp), parser_options)
+
+if optarg['F'] then
+  for filter in string.gmatch(optarg['F'], "([^,]+)") do
+    local result = assert(load(io.lines(filter, 2^12), filter, 't', defaultEnv))
+    if result then
+        result()(doc, to)
+    end
+  end
+end
+
 local columns = 60 -- TODO
 local body = writer(doc, cmark.OPT_DEFAULT, columns)
 
