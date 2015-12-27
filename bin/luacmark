@@ -1,12 +1,8 @@
 #!/usr/bin/env lua
 
-local defaultEnv = _ENV
+local version = "0.23"
 
--- TODO add testing mode with something like
--- package.cpath = "../?.so;" .. package.cpath
-
---[===[
-@startman
+local manpage = [==[
 # NAME
 
 luacmark - command line CommonMark parser and renderer
@@ -66,6 +62,10 @@ TODO description here.
 
     Render softbreak elements (newlines in paragraphs) as hard
     line breaks.
+
+* `--man,-M`
+
+    Print out the man page.
 
 * `--version,-V`
 
@@ -137,9 +137,13 @@ and `sign` to `"yes"`.
 # AUTHORS
 
 luacmark is written by John MacFarlane.
+]==]
 
-@stopman
---]===]
+
+local defaultEnv = _ENV
+
+-- TODO add testing mode with something like
+-- package.cpath = "../?.so;" .. package.cpath
 
 local cmark = require("cmark")
 local alt_getopt = require("alt_getopt")
@@ -211,11 +215,6 @@ local find_template = function(name)
 end
 
 
-local version = [[
-luacmark 0.23
-Copyright (C) 2015 John MacFarlane
-]]
-
 local usage = [[
 Usage: luacmark [options] [file..] - convert markdown to other formats
 
@@ -229,6 +228,7 @@ Options:
   --smart,-S                 Smart punctuation
   --safe,-s                  Omit HTML and potentially unsafe attributes
   --hardbreaks,-h            Treat softbreaks as hard line breaks
+  --man,-M                   Print man page
   --version,-V               Version information
   --help,-h                  This message
 
@@ -246,10 +246,11 @@ local long_opts = {
   template = "T",
   data = "d",
   version = "V",
+  man = "M",
   help = "h"
 }
 
-local short_opts = "t:o:c:F:T:d:sShVh"
+local short_opts = "t:o:c:F:T:d:sShVMh"
 
 local optarg,optind = alt_getopt.get_opts(arg, short_opts, long_opts)
 
@@ -258,8 +259,16 @@ if optarg.h then
   os.exit(0)
 end
 
+if optarg.M then
+  local manpagedoc = cmark.parse_document(manpage, string.len(manpage),
+                        cmark.OPT_DEFAULT)
+  io.write('.TH LUACMARK 1 "" "luacmark ' .. version .. '"\n')
+  io.write(cmark.render_man(manpagedoc, cmark.OPT_DEFAULT, 72))
+  os.exit(0)
+end
+
 if optarg.V then
-  io.write(version)
+  io.write("luacmark " .. version .. "\nCopyright 2015 John MacFarlane\n")
   os.exit(0)
 end
 
