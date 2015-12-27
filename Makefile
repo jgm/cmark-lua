@@ -34,7 +34,7 @@ $(CBITS)/%: $(CMARK_DIR)/src/%
 	cp $< $@
 
 test:
-	python3 $(CMARK_DIR)/test/spec_tests.py --spec $(CMARK_DIR)/test/spec.txt --prog ./wrap.lua
+	python3 $(CMARK_DIR)/test/spec_tests.py --spec $(CMARK_DIR)/test/spec.txt --prog bin/luacmark
 
 clean:
 	rm -rf *.o $(CBITS)/*.o
