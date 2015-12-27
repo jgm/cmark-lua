@@ -39,7 +39,4 @@ build = {
              incdirs = { ".", "ext" }
         }
     },
-    install = {
-        bin = { "bin/luacmark" }
-    }
 }
