@@ -1,5 +1,5 @@
 package = "cmark"
-version = "0.22-1"
+version = "0.23-1"
 source = {
     url = "https://github.com/jgm/cmark-lua"
 }
