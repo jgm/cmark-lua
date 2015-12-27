@@ -3,16 +3,10 @@ cmark-lua
 
 Lua bindings to the libcmark CommonMark parser
 
-`make` will build a lua module `cmark.so`.
+This repository contains sources for two separate lua rocks:
 
-`make test` will run the CommonMark spec tests on a lua wrapper,
-`wrap.lua`.
-
-``` lua
-#!/usr/bin/env lua
-
-local cmark = require('cmark')
-local input = io.read("*all")
-io.write(cmark.cmark_markdown_to_html(input, string.len(input)))
-```
+- `cmark` is a lua binding to `libcmark`, the reference
+  implementation for CommonMark
+- `luacmark` is a command-line program that uses the `cmark`
+  library
 
