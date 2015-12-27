@@ -1,5 +1,10 @@
 #!/usr/bin/env lua
 
+local cmark = require("cmark")
+local alt_getopt = require("alt_getopt")
+local cosmo = require("cosmo")
+local yaml = require("yaml")
+
 local version = "0.23"
 
 local manpage = [==[
@@ -62,6 +67,10 @@ TODO description here.
 
     Render softbreak elements (newlines in paragraphs) as hard
     line breaks.
+
+* `--sourcepos`
+
+    Include source position information in html/xml attributes.
 
 * `--man,-M`
 
@@ -145,9 +154,6 @@ local defaultEnv = _ENV
 -- TODO add testing mode with something like
 -- package.cpath = "../?.so;" .. package.cpath
 
-local cmark = require("cmark")
-local alt_getopt = require("alt_getopt")
-local cosmo = require("cosmo")
 
 table.insert(defaultEnv, cmark)
 
@@ -228,6 +234,7 @@ Options:
   --smart,-S                 Smart punctuation
   --safe,-s                  Omit HTML and potentially unsafe attributes
   --hardbreaks,-h            Treat softbreaks as hard line breaks
+  --sourcepos,-p             Include source position information
   --man,-M                   Print man page
   --version,-V               Version information
   --help,-h                  This message
@@ -240,6 +247,7 @@ local long_opts = {
   columns = "c",
   smart = "S",
   hardbreaks = "h",
+  sourcepos = "p",
   safe = "s",
   output = "o",
   filter = "F",
@@ -250,7 +258,7 @@ local long_opts = {
   help = "h"
 }
 
-local short_opts = "t:o:c:F:T:d:sShVMh"
+local short_opts = "t:o:c:F:T:d:sSphVMh"
 
 local optarg,optind = alt_getopt.get_opts(arg, short_opts, long_opts)
 
@@ -285,7 +293,8 @@ end
 local options = cmark.OPT_VALIDATE_UTF8 + cmark.OPT_NORMALIZE +
   (optarg.S and cmark.OPT_SMART or 0) +
   (optarg.s and cmark.OPT_SAFE or 0) +
-  (optarg.h and cmark.OPT_HARDBREAKS or 0)
+  (optarg.h and cmark.OPT_HARDBREAKS or 0) +
+  (optarg.p and cmark.OPT_SOURCEPOS or 0)
 
 local writers = {
   html = function(d, opts, _cols) return cmark.render_html(d, opts) end,
@@ -320,8 +329,17 @@ else
   end
   inp = table.concat(inpt, "\n") .. "\n"
 end
-if inp:find("\r",1,true) then
-  inp = inp:gsub("\r\n","\n") -- convert DOS line endings
+
+local metadata = {}
+if string.find(inp, '---[\r\n]', 1) then
+  local _, endlast = string.find(inp, '[\r\n]...[ \t]*[\r\n][\r\n\t ]*', 3)
+  if not endlast then
+    local _, endlast = string.find(inp, '[\r\n]---[ \t]*[\r\n][\r\n\t ]*', 3)
+  end
+  metadata = yaml.load(string.sub(inp, 1, endlast))
+  -- We insert blank lines where the header was, so sourcepos is accurate:
+  inp = string.gsub(string.sub(inp, 1, endlast - 1), '[^\n\r]+', '') ..
+         string.sub(inp, endlast)
 end
 
 local doc = cmark.parse_document(inp, string.len(inp), options)
