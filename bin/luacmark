@@ -26,16 +26,14 @@ TODO description here.
     Specify format for output.
     *format* can be `commonmark`, `html`, `man`, `xml`, or `latex`.
 
-* `--layout,-l` *layout*
-
-    Control whitespace in output.
-    *layout* can be `default` (blank lines between block-level elements),
-    `compact` (avoid unnecessary blank lines), or `minimize` (avoid
-    all unnecessary space).
-
 * `--output,-o` *file*
 
     Write output to *file*.
+
+* `--columns,-c` *NUMBER*
+
+    Specify number of columns for text wrapping in supported
+    formats.  The default is 0 = no wrapping.
 
 * `--filter,-F` *file[,file]*
 
@@ -58,24 +56,16 @@ TODO description here.
     curly quotes, `--` into en dashes, `---` into em dashes,
     `...` into ellipses).
 
-* `--metadata`
+* `--safe`
 
-    Enable lua metadata.  An HTML comment beginning `<!--@` and containing
-    lua variable declarations is treated as metadata.  Note that strings
-    are read literally unless they are explicitly marked as markdown
-    using the `markdown` (or `m`) function. Lua metadata can occur anywhere
-    in a document. Example:
+    Suppress raw HTML and unsafe links (`javascript:`, `file:`,
+    `vbscript:`, and `data:`, except for `image/png`, `image/gif`,
+    `image/jpeg`, or `image/webp` mime types).
 
-        <!--@
-        title = m"My title with *italics*"
-        abstract = m[[
-          This is my abstract.
+* `--hardbreaks`
 
-          * point one
-          * point two
-          ]]
-        author = { "Me", "You" }
-        -->
+    Render softbreak elements (newlines in paragraphs) as hard
+    line breaks.
 
 * `--version,-V`
 
@@ -231,28 +221,26 @@ Usage: luacmark [options] [file..] - convert markdown to other formats
 
 Options:
   --to,-t FORMAT             Target format
-  --layout,-l LAYOUT         Whitespace in output (default|compact|minimize)
-  --smart,-s                 Smart punctuation
-  --metadata,-m              Lua metadata
   --output,-o FILE           Output file
   --filter,-F FILE,[,FILE]   Lua script to filter AST
   --template,-T FILE         Insert output into template
   --data,-d K=V[,K=V..]      Set metadata to be passed to template
+  --columns,c NUMBER         Number of columns to wrap text (or 0 for no wrap)
+  --smart,-S                 Smart punctuation
+  --safe,-s                  Omit HTML and potentially unsafe attributes
+  --hardbreaks,-h            Treat softbreaks as hard line breaks
   --version,-V               Version information
   --help,-h                  This message
 
-FORMAT can be html, html5, docbook, latex, context, or man.
-
-LAYOUT can be default, compact (no unnecessary blank lines), or
-minimize (no unnecessary blank space).
-
+FORMAT can be html, latex, man, commonmark, or xml.
 ]]
 
 local long_opts = {
   to = "t",
-  layout = "l",
-  smart = "s",
-  metadata = "m",
+  columns = "c",
+  smart = "S",
+  hardbreaks = "h",
+  safe = "s",
   output = "o",
   filter = "F",
   template = "T",
@@ -261,7 +249,7 @@ local long_opts = {
   help = "h"
 }
 
-local short_opts = "t:l:o:F:T:d:msVh"
+local short_opts = "t:o:c:F:T:d:sShVh"
 
 local optarg,optind = alt_getopt.get_opts(arg, short_opts, long_opts)
 
@@ -282,17 +270,13 @@ ensure_one_of("--to,-t", to,
 local output = optarg.o
 local ok, msg = pcall(function() io.output(output) end)
 if not ok then
-  luacmark.util.err("Could not open '" .. output .. "' for writing.\n" .. msg, 9)
+  err("Could not open '" .. output .. "' for writing.\n" .. msg, 9)
 end
 
-local parser_options = cmark.OPT_DEFAULT
-if optarg.s then
-  parser_options = parser_options + cmark.OPT_SMART
-end
-
-local layout = optarg["l"] or "default"
-ensure_one_of("--layout,-l",layout,{"default","compact","minimize"})
--- TODO
+local parser_options = cmark.OPT_DEFAULT +
+  (optarg.S and cmark.OPT_SMART or 0) +
+  (optarg.s and cmark.OPT_SAFE or 0) +
+  (optarg.h and cmark.OPT_HARDBREAKS or 0)
 
 local writers = {
   html = function(d, opts, _cols) return cmark.render_html(d, opts) end,
@@ -303,7 +287,7 @@ local writers = {
 }
 local writer = writers[to]
 if not writer then
-  luacmark.util.err("Unknown writer: " .. tostring(to), 5)
+  err("Unknown writer: " .. tostring(to), 5)
 end
 
 local args = {}
@@ -322,7 +306,7 @@ else
     if ok then
       table.insert(inpt, io.read("*all"))
     else
-      luacmark.util.err("Could not open file '" .. f .. "'", 7)
+      err("Could not open file '" .. f .. "'", 7)
     end
   end
   inp = table.concat(inpt, "\n") .. "\n"
@@ -342,7 +326,7 @@ if optarg['F'] then
   end
 end
 
-local columns = 60 -- TODO
+local columns = optarg.c or 0
 local body = writer(doc, cmark.OPT_DEFAULT, columns)
 
 local template = optarg.T
@@ -357,7 +341,7 @@ if template then
   end
   template_contents = find_template(template_name)
   if not template_contents then
-    luacmark.util.err("Could not find template '" .. template_name .. "'")
+    err("Could not find template '" .. template_name .. "'")
   end
 end
 
