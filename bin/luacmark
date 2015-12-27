@@ -1,7 +1,320 @@
 #!/usr/bin/env lua
+-- TODO add testing mode with something like
+-- package.cpath = "../?.so;" .. package.cpath
 
-package.cpath = "./?.so;" .. package.cpath
+--[===[
+@startman
+# NAME
 
-local cmark = require('cmark')
-local input = io.read("*all")
-io.write(cmark.markdown_to_html(input, string.len(input), 0))
+luacmark - command line CommonMark parser and renderer
+
+# SYNOPSIS
+
+luacmark [options] [file..]
+
+# DESCRIPTION
+
+TODO description here.
+
+# OPTIONS
+
+* `--to,-t` *format*
+
+    Specify format for output.
+    *format* can be `commonmark`, `html`, `man`, `xml`, or `latex`.
+
+* `--layout,-l` *layout*
+
+    Control whitespace in output.
+    *layout* can be `default` (blank lines between block-level elements),
+    `compact` (avoid unnecessary blank lines), or `minimize` (avoid
+    all unnecessary space).
+
+* `--output,-o` *file*
+
+    Write output to *file*.
+
+* `--template,-T` *file*
+
+    Insert converted text and metadata into a template.  See TEMPLATES,
+    below, for template format.  Implies `--standalone,-s`.
+
+* `--data,-d` *key=value[,key=value..]*
+
+    Set metadata fields to be passed to template.  Argument is a list
+    of *key=value* pairs, separated by commas.  If keys are repeated,
+    an array value will be formed.
+
+* `--smart`
+
+    Enable smart typography (straight quotes are turned into
+    curly quotes, `--` into en dashes, `---` into em dashes,
+    `...` into ellipses).
+
+* `--metadata`
+
+    Enable lua metadata.  An HTML comment beginning `<!--@` and containing
+    lua variable declarations is treated as metadata.  Note that strings
+    are read literally unless they are explicitly marked as markdown
+    using the `markdown` (or `m`) function. Lua metadata can occur anywhere
+    in a document. Example:
+
+        <!--@
+        title = m"My title with *italics*"
+        abstract = m[[
+          This is my abstract.
+
+          * point one
+          * point two
+          ]]
+        author = { "Me", "You" }
+        -->
+
+* `--version,-V`
+
+    Print version information.
+
+* `--help,-h`
+
+    This message
+
+# TEMPLATES
+
+By default, luacmark will produce a fragment.  If the
+`--template` option is specified, it will insert
+this fragment into a template, producing a standalone document with
+appropriate header and footer.  The template is
+sought first in the working directory, then in
+`templates`, and finally in `$HOME/luacmark/templates`. If no
+extension is given, the name of the writer will be used as an
+extension. So, for example, one can put the template `letter.html`
+in the `$HOME/luacmark/templates` directory, and use it anywhere
+with `luacmark --template letter`.
+
+The templates are [cosmo](http://cosmo.luaforge.net/) templates.
+Conditionals are enabled, so you can use the `$if` keyword
+as follows:
+
+    $if{ #people == 1 }[[There is only one.]][[There are many.]]
+
+A `sepby` keyword is also enabled:
+
+    $sepby{ people }[[$it]][[ and ]]
+
+will render "`Sid`" if `people == {"Sid"}` and
+"`Sid and Nancy`" if `people == {"Sid","Nancy"}`.
+
+The following variables are set by default; others may be set
+by the reader (if metadata extensions are used) or through
+the `--data` option:
+
+* `body`: the fragment converted from markdown
+* `sources`:  array of the source files specified on the command line
+* `timestamp`: the current time
+
+# EXAMPLES
+
+    luacmark
+
+acts as a filter, reading markdown from stdin and writing
+HTML to stdout.
+
+    luacmark --smart -t latex
+
+acts as a filter, reading markdown with smart typography
+and definition list extensions from stdin, and writing
+LaTeX to stdout.
+
+    luacmark -t latex -o mybook.tex ch{1,2,3}.txt references.txt
+
+reads `ch1.txt`, `ch2.txt`, `ch3.txt`, and `references.txt`,
+concatenates them, and converts the result from markdown to LaTeX.
+
+    luacmark --template letter -d cc=Smith,cc="Jim Jones",sign="yes" \
+      -t latex -o myletter.tex myletter.txt
+
+produces a LaTeX file using the template `letter.latex`,
+and setting the variable `cc` to `{"Smith","Jim Jones"}`
+and `sign` to `"yes"`.
+
+# AUTHORS
+
+luacmark is written by John MacFarlane.
+
+@stopman
+--]===]
+
+local cmark = require("cmark")
+local alt_getopt = require("alt_getopt")
+local cosmo = require("cosmo")
+
+local function err(msg, exit_code)
+  io.stderr:write("luacmark: " .. msg .. "\n")
+  os.exit(exit_code or 1)
+end
+
+local function ensure_one_of(optval,s,ary)
+  for i=1,#ary do
+    if ary[i]==s then return true end
+  end
+  err("Illegal value for " .. optval ..
+     "\nLegal values are: " .. table.concat(ary,", "))
+end
+
+local version = [[
+luacmark 0.23
+Copyright (C) 2015 John MacFarlane
+]]
+
+local usage = [[
+Usage: luacmark [options] [file..] - convert markdown to other formats
+
+Options:
+  --to,-t FORMAT             Target format
+  --layout,-l LAYOUT         Whitespace in output (default|compact|minimize)
+  --smart,-s                 Smart punctuation
+  --metadata,-m              Lua metadata
+  --output,-o FILE           Output file
+  --template,-T FILE         Insert output into template
+  --data,-d K=V[,K=V..]      Set metadata to be passed to template
+  --version,-V               Version information
+  --help,-h                  This message
+
+FORMAT can be html, html5, docbook, latex, context, or man.
+
+LAYOUT can be default, compact (no unnecessary blank lines), or
+minimize (no unnecessary blank space).
+
+]]
+
+local long_opts = {
+  to = "t",
+  layout = "l",
+  smart = "s",
+  metadata = "m",
+  output = "o",
+  template = "T",
+  data = "d",
+  version = "V",
+  help = "h"
+}
+
+local short_opts = "t:l:o:T:d:msVh"
+
+local optarg,optind = alt_getopt.get_opts(arg, short_opts, long_opts)
+
+if optarg.h then
+  io.write(usage)
+  os.exit(0)
+end
+
+if optarg.V then
+  io.write(version)
+  os.exit(0)
+end
+
+local to = optarg.t or "html"
+ensure_one_of("--to,-t", to,
+  {"commonmark","html","latex","man","xml"})
+
+local output = optarg.o
+local ok, msg = pcall(function() io.output(output) end)
+if not ok then
+  luacmark.util.err("Could not open '" .. output .. "' for writing.\n" .. msg, 9)
+end
+
+local parser_options = cmark.OPT_DEFAULT
+if optarg.s then
+  parser_options = parser_options + cmark.OPT_SMART
+end
+
+local layout = optarg["l"] or "default"
+ensure_one_of("--layout,-l",layout,{"default","compact","minimize"})
+-- TODO
+
+local writers = {
+  html = cmark.render_html,
+  man = cmark.render_man,
+  xml = cmark.render_xml,
+  latex = cmark.render_latex,
+  commonmark = cmark.render_commonmark
+}
+local writer = writers[to]
+if not writer then
+  luacmark.util.err("Unknown writer: " .. tostring(to), 5)
+end
+
+local args = {}
+for i=optind,#arg do
+  table.insert(args,arg[i])
+end
+
+-- TODO use feed:
+local inp
+if #args == 0 then
+  inp = io.read("*all") .. "\n"
+else
+  inpt = {}
+  for _,f in ipairs(args) do
+    local ok, msg = pcall(function() io.input(f) end)
+    if ok then
+      table.insert(inpt, io.read("*all"))
+    else
+      luacmark.util.err("Could not open file '" .. f .. "'", 7)
+    end
+  end
+  inp = table.concat(inpt, "\n") .. "\n"
+end
+if inp:find("\r",1,true) then
+  inp = inp:gsub("\r\n","\n") -- convert DOS line endings
+end
+
+local doc = cmark.parse_document(inp, string.len(inp), parser_options)
+local body = writer(doc, cmark.OPT_DEFAULT)
+
+local template = optarg.T
+
+local template_contents
+
+if template then
+  local template_name = template
+  -- use writer name as extension if none provided
+  if not template_name:match("%..+$") then
+    template_name = template_name .. "." .. to
+  end
+  template_contents = luacmark.util.find_template(template_name)
+  if not template_contents then
+    luacmark.util.err("Could not find template '" .. template_name .. "'")
+  end
+end
+
+if template_contents then
+  local data = metadata or {}
+  data.timestamp = os.date("%Y-%m-%d %X")
+  data.sources = args
+  local keys = {}
+  if optarg.d then
+    for x in string.gmatch(optarg.d, "[%w_]+=[^,]+") do
+      local k,v = string.match(x, "([^=]*)=(.*)")
+      if keys[k] then
+        if keys[k] == "string" then
+          data[k] = {data[k], v}
+        elseif keys[k] == "array" then
+          data[k] = table.insert(data[k],v)
+        end
+        keys[k] = "array"
+      else
+        data[k] = writer.string(v)
+        keys[k] = "string"
+      end
+    end
+  end
+  data.body = body
+  data["if"] = cosmo.cif  -- this activates the "if" keyword
+  data.sepby = luacmark.util.sepby  -- actives "sepby" keyword
+  local result = cosmo.fill(template_contents, data)
+  io.write(result)
+else
+  io.write(body)
+end
+
