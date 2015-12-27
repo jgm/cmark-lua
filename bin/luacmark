@@ -273,7 +273,7 @@ if not ok then
   err("Could not open '" .. output .. "' for writing.\n" .. msg, 9)
 end
 
-local parser_options = cmark.OPT_DEFAULT +
+local options = cmark.OPT_VALIDATE_UTF8 + cmark.OPT_NORMALIZE +
   (optarg.S and cmark.OPT_SMART or 0) +
   (optarg.s and cmark.OPT_SAFE or 0) +
   (optarg.h and cmark.OPT_HARDBREAKS or 0)
@@ -315,7 +315,7 @@ if inp:find("\r",1,true) then
   inp = inp:gsub("\r\n","\n") -- convert DOS line endings
 end
 
-local doc = cmark.parse_document(inp, string.len(inp), parser_options)
+local doc = cmark.parse_document(inp, string.len(inp), options)
 
 if optarg['F'] then
   for filter in string.gmatch(optarg['F'], "([^,]+)") do
@@ -327,7 +327,7 @@ if optarg['F'] then
 end
 
 local columns = optarg.c or 0
-local body = writer(doc, cmark.OPT_DEFAULT, columns)
+local body = writer(doc, options, columns)
 
 local template = optarg.T
 
