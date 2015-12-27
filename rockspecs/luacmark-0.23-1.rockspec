@@ -10,7 +10,7 @@ description = {
     license = "BSD2"
 }
 dependencies = {
-   "lua >= 5.1",
+   "lua >= 5.2",
    "cmark >= 0.23",
    "cosmo >= 10.0",
    "alt-getopt >= 0.7",
