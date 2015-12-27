@@ -161,6 +161,57 @@ local function ensure_one_of(optval,s,ary)
      "\nLegal values are: " .. table.concat(ary,", "))
 end
 
+--- Implements a `sepby` directive for cosmo templates.
+-- `$sepby{ myarray }[[$it]][[, ]]` will render the elements
+-- of `myarray` separated by commas. If `myarray` is a string,
+-- it will be treated as an array with one element.  If it is
+-- `nil`, it will be treated as an empty array.
+local sepby = function(arg)
+  local a = arg[1]
+  if not a then
+    a = {}
+  elseif type(a) ~= "table" then
+    a = {a}
+  end
+  for i,v in ipairs(a) do
+     if i > 1 then cosmo.yield{_template=2} end
+     cosmo.yield{it = a[i], _template=1}
+  end
+end
+
+--- Find a template and return its contents (or `false` if
+-- not found). The template is sought first in the
+-- working directory, then in `templates`, then in
+-- `$HOME/.lunamark/templates`, then in the Windows
+-- `APPDATA` directory.
+local find_template = function(name)
+  local base, ext = name:match("([^%.]*)(.*)")
+  if (not ext or ext == "") and format then ext = "." .. format end
+  local fname = base .. ext
+  local file = io.open(fname, "r")
+  if not file then
+    file = io.open("templates/" .. fname, "r")
+  end
+  if not file then
+    local home = os.getenv("HOME")
+    if home then
+      file = io.open(home .. "/.luacmark/templates/" .. fname, "r")
+    end
+  end
+  if not file then
+    local appdata = os.getenv("APPDATA")
+    if appdata then
+      file = io.open(appdata .. "/luacmark/templates/" .. fname, "r")
+    end
+  end
+  if file then
+    return file:read("*all")
+  else
+    return false, "Could not find template '" .. fname .. "'"
+  end
+end
+
+
 local version = [[
 luacmark 0.23
 Copyright (C) 2015 John MacFarlane
@@ -233,7 +284,7 @@ ensure_one_of("--layout,-l",layout,{"default","compact","minimize"})
 -- TODO
 
 local writers = {
-  html = cmark.render_html,
+  html = function(d, opts, _cols) return cmark.render_html(d, opts) end,
   man = cmark.render_man,
   xml = cmark.render_xml,
   latex = cmark.render_latex,
@@ -270,7 +321,8 @@ if inp:find("\r",1,true) then
 end
 
 local doc = cmark.parse_document(inp, string.len(inp), parser_options)
-local body = writer(doc, cmark.OPT_DEFAULT)
+local columns = 60 -- TODO
+local body = writer(doc, cmark.OPT_DEFAULT, columns)
 
 local template = optarg.T
 
@@ -282,7 +334,7 @@ if template then
   if not template_name:match("%..+$") then
     template_name = template_name .. "." .. to
   end
-  template_contents = luacmark.util.find_template(template_name)
+  template_contents = find_template(template_name)
   if not template_contents then
     luacmark.util.err("Could not find template '" .. template_name .. "'")
   end
@@ -311,7 +363,7 @@ if template_contents then
   end
   data.body = body
   data["if"] = cosmo.cif  -- this activates the "if" keyword
-  data.sepby = luacmark.util.sepby  -- actives "sepby" keyword
+  data.sepby = sepby  -- actives "sepby" keyword
   local result = cosmo.fill(template_contents, data)
   io.write(result)
 else
