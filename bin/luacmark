@@ -281,7 +281,7 @@ local options = cmark.OPT_VALIDATE_UTF8 + cmark.OPT_NORMALIZE +
 local writers = {
   html = function(d, opts, _cols) return cmark.render_html(d, opts) end,
   man = cmark.render_man,
-  xml = cmark.render_xml,
+  xml = function(d, opts, _cols) return cmark.render_xml(d, opts) end,
   latex = cmark.render_latex,
   commonmark = cmark.render_commonmark
 }
