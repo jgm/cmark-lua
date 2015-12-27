@@ -13,7 +13,7 @@ all: cmark.so
 cmark.so: cmark_wrap.o $(OBJS)
 	$(CC) -shared -o $@ -I$(CBITS) -llua $^
 
-cmark.a: cmark_wrap.o $(OBJS)
+cmark-lua.a: cmark_wrap.o $(OBJS)
 	ar rcs $@ $^ $(LUASTATIC)
 
 cmark_wrap.c: cmark.i $(CBITS)/cmark.h
