@@ -1,0 +1,7 @@
+\documentclass{article}
+\title{$title}
+\author{@map{author, _separator=" \and "}:{{$name ($institute)}}}
+\begin{document}
+\maketitle
+$body
+\end{document}
