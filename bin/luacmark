@@ -4,8 +4,8 @@ local inspect = require'inspect'.inspect
 
 local cmark = require("cmark")
 local alt_getopt = require("alt_getopt")
-local cosmo = require("cosmo")
 local yaml = require("yaml")
+local Lust = require("lust")
 
 local version = "0.23"
 
@@ -99,18 +99,8 @@ extension. So, for example, one can put the template `letter.html`
 in the `$HOME/luacmark/templates` directory, and use it anywhere
 with `luacmark --template letter`.
 
-The templates are [cosmo](http://cosmo.luaforge.net/) templates.
-Conditionals are enabled, so you can use the `$if` keyword
-as follows:
-
-    $if{ #people == 1 }[[There is only one.]][[There are many.]]
-
-A `sepby` keyword is also enabled:
-
-    $sepby{ people }[[$it]][[ and ]]
-
-will render "`Sid`" if `people == {"Sid"}` and
-"`Sid and Nancy`" if `people == {"Sid","Nancy"}`.
+The templates are [Lust](https://github.com/weshoke/Lust) templates.
+TODO describe.
 
 The following variables are set by default; others may be set
 by the reader (if metadata extensions are used) or through
@@ -170,24 +160,6 @@ local function ensure_one_of(optval,s,ary)
   end
   err("Illegal value for " .. optval ..
      "\nLegal values are: " .. table.concat(ary,", "))
-end
-
---- Implements a `sepby` directive for cosmo templates.
--- `$sepby{ myarray }[[$it]][[, ]]` will render the elements
--- of `myarray` separated by commas. If `myarray` is a string,
--- it will be treated as an array with one element.  If it is
--- `nil`, it will be treated as an empty array.
-local sepby = function(arg)
-  local a = arg[1]
-  if not a then
-    a = {}
-  elseif type(a) ~= "table" then
-    a = {a}
-  end
-  for i,v in ipairs(a) do
-     if i > 1 then cosmo.yield{_template=2} end
-     cosmo.yield{it = a[i], _template=1}
-  end
 end
 
 --- Find a template and return its contents (or `false` if
@@ -393,12 +365,11 @@ local body = writer(doc, options, columns)
 
 convert_metadata(metadata, writer, options, columns)
 
-local template = optarg.T
+local template_name = optarg.T
 
 local template_contents
 
-if template then
-  local template_name = template
+if template_name then
   -- use writer name as extension if none provided
   if not template_name:match("%..+$") then
     template_name = template_name .. "." .. to
@@ -431,10 +402,7 @@ if template_contents then
     end
   end
   data.body = body
-  data["if"] = cosmo.cif  -- this activates the "if" keyword
-  data.sepby = sepby  -- actives "sepby" keyword
-  local result = cosmo.fill(template_contents, data)
-  io.write(result)
+  io.write(Lust(template_contents):gen(data))
 else
   io.write(body)
 end
