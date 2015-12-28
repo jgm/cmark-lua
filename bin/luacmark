@@ -215,7 +215,9 @@ local render_metadata = function(node, writer, options, columns)
 end
 
 -- Iterate over the metadata converting to target format
-local convert_metadata = function(table, writer, options, columns)
+local convert_metadata
+
+convert_metadata = function(table, writer, options, columns)
   for i, v in pairs(table) do
     if type(v) == 'table' then
         convert_metadata(v, writer, options, columns)
