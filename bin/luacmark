@@ -1,5 +1,7 @@
 #!/usr/bin/env lua
 
+local inspect = require'inspect'.inspect
+
 local cmark = require("cmark")
 local alt_getopt = require("alt_getopt")
 local cosmo = require("cosmo")
@@ -220,6 +222,39 @@ local find_template = function(name)
   end
 end
 
+local render_metadata = function(node, writer, options, columns)
+  local firstblock = cmark.node_first_child(node)
+  if cmark.node_get_type(firstblock) == cmark.NODE_PARAGRAPH and
+     not cmark.node_next(firstblock) then
+     -- render as inlines
+     local ils = cmark.node_new(cmark.NODE_CUSTOM_INLINE)
+     local b = cmark.node_first_child(firstblock)
+     while b do
+        local nextb = cmark.node_next(b)
+        cmark.node_append_child(ils, b)
+        b = nextb
+     end
+     local result = string.gsub(writer(ils, options, columns), "%s*$", "")
+     cmark.node_free(ils)
+     return result
+  else -- render as blocks
+     return writer(node, options, columns)
+  end
+end
+
+-- Iterate over the metadata converting to target format
+local convert_metadata = function(table, writer, options, columns)
+  for i, v in pairs(table) do
+    if type(v) == 'table' then
+        convert_metadata(v, writer, options, columns)
+    else
+        local vs = tostring(v)
+        table[i] = render_metadata(
+          cmark.parse_document(vs, string.len(vs), options),
+          writer, options, columns)
+    end
+  end
+end
 
 local usage = [[
 Usage: luacmark [options] [file..] - convert markdown to other formats
@@ -356,6 +391,8 @@ end
 local columns = optarg.c or 0
 local body = writer(doc, options, columns)
 
+convert_metadata(metadata, writer, options, columns)
+
 local template = optarg.T
 
 local template_contents
@@ -402,3 +439,4 @@ else
   io.write(body)
 end
 
+cmark.node_free(doc)
