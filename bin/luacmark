@@ -143,10 +143,6 @@ luacmark is written by John MacFarlane.
 
 local defaultEnv = _ENV
 
--- TODO add testing mode with something like
--- package.cpath = "../?.so;" .. package.cpath
-
-
 table.insert(defaultEnv, cmark)
 
 local function err(msg, exit_code)
@@ -336,7 +332,7 @@ else
       err("Could not open file '" .. f .. "'", 7)
     end
   end
-  inp = table.concat(inpt, "\n") .. "\n"
+  inp = table.concat(inpt, "\n")
 end
 
 local metadata = {}
