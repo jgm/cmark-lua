@@ -340,15 +340,17 @@ else
 end
 
 local metadata = {}
-if string.find(inp, '---[\r\n]', 1) then
+if string.find(inp, '^---[\r\n]') then
   local _, endlast = string.find(inp, '[\r\n]...[ \t]*[\r\n][\r\n\t ]*', 3)
   if not endlast then
     local _, endlast = string.find(inp, '[\r\n]---[ \t]*[\r\n][\r\n\t ]*', 3)
   end
-  metadata = yaml.load(string.sub(inp, 1, endlast))
-  -- We insert blank lines where the header was, so sourcepos is accurate:
-  inp = string.gsub(string.sub(inp, 1, endlast - 1), '[^\n\r]+', '') ..
-         string.sub(inp, endlast)
+  if endlast then
+    metadata = yaml.load(string.sub(inp, 1, endlast))
+    -- We insert blank lines where the header was, so sourcepos is accurate:
+    inp = string.gsub(string.sub(inp, 1, endlast - 1), '[^\n\r]+', '') ..
+           string.sub(inp, endlast)
+  end
 end
 
 local doc = cmark.parse_document(inp, string.len(inp), options)
