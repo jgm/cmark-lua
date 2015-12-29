@@ -347,6 +347,9 @@ if string.find(inp, '^---[\r\n]') then
   end
   if endlast then
     metadata = yaml.load(string.sub(inp, 1, endlast))
+    if type(metadata) ~= 'table' then
+        metadata = {}
+    end
     -- We insert blank lines where the header was, so sourcepos is accurate:
     inp = string.gsub(string.sub(inp, 1, endlast - 1), '[^\n\r]+', '') ..
            string.sub(inp, endlast)
