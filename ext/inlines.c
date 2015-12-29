@@ -24,7 +24,7 @@ static const char *RIGHTSINGLEQUOTE = "\xE2\x80\x99";
 // Macros for creating various kinds of simple.
 #define make_str(s) make_literal(CMARK_NODE_TEXT, s)
 #define make_code(s) make_literal(CMARK_NODE_CODE, s)
-#define make_raw_html(s) make_literal(CMARK_NODE_INLINE_HTML, s)
+#define make_raw_html(s) make_literal(CMARK_NODE_HTML_INLINE, s)
 #define make_linebreak() make_simple(CMARK_NODE_LINEBREAK)
 #define make_softbreak() make_simple(CMARK_NODE_SOFTBREAK)
 #define make_emph() make_simple(CMARK_NODE_EMPH)
@@ -865,7 +865,6 @@ static cmark_node *handle_close_bracket(subject *subj, cmark_node *parent) {
 
   // Next, look for a following [link label] that matches in refmap.
   // skip spaces
-  subj->pos = subj->pos + scan_spacechars(&subj->input, subj->pos);
   raw_label = cmark_chunk_literal("");
   found_label = link_label(subj, &raw_label);
   if (!found_label || raw_label.len == 0) {

@@ -262,7 +262,7 @@ static cmark_node *finalize(cmark_parser *parser, cmark_node *b) {
     b->as.code.literal = cmark_chunk_buf_detach(&b->string_content);
     break;
 
-  case CMARK_NODE_HTML:
+  case CMARK_NODE_HTML_BLOCK:
     b->as.literal = cmark_chunk_buf_detach(&b->string_content);
     break;
 
@@ -336,7 +336,8 @@ static void process_inlines(cmark_node *root, cmark_reference_map *refmap,
   while ((ev_type = cmark_iter_next(iter)) != CMARK_EVENT_DONE) {
     cur = cmark_iter_get_node(iter);
     if (ev_type == CMARK_EVENT_ENTER) {
-      if (cur->type == CMARK_NODE_PARAGRAPH || cur->type == CMARK_NODE_HEADING) {
+      if (cur->type == CMARK_NODE_PARAGRAPH ||
+          cur->type == CMARK_NODE_HEADING) {
         cmark_parse_inlines(cur, refmap, options);
       }
     }
@@ -571,7 +572,7 @@ static void S_advance_offset(cmark_parser *parser, cmark_chunk *input,
   int chars_to_tab;
   while (count > 0 && (c = peek_at(input, parser->offset))) {
     if (c == '\t') {
-      chars_to_tab = 4 - (parser->column % TAB_STOP);
+      chars_to_tab = TAB_STOP - (parser->column % TAB_STOP);
       parser->column += chars_to_tab;
       parser->offset += 1;
       count -= (columns ? chars_to_tab : 1);
@@ -690,7 +691,7 @@ static void S_process_line(cmark_parser *parser, const unsigned char *buffer,
       // a heading can never contain more than one line
       all_matched = false;
 
-    } else if (container->type == CMARK_NODE_HTML) {
+    } else if (container->type == CMARK_NODE_HTML_BLOCK) {
 
       switch (container->as.html_block_type) {
       case 1:
@@ -735,7 +736,7 @@ static void S_process_line(cmark_parser *parser, const unsigned char *buffer,
   maybe_lazy = parser->current->type == CMARK_NODE_PARAGRAPH;
   // try new container starts:
   while (container->type != CMARK_NODE_CODE_BLOCK &&
-         container->type != CMARK_NODE_HTML) {
+         container->type != CMARK_NODE_HTML_BLOCK) {
 
     S_find_first_nonspace(parser, &input);
     indented = parser->indent >= CODE_INDENT;
@@ -791,7 +792,7 @@ static void S_process_line(cmark_parser *parser, const unsigned char *buffer,
                               (matched = scan_html_block_start_7(
                                    &input, parser->first_nonspace))))) {
 
-      container = add_child(parser, container, CMARK_NODE_HTML,
+      container = add_child(parser, container, CMARK_NODE_HTML_BLOCK,
                             parser->first_nonspace + 1);
       container->as.html_block_type = matched;
       // note, we don't adjust parser->offset because the tag is part of the
@@ -812,7 +813,8 @@ static void S_process_line(cmark_parser *parser, const unsigned char *buffer,
 
     } else if (!indented &&
                !(container->type == CMARK_NODE_PARAGRAPH && !all_matched) &&
-               (matched = scan_thematic_break(&input, parser->first_nonspace))) {
+               (matched =
+                    scan_thematic_break(&input, parser->first_nonspace))) {
 
       // it's only now that we know the line is not part of a setext heading:
       container = add_child(parser, container, CMARK_NODE_THEMATIC_BREAK,
@@ -933,7 +935,7 @@ static void S_process_line(cmark_parser *parser, const unsigned char *buffer,
 
       add_line(container, &input, parser->offset);
 
-    } else if (container->type == CMARK_NODE_HTML) {
+    } else if (container->type == CMARK_NODE_HTML_BLOCK) {
 
       add_line(container, &input, parser->offset);
 
@@ -996,12 +998,12 @@ static void S_process_line(cmark_parser *parser, const unsigned char *buffer,
     parser->current = container;
   }
 finished:
-  parser->last_line_length = parser->curline->size;
+  parser->last_line_length = input.len;
   if (parser->last_line_length &&
-      parser->curline->ptr[parser->last_line_length - 1] == '\n')
+      input.data[parser->last_line_length - 1] == '\n')
     parser->last_line_length -= 1;
   if (parser->last_line_length &&
-      parser->curline->ptr[parser->last_line_length - 1] == '\r')
+      input.data[parser->last_line_length - 1] == '\r')
     parser->last_line_length -= 1;
 
   cmark_strbuf_clear(parser->curline);
