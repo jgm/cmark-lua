@@ -20,6 +20,9 @@ luacmark [options] [file..]
 
 TODO description here.
 
+TODO for options, create a filter that makes these look right in
+man.
+
 # OPTIONS
 
 * `--to,-t` *format*
