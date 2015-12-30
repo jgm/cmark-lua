@@ -2,12 +2,10 @@
 
 local inspect = require'inspect'.inspect
 
-local cmark = require("cmark")
 local alt_getopt = require("alt_getopt")
-local yaml = require("yaml")
 local Lust = require("lust")
-
-local version = "0.23"
+local cmark = require("cmark")
+local luacmark = require("luacmark")
 
 local manpage = [==[
 # NAME
@@ -141,10 +139,6 @@ luacmark is written by John MacFarlane.
 ]==]
 
 
-local defaultEnv = _ENV
-
-table.insert(defaultEnv, cmark)
-
 local function err(msg, exit_code)
   io.stderr:write("luacmark: " .. msg .. "\n")
   os.exit(exit_code or 1)
@@ -156,74 +150,6 @@ local function ensure_one_of(optval,s,ary)
   end
   err("Illegal value for " .. optval ..
      "\nLegal values are: " .. table.concat(ary,", "))
-end
-
---- Find a template and return its contents (or `false` if
--- not found). The template is sought first in the
--- working directory, then in `templates`, then in
--- `$HOME/.lunamark/templates`, then in the Windows
--- `APPDATA` directory.
-local find_template = function(name)
-  local base, ext = name:match("([^%.]*)(.*)")
-  if (not ext or ext == "") and format then ext = "." .. format end
-  local fname = base .. ext
-  local file = io.open(fname, "r")
-  if not file then
-    file = io.open("templates/" .. fname, "r")
-  end
-  if not file then
-    local home = os.getenv("HOME")
-    if home then
-      file = io.open(home .. "/.luacmark/templates/" .. fname, "r")
-    end
-  end
-  if not file then
-    local appdata = os.getenv("APPDATA")
-    if appdata then
-      file = io.open(appdata .. "/luacmark/templates/" .. fname, "r")
-    end
-  end
-  if file then
-    return file:read("*all")
-  else
-    return false, "Could not find template '" .. fname .. "'"
-  end
-end
-
-local render_metadata = function(node, writer, options, columns)
-  local firstblock = cmark.node_first_child(node)
-  if cmark.node_get_type(firstblock) == cmark.NODE_PARAGRAPH and
-     not cmark.node_next(firstblock) then
-     -- render as inlines
-     local ils = cmark.node_new(cmark.NODE_CUSTOM_INLINE)
-     local b = cmark.node_first_child(firstblock)
-     while b do
-        local nextb = cmark.node_next(b)
-        cmark.node_append_child(ils, b)
-        b = nextb
-     end
-     local result = string.gsub(writer(ils, options, columns), "%s*$", "")
-     cmark.node_free(ils)
-     return result
-  else -- render as blocks
-     return writer(node, options, columns)
-  end
-end
-
--- Iterate over the metadata converting to target format
-local convert_metadata
-
-convert_metadata = function(table, writer, options, columns)
-  for i, v in pairs(table) do
-    if type(v) == 'table' then
-        convert_metadata(v, writer, options, columns)
-    else
-        local vs = tostring(v)
-        table[i] = render_metadata(
-          cmark.parse_document(vs, string.len(vs), options),
-          writer, options, columns)
-    end
-  end
 end
 
 local usage = [[
@@ -275,13 +201,13 @@ end
 if optarg.M then
   local manpagedoc = cmark.parse_document(manpage, string.len(manpage),
                         cmark.OPT_DEFAULT)
-  io.write('.TH LUACMARK 1 "" "luacmark ' .. version .. '"\n')
+  io.write('.TH LUACMARK 1 "" "luacmark ' .. luacmark.version .. '"\n')
   io.write(cmark.render_man(manpagedoc, cmark.OPT_DEFAULT, 72))
   os.exit(0)
 end
 
 if optarg.V then
-  io.write("luacmark " .. version .. "\nCopyright 2015 John MacFarlane\n")
+  io.write("luacmark " .. luacmark.version .. "\nCopyright 2015 John MacFarlane\n")
   os.exit(0)
 end
 
@@ -301,14 +227,7 @@ local options = cmark.OPT_VALIDATE_UTF8 + cmark.OPT_NORMALIZE +
   (optarg.h and cmark.OPT_HARDBREAKS or 0) +
   (optarg.p and cmark.OPT_SOURCEPOS or 0)
 
-local writers = {
-  html = function(d, opts, _cols) return cmark.render_html(d, opts) end,
-  man = cmark.render_man,
-  xml = function(d, opts, _cols) return cmark.render_xml(d, opts) end,
-  latex = cmark.render_latex,
-  commonmark = cmark.render_commonmark
-}
-local writer = writers[to]
+local writer = luacmark.writers[to]
 if not writer then
   err("Unknown writer: " .. tostring(to), 5)
 end
@@ -318,10 +237,9 @@ for i=optind,#arg do
   table.insert(args,arg[i])
 end
 
--- TODO use feed:
 local inp
 if #args == 0 then
-  inp = io.read("*all") .. "\n"
+  inp = io.read("*all")
 else
   inpt = {}
   for _,f in ipairs(args) do
@@ -335,31 +253,15 @@ else
   inp = table.concat(inpt, "\n")
 end
 
-local metadata = {}
-if string.find(inp, '^---[\r\n]') then
-  local _, endlast = string.find(inp, '[\r\n]...[ \t]*[\r\n][\r\n\t ]*', 3)
-  if not endlast then
-    local _, endlast = string.find(inp, '[\r\n]---[ \t]*[\r\n][\r\n\t ]*', 3)
-  end
-  if endlast then
-    metadata = yaml.load(string.sub(inp, 1, endlast))
-    if type(metadata) ~= 'table' then
-        metadata = {}
-    else
-      -- We insert blank lines where the header was, so sourcepos is accurate:
-      inp = string.gsub(string.sub(inp, 1, endlast - 1), '[^\n\r]+', '') ..
-           string.sub(inp, endlast)
-    end
-  end
-end
-
-local doc = cmark.parse_document(inp, string.len(inp), options)
+local doc, metadata = luacmark.parse_document_with_metadata(inp, options)
+local rendered_metadata = luacmark.render_metadata(metadata, writer,
+                                                   options, columns)
 
 if optarg['F'] then
   for filter in string.gmatch(optarg['F'], "([^,]+)") do
-    local result = assert(load(io.lines(filter, 2^12), filter, 't', defaultEnv))
-    if result then
-        result()(doc, to)
+    local ok, msg = luacmark.run_filter(io.lines(filter, 2^12), filter, doc, to)
+    if not ok then
+      err("Error running filter " .. filter .. "\n" .. msg)
     end
   end
 end
@@ -367,7 +269,6 @@ end
 local columns = optarg.c or 0
 local body = writer(doc, options, columns)
 
-convert_metadata(metadata, writer, options, columns)
 
 local template_name = optarg.T
 
@@ -378,14 +279,12 @@ if template_name then
   if not template_name:match("%..+$") then
     template_name = template_name .. "." .. to
   end
-  template_contents = find_template(template_name)
+  template_contents = luacmark.find_template(template_name)
   if not template_contents then
     err("Could not find template '" .. template_name .. "'")
   end
-end
 
-if template_contents then
-  local data = metadata or {}
+  local data = rendered_metadata or {}
   data.timestamp = os.date("%Y-%m-%d %X")
   data.sources = args
   local keys = {}
@@ -407,8 +306,11 @@ if template_contents then
   end
   data.body = body
   io.write(Lust(template_contents):gen(data))
+
 else
+
   io.write(body)
+
 end
 
 cmark.node_free(doc)
