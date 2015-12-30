@@ -17,7 +17,10 @@ dependencies = {
    "alt-getopt >= 0.7",
 }
 build = {
-    type = "none",
+    type = "builtin",
+    modules = {
+        luacmark = "luacmark.lua"
+    },
     install = {
         bin = { "bin/luacmark" }
     }
