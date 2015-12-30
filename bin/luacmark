@@ -1,7 +1,5 @@
 #!/usr/bin/env lua
 
-local inspect = require'inspect'.inspect
-
 local alt_getopt = require("alt_getopt")
 local Lust = require("lust")
 local cmark = require("cmark")
