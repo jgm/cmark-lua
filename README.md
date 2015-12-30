@@ -58,8 +58,24 @@ freed by the calling program by calling `cmark.node_free` on the
 document node.  (This will automatically free all children as
 well.)
 
-luacmark
---------
+luacmark (module)
+-----------------
+
+Usage:
+
+```lua
+local luacmark = require("luacmark")
+
+local opts = cmark.OPT_DEFAULT + cmark.OPT_SMART
+local doc, meta = luacmark.parse_document_with_metadata(source, opts)
+local writer = luacmark.writers['man']
+local rendered_meta = luacmark.render_metadata(meta, writer, opts, 72)
+local rendered_doc  = cmark.render_man(doc, opts)
+```
+
+
+luacmark (program)
+------------------
 
 `luacmark --help` will print a short list of options.
 
