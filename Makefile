@@ -5,10 +5,14 @@ CMARK_DIR ?= ../cmark
 OBJS = $(subst .c,.o,$(wildcard $(CBITS)/*.c))
 C_SOURCES=$(wildcard $(CBITS)/*.*)
 LUASTATIC=lua-5.2.4/src/liblua.a
+CMARK_ROCKSPEC=$(lastword $(sort $(wildcard rockspecs/cmark-*.rockspec)))
+LUACMARK_ROCKSPEC=$(lastword $(sort $(wildcard rockspecs/luacmark-*.rockspec)))
 
 .PHONY: clean, distclean, test, all, update-c-sources
 
-all: cmark.so
+all: cmark_wrap.c
+	luarocks --local make $(CMARK_ROCKSPEC)
+	luarocks --local make $(LUACMARK_ROCKSPEC)
 
 cmark.so: cmark_wrap.o $(OBJS)
 	$(CC) -shared -o $@ -I$(CBITS) -llua $^
