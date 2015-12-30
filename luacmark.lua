@@ -95,9 +95,8 @@ function luacmark.render_metadata(table, writer, options, columns)
         rendered[i] = convert_metadata(v, writer, options, columns)
     else
         local vs = tostring(v)
-        rendered[i] = render_metadata(
-          cmark.parse_document(vs, string.len(vs), options),
-          writer, options, columns)
+        rendered[i] = render_metadata(cmark.parse_string(vs, options),
+                                      writer, options, columns)
     end
   end
   return rendered
