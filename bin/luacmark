@@ -1,5 +1,6 @@
 #!/usr/bin/env lua
-package.path='./?.lua;' .. package.path
+
+-- package.path='./?.lua;' .. package.path -- FOR TESTING
 local alt_getopt = require("alt_getopt")
 local cmark = require("cmark")
 local luacmark = require("luacmark")
@@ -216,8 +217,21 @@ local options = {
   hardbreaks = optarg.h,
   safe = optarg.s,
   sourcepos = optarg.p,
-  columns = optarg.c or 0
+  columns = optarg.c or 0,
+  filter = nil,
+  template = luacmark.find_template(optarg.T, to)
 }
+
+if optarg['F'] then
+  options.filter = function(node, to)
+    for filter in string.gmatch(optarg['F'], "([^,]+)") do
+      local ok, msg = luacmark.run_filter(io.lines(filter, 2^12), filter, doc, to)
+      if not ok then
+        err("Error running filter " .. filter .. "\n" .. msg)
+      end
+    end
+  end
+end
 
 -- TODO replace with error handling in convert
 -- local writer = luacmark.writers[to]
@@ -246,21 +260,6 @@ else
   inp = table.concat(inpt, "\n")
 end
 
-local callback = nil
-if optarg['F'] then
-  callback = function(node, to)
-    for filter in string.gmatch(optarg['F'], "([^,]+)") do
-      local ok, msg = luacmark.run_filter(io.lines(filter, 2^12), filter, doc, to)
-      if not ok then
-        err("Error running filter " .. filter .. "\n" .. msg)
-      end
-    end
-  end
-end
+local result = luacmark.convert(inp, to, options)
 
-local template_name = optarg.T
-
-local result = luacmark.convert(inp, to, options, callback,
-                     luacmark.find_template(template_name, to))
 io.write(result)
-

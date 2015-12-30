@@ -65,14 +65,43 @@ Usage:
 
 ```lua
 local luacmark = require("luacmark")
+-- simplest:
+local tex = luacmark.convert("Hello *world*", "latex")
 
-local opts = cmark.OPT_DEFAULT + cmark.OPT_SMART
-local doc, meta = luacmark.parse_document_with_metadata(source, opts)
-local writer = luacmark.writers['man']
-local rendered_meta = luacmark.render_metadata(meta, writer, opts, 72)
-local rendered_doc  = cmark.render_man(doc, opts)
+-- with options:
+local opts = {
+  smart = true,
+  hardbreaks = false,
+  sourcepos = false,
+  safe = false,
+  columns = 40,
+}
+local tex = luacmark.convert("Hello *world*", "latex", opts)
+
+-- with template:
+local letter_template = luacmark.find_template("letter", "latex")
+local tex = luacmark.convert("Hello *world*", "latex", opts,
+              nil, letter_template)
+
 ```
 
+<!--
+exported:
+luacmark.version
+luacmark.writers
+luacmark.defaults
+luacmark.runfilter(source, name, doc, to)
+luacmark.find_template(name, to)
+-- 'inp' is the string input source.
+-- 'options' is a table with fields 'smart', 'hardbreaks',
+-- 'safe', 'sourcepos' (all boolean) and 'columns' (number,
+-- 0 for no wrapping).
+-- 'callback' is a filter or nil.
+-- 'template' is a Lust template to be filled with the document
+-- body and rendered metadata, or nil.
+-- TODO handle errors
+function luacmark.convert(inp, to, options, callback, template)
+-->
 
 luacmark (program)
 ------------------

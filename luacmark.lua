@@ -22,6 +22,8 @@ luacmark.defaults = {
   sourcepos = false,
   safe = false,
   columns = 0,
+  filter = nil,
+  template = nil
 }
 
 local toOptions = function(opts)
@@ -173,18 +175,17 @@ end
 -- 'options' is a table with fields 'smart', 'hardbreaks',
 -- 'safe', 'sourcepos' (all boolean) and 'columns' (number,
 -- 0 for no wrapping).
--- 'callback' is a filter or nil.
--- 'template' is a Lust template to be filled with the document
--- body and rendered metadata, or nil.
 -- TODO handle errors
-function luacmark.convert(inp, to, options, callback, template)
+function luacmark.convert(inp, to, options)
   local opts = toOptions(options)
   local columns = options.columns or 0
+  local filter = options.filter
+  local template = options.template
   local doc, meta = parse_document_with_metadata(inp, opts)
-  if callback then
+  if filter then
     -- apply callback to nodes of metadata
-    walk_table(meta, function(node) callback(node, to) end, true)
-    callback(doc, to)
+    walk_table(meta, function(node) filter(node, to) end, true)
+    filter(doc, to)
   end
   local writer = luacmark.writers[to]
   local body = writer(doc, opts, columns)
