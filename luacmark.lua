@@ -1,8 +1,5 @@
--- local inspect = require('inspect').inspect -- TODO debugging
-
 local cmark = require("cmark")
 local yaml = require("yaml")
-local Lust = require("lust")
 
 local luacmark = {}
 
@@ -23,7 +20,6 @@ luacmark.defaults = {
   safe = false,
   columns = 0,
   filter = nil,
-  template = nil
 }
 
 local toOptions = function(opts)
@@ -75,43 +71,6 @@ function luacmark.run_filter(source, name, doc, to)
     return true
   else
     return false, msg
-  end
-end
-
---- Find a template and return its contents (or `false` if
--- not found). The template is sought first in the
--- working directory, then in `templates`, then in
--- `$HOME/.lunamark/templates`, then in the Windows
--- `APPDATA` directory.
-function luacmark.find_template(name, to)
-  if not name then
-    return false, "Missing template name"
-  end
-  local base, ext = name:match("([^%.]*)(.*)")
-  if (not ext or ext == "") and to then
-    ext = "." .. to
-  end
-  local fname = base .. ext
-  local file = io.open(fname, "r")
-  if not file then
-    file = io.open("templates/" .. fname, "r")
-  end
-  if not file then
-    local home = os.getenv("HOME")
-    if home then
-      file = io.open(home .. "/.luacmark/templates/" .. fname, "r")
-    end
-  end
-  if not file then
-    local appdata = os.getenv("APPDATA")
-    if appdata then
-      file = io.open(appdata .. "/luacmark/templates/" .. fname, "r")
-    end
-  end
-  if file then
-    return file:read("*all")
-  else
-    return false, "Could not find template '" .. fname .. "'"
   end
 end
 
@@ -175,8 +134,7 @@ end
 -- 'to' is the output format.
 -- 'options' is a table with fields 'smart', 'hardbreaks',
 -- 'safe', 'sourcepos' (all boolean), 'columns' (number,
--- 0 for no wrapping), 'filter' (function doc -> doc), or nil,
--- 'template' (string or nil).
+-- 0 for no wrapping), 'filter' (function doc -> doc), or nil.
 -- Returns body, meta on success (where 'body' is the rendered
 -- document body and 'meta' is a metatable table whose leaf
 -- values are rendered subdocuments), or nil, nil, msg on failure.
@@ -185,17 +143,15 @@ function luacmark.convert(inp, to, options)
   if not writer then
     return nil, nil, ("Unknown output format " .. tostring(to))
   end
-  local opts, columns, filter, template
+  local opts, columns, filter
   if options then
      opts = toOptions(options)
      columns = options.columns or 0
      filter = options.filter
-     template = options.template
   else
      opts = cmark.OPT_DEFAULT
      columns = 0
      filter = nil
-     template = nil
   end
   local doc, meta = parse_document_with_metadata(inp, opts)
   if not doc then
@@ -215,12 +171,7 @@ function luacmark.convert(inp, to, options)
   -- free memory allocated by libcmark
   cmark.node_free(doc)
   walk_table(meta, cmark.node_free, true)
-  if template then
-    data.body = body
-    return Lust(template):gen(data)
-  else
-    return body
-  end
+  return body, data
 end
 
 return luacmark

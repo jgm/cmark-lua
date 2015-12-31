@@ -4,6 +4,7 @@
 local alt_getopt = require("alt_getopt")
 local cmark = require("cmark")
 local luacmark = require("luacmark")
+local Lust = require("lust")
 
 local manpage = [==[
 # NAME
@@ -145,6 +146,44 @@ local function ensure_one_of(optval,s,ary)
      "\nLegal values are: " .. table.concat(ary,", "))
 end
 
+--- Find a template and return its contents (or `false` if
+-- not found). The template is sought first in the
+-- working directory, then in `templates`, then in
+-- `$HOME/.lunamark/templates`, then in the Windows
+-- `APPDATA` directory.
+local find_template = function(name, to)
+  if not name then
+    return false, "Missing template name"
+  end
+  local base, ext = name:match("([^%.]*)(.*)")
+  if (not ext or ext == "") and to then
+    ext = "." .. to
+  end
+  local fname = base .. ext
+  local file = io.open(fname, "r")
+  if not file then
+    file = io.open("templates/" .. fname, "r")
+  end
+  if not file then
+    local home = os.getenv("HOME")
+    if home then
+      file = io.open(home .. "/.luacmark/templates/" .. fname, "r")
+    end
+  end
+  if not file then
+    local appdata = os.getenv("APPDATA")
+    if appdata then
+      file = io.open(appdata .. "/luacmark/templates/" .. fname, "r")
+    end
+  end
+  if file then
+    return file:read("*all")
+  else
+    return false, "Could not find template '" .. fname .. "'"
+  end
+end
+
+
 local usage = [[
 Usage: luacmark [options] [file..] - convert markdown to other formats
 
@@ -219,7 +258,6 @@ local options = {
   sourcepos = optarg.p,
   columns = optarg.c or 0,
   filter = nil,
-  template = luacmark.find_template(optarg.T, to)
 }
 
 if optarg['F'] then
@@ -260,10 +298,16 @@ else
   inp = table.concat(inpt, "\n")
 end
 
-local result, _, msg = luacmark.convert(inp, to, options)
-
-if result then
-  io.write(result)
+local body, data, msg = luacmark.convert(inp, to, options)
+if body then
+  local template = find_template(optarg.T, to)
+  if template then
+    data.body = body
+    io.write(Lust(template):gen(data))
+  else
+    io.write(body)
+  end
 else
   err(msg)
 end
+
