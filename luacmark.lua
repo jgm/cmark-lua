@@ -20,7 +20,7 @@ luacmark.defaults = {
   safe = false,
   columns = 0,
   yaml_metadata = false,
-  filter = nil,
+  filters = {},
 }
 
 local toOptions = function(opts)
@@ -154,16 +154,16 @@ function luacmark.convert(inp, to, options)
   if not writer then
     return nil, nil, ("Unknown output format " .. tostring(to))
   end
-  local opts, columns, filter, yaml_metadata
+  local opts, columns, filters, yaml_metadata
   if options then
      opts = toOptions(options)
      columns = options.columns or 0
-     filter = options.filter
+     filters = options.filters or {}
      yaml_metadata = options.yaml_metadata
   else
      opts = cmark.OPT_DEFAULT
      columns = 0
-     filter = nil
+     filters = {}
      yaml_metadata = false
   end
   local doc, meta
@@ -179,10 +179,9 @@ function luacmark.convert(inp, to, options)
   if not doc then
     return nil, nil, "Unable to parse document"
   end
-  if filter then
-    -- apply callback to nodes of metadata
-    walk_table(meta, function(node) filter(node, to) end, true)
-    filter(doc, to)
+  for _, f in ipairs(filters) do
+    walk_table(meta, function(node) f(node, to) end, true)
+    f(doc, to)
   end
   local body = writer(doc, opts, columns)
   local data = walk_table(meta,

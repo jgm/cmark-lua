@@ -48,7 +48,7 @@ nok(badfilter, "to_filter fails on bad filter")
 is(msg, "[string \"bad_filter.lua\"]:1: <name> expected near '('", "error message on bad filter")
 local count_links = luacmark.to_filter(io.lines("filters/count_links.lua", 2^12), "count_links.lua")
 ok(count_links, "loaded filter count_links.lua")
-local body, meta, msg = luacmark.convert("[link](u) and <http://example.com>", "html", {filter = count_links})
+local body, meta, msg = luacmark.convert("[link](u) and <http://example.com>", "html", {filters = {count_links}})
 is(body, "<p><a href=\"u\">link</a> (link #1) and <a href=\"http://example.com\">http://example.com</a> (link #2)</p>\n<p>2 links found in this html document.</p>\n", "added link numbers and count")
 
 done_testing()

@@ -258,23 +258,16 @@ local options = {
   sourcepos = optarg.p,
   columns = optarg.c or 0,
   yaml_metadata = true,
-  filter = nil,
+  filters = {}
 }
 
-local filters = {}
 if optarg['F'] then
   for filter in string.gmatch(optarg['F'], "([^,]+)") do
     local f, msg = luacmark.to_filter(io.lines(filter, 2^12), filter)
     if f then
-      table.insert(filters, f)
+      table.insert(options.filters, f)
     else
       err("Error loading filter " .. filter .. "\n" .. msg)
-    end
-  end
-  -- filters now contains our filters
-  options.filter = function(doc, to)
-    for _,f in ipairs(filters) do
-      f(doc,to)
     end
   end
 end
