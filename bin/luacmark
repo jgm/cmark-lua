@@ -272,12 +272,6 @@ if optarg['F'] then
   end
 end
 
--- TODO replace with error handling in convert
--- local writer = luacmark.writers[to]
--- if not writer then
---   err("Unknown writer: " .. tostring(to), 5)
--- end
-
 local args = {}
 for i=optind,#arg do
   table.insert(args,arg[i])
