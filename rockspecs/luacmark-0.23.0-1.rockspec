@@ -12,7 +12,7 @@ description = {
 dependencies = {
    "lua >= 5.2",
    "cmark >= 0.23",
-   "lyaml >= 6.0",
+   "yaml >= 1.1",
    "lust >= 0.1",
    "alt-getopt >= 0.7",
 }

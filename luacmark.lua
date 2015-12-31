@@ -1,5 +1,5 @@
 local cmark = require("cmark")
-local lyaml = require("lyaml")
+local yaml = require("yaml")
 
 local luacmark = {}
 
@@ -116,7 +116,7 @@ local parse_document_with_metadata = function(inp, options)
     end
     if endlast then
       local ok, yaml_meta = pcall(function ()
-                              return lyaml.load(string.sub(inp, 1, endlast))
+                              return yaml.load(string.sub(inp, 1, endlast))
                             end)
       if not ok then
         return nil, yaml_meta -- the error message

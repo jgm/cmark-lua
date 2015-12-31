@@ -42,6 +42,6 @@ eq_array(meta, {}, "latex meta with yaml_metadata=false")
 
 local body, meta, msg = luacmark.convert("---\ntitle: 1: 2\n...\n\nHello *world*", "latex", {yaml_metadata = true})
 is(meta, nil, "latex body nil with bad yaml_metadata")
-is(msg, "YAML parsing error: 2:8: mapping values are not allowed in this context", "error message with bad yaml_metadata")
+like(msg, "YAML parsing error:.*mapping values are not allowed in this context", "error message with bad yaml_metadata")
 
 done_testing()
