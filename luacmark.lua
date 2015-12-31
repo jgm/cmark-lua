@@ -1,5 +1,5 @@
 local cmark = require("cmark")
-local yaml = require("yaml")
+local lyaml = require("lyaml")
 
 local luacmark = {}
 
@@ -115,7 +115,12 @@ local parse_document_with_metadata = function(inp, options)
       local _, endlast = string.find(inp, '[\r\n]---[ \t]*[\r\n][\r\n\t ]*', 3)
     end
     if endlast then
-      local yaml_meta = yaml.load(string.sub(inp, 1, endlast))
+      local ok, yaml_meta = pcall(function ()
+                              return lyaml.load(string.sub(inp, 1, endlast))
+                            end)
+      if not ok then
+        return nil, yaml_meta -- the error message
+      end
       if type(yaml_meta) == 'table' then
         metadata = convert_metadata(yaml_meta, options)
         if type(metadata) ~= 'table' then
@@ -159,6 +164,9 @@ function luacmark.convert(inp, to, options)
   local doc, meta
   if yaml_metadata then
     doc, meta = parse_document_with_metadata(inp, opts)
+    if not doc then
+      return nil, nil, ("YAML parsing error: " .. meta)
+    end
   else
     doc = cmark.parse_string(inp, opts)
     meta = {}

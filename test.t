@@ -32,6 +32,7 @@ is(body, "Hello \\emph{world}\n", "simple latex body")
 eq_array(meta, {}, "simple latex meta")
 
 local body, meta, msg = luacmark.convert("---\ntitle: My *title*\nauthor:\n- name: JJ\n  institute: U of H\n...\n\nHello *world*", "latex", {yaml_metadata = true})
+print(body, meta, msg)
 is(body, "Hello \\emph{world}\n", "latex body")
 eq_array(meta, {title = "My \\emph{title}", author = { {name = "JJ", institute = "U of H"}} }, "latex meta")
 
@@ -39,9 +40,8 @@ local body, meta, msg = luacmark.convert("---\ntitle: My *title*\nauthor:\n- nam
 isnt(body, "Hello \\emph{world}\n", "latex body with yaml_metadata=false")
 eq_array(meta, {}, "latex meta with yaml_metadata=false")
 
--- How do you trap errors from the yaml library?  pcall doesn't seem to do it.
--- local body, meta, msg = luacmark.convert("---\ntitle: 1: 2\n...\n\nHello *world*", "latex", {yaml_metadata = true})
--- is(meta, nil, "latex body nil with bad yaml_metadata")
--- is(msg, "hi", "error message with bad yaml_metadata")
+local body, meta, msg = luacmark.convert("---\ntitle: 1: 2\n...\n\nHello *world*", "latex", {yaml_metadata = true})
+is(meta, nil, "latex body nil with bad yaml_metadata")
+is(msg, "YAML parsing error: 2:8: mapping values are not allowed in this context", "error message with bad yaml_metadata")
 
 done_testing()
