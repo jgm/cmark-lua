@@ -35,4 +35,12 @@ local body, meta, msg = luacmark.convert("---\ntitle: My *title*\nauthor:\n- nam
 is(body, "Hello \\emph{world}\n", "latex body")
 eq_array(meta, {title = "My \\emph{title}", author = { {name = "JJ", institute = "U of H"}} }, "latex meta")
 
+local body, meta, msg = luacmark.convert("---\ntitle: My *title*\nauthor:\n- name: JJ\n  institute: U of H\n...\n\nHello *world*", "latex", {yaml_metadata = false})
+isnt(body, "Hello \\emph{world}\n", "latex body with yaml_metadata=false")
+eq_array(meta, {}, "latex meta with yaml_metadata=false")
+
+local body, meta, msg = luacmark.convert("---\ntitle: 1: 2\n...\n\nHello *world*", "latex", {yaml_metadata = true})
+-- is(meta, nil, "latex body nil with bad yaml_metadata")
+is(msg, "hi", "error message with bad yaml_metadata")
+
 done_testing()
