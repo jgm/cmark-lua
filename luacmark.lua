@@ -177,18 +177,32 @@ end
 -- 'safe', 'sourcepos' (all boolean), 'columns' (number,
 -- 0 for no wrapping), 'filter' (function doc -> doc), or nil,
 -- 'template' (string or nil).
+-- Returns body, meta on success (where 'body' is the rendered
+-- document body and 'meta' is a metatable table whose leaf
+-- values are rendered subdocuments), or nil, nil, msg on failure.
 function luacmark.convert(inp, to, options)
-  local opts = toOptions(options)
-  local columns = options.columns or 0
-  local filter = options.filter
-  local template = options.template
+  local writer = luacmark.writers[to]
+  if not writer then
+    return nil, nil, ("Unknown output format " .. tostring(to))
+  end
+  local opts, columns, filter, template
+  if options then
+     opts = toOptions(options)
+     columns = options.columns or 0
+     filter = options.filter
+     template = options.template
+  else
+     opts = cmark.OPT_DEFAULT
+     columns = 0
+     filter = nil
+     template = nil
+  end
   local doc, meta = parse_document_with_metadata(inp, opts)
   if filter then
     -- apply callback to nodes of metadata
     walk_table(meta, function(node) filter(node, to) end, true)
     filter(doc, to)
   end
-  local writer = luacmark.writers[to]
   local body = writer(doc, opts, columns)
   local data = walk_table(meta,
                           function(node)
