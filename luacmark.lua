@@ -19,6 +19,7 @@ luacmark.defaults = {
   sourcepos = false,
   safe = false,
   columns = 0,
+  yaml_metadata = false,
   filter = nil,
 }
 
@@ -143,17 +144,25 @@ function luacmark.convert(inp, to, options)
   if not writer then
     return nil, nil, ("Unknown output format " .. tostring(to))
   end
-  local opts, columns, filter
+  local opts, columns, filter, yaml_metadata
   if options then
      opts = toOptions(options)
      columns = options.columns or 0
      filter = options.filter
+     yaml_metadata = options.yaml_metadata
   else
      opts = cmark.OPT_DEFAULT
      columns = 0
      filter = nil
+     yaml_metadata = false
   end
-  local doc, meta = parse_document_with_metadata(inp, opts)
+  local doc, meta
+  if yaml_metadata then
+    doc, meta = parse_document_with_metadata(inp, opts)
+  else
+    doc = cmark.parse_string(inp, opts)
+    meta = {}
+  end
   if not doc then
     return nil, nil, "Unable to parse document"
   end

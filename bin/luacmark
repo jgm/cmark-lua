@@ -257,6 +257,7 @@ local options = {
   safe = optarg.s,
   sourcepos = optarg.p,
   columns = optarg.c or 0,
+  yaml_metadata = true,
   filter = nil,
 }
 
