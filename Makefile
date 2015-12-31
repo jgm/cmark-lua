@@ -8,7 +8,7 @@ LUASTATIC=lua-5.2.4/src/liblua.a
 CMARK_ROCKSPEC=$(lastword $(sort $(wildcard rockspecs/cmark-*.rockspec)))
 LUACMARK_ROCKSPEC=$(lastword $(sort $(wildcard rockspecs/luacmark-*.rockspec)))
 
-.PHONY: clean, distclean, test, all, update-c-sources
+.PHONY: clean, distclean, test, all, update
 
 all: cmark_wrap.c
 	luarocks --local make $(CMARK_ROCKSPEC)
@@ -23,7 +23,10 @@ cmark-lua.a: cmark_wrap.o $(OBJS)
 cmark_wrap.c: cmark.i $(CBITS)/cmark.h
 	$(SWIG) -o $@ -lua -I$(CBITS) -DCMARK_EXPORT='' $<
 
-update-c-sources: $(C_SOURCES)
+update: $(C_SOURCES) spec-tests.lua
+
+spec-tests.lua:
+	python3 $(CMARK_DIR)/test/spec_tests.py -d --spec $(CMARK_DIR)/test/spec.txt | sed -e 's/^\([ \t]*\)"\([^"]*\)":/\1\2 = /' | sed -e 's/^\[/return {/' | sed -e 's/^\]/}/' > $@
 
 $(CBITS)/config.h: $(CMARK_DIR)/build/src/config.h
 	cp $< $@
@@ -38,9 +41,7 @@ $(CBITS)/%: $(CMARK_DIR)/src/%
 	cp $< $@
 
 test:
-	lua test.lua
-	python3 $(CMARK_DIR)/test/spec_tests.py --spec $(CMARK_DIR)/test/spec.txt --prog bin/wrap.lua
-	python3 $(CMARK_DIR)/test/spec_tests.py --spec $(CMARK_DIR)/test/spec.txt --prog bin/luacmark
+	prove test.t
 
 clean:
 	rm -rf *.o $(CBITS)/*.o
