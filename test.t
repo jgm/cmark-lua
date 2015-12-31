@@ -27,4 +27,10 @@ subtest("spec tests (luacmark)", function()
   end
 end)
 
+is(luacmark.convert("Hello *world*", "latex",
+         {template = "\\begin{document}\n$body\\end{document}"}),
+   "\\begin{document}\nHello \\emph{world}\n\\end{document}",
+   "simple template")
+
+
 done_testing()
