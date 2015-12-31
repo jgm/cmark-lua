@@ -58,6 +58,15 @@ freed by the calling program by calling `cmark.node_free` on the
 document node.  (This will automatically free all children as
 well.)
 
+In addition, a C function
+
+``` C
+void push_cmark_node(lua_State *L, cmark_node *node)
+```
+
+is exported to make it easier to use these functions
+from the C API.
+
 luacmark (module)
 -----------------
 
