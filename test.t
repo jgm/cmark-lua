@@ -27,8 +27,12 @@ subtest("spec tests (luacmark)", function()
   end
 end)
 
-is(luacmark.convert("Hello *world*", "latex", {}),
-   "Hello \\emph{world}\n", "latex output")
+local body, meta, msg = luacmark.convert("Hello *world*", "latex", {})
+is(body, "Hello \\emph{world}\n", "simple latex body")
+eq_array(meta, {}, "simple latex meta")
 
+local body, meta, msg = luacmark.convert("---\ntitle: My *title*\nauthor:\n- name: JJ\n  institute: U of H\n...\n\nHello *world*", "latex", {})
+is(body, "Hello \\emph{world}\n", "latex body")
+eq_array(meta, {title = "My \\emph{title}", author = { {name = "JJ", institute = "U of H"}} }, "latex meta")
 
 done_testing()
