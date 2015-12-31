@@ -260,6 +260,10 @@ else
   inp = table.concat(inpt, "\n")
 end
 
-local result = luacmark.convert(inp, to, options)
+local result, _, msg = luacmark.convert(inp, to, options)
 
-io.write(result)
+if result then
+  io.write(result)
+else
+  err(msg)
+end

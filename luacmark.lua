@@ -198,6 +198,9 @@ function luacmark.convert(inp, to, options)
      template = nil
   end
   local doc, meta = parse_document_with_metadata(inp, opts)
+  if not doc then
+    return nil, nil, "Unable to parse document"
+  end
   if filter then
     -- apply callback to nodes of metadata
     walk_table(meta, function(node) filter(node, to) end, true)
