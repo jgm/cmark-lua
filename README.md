@@ -74,10 +74,6 @@ Usage:
 
 ```lua
 local luacmark = require("luacmark")
--- simplest:
-local tex = luacmark.convert("Hello *world*", "latex")
-
--- with options:
 local opts = {
   smart = true,
   hardbreaks = false,
@@ -85,12 +81,7 @@ local opts = {
   safe = false,
   columns = 40,
 }
-local tex = luacmark.convert("Hello *world*", "latex", opts)
-
--- with template:
-local letter_template = luacmark.find_template("letter", "latex")
-local tex = luacmark.convert("Hello *world*", "latex", opts,
-              nil, letter_template)
+local body, metadata = luacmark.convert("Hello *world*", "latex", opts)
 
 ```
 
@@ -100,16 +91,12 @@ luacmark.version
 luacmark.writers
 luacmark.defaults
 luacmark.runfilter(source, name, doc, to)
-luacmark.find_template(name, to)
 -- 'inp' is the string input source.
 -- 'options' is a table with fields 'smart', 'hardbreaks',
 -- 'safe', 'sourcepos' (all boolean) and 'columns' (number,
 -- 0 for no wrapping).
 -- 'callback' is a filter or nil.
--- 'template' is a Lust template to be filled with the document
--- body and rendered metadata, or nil.
--- TODO handle errors
-function luacmark.convert(inp, to, options, callback, template)
+function luacmark.convert(inp, to, options)
 -->
 
 luacmark (program)

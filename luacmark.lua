@@ -56,22 +56,27 @@ local function walk_table(table, callback, inplace)
   end
 end
 
-
+-- inject cmark into environment where filters are
+-- run, so we don't need to qualify each function
+-- with 'cmark.'.
 local defaultEnv = _ENV
-table.insert(defaultEnv, cmark)
+for k,v in pairs(cmark) do
+  defaultEnv[k] = v
+end
 
--- Run the specified filter, with source 'source' (a string
--- or function returning chunks) and name 'name', on the cmark
--- node 'doc', with output format 'to'.  The filter modifies
--- 'doc' destructively.  Returns true if successful, otherwise
--- false and an error message.
-function luacmark.run_filter(source, name, doc, to)
+-- Create a filter from a script.
+-- 'source' (a string -- or function returning chunks)
+-- 'name' (string -- a name for error messages etc.)
+-- The filter is a function (doc,to) that destructively
+-- modifies doc.
+-- If successful, return the filter,
+-- otherwise nil and an error message,
+function luacmark.to_filter(source, name)
   local result, msg = load(source, name, 't', defaultEnv)
   if result then
-    result()(doc, to)
-    return true
+    return result()
   else
-    return false, msg
+    return nil, msg
   end
 end
 

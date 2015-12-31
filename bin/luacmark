@@ -261,13 +261,20 @@ local options = {
   filter = nil,
 }
 
+local filters = {}
 if optarg['F'] then
-  options.filter = function(node, to)
-    for filter in string.gmatch(optarg['F'], "([^,]+)") do
-      local ok, msg = luacmark.run_filter(io.lines(filter, 2^12), filter, doc, to)
-      if not ok then
-        err("Error running filter " .. filter .. "\n" .. msg)
-      end
+  for filter in string.gmatch(optarg['F'], "([^,]+)") do
+    local f, msg = luacmark.to_filter(io.lines(filter, 2^12), filter)
+    if f then
+      table.insert(filters, f)
+    else
+      err("Error loading filter " .. filter .. "\n" .. msg)
+    end
+  end
+  -- filters now contains our filters
+  options.filter = function(doc, to)
+    for _,f in ipairs(filters) do
+      f(doc,to)
     end
   end
 end
