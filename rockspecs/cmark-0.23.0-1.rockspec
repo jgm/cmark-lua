@@ -1,7 +1,7 @@
 package = "cmark"
-version = "0.23-1"
+version = "0.23.0-1"
 source = {
-    url = "https://github.com/downloads/jgm/cmark-lua/cmark-lua.0.23.tar.gz"
+    url = "https://github.com/downloads/jgm/cmark-lua/cmark-lua.0.23.0.tar.gz"
 }
 description = {
     summary = "Bindings to libcmark CommonMark parser.",
