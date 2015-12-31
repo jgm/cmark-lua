@@ -1,6 +1,6 @@
 #!/usr/bin/env lua
 
--- package.path='./?.lua;' .. package.path -- FOR TESTING
+-- package.path='./?.lua;' .. package.path -- UNCOMMENT FOR TESTING
 local alt_getopt = require("alt_getopt")
 local cmark = require("cmark")
 local luacmark = require("luacmark")

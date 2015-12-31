@@ -6,7 +6,7 @@ local Lust = require("lust")
 
 local luacmark = {}
 
-luacmark.version = "0.23"
+luacmark.version = "0.23.0"
 
 luacmark.writers = {
   html = function(d, opts, _cols) return cmark.render_html(d, opts) end,
@@ -156,26 +156,27 @@ local parse_document_with_metadata = function(inp, options)
     end
     if endlast then
       local yaml_meta = yaml.load(string.sub(inp, 1, endlast))
-      metadata = convert_metadata(yaml_meta, options)
-      if type(metadata) ~= 'table' then
-        metadata = {}
-      end
-      if yaml_meta then
+      if type(yaml_meta) == 'table' then
+        metadata = convert_metadata(yaml_meta, options)
+        if type(metadata) ~= 'table' then
+          metadata = {}
+        end
         -- We insert blank lines where the header was, so sourcepos is accurate:
         inp = string.gsub(string.sub(inp, 1, endlast - 1), '[^\n\r]+', '') ..
            string.sub(inp, endlast)
       end
     end
   end
-  doc = cmark.parse_document(inp, string.len(inp), options)
+  doc = cmark.parse_string(inp, options)
   return doc, metadata
 end
 
 -- 'inp' is the string input source.
+-- 'to' is the output format.
 -- 'options' is a table with fields 'smart', 'hardbreaks',
--- 'safe', 'sourcepos' (all boolean) and 'columns' (number,
--- 0 for no wrapping).
--- TODO handle errors
+-- 'safe', 'sourcepos' (all boolean), 'columns' (number,
+-- 0 for no wrapping), 'filter' (function doc -> doc), or nil,
+-- 'template' (string or nil).
 function luacmark.convert(inp, to, options)
   local opts = toOptions(options)
   local columns = options.columns or 0
