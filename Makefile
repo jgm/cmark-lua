@@ -38,6 +38,7 @@ $(CBITS)/%: $(CMARK_DIR)/src/%
 	cp $< $@
 
 test:
+	lua test.lua
 	python3 $(CMARK_DIR)/test/spec_tests.py --spec $(CMARK_DIR)/test/spec.txt --prog bin/wrap.lua
 	python3 $(CMARK_DIR)/test/spec_tests.py --spec $(CMARK_DIR)/test/spec.txt --prog bin/luacmark
 
