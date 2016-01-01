@@ -89,7 +89,6 @@ local body, metadata = luacmark.convert("Hello *world*", "latex", opts)
 exported:
 luacmark.version
 luacmark.writers
-luacmark.defaults
 luacmark.runfilter(source, name, doc, to)
 -- 'inp' is the string input source.
 -- 'options' is a table with fields 'smart', 'hardbreaks',

@@ -13,16 +13,6 @@ luacmark.writers = {
   commonmark = cmark.render_commonmark
 }
 
-luacmark.defaults = {
-  smart = false,
-  hardbreaks = false,
-  sourcepos = false,
-  safe = false,
-  columns = 0,
-  yaml_metadata = false,
-  filters = {},
-}
-
 local toOptions = function(opts)
   if type(opts) == 'table' then
     return (cmark.OPT_VALIDATE_UTF8 + cmark.OPT_NORMALIZE +
@@ -145,7 +135,7 @@ end
 -- 'to' is the output format.
 -- 'options' is a table with fields 'smart', 'hardbreaks',
 -- 'safe', 'sourcepos' (all boolean), 'columns' (number,
--- 0 for no wrapping), 'filter' (function doc -> doc), or nil.
+-- 0 for no wrapping), 'filters' (array of functions (doc, to)).
 -- Returns body, meta on success (where 'body' is the rendered
 -- document body and 'meta' is a metatable table whose leaf
 -- values are rendered subdocuments), or nil, nil, msg on failure.
