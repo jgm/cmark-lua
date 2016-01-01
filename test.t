@@ -62,7 +62,7 @@ like(msg, "YAML parsing error:.*mapping values are not allowed in this context",
 
 local nonexistent, msg = luacmark.load_filter("nonexistent.lua")
 nok(nonexistent, "load_filter fails on nonexistent filter")
-is(msg, "Could not open nonexistent.lua")
+is(msg, "Could not open nonexistent.lua", "message on nonexistent filter")
 
 local badfilter, msg = luacmark.load_filter("filters/bad_filter.lua")
 nok(badfilter, "load_filter fails on bad filter")
