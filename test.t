@@ -34,8 +34,19 @@ eq_array(meta, {}, "simple latex meta")
 local body, meta, msg = luacmark.convert("dog's", "man", {smart = true})
 is(body, ".PP\ndog\\[cq]s\n", "smart apostrophe")
 
-local body, meta, msg = luacmark.convert("foo\nbar", "html", {hardbreaks = true})
+local body, meta, msg = luacmark.convert("foo\nbar", "html",
+                           {hardbreaks = true})
 is(body, "<p>foo<br />\nbar</p>\n", "hardbreaks option")
+
+local body, meta, msg = luacmark.convert("<a onclick='bad()'>", "html",
+                           {safe = true})
+is(body, "<!-- raw HTML omitted -->\n", "safe option")
+
+local lorem = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.\n"
+
+local body, meta, msg = luacmark.convert(lorem, "latex", {columns = 20})
+is(body, "Lorem ipsum dolor\nsit amet,\nconsectetur\nadipiscing elit.\n",
+  "columns option")
 
 local body, meta, msg = luacmark.convert("---\ntitle: My *title*\nauthor:\n- name: JJ\n  institute: U of H\n...\n\nHello *world*", "latex", {yaml_metadata = true})
 is(body, "Hello \\emph{world}\n", "latex body")
@@ -52,11 +63,14 @@ like(msg, "YAML parsing error:.*mapping values are not allowed in this context",
 local nonexistent, msg = luacmark.load_filter("nonexistent.lua")
 nok(nonexistent, "load_filter fails on nonexistent filter")
 is(msg, "Could not open nonexistent.lua")
+
 local badfilter, msg = luacmark.load_filter("filters/bad_filter.lua")
 nok(badfilter, "load_filter fails on bad filter")
 is(msg, "[string \"filters/bad_filter.lua\"]:2: <name> expected near '('", "error message on bad filter")
+
 local count_links = luacmark.load_filter("filters/count_links.lua")
 ok(count_links, "loaded filter count_links.lua")
+
 local body, meta, msg = luacmark.convert("[link](u) and <http://example.com>", "html", {filters = {count_links}})
 is(body, "<p><a href=\"u\">link</a> (link #1) and <a href=\"http://example.com\">http://example.com</a> (link #2)</p>\n<p>2 links found in this html document.</p>\n", "added link numbers and count")
 
