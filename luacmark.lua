@@ -137,12 +137,16 @@ local parse_document_with_metadata = function(inp, options)
   return doc, metadata
 end
 
--- 'inp' is the string input source.
--- 'to' is the output format.
--- 'options' is a table with fields 'smart', 'hardbreaks',
--- 'safe', 'sourcepos' (all boolean), 'columns' (number,
--- 0 for no wrapping), 'filters' (array of functions (doc, to)).
--- Returns body, meta on success (where 'body' is the rendered
+-- Convert 'inp' (CommonMark formatted string) to the output format
+-- specified by 'to' ('html', 'commonmark', 'latex', 'man', 'xml').
+-- 'options' is a table with the following fields (all optional):
+-- 'smart' -- enable "smart punctuation"
+-- 'hardbreaks' -- treat newlines as hard breaks
+-- 'safe' -- filter out potentially unsafe HTML and links
+-- 'sourcepos' -- include source position in HTML, XML output
+-- 'filters' -- an array of filters (see 'load_filter' above)
+-- 'columns' -- column with, or 0 to preserve wrapping in input
+-- Returns 'body', 'meta' on success (where 'body' is the rendered
 -- document body and 'meta' is a metatable table whose leaf
 -- values are rendered subdocuments), or nil, nil, msg on failure.
 function luacmark.convert(inp, to, options)
