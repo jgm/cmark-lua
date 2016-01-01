@@ -65,8 +65,12 @@ function luacmark.load_filter(source)
   if type(source) == 'string' then
       name = source
   end
-  local result, msg = load(io.lines(source, 2^12), name, 't', defaultEnv)
-  if result then
+  local ok, script = pcall(function() return io.lines(source, 2^12) end)
+  if not ok then
+    return nil, ("Could not open " .. name)
+  end
+  local result, msg = load(script, name, 't', defaultEnv)
+  if ok and result then
     return result()
   else
     return nil, msg
