@@ -43,10 +43,10 @@ local body, meta, msg = luacmark.convert("---\ntitle: 1: 2\n...\n\nHello *world*
 is(meta, nil, "latex body nil with bad yaml_metadata")
 like(msg, "YAML parsing error:.*mapping values are not allowed in this context", "error message with bad yaml_metadata")
 
-local badfilter, msg = luacmark.to_filter("function(x) return y end", "bad_filter.lua")
+local badfilter, msg = luacmark.load_filter("filters/bad_filter.lua")
 nok(badfilter, "to_filter fails on bad filter")
-is(msg, "[string \"bad_filter.lua\"]:1: <name> expected near '('", "error message on bad filter")
-local count_links = luacmark.to_filter(io.lines("filters/count_links.lua", 2^12), "count_links.lua")
+is(msg, "[string \"filters/bad_filter.lua\"]:2: <name> expected near '('", "error message on bad filter")
+local count_links = luacmark.load_filter("filters/count_links.lua")
 ok(count_links, "loaded filter count_links.lua")
 local body, meta, msg = luacmark.convert("[link](u) and <http://example.com>", "html", {filters = {count_links}})
 is(body, "<p><a href=\"u\">link</a> (link #1) and <a href=\"http://example.com\">http://example.com</a> (link #2)</p>\n<p>2 links found in this html document.</p>\n", "added link numbers and count")

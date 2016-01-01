@@ -263,7 +263,7 @@ local options = {
 
 if optarg['F'] then
   for filter in string.gmatch(optarg['F'], "([^,]+)") do
-    local f, msg = luacmark.to_filter(io.lines(filter, 2^12), filter)
+    local f, msg = luacmark.load_filter(filter)
     if f then
       table.insert(options.filters, f)
     else

@@ -56,13 +56,16 @@ end
 
 -- Create a filter from a script.
 -- 'source' (a string -- or function returning chunks)
--- 'name' (string -- a name for error messages etc.)
 -- The filter is a function (doc,to) that destructively
 -- modifies doc.
 -- If successful, return the filter,
 -- otherwise nil and an error message,
-function luacmark.to_filter(source, name)
-  local result, msg = load(source, name, 't', defaultEnv)
+function luacmark.load_filter(source)
+  local name = "filter"
+  if type(source) == 'string' then
+      name = source
+  end
+  local result, msg = load(io.lines(source, 2^12), name, 't', defaultEnv)
   if result then
     return result()
   else
