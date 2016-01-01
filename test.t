@@ -31,6 +31,12 @@ local body, meta, msg = luacmark.convert("Hello *world*", "latex", {})
 is(body, "Hello \\emph{world}\n", "simple latex body")
 eq_array(meta, {}, "simple latex meta")
 
+local body, meta, msg = luacmark.convert("dog's", "man", {smart = true})
+is(body, ".PP\ndog\\[cq]s\n", "smart apostrophe")
+
+local body, meta, msg = luacmark.convert("foo\nbar", "html", {hardbreaks = true})
+is(body, "<p>foo<br />\nbar</p>\n", "hardbreaks option")
+
 local body, meta, msg = luacmark.convert("---\ntitle: My *title*\nauthor:\n- name: JJ\n  institute: U of H\n...\n\nHello *world*", "latex", {yaml_metadata = true})
 is(body, "Hello \\emph{world}\n", "latex body")
 eq_array(meta, {title = "My \\emph{title}", author = { {name = "JJ", institute = "U of H"}} }, "latex meta")
