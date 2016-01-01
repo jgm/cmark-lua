@@ -62,11 +62,15 @@ like(msg, "YAML parsing error:.*mapping values are not allowed in this context",
 
 local nonexistent, msg = luacmark.load_filter("nonexistent.lua")
 nok(nonexistent, "load_filter fails on nonexistent filter")
-is(msg, "Could not open nonexistent.lua", "message on nonexistent filter")
+is(msg, "cannot open nonexistent.lua: No such file or directory", "message on nonexistent filter")
 
 local badfilter, msg = luacmark.load_filter("filters/bad_filter.lua")
 nok(badfilter, "load_filter fails on bad filter")
-is(msg, "[string \"filters/bad_filter.lua\"]:2: <name> expected near '('", "error message on bad filter")
+is(msg, "filters/bad_filter.lua:2: <name> expected near '('", "error message on bad filter")
+
+local badfilter, msg = luacmark.load_filter("filters/bad_filter2.lua")
+nok(badfilter, "load_filter fails when script doesn't return a function")
+is(msg, "Filter filters/bad_filter2.lua returns a table, not a function", "error message on filter not returning a function")
 
 local count_links = luacmark.load_filter("filters/count_links.lua")
 ok(count_links, "loaded filter count_links.lua")

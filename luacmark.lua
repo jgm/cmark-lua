@@ -46,32 +46,31 @@ local function walk_table(table, callback, inplace)
   end
 end
 
--- inject cmark into environment where filters are
--- run, so we don't need to qualify each function
--- with 'cmark.'.
+-- We inject cmark into environment where filters are
+-- run, so users don't need to qualify each function with 'cmark.'.
 local defaultEnv = _ENV
 for k,v in pairs(cmark) do
   defaultEnv[k] = v
 end
 
--- Create a filter from a script.
--- 'source' (a string -- or function returning chunks)
--- The filter is a function (doc,to) that destructively
--- modifies doc.
--- If successful, return the filter,
--- otherwise nil and an error message,
-function luacmark.load_filter(source)
-  local name = "filter"
-  if type(source) == 'string' then
-      name = source
-  end
-  local ok, script = pcall(function() return io.lines(source, 2^12) end)
-  if not ok then
-    return nil, ("Could not open " .. name)
-  end
-  local result, msg = load(script, name, 't', defaultEnv)
-  if ok and result then
-    return result()
+-- Create a filter from a script.  A filter is
+-- a function that takes two arguments ('doc', 'to'),
+-- where 'doc' is a cmark node and 'to' is a string
+-- specifying the output format.  The function may
+-- destructively modify 'doc'.  A script defining
+-- a filter should return a filter function.
+-- If successful, 'load_filter' returns the filter,
+-- otherwise it returns nil and an error message,
+function luacmark.load_filter(filename)
+  local result, msg = loadfile(filename, 't', defaultEnv)
+  if result then
+    local evaluated = result()
+    if type(evaluated) == 'function' then
+        return evaluated
+    else
+        return nil, ("Filter " .. filename .. " returns a " ..
+                    type(evaluated) .. ", not a function")
+    end
   else
     return nil, msg
   end
