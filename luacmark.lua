@@ -145,7 +145,7 @@ end
 -- 'safe' -- filter out potentially unsafe HTML and links
 -- 'sourcepos' -- include source position in HTML, XML output
 -- 'filters' -- an array of filters (see 'load_filter' above)
--- 'columns' -- column with, or 0 to preserve wrapping in input
+-- 'columns' -- column width, or 0 to preserve wrapping in input
 -- Returns 'body', 'meta' on success (where 'body' is the rendered
 -- document body and 'meta' is a metatable table whose leaf
 -- values are rendered subdocuments), or nil, nil, msg on failure.

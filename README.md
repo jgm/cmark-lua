@@ -76,26 +76,48 @@ Basic usage:
 local luacmark = require("luacmark")
 local body, metadata = luacmark.convert("Hello *world*",
                          "latex", {smart = true, columns = 40})
-
 ```
 
 The module exports
 
-- `luacmark.version`: a string with the version number.
-- `luacmark.writers`: a table with strings as keys (`html`, `latex`,
-  `man`, `xml`, `commonmark`) and renderers as values.  A
-  renderer is a function that takes three arguments (a
-  cmark node, cmark options (a number), and a column width
-  (a number), and returns a string, the rendered output.
-- `luacmark.load_filter(source)`:
-- `luacmark.convert(input, to, options)`:
+`luacmark.version`: a string with the version number.
+
+`luacmark.writers`: a table with strings as keys (`html`, `latex`,
+    `man`, `xml`, `commonmark`) and renderers as values.  A
+    renderer is a function that takes three arguments (a
+    cmark node, cmark options (a number), and a column width
+    (a number), and returns a string, the rendered output.
+
+-   `luacmark.load_filter(source)`:
+    Create a filter from a script.  A filter is a `function(doc,
+    to)`, where `doc` is a cmark node and `to` is a string
+    specifying the output format.  The function may destructively
+    modify `doc`.  A script defining a filter should return a
+    filter function.  If successful, `load_filter` returns the
+    filter, otherwise it returns nil and an error message,
+
+-   `luacmark.convert(input, to, options)`:
+    Convert `inp` (CommonMark formatted string) to the output
+    format specified by `to` (`html`, `commonmark`, `latex`,
+    `man`, or `xml`).  `options` is a table with the following
+    fields (all optional):
+
+    - `smart` - enable "smart punctuation"
+    - `hardbreaks` - treat newlines as hard breaks
+    - `safe` - filter out potentially unsafe HTML and links
+    - `sourcepos` - include source position in HTML, XML output
+    - `filters` - an array of filters to run (see `load_filter` above)
+    - `columns` - column width, or 0 to preserve wrapping in input
+
+    Returns `body`, `meta` on success (where `body` is the
+    rendered document body and `meta` is a metatable table whose
+    leaf values are rendered subdocuments), or `nil, nil, msg` on
+    failure.
 
 luacmark (program)
 ------------------
 
 `luacmark --help` will print a short list of options.
+
 For fuller descriptions, see the [`lunamark(1)` man page](lunamark.1.md).
-
-
-
 
