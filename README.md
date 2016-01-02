@@ -16,6 +16,8 @@ This repository contains sources for two lua rocks:
 cmark
 -----
 
+To install:  `luarocks install cmark`.
+
 `cmark` exposes the entire API of libcmark, as documented in
 the `cmark(3)` man page.  Basic usage:
 
@@ -70,6 +72,10 @@ from the C API.
 luacmark (module)
 -----------------
 
+To install:  `luarocks install luacmark`.
+
+(This installs both the library and the program.)
+
 Basic usage:
 
 ```lua
@@ -120,4 +126,15 @@ luacmark (program)
 `luacmark --help` will print a short list of options.
 
 For fuller descriptions, see the [`lunamark(1)` man page](lunamark.1.md).
+
+For developers
+--------------
+
+`make` builds the rocks and installs them locally.
+
+`make test` runs some tests.  These are in `test.t`.
+You'll need the `prove` executable and the `lua-TestMore` rock.
+
+`make update` will update the C sources and spec test from the
+`../cmark` directory.
 
