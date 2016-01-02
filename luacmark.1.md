@@ -21,57 +21,57 @@ man.
 
 # OPTIONS
 
-* `--to,-t` *format*
+`--to,-t` *format*
 
-    Specify format for output.
-    *format* can be `commonmark`, `html`, `man`, `xml`, or `latex`.
+  Specify format for output.
+  *format* can be `commonmark`, `html`, `man`, `xml`, or `latex`.
 
-* `--output,-o` *file*
+`--output,-o` *file*
 
-    Write output to *file*.
+  Write output to *file*.
 
-* `--columns,-c` *NUMBER*
+`--columns,-c` *NUMBER*
 
-    Specify number of columns for text wrapping in supported
-    formats.  The default is 0 = no wrapping.
+  Specify number of columns for text wrapping in supported
+  formats.  The default is 0 = no wrapping.
 
-* `--filter,-F` *file[,file]*
+`--filter,-F` *file[,file]*
 
-    Filter the parsed AST using a lua script.  TODO details.
+  Filter the parsed AST using a lua script.  TODO details.
 
-* `--template,-T` *file*
+`--template,-T` *file*
 
-    Insert converted text and metadata into a template.  See TEMPLATES,
-    below, for template format.
+  Insert converted text and metadata into a template.  See TEMPLATES,
+  below, for template format.
 
-* `--smart`
+`--smart`
 
-    Enable smart typography (straight quotes are turned into
-    curly quotes, `--` into en dashes, `---` into em dashes,
-    `...` into ellipses).
+  Enable smart typography (straight quotes are turned into
+  curly quotes, `--` into en dashes, `---` into em dashes,
+  `...` into ellipses).
 
-* `--safe`
+`--safe`
 
-    Suppress raw HTML and unsafe links (`javascript:`, `file:`,
-    `vbscript:`, and `data:`, except for `image/png`, `image/gif`,
-    `image/jpeg`, or `image/webp` mime types).
+  Suppress raw HTML and unsafe links (`javascript:`, `file:`,
+  `vbscript:`, and `data:`, except for `image/png`, `image/gif`,
+  `image/jpeg`, or `image/webp` mime types).
 
-* `--hardbreaks`
+`--hardbreaks`
 
-    Render softbreak elements (newlines in paragraphs) as hard
-    line breaks.
+  Render softbreak elements (newlines in paragraphs) as hard
+  line breaks.
 
-* `--sourcepos`
+`--sourcepos`
 
-    Include source position information in html/xml attributes.
+  Include source position information in html/xml attributes.
 
-* `--version,-V`
+`--version,-V`
 
-    Print version information.
+  Print version information.
 
-* `--help,-h`
+`--help,-h`
 
-    This message
+  This message
 
 # TEMPLATES
 
@@ -94,6 +94,10 @@ as CommonMark and rendered appropriately for the output format.
 The following additional variables are set automatically:
 
 * `body`: the document body
+
+# FILTERS
+
+TODO
 
 # EXAMPLES
 

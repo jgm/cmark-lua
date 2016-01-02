@@ -16,55 +16,55 @@ TODO for options, create a filter that makes these look right in
 man.
 .SH
 OPTIONS
-.IP \[bu] 2
+.PP
 \f[C]\-\-to,\-t\f[] \f[I]format\f[]
 .PP
 Specify format for output.
 \f[I]format\f[] can be \f[C]commonmark\f[], \f[C]html\f[], \f[C]man\f[], \f[C]xml\f[], or \f[C]latex\f[].
-.IP \[bu] 2
+.PP
 \f[C]\-\-output,\-o\f[] \f[I]file\f[]
 .PP
 Write output to \f[I]file\f[].
-.IP \[bu] 2
+.PP
 \f[C]\-\-columns,\-c\f[] \f[I]NUMBER\f[]
 .PP
 Specify number of columns for text wrapping in supported
 formats. The default is 0 = no wrapping.
-.IP \[bu] 2
+.PP
 \f[C]\-\-filter,\-F\f[] \f[I]file[,file]\f[]
 .PP
 Filter the parsed AST using a lua script. TODO details.
-.IP \[bu] 2
+.PP
 \f[C]\-\-template,\-T\f[] \f[I]file\f[]
 .PP
 Insert converted text and metadata into a template. See TEMPLATES,
 below, for template format.
-.IP \[bu] 2
+.PP
 \f[C]\-\-smart\f[]
 .PP
 Enable smart typography (straight quotes are turned into
 curly quotes, \f[C]\-\-\f[] into en dashes, \f[C]\-\-\-\f[] into em dashes,
 \f[C]...\f[] into ellipses).
-.IP \[bu] 2
+.PP
 \f[C]\-\-safe\f[]
 .PP
 Suppress raw HTML and unsafe links (\f[C]javascript:\f[], \f[C]file:\f[],
 \f[C]vbscript:\f[], and \f[C]data:\f[], except for \f[C]image/png\f[], \f[C]image/gif\f[],
 \f[C]image/jpeg\f[], or \f[C]image/webp\f[] mime types).
-.IP \[bu] 2
+.PP
 \f[C]\-\-hardbreaks\f[]
 .PP
 Render softbreak elements (newlines in paragraphs) as hard
 line breaks.
-.IP \[bu] 2
+.PP
 \f[C]\-\-sourcepos\f[]
 .PP
 Include source position information in html/xml attributes.
-.IP \[bu] 2
+.PP
 \f[C]\-\-version,\-V\f[]
 .PP
 Print version information.
-.IP \[bu] 2
+.PP
 \f[C]\-\-help,\-h\f[]
 .PP
 This message
