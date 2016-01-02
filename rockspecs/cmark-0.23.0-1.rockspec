@@ -1,13 +1,17 @@
 package = "cmark"
 version = "0.23.0-1"
 source = {
-    url = "https://github.com/downloads/jgm/cmark-lua/cmark-lua.0.23.0.tar.gz"
+    url = "https://github.com/jgm/cmark-lua/archive/0.23.0-1.tar.gz"
 }
 description = {
-    summary = "Bindings to libcmark CommonMark parser.",
-    detailed = [[]],
+    summary = [[Lua wrapper for libcmark, CommonMark Markdown parsing
+      and rendering library]],
+    detailed = [[cmark exposes the entire API of libcmark, as
+      documented in the `cmark(3)` man page, and adds a
+      more lua-esque interface for walking the node tree.]],
     homepage = "https://github.com/jgm/cmark-lua",
-    license = "BSD2"
+    license = "BSD2",
+    maintainer = "John MacFarlane <jgm@berkeley.edu>",
 }
 dependencies = {
 }
