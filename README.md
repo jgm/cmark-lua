@@ -123,6 +123,21 @@ The module exports
 luacmark (program)
 ------------------
 
+`luacmark` does what the `cmark` program does, with the
+following enhancements:
+
+- Support for YAML metadata at the top of the document.
+  The metadata is parsed as CommonMark and returned in
+  a table (dictionary) that will set template variables.
+
+- Support for document templates, which add headers
+  and footers around the body of the document, and can
+  include variables defined in the metadat.
+
+- Support for filters, which allow the document to be
+  transformed between parsing and rendering, making possible
+  a large number of customizations.
+
 `luacmark --help` will print a short list of options.
 
 For fuller descriptions, see the [`lunamark(1)` man page](lunamark.1.md).
