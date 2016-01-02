@@ -6,18 +6,13 @@ OBJS = $(subst .c,.o,$(wildcard $(CBITS)/*.c))
 C_SOURCES=$(wildcard $(CBITS)/*.*)
 LUASTATIC=lua-5.2.4/src/liblua.a
 CMARK_ROCKSPEC=$(lastword $(sort $(wildcard rockspecs/cmark-*.rockspec)))
-LUACMARK_ROCKSPEC=$(lastword $(sort $(wildcard rockspecs/luacmark-*.rockspec)))
 
 .PHONY: clean, distclean, test, all, rocks, update
 
-all: rocks luacmark.1
+all: rock
 
-luacmark.1: luacmark.1.md templates/default.man
-	bin/luacmark -t man --template templates/default.man -o $@ $<
-
-rocks: cmark_wrap.c
+rock: cmark_wrap.c
 	luarocks --local make $(CMARK_ROCKSPEC)
-	luarocks --local make $(LUACMARK_ROCKSPEC)
 
 cmark.so: cmark_wrap.o $(OBJS)
 	$(CC) -shared -o $@ -I$(CBITS) -llua $^

@@ -1,20 +1,8 @@
 cmark-lua
 =========
 
-CommonMark for lua using libcmark.
-
-This repository contains sources for two lua rocks:
-
-- `cmark` is a lua binding to [libcmark](https://github.com/jgm/cmark),
-  the reference implementation for [CommonMark](http://commonmark.org).
-
-- `luacmark` is a command-line program that uses `cmark` and
-  adds features like YAML metadata and lua filters.  This rock
-  includes the program and a small utility module `luacmark.lua`
-  that exposes some of its functions.
-
-cmark
------
+Lua wrapper for [libcmark](https://github.com/jgm/cmark),
+CommonMark parsing and rendering library
 
 To install:  `luarocks install cmark`.
 
@@ -69,83 +57,13 @@ void push_cmark_node(lua_State *L, cmark_node *node)
 is exported to make it easier to use these functions
 from the C API.
 
-luacmark (module)
------------------
-
-To install:  `luarocks install luacmark`.
-
-(This installs both the library and the program.)
-
-Basic usage:
-
-```lua
-local luacmark = require("luacmark")
-local body, metadata = luacmark.convert("Hello *world*",
-                         "latex", {smart = true, columns = 40})
-```
-
-The module exports
-
-`luacmark.version`: a string with the version number.
-
-`luacmark.writers`: a table with strings as keys (`html`, `latex`,
-    `man`, `xml`, `commonmark`) and renderers as values.  A
-    renderer is a function that takes three arguments (a
-    cmark node, cmark options (a number), and a column width
-    (a number), and returns a string, the rendered output.
-
--   `luacmark.load_filter(source)`:
-    Create a filter from a script.  A filter is a `function(doc,
-    to)`, where `doc` is a cmark node and `to` is a string
-    specifying the output format.  The function may destructively
-    modify `doc`.  A script defining a filter should return a
-    filter function.  If successful, `load_filter` returns the
-    filter, otherwise it returns nil and an error message,
-
--   `luacmark.convert(input, to, options)`:
-    Convert `inp` (CommonMark formatted string) to the output
-    format specified by `to` (`html`, `commonmark`, `latex`,
-    `man`, or `xml`).  `options` is a table with the following
-    fields (all optional):
-
-    - `smart` - enable "smart punctuation"
-    - `hardbreaks` - treat newlines as hard breaks
-    - `safe` - filter out potentially unsafe HTML and links
-    - `sourcepos` - include source position in HTML, XML output
-    - `filters` - an array of filters to run (see `load_filter` above)
-    - `columns` - column width, or 0 to preserve wrapping in input
-
-    Returns `body`, `meta` on success (where `body` is the
-    rendered document body and `meta` is a metatable table whose
-    leaf values are rendered subdocuments), or `nil, nil, msg` on
-    failure.
-
-luacmark (program)
-------------------
-
-`luacmark` does what the `cmark` program does, with the
-following enhancements:
-
-- Support for YAML metadata at the top of the document.
-  The metadata is parsed as CommonMark and returned in
-  a table (dictionary) that will set template variables.
-
-- Support for document templates, which add headers
-  and footers around the body of the document, and can
-  include variables defined in the metadat.
-
-- Support for filters, which allow the document to be
-  transformed between parsing and rendering, making possible
-  a large number of customizations.
-
-`luacmark --help` will print a short list of options.
-
-For fuller descriptions, see the [`lunamark(1)` man page](lunamark.1.md).
+For a higher-level interface, see
+[lcmark](https://github.com/jgm/lcmark).
 
 For developers
 --------------
 
-`make` builds the rocks and installs them locally.
+`make` builds the rock and installs it locally.
 
 `make test` runs some tests.  These are in `test.t`.
 You'll need the `prove` executable and the `lua-TestMore` rock.
