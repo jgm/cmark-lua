@@ -8,9 +8,14 @@ LUASTATIC=lua-5.2.4/src/liblua.a
 CMARK_ROCKSPEC=$(lastword $(sort $(wildcard rockspecs/cmark-*.rockspec)))
 LUACMARK_ROCKSPEC=$(lastword $(sort $(wildcard rockspecs/luacmark-*.rockspec)))
 
-.PHONY: clean, distclean, test, all, update
+.PHONY: clean, distclean, test, all, rocks, update
 
-all: cmark_wrap.c
+all: rocks luacmark.1
+
+luacmark.1: luacmark.1.md templates/default.man
+	bin/luacmark -t man --template templates/default.man -o $@ $<
+
+rocks: cmark_wrap.c
 	luarocks --local make $(CMARK_ROCKSPEC)
 	luarocks --local make $(LUACMARK_ROCKSPEC)
 

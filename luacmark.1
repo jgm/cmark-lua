@@ -1,0 +1,140 @@
+.TH "luacmark" "1" "January 1, 2016" "" ""
+.SH
+NAME
+.PP
+luacmark \- command line CommonMark parser and renderer
+.SH
+SYNOPSIS
+.PP
+luacmark [options] [file..]
+.SH
+DESCRIPTION
+.PP
+TODO description here.
+.PP
+TODO for options, create a filter that makes these look right in
+man.
+.SH
+OPTIONS
+.IP \[bu] 2
+\f[C]\-\-to,\-t\f[] \f[I]format\f[]
+.PP
+Specify format for output.
+\f[I]format\f[] can be \f[C]commonmark\f[], \f[C]html\f[], \f[C]man\f[], \f[C]xml\f[], or \f[C]latex\f[].
+.IP \[bu] 2
+\f[C]\-\-output,\-o\f[] \f[I]file\f[]
+.PP
+Write output to \f[I]file\f[].
+.IP \[bu] 2
+\f[C]\-\-columns,\-c\f[] \f[I]NUMBER\f[]
+.PP
+Specify number of columns for text wrapping in supported
+formats. The default is 0 = no wrapping.
+.IP \[bu] 2
+\f[C]\-\-filter,\-F\f[] \f[I]file[,file]\f[]
+.PP
+Filter the parsed AST using a lua script. TODO details.
+.IP \[bu] 2
+\f[C]\-\-template,\-T\f[] \f[I]file\f[]
+.PP
+Insert converted text and metadata into a template. See TEMPLATES,
+below, for template format.
+.IP \[bu] 2
+\f[C]\-\-smart\f[]
+.PP
+Enable smart typography (straight quotes are turned into
+curly quotes, \f[C]\-\-\f[] into en dashes, \f[C]\-\-\-\f[] into em dashes,
+\f[C]...\f[] into ellipses).
+.IP \[bu] 2
+\f[C]\-\-safe\f[]
+.PP
+Suppress raw HTML and unsafe links (\f[C]javascript:\f[], \f[C]file:\f[],
+\f[C]vbscript:\f[], and \f[C]data:\f[], except for \f[C]image/png\f[], \f[C]image/gif\f[],
+\f[C]image/jpeg\f[], or \f[C]image/webp\f[] mime types).
+.IP \[bu] 2
+\f[C]\-\-hardbreaks\f[]
+.PP
+Render softbreak elements (newlines in paragraphs) as hard
+line breaks.
+.IP \[bu] 2
+\f[C]\-\-sourcepos\f[]
+.PP
+Include source position information in html/xml attributes.
+.IP \[bu] 2
+\f[C]\-\-version,\-V\f[]
+.PP
+Print version information.
+.IP \[bu] 2
+\f[C]\-\-help,\-h\f[]
+.PP
+This message
+.SH
+TEMPLATES
+.PP
+By default, luacmark will produce a fragment. If the
+\f[C]\-\-template\f[] option is specified, it will insert
+this fragment into a template, producing a standalone document with
+appropriate header and footer. The template is
+sought first in the working directory, then in
+\f[C]templates\f[], and finally in \f[C]$HOME/luacmark/templates\f[]. If no
+extension is given, the name of the writer will be used as an
+extension. So, for example, one can put the template \f[C]letter.html\f[]
+in the \f[C]$HOME/luacmark/templates\f[] directory, and use it anywhere
+with \f[C]luacmark \-\-template letter\f[].
+.PP
+The templates are Lust (https://github.com/weshoke/Lust) templates.
+TODO describe.
+.PP
+Variables are taken from YAML metadata; the fields are interpreted
+as CommonMark and rendered appropriately for the output format.
+The following additional variables are set automatically:
+.IP \[bu] 2
+\f[C]body\f[]: the document body
+.SH
+EXAMPLES
+.IP
+.nf
+\f[C]
+luacmark
+\f[]
+.fi
+.PP
+acts as a filter, reading markdown from stdin and writing
+HTML to stdout.
+.IP
+.nf
+\f[C]
+luacmark \-\-smart \-t latex
+\f[]
+.fi
+.PP
+acts as a filter, reading markdown with smart typography
+and definition list extensions from stdin, and writing
+LaTeX to stdout.
+.IP
+.nf
+\f[C]
+luacmark \-t latex \-o mybook.tex ch{1,2,3}.txt references.txt
+\f[]
+.fi
+.PP
+reads \f[C]ch1.txt\f[], \f[C]ch2.txt\f[], \f[C]ch3.txt\f[], and \f[C]references.txt\f[],
+concatenates them, and converts the result from markdown to LaTeX.
+.IP
+.nf
+\f[C]
+luacmark \-\-template letter \-d cc=Smith,cc="Jim Jones",sign="yes" \e
+  \-t latex \-o myletter.tex myletter.txt
+\f[]
+.fi
+.PP
+produces a LaTeX file using the template \f[C]letter.latex\f[],
+and setting the variable \f[C]cc\f[] to \f[C]{"Smith","Jim Jones"}\f[]
+and \f[C]sign\f[] to \f[C]"yes"\f[].
+.SH
+AUTHORS
+.PP
+luacmark is written by John MacFarlane.
+
+.SH AUTHORS
+

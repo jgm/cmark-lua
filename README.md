@@ -96,8 +96,9 @@ function luacmark.convert(inp, to, options)
 luacmark (program)
 ------------------
 
+See the `lunamark(1)` man page.
+
 `luacmark --help` will print a short list of options.
 
-`luacmark --man > luacmark.1` will generate a proper man page.
 
 
