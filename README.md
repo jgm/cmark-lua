@@ -70,35 +70,32 @@ from the C API.
 luacmark (module)
 -----------------
 
-Usage:
+Basic usage:
 
 ```lua
 local luacmark = require("luacmark")
-local opts = {
-  smart = true,
-  hardbreaks = false,
-  sourcepos = false,
-  safe = false,
-  columns = 40,
-}
-local body, metadata = luacmark.convert("Hello *world*", "latex", opts)
+local body, metadata = luacmark.convert("Hello *world*",
+                         "latex", {smart = true, columns = 40})
 
 ```
 
-<!--
-exported:
-luacmark.version
-luacmark.writers
-luacmark.load_filter(source)
-function luacmark.convert(inp, to, options)
--->
+The module exports
+
+- `luacmark.version`: a string with the version number.
+- `luacmark.writers`: a table with strings as keys (`html`, `latex`,
+  `man`, `xml`, `commonmark`) and renderers as values.  A
+  renderer is a function that takes three arguments (a
+  cmark node, cmark options (a number), and a column width
+  (a number), and returns a string, the rendered output.
+- `luacmark.load_filter(source)`:
+- `luacmark.convert(input, to, options)`:
 
 luacmark (program)
 ------------------
 
-See the `lunamark(1)` man page.
-
 `luacmark --help` will print a short list of options.
+For fuller descriptions, see the [`lunamark(1)` man page](lunamark.1.md).
+
 
 
 
