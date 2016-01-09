@@ -4,7 +4,7 @@ local builder = {}
 
 builder.add_children = function(node, v)
   if type(v) == 'table' then
-    for _,x in ipairs(x) do
+    for _,x in ipairs(v) do
       c.node_append_child(node, x)
     end
   elseif type(v) == 'userdata' then
