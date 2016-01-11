@@ -1,9 +1,15 @@
 local c = require('cmark')
 
+for k,v in pairs(c) do
+  _ENV[k] = v
+end
+
 local builder = {}
 
 -- builder.add_children(node, {node1, node2})
 -- adds node1 and node2 as children of node.
+-- builder.add_children(node, {node1, {node2, node3}})
+-- adds node1, node2, and node3 as children of node.
 -- builder.add_children(node, 'hello')
 -- adds a text node with 'hello' as child of node.
 -- builder.add_children(node, node1)
@@ -15,50 +21,42 @@ builder.add_children = function(node, v)
     end
   elseif type(v) == 'userdata' then
     c.node_append_child(node, v)
-  else
-    c.node_append_child(node, builder.text(tostring(v)))
+  elseif v ~= nil then
+    local textnode = c.node_new(c.NODE_TEXT)
+    c.node_set_literal(textnode, tostring(v))
+    c.node_append_child(node, textnode)
   end
 end
 
--- builder.paragraph{"hello ", builder.emph{"world"}}}
-builder.paragraph = function(t)
-  local node = c.node_new(c.NODE_PARAGRAPH)
-  builder.add_children(node, t)
-  return node
+builder.node = function(node_type, has_children, fields)
+  return function(contents)
+    local node = c.node_new(node_type)
+    if contents == nil then
+      return node
+    end
+    -- set the attributes if defined
+    if fields and type(contents) == 'table' then
+      for field,func in pairs(fields) do
+        if contents[field] then
+          func(node, contents[field])
+        end
+      end
+    end
+    if has_children then
+      -- treat rest as children
+      builder.add_children(node, contents)
+    elseif contents then  -- treat contents as literal
+      c.node_set_literal(node, tostring(contents))
+    end
+    return node
+  end
 end
 
--- builder.document(blocks)
-builder.document = function(t)
-  local node = c.node_new(c.NODE_DOCUMENT)
-  builder.add_children(node, t)
-  return node
-end
-
-
--- builder.text("hello")
-builder.text = function(s)
-  local node = c.node_new(c.NODE_TEXT)
-  c.node_set_literal(node, s)
-  return node
-end
-
--- builder.emph{"hello ", builder.emph{"world"}}}
-builder.emph = function(t)
-  local node = c.node_new(c.NODE_EMPH)
-  builder.add_children(node, t)
-  return node
-end
-
--- builder.link({url = "/url", title = "my title",
---   link_text = "my text"})
--- link_text may be a string, a node, or a list
--- of nodes.
-builder.link = function(data)
-  local node = c.node_new(c.NODE_LINK)
-  c.node_set_url(node, data.url)
-  c.node_set_title(node, data.title)
-  builder.add_children(node, data.link_text)
-  return node
-end
+builder.document = builder.node(c.NODE_DOCUMENT, true)
+builder.paragraph = builder.node(c.NODE_PARAGRAPH, true)
+builder.text = builder.node(c.NODE_TEXT, false)
+builder.emph = builder.node(c.NODE_EMPH, true)
+builder.link = builder.node(c.NODE_LINK, true,
+                     {title = c.node_set_title, url   = c.node_set_url})
 
 return builder

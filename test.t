@@ -23,14 +23,14 @@ local tohtml = function(node)
 end
 
 is(tohtml(builder.text("hello")), "hello", "builder.text")
-is(tohtml(builder.link({url = "url", link_text = "hello"})),
+is(tohtml(builder.link{url = "url", "hello"}),
     '<a href="url">hello</a>', "builder.link with string")
-is(tohtml(builder.link({url = "url", link_text = builder.text("hello")})),
+is(tohtml(builder.link{url = "url", builder.text("hello")}),
     '<a href="url">hello</a>', "builder.link with node")
-is(tohtml(builder.link({url = "url", link_text =
-    {builder.text("hello"), builder.text("there")}})),
+is(tohtml(builder.link{url = "url",
+   builder.text("hello"), builder.text("there")}),
     '<a href="url">hellothere</a>', "builder.link with list of nodes")
-is(tohtml(builder.link({url = "url", title = "tit", link_text = "hello"})),
+is(tohtml(builder.link{url = "url", title = "tit", "hello"}),
     '<a href="url" title="tit">hello</a>', "builder.link with title")
 
 local b = builder
