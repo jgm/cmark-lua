@@ -20,17 +20,17 @@ builder.add_children = function(node, v)
       builder.add_children(node, x)
     end
   elseif type(v) == 'userdata' then
-    c.node_append_child(node, v)
+    node_append_child(node, v)
   elseif v ~= nil then
-    local textnode = c.node_new(c.NODE_TEXT)
-    c.node_set_literal(textnode, tostring(v))
-    c.node_append_child(node, textnode)
+    local textnode = node_new(NODE_TEXT)
+    node_set_literal(textnode, tostring(v))
+    node_append_child(node, textnode)
   end
 end
 
 builder.node = function(node_type, has_children, fields)
   return function(contents)
-    local node = c.node_new(node_type)
+    local node = node_new(node_type)
     if contents == nil then
       return node
     end
@@ -46,17 +46,17 @@ builder.node = function(node_type, has_children, fields)
       -- treat rest as children
       builder.add_children(node, contents)
     elseif contents then  -- treat contents as literal
-      c.node_set_literal(node, tostring(contents))
+      node_set_literal(node, tostring(contents))
     end
     return node
   end
 end
 
-builder.document = builder.node(c.NODE_DOCUMENT, true)
-builder.paragraph = builder.node(c.NODE_PARAGRAPH, true)
-builder.text = builder.node(c.NODE_TEXT, false)
-builder.emph = builder.node(c.NODE_EMPH, true)
-builder.link = builder.node(c.NODE_LINK, true,
-                     {title = c.node_set_title, url   = c.node_set_url})
+builder.document = builder.node(NODE_DOCUMENT, true)
+builder.paragraph = builder.node(NODE_PARAGRAPH, true)
+builder.text = builder.node(NODE_TEXT, false)
+builder.emph = builder.node(NODE_EMPH, true)
+builder.link = builder.node(NODE_LINK, true,
+                 {title = node_set_title, url = node_set_url})
 
 return builder
