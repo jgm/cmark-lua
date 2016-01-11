@@ -28,6 +28,17 @@ builder.add_children = function(node, v)
   end
 end
 
+-- return children as a table
+builder.get_children = function(node)
+  local child = c.node_first_child(node)
+  local result = {}
+  while child do
+    result[#result + 1] = child
+    child = c.node_next(child)
+  end
+  return result
+end
+
 builder.node = function(node_type, can_have_children, fields)
   return function(contents)
     local node = node_new(node_type)

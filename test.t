@@ -27,8 +27,10 @@ is(tohtml(builder.link{url = "url", "hello"}),
     '<a href="url">hello</a>', "builder.link with string")
 is(tohtml(builder.link{url = "url", builder.text("hello")}),
     '<a href="url">hello</a>', "builder.link with node")
-is(tohtml(builder.link{url = "url",
-   builder.text("hello"), builder.text("there")}),
+local link = builder.link{url = "url",
+   builder.text("hello"), builder.text("there")}
+is(#(builder.get_children(link)), 2, "get_children has right length")
+is(tohtml(link),
     '<a href="url">hellothere</a>', "builder.link with list of nodes")
 is(tohtml(builder.link{url = "url", title = "tit", "hello"}),
     '<a href="url" title="tit">hello</a>', "builder.link with title")
