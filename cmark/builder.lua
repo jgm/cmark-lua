@@ -28,7 +28,7 @@ builder.add_children = function(node, v)
   end
 end
 
-builder.node = function(node_type, has_children, fields)
+builder.node = function(node_type, can_have_children, fields)
   return function(contents)
     local node = node_new(node_type)
     if contents == nil then
@@ -42,7 +42,7 @@ builder.node = function(node_type, has_children, fields)
         end
       end
     end
-    if has_children then
+    if can_have_children then
       -- treat rest as children
       builder.add_children(node, contents)
     elseif contents then  -- treat contents as literal
