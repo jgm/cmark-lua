@@ -33,5 +33,8 @@ is(tohtml(builder.link({url = "url", link_text =
 is(tohtml(builder.link({url = "url", title = "tit", link_text = "hello"})),
     '<a href="url" title="tit">hello</a>', "builder.link with title")
 
+local b = builder
+is(tohtml(b.document { b.paragraph {"Hello ", b.emph { "world"  }, "."} }),
+    '<p>Hello <em>world</em>.</p>\n', "basic builder example")
 
 done_testing()
