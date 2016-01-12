@@ -27,7 +27,7 @@ end
 -- adds a text node with 'hello' as child of node.
 -- builder.add_children(node, node1)
 -- adds node1 as a child of node.
--- contains is a table with fields items, blocks, inlines
+-- contains is a table with fields items, blocks, inlines, literal
 -- that tells you what kind of children the table can contain
 -- returns true or nil, msg.
 builder.add_children = function(node, v, contains)
@@ -41,10 +41,13 @@ builder.add_children = function(node, v, contains)
     return true
   end
   local child
-  -- if v is not a node, make a text node:
   if type(v) == 'userdata' then
     child = v
+  elseif contains.literal then
+    node_set_literal(node, tostring(v))
+    return true
   else
+    -- if v is not a node, make a text node:
     child = node_new(NODE_TEXT)
     node_set_literal(child, tostring(v))
   end
@@ -103,13 +106,8 @@ builder.node = function(node_type, contains, fields)
         end
       end
     end
-    if contains.items or contains.blocks or contains.inlines then
-      -- treat rest as children
-      builder.add_children(node, contents, contains)
-    end
-    if contains.literal then
-      node_set_literal(node, tostring(contents))
-    end
+    -- treat rest as children
+    builder.add_children(node, contents, contains)
     return node
   end
 end
