@@ -19,9 +19,16 @@ subtest("spec tests (cmark)", function()
 end)
 
 local b = builder
+
 local builds = function(node, expected, description)
   local rendered = cmark.render_html(node, cmark.OPT_DEFAULT)
   return is(rendered, expected, description)
+end
+
+local returns_error = function(f, arg, expected_msg, description)
+  local ok, msg = f(arg)
+  is(ok, nil, description .. ' returns error status')
+  is(msg, expected_msg, description .. ' error message')
 end
 
 builds(b.document { b.paragraph {"Hello ", b.emph { "world"  }, "."} },
@@ -87,10 +94,9 @@ builds(b.emph "hi", '<em>hi</em>', "emph")
 
 builds(b.strong(b.emph "hi"), '<strong><em>hi</em></strong>', "strong emph")
 
-local ok, msg = b.emph(b.paragraph "text")
-is(ok, nil, "error status on trying to put paragraph inside emph")
-is(msg, "Tried to add a node with class blockto a node with class inline",
-  "message on trying to put paragraph inside emph")
+returns_error(b.emph, b.paragraph "text",
+   "Tried to add a node with class blockto a node with class inline",
+   "paragraph inside emph")
 
 builds(b.paragraph{"hi", b.linebreak(), "lo"}, '<p>hi<br />\nlo</p>\n',
   "linebreak")
