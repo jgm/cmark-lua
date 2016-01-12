@@ -77,5 +77,9 @@ builds(link,
 builds(b.link{url = "url", title = "tit", "hello"},
     '<a href="url" title="tit">hello</a>', "b.link with title")
 
+local ok, msg = b.emph(b.paragraph "text")
+is(ok, nil, "error status on trying to put paragraph inside emph")
+is(msg, "Tried to add a node with class blockto a node with class inline",
+  "message on trying to put paragraph inside emph")
 
 done_testing()

@@ -95,6 +95,9 @@ end
 builder.node = function(node_type, contains, fields)
   return function(contents)
     local node = node_new(node_type)
+    if not node then
+      return nil, 'Could not create node of type ' .. tostring(node_type)
+    end
     if contents == nil then
       return node
     end
@@ -102,12 +105,18 @@ builder.node = function(node_type, contains, fields)
     if fields and type(contents) == 'table' then
       for field,func in pairs(fields) do
         if contents[field] then
-          func(node, contents[field])
+          local ok, msg = func(node, contents[field])
+          if not ok then
+            return nil, msg
+          end
         end
       end
     end
     -- treat rest as children
-    builder.add_children(node, contents, contains)
+    local ok, msg = builder.add_children(node, contents, contains)
+    if not ok then
+      return nil, msg
+    end
     return node
   end
 end
