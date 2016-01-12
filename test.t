@@ -80,9 +80,33 @@ builds(link,
 builds(b.link{url = "url", title = "tit", "hello"},
     '<a href="url" title="tit">hello</a>', "b.link with title")
 
+builds(b.image{url = "url", title = "tit", "hello"},
+    '<img src="url" alt="hello" title="tit" />', "b.image with title")
+
+builds(b.emph "hi", '<em>hi</em>', "emph")
+
+builds(b.strong(b.emph "hi"), '<strong><em>hi</em></strong>', "strong emph")
+
 local ok, msg = b.emph(b.paragraph "text")
 is(ok, nil, "error status on trying to put paragraph inside emph")
 is(msg, "Tried to add a node with class blockto a node with class inline",
   "message on trying to put paragraph inside emph")
+
+builds(b.paragraph{"hi", b.linebreak(), "lo"}, '<p>hi<br />\nlo</p>\n',
+  "linebreak")
+
+builds(b.paragraph{"hi", b.linebreak(), "lo"}, '<p>hi<br />\nlo</p>\n',
+  "linebreak, levaing off ()")
+
+builds(b.paragraph{"hi", b.softbreak, "lo"}, '<p>hi\nlo</p>\n',
+  "softbreak")
+
+builds(b.code "some code", '<code>some code</code>', "code")
+
+builds(b.html_inline "<a>&amp;</a>", '<a>&amp;</a>', "raw html inline")
+
+builds(b.custom_inline{ on_enter = "{", on_exit = ".", "&" },
+  '{&amp;.', "custom inline")
+
 
 done_testing()

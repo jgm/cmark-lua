@@ -36,9 +36,15 @@ builder.add_children = function(node, v, contains)
   end
   if type(v) == 'table' then
     for _,x in ipairs(v) do
-      builder.add_children(node, x, contains)
+      local ok, msg = builder.add_children(node, x, contains)
+      if not ok then
+        return nil, msg
+      end
     end
     return true
+  elseif type(v) == 'function' then
+    -- e.g. hard_break -- we want hard_break()
+    return builder.add_children(node, v(), contains)
   end
   local child
   if type(v) == 'userdata' then
@@ -127,7 +133,9 @@ local function set_tight(node, tight)
 end
 
 builder.document = builder.node(NODE_DOCUMENT, {blocks = true})
+
 builder.block_quote = builder.node(NODE_BLOCK_QUOTE, {blocks = true})
+
 builder.ordered_list = builder.node(NODE_LIST, {items = true},
                  {list_type = function(n,_)
                      return node_set_list_type(n, c.ORDERED_LIST)
@@ -136,26 +144,53 @@ builder.ordered_list = builder.node(NODE_LIST, {items = true},
                   start = node_set_list_start,
                   tight = set_tight,
                  })
+
 builder.bullet_list = builder.node(NODE_LIST, {items = true},
                  {list_type = function(n,_)
                      return node_set_list_type(n, c.BULLET_LIST)
                   end,
                   tight = set_tight,
                  })
+
 builder.item = builder.node(NODE_ITEM, {blocks = true})
+
 builder.code_block = builder.node(NODE_CODE_BLOCK, {literal = true},
    { info = node_set_fence_info })
+
 builder.html_block = builder.node(NODE_HTML_BLOCK, {literal = true})
+
 builder.custom_block = builder.node(NODE_CUSTOM_BLOCK,
    {inlines = true, blocks = true, items = true},
    { on_enter = node_set_on_enter, on_exit = node_set_on_exit })
+
 builder.thematic_break = builder.node(NODE_THEMATIC_BREAK)
+
 builder.heading = builder.node(NODE_HEADING, {inlines = true},
   { level = node_set_heading_level })
+
 builder.paragraph = builder.node(NODE_PARAGRAPH, {inlines = true})
+
 builder.text = builder.node(NODE_TEXT, {literal = true})
+
 builder.emph = builder.node(NODE_EMPH, {inlines = true})
+
+builder.strong = builder.node(NODE_STRONG, {inlines = true})
+
 builder.link = builder.node(NODE_LINK, {inlines = true},
                  {title = node_set_title, url = node_set_url})
+
+builder.image = builder.node(NODE_IMAGE, {inlines = true},
+                 {title = node_set_title, url = node_set_url})
+
+builder.linebreak = builder.node(NODE_LINEBREAK)
+
+builder.softbreak = builder.node(NODE_SOFTBREAK)
+
+builder.code = builder.node(NODE_CODE, {literal = true})
+
+builder.html_inline = builder.node(NODE_HTML_INLINE, {literal = true})
+
+builder.custom_inline = builder.node(NODE_CUSTOM_INLINE, {inlines = true},
+   { on_enter = node_set_on_enter, on_exit = node_set_on_exit })
 
 return builder
