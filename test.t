@@ -56,7 +56,15 @@ builds(b.code_block "some code\n  ok",
 
 builds(b.code_block({info = "ruby", "some code\n  ok"}),
   '<pre><code class="language-ruby">some code\n  ok</code></pre>\n',
-  "basic code block")
+  "code block with info")
+
+builds(b.html_block '<section id="foo">bar</section>',
+  '<section id="foo">bar</section>\n', "html block")
+
+builds(b.custom_block{ on_enter = "{{", on_exit = "}}", "foo\n  bar"},
+  '{{\nfoo\n  bar\n}}\n', "custom block")
+
+builds(b.thematic_break(), '<hr />\n', "thematic break")
 
 local link = b.link{url = "url",
    b.text("hello"), b.text("there")}

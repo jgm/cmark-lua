@@ -136,6 +136,11 @@ builder.bullet_list = builder.node(NODE_LIST, {items = true},
 builder.item = builder.node(NODE_ITEM, {blocks = true})
 builder.code_block = builder.node(NODE_CODE_BLOCK, {literal = true},
    { info = node_set_fence_info })
+builder.html_block = builder.node(NODE_HTML_BLOCK, {literal = true})
+builder.custom_block = builder.node(NODE_CUSTOM_BLOCK,
+   {inlines = true, blocks = true, items = true},
+   { on_enter = node_set_on_enter, on_exit = node_set_on_exit })
+builder.thematic_break = builder.node(NODE_THEMATIC_BREAK)
 
 builder.paragraph = builder.node(NODE_PARAGRAPH, {inlines = true})
 builder.text = builder.node(NODE_TEXT, {literal = true})
