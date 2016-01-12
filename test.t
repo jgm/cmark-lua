@@ -66,6 +66,9 @@ builds(b.custom_block{ on_enter = "{{", on_exit = "}}", "foo\n  bar"},
 
 builds(b.thematic_break(), '<hr />\n', "thematic break")
 
+builds(b.heading{level = 2, b.emph 'Foo', ' bar'},
+  '<h2><em>Foo</em> bar</h2>\n', "heading")
+
 local link = b.link{url = "url",
    b.text("hello"), b.text("there")}
 

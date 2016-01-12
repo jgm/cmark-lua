@@ -150,7 +150,8 @@ builder.custom_block = builder.node(NODE_CUSTOM_BLOCK,
    {inlines = true, blocks = true, items = true},
    { on_enter = node_set_on_enter, on_exit = node_set_on_exit })
 builder.thematic_break = builder.node(NODE_THEMATIC_BREAK)
-
+builder.heading = builder.node(NODE_HEADING, {inlines = true},
+  { level = node_set_heading_level })
 builder.paragraph = builder.node(NODE_PARAGRAPH, {inlines = true})
 builder.text = builder.node(NODE_TEXT, {literal = true})
 builder.emph = builder.node(NODE_EMPH, {inlines = true})
