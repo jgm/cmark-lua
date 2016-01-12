@@ -6,6 +6,16 @@ end
 
 local builder = {}
 
+local is_block = function(node)
+  local nt = node_get_type(node)
+  return (nt >= NODE_FIRST_BLOCK and node <= NODE_LAST_BLOCK)
+end
+
+local is_inline = function(node)
+  local nt = node_get_type(node)
+  return (nt >= NODE_FIRST_INLINE and node <= NODE_LAST_INLINE)
+end
+
 -- builder.add_children(node, {node1, node2})
 -- adds node1 and node2 as children of node.
 -- builder.add_children(node, {node1, {node2, node3}})
@@ -39,7 +49,9 @@ builder.get_children = function(node)
   return result
 end
 
-builder.node = function(node_type, can_have_children, fields)
+-- contains is a table, with boolean fields 'literal', 'blocks', 'inlines',
+-- 'items'
+builder.node = function(node_type, contains, fields)
   return function(contents)
     local node = node_new(node_type)
     if contents == nil then
@@ -57,10 +69,11 @@ builder.node = function(node_type, can_have_children, fields)
         end
       end
     end
-    if can_have_children then
+    if contains.items or contains.blocks or contains.inlines then
       -- treat rest as children
-      builder.add_children(node, contents)
-    elseif contents then  -- treat contents as literal
+      builder.add_children(node, contents, contains)
+    end
+    if contains.literal then
       node_set_literal(node, tostring(contents))
     end
     return node
@@ -91,14 +104,14 @@ local toitems = function(items)
   return newitems
 end
 
-builder.document = builder.node(NODE_DOCUMENT, true)
-builder.block_quote = builder.node(NODE_BLOCK_QUOTE, true)
-builder.list = builder.node(NODE_LIST, true,
+builder.document = builder.node(NODE_DOCUMENT, {blocks = true})
+builder.block_quote = builder.node(NODE_BLOCK_QUOTE, {blocks = true})
+builder.list = builder.node(NODE_LIST, {items = true},
                  {list_type = node_set_list_type,
                   delim = node_set_list_delim,
                   start = node_set_list_start,
                   tight = node_set_list_tight})
-builder.item = builder.node(NODE_ITEM, true)
+builder.item = builder.node(NODE_ITEM, {blocks = true})
 builder.bullet_list = function(contents)
                         local newcontents = toitems(contents)
                         newcontents.list_type = c.BULLET_LIST
@@ -110,10 +123,10 @@ builder.ordered_list = function(contents)
                         return builder.list(newcontents)
                       end
 
-builder.paragraph = builder.node(NODE_PARAGRAPH, true)
-builder.text = builder.node(NODE_TEXT, false)
-builder.emph = builder.node(NODE_EMPH, true)
-builder.link = builder.node(NODE_LINK, true,
+builder.paragraph = builder.node(NODE_PARAGRAPH, {inlines = true})
+builder.text = builder.node(NODE_TEXT, {literal = true})
+builder.emph = builder.node(NODE_EMPH, {inlines = true})
+builder.link = builder.node(NODE_LINK, {inlines = true},
                  {title = node_set_title, url = node_set_url})
 
 return builder
