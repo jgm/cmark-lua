@@ -49,6 +49,10 @@ builder.node = function(node_type, can_have_children, fields)
     if fields and type(contents) == 'table' then
       for field,func in pairs(fields) do
         if contents[field] then
+          if type(contents[field]) == 'boolean' then
+            -- C functions take int not bool
+            contents[field] = 1
+          end
           func(node, contents[field])
         end
       end
@@ -63,7 +67,49 @@ builder.node = function(node_type, can_have_children, fields)
   end
 end
 
+local toitems = function(items)
+  local newitems = {}
+  newitems.tight = items.tight
+  newitems.start = items.start
+  newitems.delim = items.delim
+  for _,item in ipairs(items) do
+    if type(item) == 'userdata' then
+      local itemtype = c.node_get_type(item)
+      if itemtype == c.NODE_ITEM then
+        table.insert(newitems, item)
+      elseif itemtype >= c.NODE_FIRST_BLOCK and itemtype <= c.NODE_LAST_BLOCK then
+        table.insert(newitems, builder.item(item))
+      else  -- inline
+        table.insert(newitems, builder.item(builder.paragraph(item)))
+      end
+    elseif type(item) == 'table' then
+        table.insert(newitems, insert(item))
+    else
+        table.insert(newitems, builder.item(builder.paragraph(tostring(item))))
+    end
+  end
+  return newitems
+end
+
 builder.document = builder.node(NODE_DOCUMENT, true)
+builder.block_quote = builder.node(NODE_BLOCK_QUOTE, true)
+builder.list = builder.node(NODE_LIST, true,
+                 {list_type = node_set_list_type,
+                  delim = node_set_list_delim,
+                  start = node_set_list_start,
+                  tight = node_set_list_tight})
+builder.item = builder.node(NODE_ITEM, true)
+builder.bullet_list = function(contents)
+                        local newcontents = toitems(contents)
+                        newcontents.list_type = c.BULLET_LIST
+                        return builder.list(newcontents)
+                      end
+builder.ordered_list = function(contents)
+                        local newcontents = toitems(contents)
+                        newcontents.list_type = c.ORDERED_LIST
+                        return builder.list(newcontents)
+                      end
+
 builder.paragraph = builder.node(NODE_PARAGRAPH, true)
 builder.text = builder.node(NODE_TEXT, false)
 builder.emph = builder.node(NODE_EMPH, true)

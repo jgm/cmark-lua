@@ -39,4 +39,11 @@ local b = builder
 is(tohtml(b.document { b.paragraph {"Hello ", b.emph { "world"  }, "."} }),
     '<p>Hello <em>world</em>.</p>\n', "basic builder example")
 
+is(tohtml(b.bullet_list { tight = true,
+     b.item(b.paragraph "hi"),
+     b.item(b.paragraph "lo") }),
+    '<ul>\n<li>hi</li>\n<li>lo</li>\n</ul>\n', "list turns table elts to items")
+is(tohtml(b.bullet_list { tight = true, "hi", "lo" }),
+    '<ul>\n<li>hi</li>\n<li>lo</li>\n</ul>\n', "list turns table elts to items")
+
 done_testing()
