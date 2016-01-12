@@ -136,6 +136,9 @@ builder.bullet_list = builder.node(NODE_LIST, {items = true},
                   tight = set_tight,
                  })
 builder.item = builder.node(NODE_ITEM, {blocks = true})
+builder.code_block = builder.node(NODE_CODE_BLOCK, {literal = true},
+   { info = node_set_fence_info })
+
 builder.paragraph = builder.node(NODE_PARAGRAPH, {inlines = true})
 builder.text = builder.node(NODE_TEXT, {literal = true})
 builder.emph = builder.node(NODE_EMPH, {inlines = true})
