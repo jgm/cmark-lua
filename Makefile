@@ -25,7 +25,7 @@ cmark_wrap.c: cmark.i $(CBITS)/cmark.h
 
 update: $(C_SOURCES) spec-tests.lua
 
-spec-tests.lua:
+spec-tests.lua: $(CMARK_DIR)/test/spec.txt
 	python3 $(CMARK_DIR)/test/spec_tests.py -d --spec $(CMARK_DIR)/test/spec.txt | sed -e 's/^\([ \t]*\)"\([^"]*\)":/\1\2 = /' | sed -e 's/^\[/return {/' | sed -e 's/^\]/}/' > $@
 
 $(CBITS)/config.h: $(CMARK_DIR)/build/src/config.h
