@@ -6,6 +6,9 @@ CommonMark parsing and rendering library
 
 To install:  `luarocks install cmark`.
 
+cmark
+-----
+
 `cmark` exposes the entire API of libcmark, as documented in
 the `cmark(3)` man page.  Basic usage:
 
@@ -59,6 +62,70 @@ from the C API.
 
 For a higher-level interface, see
 [lcmark](https://github.com/jgm/lcmark).
+
+cmark.builder
+-------------
+
+A special module, `cmark.builder`, is provided to make it easier
+to construct cmark nodes.
+
+Usage examples:
+
+```lua
+local b = require 'cmark.builder'
+local mydoc = b.document{
+                b.paragraph{
+                  b.text "Hello ",
+                  b.emph{
+                    b.text "world" },
+                  b.link{
+                    url = "http://example.com",
+                    b.text "!" } } }
+```
+
+The arguments to builder functions are generally
+tables.  Key-value pairs are used to set attributes,
+and the other values are used as children or literal
+string content, as appropriate.
+
+The library will interpret values as the appropriate
+types, when possible.  So, you can supply a single
+value instead of an array.  And you can supply a string
+instead of an inline node, or a node instead of a list
+item.  The following is equivalent to the example above:
+
+```lua
+local mydoc = b.document{
+                b.paragraph{
+                  "Hello ", b.emph "world",
+                  b.link{ url="http://example.com", "!"} }}
+```
+
+The builder functions are
+
+```lua
+builder.document
+builder.block_quote
+builder.ordered_list  -- attributes: delim, start, tight
+builder.bullet_list  -- attributes: tight
+builder.item
+builder.code_block  -- attributes: info
+builder.html_block
+builder.custom_block --  attributes: on_enter, on_exit
+builder.thematic_break
+builder.heading  -- attributes: level
+builder.paragraph
+builder.text
+builder.emph
+builder.strong
+builder.link   -- attributes: title, url
+builder.image  -- attributes: title, url
+builder.linebreak
+builder.softbreak
+builder.code
+builder.html_inline
+builder.custom_inline  -- attributes: on_enter, on_exit
+```
 
 For developers
 --------------
