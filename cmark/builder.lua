@@ -129,12 +129,12 @@ local node = function(node_type, contains, fields)
   end
 end
 
-local function set_tight(node, tight)
+local function set_tight(n, tight)
   local t_int = tight and 1 or 0
-  return node_set_list_tight(node, t_int)
+  return node_set_list_tight(n, t_int)
 end
 
-local function set_delim(node, delim)
+local function set_delim(n, delim)
   local delimt
   if delim == c.PAREN_DELIM or delim == c.PERIOD_DELIM then
     delimt = delim
@@ -145,7 +145,7 @@ local function set_delim(node, delim)
   else
     return nil, 'Unknown delimiter ' .. delim
   end
-  return node_set_list_delim(node, delimt)
+  return node_set_list_delim(n, delimt)
 end
 
 builder.document = node(NODE_DOCUMENT, {blocks = true})
