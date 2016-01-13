@@ -19,24 +19,26 @@ local node_get_class = function(node)
   return 'unknown'
 end
 
--- builder.add_children(node, {node1, node2})
--- adds node1 and node2 as children of node.
--- builder.add_children(node, {node1, {node2, node3}})
--- adds node1, node2, and node3 as children of node.
--- builder.add_children(node, 'hello')
--- adds a text node with 'hello' as child of node.
--- builder.add_children(node, node1)
--- adds node1 as a child of node.
--- contains is a table with fields items, blocks, inlines, literal
--- that tells you what kind of children the table can contain
--- returns true or nil, msg.
-builder.add_children = function(node, v, contains)
+local add_children
+-- 'builder.add_children(node, {node1, node2})'
+-- adds 'node1' and 'node2' as children of 'node'.
+-- 'builder.add_children(node, {node1, {node2, node3}})'
+-- adds 'node1', 'node2', and 'node3' as children of 'node'.
+-- 'builder.add_children(node, "hello")'
+-- adds a text node with "hello" as child of 'node'.
+-- 'builder.add_children(node, node1)'
+-- adds 'node1' as a child of 'node'.
+-- THe parameter 'contains' is a table with boolean fields 'items',
+-- 'blocks', 'inlines', and 'literal' that tells you what kind of
+-- children the table can contain.
+-- The function returns 'true' or 'nil, msg'.
+add_children = function(node, v, contains)
   if type(v) == 'nil' then
     return true -- just skip a nil
   end
   if type(v) == 'table' then
     for _,x in ipairs(v) do
-      local ok, msg = builder.add_children(node, x, contains)
+      local ok, msg = add_children(node, x, contains)
       if not ok then
         return nil, msg
       end
@@ -44,7 +46,7 @@ builder.add_children = function(node, v, contains)
     return true
   elseif type(v) == 'function' then
     -- e.g. hard_break -- we want hard_break()
-    return builder.add_children(node, v(), contains)
+    return add_children(node, v(), contains)
   end
   local child
   if type(v) == 'userdata' then
@@ -119,7 +121,7 @@ local node = function(node_type, contains, fields)
       end
     end
     -- treat rest as children
-    local ok, msg = builder.add_children(node, contents, contains)
+    local ok, msg = add_children(node, contents, contains)
     if not ok then
       return nil, msg
     end
