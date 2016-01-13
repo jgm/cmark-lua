@@ -104,9 +104,10 @@ local mydoc = b.document{
 The builder functions are
 
 ```lua
-builder.document
-builder.block_quote
-builder.ordered_list  -- attributes: delim, start, tight
+builder.document{block1, block2, ...}
+builder.block_quote{block1, block2, ...}
+builder.ordered_list{delim = cmark.PAREN_DELIM, item1, item2, ...}
+-- attributes: delim, start, tight
 builder.bullet_list  -- attributes: tight
 builder.item
 builder.code_block  -- attributes: info
@@ -125,6 +126,7 @@ builder.softbreak
 builder.code
 builder.html_inline
 builder.custom_inline  -- attributes: on_enter, on_exit
+builder.get_children(node) -- returns children of a node as a table
 ```
 
 For developers

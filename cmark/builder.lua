@@ -134,25 +134,41 @@ local function set_tight(node, tight)
   return node_set_list_tight(node, t_int)
 end
 
+local function set_delim(node, delim)
+  local delimt
+  if delim == c.PAREN_DELIM or delim == c.PERIOD_DELIM then
+    delimt = delim
+  elseif delim == ')' then
+    delimt = c.PAREN_DELIM
+  elseif delim == '.' then
+    delimt = c.PERIOD_DELIM
+  else
+    return nil, 'Unknown delimiter ' .. delim
+  end
+  return node_set_list_delim(node, delimt)
+end
+
 builder.document = node(NODE_DOCUMENT, {blocks = true})
 
 builder.block_quote = node(NODE_BLOCK_QUOTE, {blocks = true})
 
-builder.ordered_list = node(NODE_LIST, {items = true},
-                 {list_type = function(n,_)
-                     return node_set_list_type(n, c.ORDERED_LIST)
-                  end,
-                  delim = node_set_list_delim,
+builder.ordered_list = function(contents)
+  local n = node(NODE_LIST, {items = true},
+                 {delim = set_delim,
                   start = node_set_list_start,
                   tight = set_tight,
-                 })
+                 })(contents)
+  node_set_list_type(n, ORDERED_LIST)
+  return n
+end
 
-builder.bullet_list = node(NODE_LIST, {items = true},
-                 {list_type = function(n,_)
-                     return node_set_list_type(n, c.BULLET_LIST)
-                  end,
-                  tight = set_tight,
-                 })
+builder.bullet_list = function(contents)
+  local n = node(NODE_LIST, {items = true},
+                 {tight = set_tight,
+                 })(contents)
+  node_set_list_type(n, BULLET_LIST)
+  return n
+end
 
 builder.item = node(NODE_ITEM, {blocks = true})
 

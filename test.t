@@ -58,6 +58,10 @@ builds(b.bullet_list { tight = true,
 builds(b.bullet_list { tight = true, "hi", "lo" },
     '<ul>\n<li>hi</li>\n<li>lo</li>\n</ul>\n', "list turns table elts to items")
 
+builds(b.ordered_list { tight = false, start = 2, delim = ')', "hi", "lo" },
+    '<ol start="2">\n<li>\n<p>hi</p>\n</li>\n<li>\n<p>lo</p>\n</li>\n</ol>\n',
+    "ordered list")
+
 builds(b.code_block "some code\n  ok",
   '<pre><code>some code\n  ok</code></pre>\n', "basic code block")
 
