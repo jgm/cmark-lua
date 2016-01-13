@@ -1,8 +1,8 @@
 package = "cmark"
-version = "0.23.4-1"
+version = "0.24.0-1"
 source = {
     url = "git://github.com/jgm/cmark-lua",
-    tag = "0.23.4"
+    tag = "0.24.0"
 }
 description = {
     summary = [[Lua wrapper for libcmark, CommonMark Markdown parsing
