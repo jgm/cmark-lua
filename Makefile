@@ -7,7 +7,7 @@ C_SOURCES=$(wildcard $(CBITS)/*.*)
 LUASTATIC=lua-5.2.4/src/liblua.a
 CMARK_ROCKSPEC=$(lastword $(sort $(wildcard rockspecs/cmark-*.rockspec)))
 
-.PHONY: clean, distclean, test, all, rocks, update
+.PHONY: clean, distclean, test, all, rocks, update, check
 
 all: rock
 
@@ -39,6 +39,9 @@ $(CBITS)/cmark_version.h: $(CMARK_DIR)/build/src/cmark_version.h
 
 $(CBITS)/%: $(CMARK_DIR)/src/%
 	cp $< $@
+
+check:
+	luacheck cmark/builder.lua
 
 test:
 	busted test.lua
