@@ -41,7 +41,7 @@ $(CBITS)/%: $(CMARK_DIR)/src/%
 	cp $< $@
 
 test:
-	prove test.t
+	busted test.lua
 
 clean:
 	rm -rf *.o $(CBITS)/*.o

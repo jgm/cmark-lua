@@ -1,6 +1,3 @@
-#!/usr/bin/env lua
-require 'Test.More'
-
 package.path = "./?.lua;" .. package.path
 package.cpath = "./?.so;" .. package.cpath
 
@@ -8,17 +5,24 @@ local cmark = require 'cmark'
 local builder = require 'cmark.builder'
 local tests = require 'spec-tests'
 
-subtest("spec tests (cmark)", function()
+describe("cmark spec tests", function()
   for _,test in ipairs(tests) do
     local doc  = cmark.parse_string(test.markdown, cmark.OPT_DEFAULT)
     local html = cmark.render_html(doc, cmark.OPT_DEFAULT)
-    is(html, test.html, "example " .. tostring(test.example) ..
-           " (lines " .. tostring(test.start_line) .. " - " ..
-           tostring(test.end_line) .. ")")
+    it("should pass example " .. test.example .. "(lines " ..
+         test.start_line ..  "-" .. test.end_line .. ")", function()
+           assert.are.same(html, test.html)
+    end)
   end
 end)
 
 local b = builder
+
+local is = function(x,y,z)
+  it(z, function()
+    assert.are.same(x,y)
+  end)
+end
 
 local builds = function(node, expected, description)
   local rendered = cmark.render_html(node, cmark.OPT_DEFAULT)
@@ -118,5 +122,3 @@ builds(b.html_inline "<a>&amp;</a>", '<a>&amp;</a>', "raw html inline")
 builds(b.custom_inline{ on_enter = "{", on_exit = ".", "&" },
   '{&amp;.', "custom inline")
 
-
-done_testing()
