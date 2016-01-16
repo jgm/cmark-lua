@@ -63,7 +63,7 @@ local function handleNode(node)
   if attributes then
     for _,attribute in ipairs(attributes) do
       local attname = attribute.name
-      if attname == 'href' then
+      if attname == 'href' or attname == 'src' then
         contents.url = attribute.value
       elseif attname == 'title' then
         contents.title = attribute.value
