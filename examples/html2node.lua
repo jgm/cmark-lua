@@ -14,8 +14,19 @@ local skipNode = {
     FOOTER = true
 }
 
+local raw = {
+    TABLE = 'block',
+}
+
 local function handleNode(node)
   local nodeName = node.nodeName
+
+  if raw[nodeName] == 'block' then
+    return builder.html_block(node.outerHTML)
+  elseif raw[nodeName] == 'inline' then
+    return builder.html_inline(node.outerHTML)
+  end
+
   local child = node.firstChild
   local attributes = node.attributes
   local contents = {}
