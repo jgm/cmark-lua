@@ -8,6 +8,12 @@ local allowWhitespace = {
     LINK = true,
     IMAGE = true }
 
+local skipNode = {
+    NAV = true,
+    HEADER = true,
+    FOOTER = true
+}
+
 local function handleNode(node)
   local nodeName = node.nodeName
   local child = node.firstChild
@@ -61,6 +67,8 @@ local function handleNode(node)
   if nodeName == '#text' then
     local t = node.textContent
     return t
+  elseif skipNode[nodeName] then
+    return {}
   elseif nodeName == 'HTML' then
     return contents
   elseif nodeName == 'BODY' then
@@ -102,8 +110,10 @@ local function handleNode(node)
       return builder.item(nontexts)
     end
   elseif nodeName == 'UL' then
+    -- TODO tight/loose
     return builder.bullet_list(nontexts)
   elseif nodeName == 'OL' then
+    -- TODO tight/loose, start attribute
     return builder.ordered_list(nontexts)
   elseif nodeName == 'BR' then
     return builder.linebreak()
@@ -120,6 +130,7 @@ local function handleNode(node)
   elseif nodeName == 'IMG' then
     return builder.image(contents)
   else
+    -- TODO proper handling of raw HTML
     return contents
   end
 end
