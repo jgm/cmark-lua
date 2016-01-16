@@ -43,7 +43,7 @@ $(CBITS)/%: $(CMARK_DIR)/src/%
 check:
 	luacheck cmark/builder.lua
 
-test:
+test: check
 	busted test.lua
 
 clean:
