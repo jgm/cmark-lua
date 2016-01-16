@@ -2,11 +2,6 @@ local gumbo = require'gumbo'
 local cmark = require'cmark'
 local builder = require'cmark.builder'
 
-local inp = io.read("*a")
-local html = gumbo.parse(inp, 4)
-
-local nodes = html.documentElement.childNodes
-
 local function handleNode(node)
   local nodeName = node.nodeName
   local child = node.firstChild
@@ -104,20 +99,27 @@ local function handleNode(node)
   end
 end
 
-local children = {}
+local html2node = {}
 
-for _,node in ipairs(nodes) do
-  local new = handleNode(node)
-  if type(new) == 'table' then
-    for _,n in ipairs(new) do
-        children[#children + 1] = n
+function html2node.parse_html(htmlstring)
+
+  local html = gumbo.parse(htmlstring, 4)
+  local nodes = html.documentElement.childNodes
+  local children = {}
+
+  for _,node in ipairs(nodes) do
+    local new = handleNode(node)
+    if type(new) == 'table' then
+      for _,n in ipairs(new) do
+          children[#children + 1] = n
+      end
+    else
+      children[#children + 1] = new
     end
-  else
-    children[#children + 1] = new
   end
+
+  return builder.document(children)
+
 end
 
-local cm = cmark.render_commonmark(builder.document(children),
-  cmark.OPT_DEFAULT, 72)
-
-io.write(cm)
+return html2node
