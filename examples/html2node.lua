@@ -2,6 +2,12 @@ local gumbo = require'gumbo'
 local cmark = require'cmark'
 local builder = require'cmark.builder'
 
+local allowWhitespace = {
+    EM = true,
+    STRONG = true,
+    LINK = true,
+    IMAGE = true }
+
 local function handleNode(node)
   local nodeName = node.nodeName
   local child = node.firstChild
@@ -9,13 +15,32 @@ local function handleNode(node)
   local contents = {}
   local all_text = true
   local nontexts = {}
+  local skipWhitespace = not allowWhitespace[nodeName]
   while child do
     local new = handleNode(child)
+    if skipWhitespace and type(new) == 'string' then
+      if not child.previousSibling and
+        new:match('^[ \t\r\n]+') then
+        local i = new:find('[^ \t\r\n]') or #new
+        new = new:sub(i)
+      end
+      if not child.nextSibling and
+        new:match('[ \t\r\n]+$') then
+        local i,_ = new:find('[ \t\r\n]*$')
+        if i then
+          new = new:sub(1,i - 1)
+        else
+          new = ''
+        end
+      end
+    end
     if type(new) ~= 'string' then
       all_text = false
       nontexts[#nontexts + 1] = new
     end
-    contents[#contents + 1] = new
+    if new ~= '' then
+      contents[#contents + 1] = new
+    end
     child = child.nextSibling
   end
   if attributes then
@@ -35,7 +60,7 @@ local function handleNode(node)
 
   if nodeName == '#text' then
     local t = node.textContent
-    return t:gsub('[\r\n\t ]+', ' ')
+    return t
   elseif nodeName == 'HTML' then
     return contents
   elseif nodeName == 'BODY' then

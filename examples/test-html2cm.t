@@ -12,7 +12,7 @@ local html2node = require 'html2node'
 for _,test in ipairs(tests) do
   local doc = html2node.parse_html(test.html)
   local newhtml = cmark.render_html(doc, cmark.OPT_DEFAULT)
-  is(test.html, newhtml, "example " .. test.example .. "(lines " ..
+  is(newhtml, test.html, "example " .. test.example .. "(lines " ..
        test.start_line ..  "-" .. test.end_line .. ")")
 end
 
