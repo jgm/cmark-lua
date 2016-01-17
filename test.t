@@ -62,6 +62,11 @@ builds(b.ordered_list { tight = false, start = 2, delim = ')', "hi", "lo" },
     '<ol start="2">\n<li>\n<p>hi</p>\n</li>\n<li>\n<p>lo</p>\n</li>\n</ol>\n',
     "ordered list")
 
+builds(b.bullet_list{ b.item
+         { b.paragraph "one", b.paragraph "two", tight = false }},
+    '<ul>\n<li>\n<p>one</p>\n<p>two</p>\n</li>\n</ul>\n',
+    "bullet list with two paragraphs in an item")
+
 builds(b.code_block "some code\n  ok",
   '<pre><code>some code\n  ok</code></pre>\n', "basic code block")
 
