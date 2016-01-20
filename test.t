@@ -104,7 +104,7 @@ builds(b.emph "hi", '<em>hi</em>', "emph")
 builds(b.strong(b.emph "hi"), '<strong><em>hi</em></strong>', "strong emph")
 
 returns_error(b.emph, b.paragraph "text",
-   "Tried to add a node with class blockto a node with class inline",
+   "Tried to add a node with class block to a node with class inline",
    "paragraph inside emph")
 
 builds(b.paragraph{"hi", b.linebreak(), "lo"}, '<p>hi<br />\nlo</p>\n',
