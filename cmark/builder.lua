@@ -42,40 +42,66 @@ add_children = function(node, v, contains)
     return true
   elseif type(v) == 'function' then
     -- e.g. hard_break -- we want hard_break()
-    return add_children(node, v(), contains)
+    local ok, msg = add_children(node, v(), contains)
+    return ok, msg
   end
   local child
   if type(v) == 'userdata' then
     child = v
   elseif contains.literal then
-    c.node_set_literal(node, tostring(v))
-    return true
+    if c.node_set_literal(node, tostring(v)) then
+      return true
+    else
+      return nil, "Could not set literal"
+    end
   else
     -- if v is not a node, make a text node:
     child = c.node_new(c.NODE_TEXT)
-    c.node_set_literal(child, tostring(v))
+    if not child then
+      return nil, "Could not create text node"
+    end
+    if not c.node_set_literal(child, tostring(v)) then
+      return nil, "Could not set literal"
+    end
   end
   local child_class = node_get_class(child)
-  if child_class == 'item' and contains.items then
-    c.node_append_child(node, child)
-  elseif child_class == 'block' and contains.blocks then
-    c.node_append_child(node, child)
-  elseif child_class == 'inline' and contains.inlines then
-    c.node_append_child(node, child)
+  if (child_class == 'item' and contains.items) or
+     (child_class == 'block' and contains.blocks) or
+     (child_class == 'inline' and contains.inlines) then
+    if not c.node_append_child(node, child) then
+      return nil, "Could not append child"
+    end
   elseif child_class == 'block' and contains.items then
     local item = c.node_new(c.NODE_ITEM)
-    c.node_append_child(item, child)
-    c.node_append_child(node, item)
+    if not item then
+      return nil, "Could not create item node"
+    end
+    if not c.node_append_child(item, child) then
+      return nil, "Could not append child to item"
+    end
+    if not c.node_append_child(node, item) then
+      return nil, "Could not append item to node"
+    end
   elseif child_class == 'inline' and contains.blocks then
     local para = c.node_new(c.NODE_PARAGRAPH)
-    c.node_append_child(para, child)
-    c.node_append_child(node, para)
+    if not c.node_append_child(para, child) then
+      return nil, "Could not append child to para"
+    end
+    if not c.node_append_child(node, para) then
+      return nil, "Could not append para to node"
+    end
   elseif child_class == 'inline' and contains.items then
     local para = c.node_new(c.NODE_PARAGRAPH)
     local item = c.node_new(c.NODE_ITEM)
-    c.node_append_child(para, child)
-    c.node_append_child(item, para)
-    c.node_append_child(node, item)
+    if not c.node_append_child(para, child) then
+      return nil, "Could not append child to para"
+    end
+    if not c.node_append_child(item, para) then
+      return nil, "Could not append para to item"
+    end
+    if not c.node_append_child(node, item) then
+      return nil, "Could not append item to node"
+    end
   else
     return nil, 'Tried to add a node with class ' .. child_class ..
                 ' to a node with class ' .. node_get_class(node)
