@@ -78,7 +78,7 @@ add_children = function(node, v, contains)
     c.node_append_child(node, item)
   else
     return nil, 'Tried to add a node with class ' .. child_class ..
-                'to a node with class ' .. node_get_class(node)
+                ' to a node with class ' .. node_get_class(node)
   end
   return true
 end
