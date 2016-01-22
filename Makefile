@@ -1,3 +1,6 @@
+VERSION=0.24.1
+REVISION=1
+ROCKSPEC=cmark-$(VERSION)-$(REVISION).rockspec
 CBITS = ext
 CFLAGS = -fPIC -O3 -I$(CBITS) -I.
 SWIG ?= swig
@@ -5,14 +8,16 @@ CMARK_DIR ?= ../cmark
 OBJS = $(subst .c,.o,$(wildcard $(CBITS)/*.c))
 C_SOURCES=$(wildcard $(CBITS)/*.*)
 LUASTATIC=lua-5.2.4/src/liblua.a
-CMARK_ROCKSPEC=$(lastword $(sort $(wildcard rockspecs/cmark-*.rockspec)))
 
 .PHONY: clean, distclean, test, all, rocks, update, check
 
 all: rock
 
-rock: cmark_wrap.c
-	luarocks --local make $(CMARK_ROCKSPEC)
+rock: cmark_wrap.c $(ROCKSPEC)
+	luarocks --local make $(ROCKSPEC)
+
+$(ROCKSPEC): rockspec.in
+	sed -e "s/_VERSION/$(VERSION)/g; s/_REVISION/$(REVISION)/g" $< > $@
 
 cmark.so: cmark_wrap.o $(OBJS)
 	$(CC) -shared -o $@ -I$(CBITS) -llua $^
@@ -47,7 +52,7 @@ test: check
 	prove test.t
 
 clean:
-	rm -rf *.o $(CBITS)/*.o
+	rm -rf *.o $(CBITS)/*.o $(ROCKSPEC)
 
 distclean: clean
 	rm cmark.so
