@@ -1,7 +1,7 @@
-VERSION=0.24.2
+CBITS = ext
+VERSION=$(shell grep CMARK_VERSION_STRING $(CBITS)/cmark_version.h | awk '{print $$3}')
 REVISION=1
 ROCKSPEC=cmark-$(VERSION)-$(REVISION).rockspec
-CBITS = ext
 CFLAGS = -fPIC -O3 -I$(CBITS) -I.
 SWIG ?= swig
 CMARK_DIR ?= ../cmark
