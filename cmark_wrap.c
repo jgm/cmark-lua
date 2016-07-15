@@ -2605,12 +2605,16 @@ SWIG_Lua_dostring(lua_State *L, const char *str) {
 #define SWIGTYPE_p_cmark_event_type swig_types[2]
 #define SWIGTYPE_p_cmark_iter swig_types[3]
 #define SWIGTYPE_p_cmark_list_type swig_types[4]
-#define SWIGTYPE_p_cmark_node swig_types[5]
-#define SWIGTYPE_p_cmark_node_type swig_types[6]
-#define SWIGTYPE_p_cmark_parser swig_types[7]
-#define SWIGTYPE_p_void swig_types[8]
-static swig_type_info *swig_types[10];
-static swig_module_info swig_module = {swig_types, 9, 0, 0, 0, 0};
+#define SWIGTYPE_p_cmark_mem swig_types[5]
+#define SWIGTYPE_p_cmark_node swig_types[6]
+#define SWIGTYPE_p_cmark_node_type swig_types[7]
+#define SWIGTYPE_p_cmark_parser swig_types[8]
+#define SWIGTYPE_p_f_p_void__void swig_types[9]
+#define SWIGTYPE_p_f_p_void_size_t__p_void swig_types[10]
+#define SWIGTYPE_p_f_size_t_size_t__p_void swig_types[11]
+#define SWIGTYPE_p_void swig_types[12]
+static swig_type_info *swig_types[14];
+static swig_module_info swig_module = {swig_types, 13, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
@@ -2668,6 +2672,235 @@ fail:
 }
 
 
+static int _wrap_mem_calloc_set(lua_State* L) {
+  int SWIG_arg = 0;
+  struct cmark_mem *arg1 = (struct cmark_mem *) 0 ;
+  void *(*arg2)(size_t,size_t) = (void *(*)(size_t,size_t)) 0 ;
+  
+  SWIG_check_num_args("cmark_mem::calloc",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("cmark_mem::calloc",1,"struct cmark_mem *");
+  if(!SWIG_isptrtype(L,2)) SWIG_fail_arg("cmark_mem::calloc",2,"void *(*)(size_t,size_t)");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_cmark_mem,0))){
+    SWIG_fail_ptr("mem_calloc_set",1,SWIGTYPE_p_cmark_mem);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_f_size_t_size_t__p_void,0))){
+    SWIG_fail_ptr("mem_calloc_set",2,SWIGTYPE_p_f_size_t_size_t__p_void);
+  }
+  
+  if (arg1) (arg1)->calloc = arg2;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_mem_calloc_get(lua_State* L) {
+  int SWIG_arg = 0;
+  struct cmark_mem *arg1 = (struct cmark_mem *) 0 ;
+  void *(*result)(size_t,size_t) = 0 ;
+  
+  SWIG_check_num_args("cmark_mem::calloc",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("cmark_mem::calloc",1,"struct cmark_mem *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_cmark_mem,0))){
+    SWIG_fail_ptr("mem_calloc_get",1,SWIGTYPE_p_cmark_mem);
+  }
+  
+  result = (void *(*)(size_t,size_t)) ((arg1)->calloc);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_f_size_t_size_t__p_void,0); SWIG_arg++; 
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_mem_realloc_set(lua_State* L) {
+  int SWIG_arg = 0;
+  struct cmark_mem *arg1 = (struct cmark_mem *) 0 ;
+  void *(*arg2)(void *,size_t) = (void *(*)(void *,size_t)) 0 ;
+  
+  SWIG_check_num_args("cmark_mem::realloc",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("cmark_mem::realloc",1,"struct cmark_mem *");
+  if(!SWIG_isptrtype(L,2)) SWIG_fail_arg("cmark_mem::realloc",2,"void *(*)(void *,size_t)");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_cmark_mem,0))){
+    SWIG_fail_ptr("mem_realloc_set",1,SWIGTYPE_p_cmark_mem);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_f_p_void_size_t__p_void,0))){
+    SWIG_fail_ptr("mem_realloc_set",2,SWIGTYPE_p_f_p_void_size_t__p_void);
+  }
+  
+  if (arg1) (arg1)->realloc = arg2;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_mem_realloc_get(lua_State* L) {
+  int SWIG_arg = 0;
+  struct cmark_mem *arg1 = (struct cmark_mem *) 0 ;
+  void *(*result)(void *,size_t) = 0 ;
+  
+  SWIG_check_num_args("cmark_mem::realloc",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("cmark_mem::realloc",1,"struct cmark_mem *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_cmark_mem,0))){
+    SWIG_fail_ptr("mem_realloc_get",1,SWIGTYPE_p_cmark_mem);
+  }
+  
+  result = (void *(*)(void *,size_t)) ((arg1)->realloc);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_f_p_void_size_t__p_void,0); SWIG_arg++; 
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_mem_free_set(lua_State* L) {
+  int SWIG_arg = 0;
+  struct cmark_mem *arg1 = (struct cmark_mem *) 0 ;
+  void (*arg2)(void *) = (void (*)(void *)) 0 ;
+  
+  SWIG_check_num_args("cmark_mem::free",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("cmark_mem::free",1,"struct cmark_mem *");
+  if(!SWIG_isptrtype(L,2)) SWIG_fail_arg("cmark_mem::free",2,"void (*)(void *)");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_cmark_mem,0))){
+    SWIG_fail_ptr("mem_free_set",1,SWIGTYPE_p_cmark_mem);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_f_p_void__void,0))){
+    SWIG_fail_ptr("mem_free_set",2,SWIGTYPE_p_f_p_void__void);
+  }
+  
+  if (arg1) (arg1)->free = arg2;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_mem_free_get(lua_State* L) {
+  int SWIG_arg = 0;
+  struct cmark_mem *arg1 = (struct cmark_mem *) 0 ;
+  void (*result)(void *) = 0 ;
+  
+  SWIG_check_num_args("cmark_mem::free",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("cmark_mem::free",1,"struct cmark_mem *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_cmark_mem,0))){
+    SWIG_fail_ptr("mem_free_get",1,SWIGTYPE_p_cmark_mem);
+  }
+  
+  result = (void (*)(void *)) ((arg1)->free);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_f_p_void__void,0); SWIG_arg++; 
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_mem(lua_State* L) {
+  int SWIG_arg = 0;
+  struct cmark_mem *result = 0 ;
+  
+  SWIG_check_num_args("cmark_mem::cmark_mem",0,0)
+  result = (struct cmark_mem *)calloc(1, sizeof(struct cmark_mem));
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_cmark_mem,1); SWIG_arg++; 
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static void swig_delete_mem(void *obj) {
+struct cmark_mem *arg1 = (struct cmark_mem *) obj;
+free((char *) arg1);
+}
+static int _proxy__wrap_new_mem(lua_State *L) {
+    assert(lua_istable(L,1));
+    lua_pushcfunction(L,_wrap_new_mem);
+    assert(!lua_isnil(L,-1));
+    lua_replace(L,1); /* replace our table with real constructor */
+    lua_call(L,lua_gettop(L)-1,1);
+    return 1;
+}
+static swig_lua_attribute swig_mem_attributes[] = {
+    { "calloc", _wrap_mem_calloc_get, _wrap_mem_calloc_set },
+    { "realloc", _wrap_mem_realloc_get, _wrap_mem_realloc_set },
+    { "free", _wrap_mem_free_get, _wrap_mem_free_set },
+    {0,0,0}
+};
+static swig_lua_method swig_mem_methods[]= {
+    {0,0}
+};
+static swig_lua_method swig_mem_meta[] = {
+    {0,0}
+};
+
+static swig_lua_attribute swig_mem_Sf_SwigStatic_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_const_info swig_mem_Sf_SwigStatic_constants[]= {
+    {0,0,0,0,0,0}
+};
+static swig_lua_method swig_mem_Sf_SwigStatic_methods[]= {
+    {0,0}
+};
+static swig_lua_class* swig_mem_Sf_SwigStatic_classes[]= {
+    0
+};
+
+static swig_lua_namespace swig_mem_Sf_SwigStatic = {
+    "mem",
+    swig_mem_Sf_SwigStatic_methods,
+    swig_mem_Sf_SwigStatic_attributes,
+    swig_mem_Sf_SwigStatic_constants,
+    swig_mem_Sf_SwigStatic_classes,
+    0
+};
+static swig_lua_class *swig_mem_bases[] = {0};
+static const char *swig_mem_base_names[] = {0};
+static swig_lua_class _wrap_class_mem = { "mem", "mem", &SWIGTYPE_p_cmark_mem,_proxy__wrap_new_mem, swig_delete_mem, swig_mem_methods, swig_mem_attributes, &swig_mem_Sf_SwigStatic, swig_mem_meta, swig_mem_bases, swig_mem_base_names };
+
 static int _wrap_node_new(lua_State* L) {
   int SWIG_arg = 0;
   cmark_node_type arg1 ;
@@ -2677,6 +2910,33 @@ static int _wrap_node_new(lua_State* L) {
   if(!lua_isnumber(L,1)) SWIG_fail_arg("cmark_node_new",1,"cmark_node_type");
   arg1 = (cmark_node_type)(int)lua_tonumber(L, 1);
   result = (cmark_node *)cmark_node_new(arg1);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_cmark_node,0); SWIG_arg++; 
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_node_new_with_mem(lua_State* L) {
+  int SWIG_arg = 0;
+  cmark_node_type arg1 ;
+  cmark_mem *arg2 = (cmark_mem *) 0 ;
+  cmark_node *result = 0 ;
+  
+  SWIG_check_num_args("cmark_node_new_with_mem",2,2)
+  if(!lua_isnumber(L,1)) SWIG_fail_arg("cmark_node_new_with_mem",1,"cmark_node_type");
+  if(!SWIG_isptrtype(L,2)) SWIG_fail_arg("cmark_node_new_with_mem",2,"cmark_mem *");
+  arg1 = (cmark_node_type)(int)lua_tonumber(L, 1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_cmark_mem,0))){
+    SWIG_fail_ptr("node_new_with_mem",2,SWIGTYPE_p_cmark_mem);
+  }
+  
+  result = (cmark_node *)cmark_node_new_with_mem(arg1,arg2);
   SWIG_NewPointerObj(L,result,SWIGTYPE_p_cmark_node,0); SWIG_arg++; 
   return SWIG_arg;
   
@@ -3984,6 +4244,33 @@ fail:
 }
 
 
+static int _wrap_parser_new_with_mem(lua_State* L) {
+  int SWIG_arg = 0;
+  int arg1 ;
+  cmark_mem *arg2 = (cmark_mem *) 0 ;
+  cmark_parser *result = 0 ;
+  
+  SWIG_check_num_args("cmark_parser_new_with_mem",2,2)
+  if(!lua_isnumber(L,1)) SWIG_fail_arg("cmark_parser_new_with_mem",1,"int");
+  if(!SWIG_isptrtype(L,2)) SWIG_fail_arg("cmark_parser_new_with_mem",2,"cmark_mem *");
+  arg1 = (int)lua_tonumber(L, 1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_cmark_mem,0))){
+    SWIG_fail_ptr("parser_new_with_mem",2,SWIGTYPE_p_cmark_mem);
+  }
+  
+  result = (cmark_parser *)cmark_parser_new_with_mem(arg1,arg2);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_cmark_parser,0); SWIG_arg++; 
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
 static int _wrap_parser_free(lua_State* L) {
   int SWIG_arg = 0;
   cmark_parser *arg1 = (cmark_parser *) 0 ;
@@ -4336,6 +4623,7 @@ static swig_lua_const_info swig_SwigModule_constants[]= {
     {SWIG_LUA_CONSTTAB_INT("OPT_SOURCEPOS", (1 << 1))},
     {SWIG_LUA_CONSTTAB_INT("OPT_HARDBREAKS", (1 << 2))},
     {SWIG_LUA_CONSTTAB_INT("OPT_SAFE", (1 << 3))},
+    {SWIG_LUA_CONSTTAB_INT("OPT_NOBREAKS", (1 << 4))},
     {SWIG_LUA_CONSTTAB_INT("OPT_NORMALIZE", (1 << 8))},
     {SWIG_LUA_CONSTTAB_INT("OPT_VALIDATE_UTF8", (1 << 9))},
     {SWIG_LUA_CONSTTAB_INT("OPT_SMART", (1 << 10))},
@@ -4344,6 +4632,7 @@ static swig_lua_const_info swig_SwigModule_constants[]= {
 static swig_lua_method swig_SwigModule_methods[]= {
     { "markdown_to_html", _wrap_markdown_to_html},
     { "node_new", _wrap_node_new},
+    { "node_new_with_mem", _wrap_node_new_with_mem},
     { "node_free", _wrap_node_free},
     { "node_next", _wrap_node_next},
     { "node_previous", _wrap_node_previous},
@@ -4395,6 +4684,7 @@ static swig_lua_method swig_SwigModule_methods[]= {
     { "node_append_child", _wrap_node_append_child},
     { "consolidate_text_nodes", _wrap_consolidate_text_nodes},
     { "parser_new", _wrap_parser_new},
+    { "parser_new_with_mem", _wrap_parser_new_with_mem},
     { "parser_free", _wrap_parser_free},
     { "parser_feed", _wrap_parser_feed},
     { "parser_finish", _wrap_parser_finish},
@@ -4410,6 +4700,7 @@ static swig_lua_method swig_SwigModule_methods[]= {
     {0,0}
 };
 static swig_lua_class* swig_SwigModule_classes[]= {
+&_wrap_class_mem,
     0
 };
 static swig_lua_namespace* swig_SwigModule_namespaces[] = {
@@ -4435,9 +4726,13 @@ static swig_type_info _swigt__p_cmark_delim_type = {"_p_cmark_delim_type", "enum
 static swig_type_info _swigt__p_cmark_event_type = {"_p_cmark_event_type", "enum cmark_event_type *|cmark_event_type *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_cmark_iter = {"_p_cmark_iter", "struct cmark_iter *|cmark_iter *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_cmark_list_type = {"_p_cmark_list_type", "enum cmark_list_type *|cmark_list_type *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_cmark_mem = {"_p_cmark_mem", "struct cmark_mem *|cmark_mem *", 0, 0, (void*)&_wrap_class_mem, 0};
 static swig_type_info _swigt__p_cmark_node = {"_p_cmark_node", "struct cmark_node *|cmark_node *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_cmark_node_type = {"_p_cmark_node_type", "enum cmark_node_type *|cmark_node_type *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_cmark_parser = {"_p_cmark_parser", "struct cmark_parser *|cmark_parser *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_f_p_void__void = {"_p_f_p_void__void", "void (*)(void *)", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_f_p_void_size_t__p_void = {"_p_f_p_void_size_t__p_void", "void *(*)(void *,size_t)", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_f_size_t_size_t__p_void = {"_p_f_size_t_size_t__p_void", "void *(*)(size_t,size_t)", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_void = {"_p_void", "void *", 0, 0, (void*)0, 0};
 
 static swig_type_info *swig_type_initial[] = {
@@ -4446,9 +4741,13 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_cmark_event_type,
   &_swigt__p_cmark_iter,
   &_swigt__p_cmark_list_type,
+  &_swigt__p_cmark_mem,
   &_swigt__p_cmark_node,
   &_swigt__p_cmark_node_type,
   &_swigt__p_cmark_parser,
+  &_swigt__p_f_p_void__void,
+  &_swigt__p_f_p_void_size_t__p_void,
+  &_swigt__p_f_size_t_size_t__p_void,
   &_swigt__p_void,
 };
 
@@ -4457,9 +4756,13 @@ static swig_cast_info _swigc__p_cmark_delim_type[] = {  {&_swigt__p_cmark_delim_
 static swig_cast_info _swigc__p_cmark_event_type[] = {  {&_swigt__p_cmark_event_type, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_cmark_iter[] = {  {&_swigt__p_cmark_iter, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_cmark_list_type[] = {  {&_swigt__p_cmark_list_type, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_cmark_mem[] = {  {&_swigt__p_cmark_mem, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_cmark_node[] = {  {&_swigt__p_cmark_node, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_cmark_node_type[] = {  {&_swigt__p_cmark_node_type, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_cmark_parser[] = {  {&_swigt__p_cmark_parser, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_f_p_void__void[] = {  {&_swigt__p_f_p_void__void, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_f_p_void_size_t__p_void[] = {  {&_swigt__p_f_p_void_size_t__p_void, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_f_size_t_size_t__p_void[] = {  {&_swigt__p_f_size_t_size_t__p_void, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_void[] = {  {&_swigt__p_void, 0, 0, 0},{0, 0, 0, 0}};
 
 static swig_cast_info *swig_cast_initial[] = {
@@ -4468,9 +4771,13 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_cmark_event_type,
   _swigc__p_cmark_iter,
   _swigc__p_cmark_list_type,
+  _swigc__p_cmark_mem,
   _swigc__p_cmark_node,
   _swigc__p_cmark_node_type,
   _swigc__p_cmark_parser,
+  _swigc__p_f_p_void__void,
+  _swigc__p_f_p_void_size_t__p_void,
+  _swigc__p_f_size_t_size_t__p_void,
   _swigc__p_void,
 };
 
