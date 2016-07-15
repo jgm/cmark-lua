@@ -16,6 +16,9 @@ all: rock
 rock: cmark_wrap.c $(ROCKSPEC)
 	luarocks --local make $(ROCKSPEC)
 
+upload: rock
+	luarocks upload $(ROCKSPEC)
+
 $(ROCKSPEC): rockspec.in
 	sed -e "s/_VERSION/$(VERSION)/g; s/_REVISION/$(REVISION)/g" $< > $@
 
