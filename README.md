@@ -35,13 +35,13 @@ format that is more lua-esque.  Usage example:
 
 ``` lua
 local links = 0
-for cur, entering, node_type in walk(doc) do
-   if node_type == NODE_LINK and not entering then
+for cur, entering, node_type in cmark.walk(doc) do
+   if node_type == cmark.NODE_LINK and not entering then
        links = links + 1
        -- insert " (link #n)" after the link:
-       local t = node_new(NODE_TEXT)
-       node_set_literal(t, string.format(" (link #%d)", links))
-       node_insert_after(cur, t)
+       local t = cmark.node_new(NODE_TEXT)
+       cmark.node_set_literal(t, string.format(" (link #%d)", links))
+       cmark.node_insert_after(cur, t)
    end
 end
 ```
