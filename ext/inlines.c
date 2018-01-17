@@ -72,7 +72,7 @@ static delimiter *S_insert_emph(subject *subj, delimiter *opener,
 
 static int parse_inline(subject *subj, cmark_node *parent, int options);
 
-static void subject_from_buf(cmark_mem *mem, subject *e, cmark_strbuf *buffer,
+static void subject_from_buf(cmark_mem *mem, subject *e, cmark_chunk *chunk,
                              cmark_reference_map *refmap);
 static bufsize_t subject_find_special_char(subject *subj, int options);
 
@@ -149,13 +149,11 @@ static CMARK_INLINE cmark_node *make_autolink(cmark_mem *mem, cmark_chunk url,
   return link;
 }
 
-static void subject_from_buf(cmark_mem *mem, subject *e, cmark_strbuf *buffer,
+static void subject_from_buf(cmark_mem *mem, subject *e, cmark_chunk *chunk,
                              cmark_reference_map *refmap) {
   int i;
   e->mem = mem;
-  e->input.data = buffer->ptr;
-  e->input.len = buffer->size;
-  e->input.alloc = 0;
+  e->input = *chunk;
   e->pos = 0;
   e->refmap = refmap;
   e->last_delim = NULL;
@@ -345,7 +343,8 @@ static int scan_delims(subject *subj, unsigned char c, bool *can_open,
     *can_close = right_flanking &&
                  (!left_flanking || cmark_utf8proc_is_punctuation(after_char));
   } else if (c == '\'' || c == '"') {
-    *can_open = left_flanking && !right_flanking;
+    *can_open = left_flanking && !right_flanking &&
+	         before_char != ']' && before_char != ')';
     *can_close = right_flanking;
   } else {
     *can_open = left_flanking;
@@ -615,7 +614,7 @@ static delimiter *S_insert_emph(subject *subj, delimiter *opener,
   cmark_node *tmp, *tmpnext, *emph;
 
   // calculate the actual number of characters used from this closer
-  use_delims = (closer_num_chars >= 2 && opener_num_chars >=2) ? 2 : 1;
+  use_delims = (closer_num_chars >= 2 && opener_num_chars >= 2) ? 2 : 1;
 
   // remove used characters from associated inlines.
   opener_num_chars -= use_delims;
@@ -707,7 +706,7 @@ cmark_chunk cmark_clean_url(cmark_mem *mem, cmark_chunk *url) {
     return result;
   }
 
-  houdini_unescape_html_f(&buf, url->data, url->len);
+    houdini_unescape_html_f(&buf, url->data, url->len);
 
   cmark_strbuf_unescape(&buf);
   return cmark_chunk_buf_detach(&buf);
@@ -821,28 +820,29 @@ noMatch:
   return 0;
 }
 
-static bufsize_t manual_scan_link_url_2(cmark_chunk *input, bufsize_t offset, cmark_chunk *output) {
+static bufsize_t manual_scan_link_url_2(cmark_chunk *input, bufsize_t offset,
+                                        cmark_chunk *output) {
   bufsize_t i = offset;
   size_t nb_p = 0;
 
-  while (i < input->len) {
-    if (input->data[i] == '\\' &&
-        i + 1 < input-> len &&
-        cmark_ispunct(input->data[i+1]))
-      i += 2;
-    else if (input->data[i] == '(') {
-      ++nb_p;
-      ++i;
-    } else if (input->data[i] == ')') {
-      if (nb_p == 0)
+    while (i < input->len) {
+      if (input->data[i] == '\\' &&
+	  i + 1 < input-> len &&
+          cmark_ispunct(input->data[i+1]))
+        i += 2;
+      else if (input->data[i] == '(') {
+        ++nb_p;
+        ++i;
+      } else if (input->data[i] == ')') {
+        if (nb_p == 0)
+          break;
+        --nb_p;
+        ++i;
+      } else if (cmark_isspace(input->data[i]))
         break;
-      --nb_p;
-      ++i;
-    } else if (cmark_isspace(input->data[i]))
-      break;
-    else
-      ++i;
-  }
+      else
+        ++i;
+    }
 
   if (i >= input->len)
     return -1;
@@ -854,7 +854,8 @@ static bufsize_t manual_scan_link_url_2(cmark_chunk *input, bufsize_t offset, cm
   return i - offset;
 }
 
-static bufsize_t manual_scan_link_url(cmark_chunk *input, bufsize_t offset, cmark_chunk *output) {
+static bufsize_t manual_scan_link_url(cmark_chunk *input, bufsize_t offset,
+                                      cmark_chunk *output) {
   bufsize_t i = offset;
 
   if (i < input->len && input->data[i] == '<') {
@@ -924,7 +925,8 @@ static cmark_node *handle_close_bracket(subject *subj) {
   // First, look for an inline link.
   if (peek_char(subj) == '(' &&
       ((sps = scan_spacechars(&subj->input, subj->pos + 1)) > -1) &&
-      ((n = manual_scan_link_url(&subj->input, subj->pos + 1 + sps, &url_chunk)) > -1)) {
+      ((n = manual_scan_link_url(&subj->input, subj->pos + 1 + sps,
+                                 &url_chunk)) > -1)) {
 
     // try to parse an explicit link:
     endurl = subj->pos + 1 + sps + n;
@@ -1174,7 +1176,8 @@ static int parse_inline(subject *subj, cmark_node *parent, int options) {
 extern void cmark_parse_inlines(cmark_mem *mem, cmark_node *parent,
                                 cmark_reference_map *refmap, int options) {
   subject subj;
-  subject_from_buf(mem, &subj, &parent->content, refmap);
+  cmark_chunk content = {parent->content.ptr, parent->content.size, 0};
+  subject_from_buf(mem, &subj, &content, refmap);
   cmark_chunk_rtrim(&subj.input);
 
   while (!is_eof(&subj) && parse_inline(&subj, parent, options))
@@ -1202,7 +1205,7 @@ static void spnl(subject *subj) {
 // Modify refmap if a reference is encountered.
 // Return 0 if no reference found, otherwise position of subject
 // after reference is parsed.
-bufsize_t cmark_parse_reference_inline(cmark_mem *mem, cmark_strbuf *input,
+bufsize_t cmark_parse_reference_inline(cmark_mem *mem, cmark_chunk *input,
                                        cmark_reference_map *refmap) {
   subject subj;
 

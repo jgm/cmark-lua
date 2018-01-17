@@ -6,7 +6,7 @@ CFLAGS = -fPIC -O3 -I$(CBITS) -I.
 SWIG ?= swig
 CMARK_DIR ?= ../cmark
 OBJS = $(subst .c,.o,$(wildcard $(CBITS)/*.c))
-C_SOURCES=$(wildcard $(CBITS)/*.*)
+C_SOURCES=$(wildcard $(CBITS)/*.c $(CBITS)/*.h)
 LUASTATIC=lua-5.2.4/src/liblua.a
 
 .PHONY: clean, distclean, test, all, rocks, update, check
