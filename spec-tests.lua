@@ -1,4994 +1,5194 @@
 return {
   {
     markdown =  "\tfoo\tbaz\t\tbim\n",
-    section =  "Tabs",
     html =  "<pre><code>foo\tbaz\t\tbim\n</code></pre>\n",
-    start_line =  350,
-    end_line =  355,
-    example =  1
+    example =  1,
+    start_line =  352,
+    end_line =  357,
+    section =  "Tabs"
   },
   {
     markdown =  "  \tfoo\tbaz\t\tbim\n",
-    section =  "Tabs",
     html =  "<pre><code>foo\tbaz\t\tbim\n</code></pre>\n",
-    start_line =  357,
-    end_line =  362,
-    example =  2
+    example =  2,
+    start_line =  359,
+    end_line =  364,
+    section =  "Tabs"
   },
   {
     markdown =  "    a\ta\n    ὐ\ta\n",
-    section =  "Tabs",
     html =  "<pre><code>a\ta\nὐ\ta\n</code></pre>\n",
-    start_line =  364,
-    end_line =  371,
-    example =  3
+    example =  3,
+    start_line =  366,
+    end_line =  373,
+    section =  "Tabs"
   },
   {
     markdown =  "  - foo\n\n\tbar\n",
-    section =  "Tabs",
     html =  "<ul>\n<li>\n<p>foo</p>\n<p>bar</p>\n</li>\n</ul>\n",
-    start_line =  377,
-    end_line =  388,
-    example =  4
+    example =  4,
+    start_line =  379,
+    end_line =  390,
+    section =  "Tabs"
   },
   {
     markdown =  "- foo\n\n\t\tbar\n",
-    section =  "Tabs",
     html =  "<ul>\n<li>\n<p>foo</p>\n<pre><code>  bar\n</code></pre>\n</li>\n</ul>\n",
-    start_line =  390,
-    end_line =  402,
-    example =  5
+    example =  5,
+    start_line =  392,
+    end_line =  404,
+    section =  "Tabs"
   },
   {
     markdown =  ">\t\tfoo\n",
-    section =  "Tabs",
     html =  "<blockquote>\n<pre><code>  foo\n</code></pre>\n</blockquote>\n",
-    start_line =  413,
-    end_line =  420,
-    example =  6
+    example =  6,
+    start_line =  415,
+    end_line =  422,
+    section =  "Tabs"
   },
   {
     markdown =  "-\t\tfoo\n",
-    section =  "Tabs",
     html =  "<ul>\n<li>\n<pre><code>  foo\n</code></pre>\n</li>\n</ul>\n",
-    start_line =  422,
-    end_line =  431,
-    example =  7
+    example =  7,
+    start_line =  424,
+    end_line =  433,
+    section =  "Tabs"
   },
   {
     markdown =  "    foo\n\tbar\n",
-    section =  "Tabs",
     html =  "<pre><code>foo\nbar\n</code></pre>\n",
-    start_line =  434,
-    end_line =  441,
-    example =  8
+    example =  8,
+    start_line =  436,
+    end_line =  443,
+    section =  "Tabs"
   },
   {
     markdown =  " - foo\n   - bar\n\t - baz\n",
-    section =  "Tabs",
     html =  "<ul>\n<li>foo\n<ul>\n<li>bar\n<ul>\n<li>baz</li>\n</ul>\n</li>\n</ul>\n</li>\n</ul>\n",
-    start_line =  443,
-    end_line =  459,
-    example =  9
+    example =  9,
+    start_line =  445,
+    end_line =  461,
+    section =  "Tabs"
   },
   {
     markdown =  "#\tFoo\n",
-    section =  "Tabs",
     html =  "<h1>Foo</h1>\n",
-    start_line =  461,
-    end_line =  465,
-    example =  10
+    example =  10,
+    start_line =  463,
+    end_line =  467,
+    section =  "Tabs"
   },
   {
     markdown =  "*\t*\t*\t\n",
-    section =  "Tabs",
     html =  "<hr />\n",
-    start_line =  467,
-    end_line =  471,
-    example =  11
+    example =  11,
+    start_line =  469,
+    end_line =  473,
+    section =  "Tabs"
   },
   {
     markdown =  "- `one\n- two`\n",
-    section =  "Precedence",
     html =  "<ul>\n<li>`one</li>\n<li>two`</li>\n</ul>\n",
-    start_line =  494,
-    end_line =  502,
-    example =  12
+    example =  12,
+    start_line =  496,
+    end_line =  504,
+    section =  "Precedence"
   },
   {
     markdown =  "***\n---\n___\n",
-    section =  "Thematic breaks",
     html =  "<hr />\n<hr />\n<hr />\n",
-    start_line =  533,
-    end_line =  541,
-    example =  13
+    example =  13,
+    start_line =  535,
+    end_line =  543,
+    section =  "Thematic breaks"
   },
   {
     markdown =  "+++\n",
-    section =  "Thematic breaks",
     html =  "<p>+++</p>\n",
-    start_line =  546,
-    end_line =  550,
-    example =  14
+    example =  14,
+    start_line =  548,
+    end_line =  552,
+    section =  "Thematic breaks"
   },
   {
     markdown =  "===\n",
-    section =  "Thematic breaks",
     html =  "<p>===</p>\n",
-    start_line =  553,
-    end_line =  557,
-    example =  15
+    example =  15,
+    start_line =  555,
+    end_line =  559,
+    section =  "Thematic breaks"
   },
   {
     markdown =  "--\n**\n__\n",
-    section =  "Thematic breaks",
     html =  "<p>--\n**\n__</p>\n",
-    start_line =  562,
-    end_line =  570,
-    example =  16
+    example =  16,
+    start_line =  564,
+    end_line =  572,
+    section =  "Thematic breaks"
   },
   {
     markdown =  " ***\n  ***\n   ***\n",
-    section =  "Thematic breaks",
     html =  "<hr />\n<hr />\n<hr />\n",
-    start_line =  575,
-    end_line =  583,
-    example =  17
+    example =  17,
+    start_line =  577,
+    end_line =  585,
+    section =  "Thematic breaks"
   },
   {
     markdown =  "    ***\n",
-    section =  "Thematic breaks",
     html =  "<pre><code>***\n</code></pre>\n",
-    start_line =  588,
-    end_line =  593,
-    example =  18
+    example =  18,
+    start_line =  590,
+    end_line =  595,
+    section =  "Thematic breaks"
   },
   {
     markdown =  "Foo\n    ***\n",
-    section =  "Thematic breaks",
     html =  "<p>Foo\n***</p>\n",
-    start_line =  596,
-    end_line =  602,
-    example =  19
+    example =  19,
+    start_line =  598,
+    end_line =  604,
+    section =  "Thematic breaks"
   },
   {
     markdown =  "_____________________________________\n",
-    section =  "Thematic breaks",
     html =  "<hr />\n",
-    start_line =  607,
-    end_line =  611,
-    example =  20
+    example =  20,
+    start_line =  609,
+    end_line =  613,
+    section =  "Thematic breaks"
   },
   {
     markdown =  " - - -\n",
-    section =  "Thematic breaks",
     html =  "<hr />\n",
-    start_line =  616,
-    end_line =  620,
-    example =  21
+    example =  21,
+    start_line =  618,
+    end_line =  622,
+    section =  "Thematic breaks"
   },
   {
     markdown =  " **  * ** * ** * **\n",
-    section =  "Thematic breaks",
     html =  "<hr />\n",
-    start_line =  623,
-    end_line =  627,
-    example =  22
+    example =  22,
+    start_line =  625,
+    end_line =  629,
+    section =  "Thematic breaks"
   },
   {
     markdown =  "-     -      -      -\n",
-    section =  "Thematic breaks",
     html =  "<hr />\n",
-    start_line =  630,
-    end_line =  634,
-    example =  23
+    example =  23,
+    start_line =  632,
+    end_line =  636,
+    section =  "Thematic breaks"
   },
   {
     markdown =  "- - - -    \n",
-    section =  "Thematic breaks",
     html =  "<hr />\n",
-    start_line =  639,
-    end_line =  643,
-    example =  24
+    example =  24,
+    start_line =  641,
+    end_line =  645,
+    section =  "Thematic breaks"
   },
   {
     markdown =  "_ _ _ _ a\n\na------\n\n---a---\n",
-    section =  "Thematic breaks",
     html =  "<p>_ _ _ _ a</p>\n<p>a------</p>\n<p>---a---</p>\n",
-    start_line =  648,
-    end_line =  658,
-    example =  25
+    example =  25,
+    start_line =  650,
+    end_line =  660,
+    section =  "Thematic breaks"
   },
   {
     markdown =  " *-*\n",
-    section =  "Thematic breaks",
     html =  "<p><em>-</em></p>\n",
-    start_line =  664,
-    end_line =  668,
-    example =  26
+    example =  26,
+    start_line =  666,
+    end_line =  670,
+    section =  "Thematic breaks"
   },
   {
     markdown =  "- foo\n***\n- bar\n",
-    section =  "Thematic breaks",
     html =  "<ul>\n<li>foo</li>\n</ul>\n<hr />\n<ul>\n<li>bar</li>\n</ul>\n",
-    start_line =  673,
-    end_line =  685,
-    example =  27
+    example =  27,
+    start_line =  675,
+    end_line =  687,
+    section =  "Thematic breaks"
   },
   {
     markdown =  "Foo\n***\nbar\n",
-    section =  "Thematic breaks",
     html =  "<p>Foo</p>\n<hr />\n<p>bar</p>\n",
-    start_line =  690,
-    end_line =  698,
-    example =  28
+    example =  28,
+    start_line =  692,
+    end_line =  700,
+    section =  "Thematic breaks"
   },
   {
     markdown =  "Foo\n---\nbar\n",
-    section =  "Thematic breaks",
     html =  "<h2>Foo</h2>\n<p>bar</p>\n",
-    start_line =  707,
-    end_line =  714,
-    example =  29
+    example =  29,
+    start_line =  709,
+    end_line =  716,
+    section =  "Thematic breaks"
   },
   {
     markdown =  "* Foo\n* * *\n* Bar\n",
-    section =  "Thematic breaks",
     html =  "<ul>\n<li>Foo</li>\n</ul>\n<hr />\n<ul>\n<li>Bar</li>\n</ul>\n",
-    start_line =  720,
-    end_line =  732,
-    example =  30
+    example =  30,
+    start_line =  722,
+    end_line =  734,
+    section =  "Thematic breaks"
   },
   {
     markdown =  "- Foo\n- * * *\n",
-    section =  "Thematic breaks",
     html =  "<ul>\n<li>Foo</li>\n<li>\n<hr />\n</li>\n</ul>\n",
-    start_line =  737,
-    end_line =  747,
-    example =  31
+    example =  31,
+    start_line =  739,
+    end_line =  749,
+    section =  "Thematic breaks"
   },
   {
     markdown =  "# foo\n## foo\n### foo\n#### foo\n##### foo\n###### foo\n",
-    section =  "ATX headings",
     html =  "<h1>foo</h1>\n<h2>foo</h2>\n<h3>foo</h3>\n<h4>foo</h4>\n<h5>foo</h5>\n<h6>foo</h6>\n",
-    start_line =  766,
-    end_line =  780,
-    example =  32
+    example =  32,
+    start_line =  768,
+    end_line =  782,
+    section =  "ATX headings"
   },
   {
     markdown =  "####### foo\n",
-    section =  "ATX headings",
     html =  "<p>####### foo</p>\n",
-    start_line =  785,
-    end_line =  789,
-    example =  33
+    example =  33,
+    start_line =  787,
+    end_line =  791,
+    section =  "ATX headings"
   },
   {
     markdown =  "#5 bolt\n\n#hashtag\n",
-    section =  "ATX headings",
     html =  "<p>#5 bolt</p>\n<p>#hashtag</p>\n",
-    start_line =  800,
-    end_line =  807,
-    example =  34
+    example =  34,
+    start_line =  802,
+    end_line =  809,
+    section =  "ATX headings"
   },
   {
     markdown =  "\\## foo\n",
-    section =  "ATX headings",
     html =  "<p>## foo</p>\n",
-    start_line =  812,
-    end_line =  816,
-    example =  35
+    example =  35,
+    start_line =  814,
+    end_line =  818,
+    section =  "ATX headings"
   },
   {
     markdown =  "# foo *bar* \\*baz\\*\n",
-    section =  "ATX headings",
     html =  "<h1>foo <em>bar</em> *baz*</h1>\n",
-    start_line =  821,
-    end_line =  825,
-    example =  36
+    example =  36,
+    start_line =  823,
+    end_line =  827,
+    section =  "ATX headings"
   },
   {
     markdown =  "#                  foo                     \n",
-    section =  "ATX headings",
     html =  "<h1>foo</h1>\n",
-    start_line =  830,
-    end_line =  834,
-    example =  37
+    example =  37,
+    start_line =  832,
+    end_line =  836,
+    section =  "ATX headings"
   },
   {
     markdown =  " ### foo\n  ## foo\n   # foo\n",
-    section =  "ATX headings",
     html =  "<h3>foo</h3>\n<h2>foo</h2>\n<h1>foo</h1>\n",
-    start_line =  839,
-    end_line =  847,
-    example =  38
+    example =  38,
+    start_line =  841,
+    end_line =  849,
+    section =  "ATX headings"
   },
   {
     markdown =  "    # foo\n",
-    section =  "ATX headings",
     html =  "<pre><code># foo\n</code></pre>\n",
-    start_line =  852,
-    end_line =  857,
-    example =  39
+    example =  39,
+    start_line =  854,
+    end_line =  859,
+    section =  "ATX headings"
   },
   {
     markdown =  "foo\n    # bar\n",
-    section =  "ATX headings",
     html =  "<p>foo\n# bar</p>\n",
-    start_line =  860,
-    end_line =  866,
-    example =  40
+    example =  40,
+    start_line =  862,
+    end_line =  868,
+    section =  "ATX headings"
   },
   {
     markdown =  "## foo ##\n  ###   bar    ###\n",
-    section =  "ATX headings",
     html =  "<h2>foo</h2>\n<h3>bar</h3>\n",
-    start_line =  871,
-    end_line =  877,
-    example =  41
+    example =  41,
+    start_line =  873,
+    end_line =  879,
+    section =  "ATX headings"
   },
   {
     markdown =  "# foo ##################################\n##### foo ##\n",
-    section =  "ATX headings",
     html =  "<h1>foo</h1>\n<h5>foo</h5>\n",
-    start_line =  882,
-    end_line =  888,
-    example =  42
+    example =  42,
+    start_line =  884,
+    end_line =  890,
+    section =  "ATX headings"
   },
   {
     markdown =  "### foo ###     \n",
-    section =  "ATX headings",
     html =  "<h3>foo</h3>\n",
-    start_line =  893,
-    end_line =  897,
-    example =  43
+    example =  43,
+    start_line =  895,
+    end_line =  899,
+    section =  "ATX headings"
   },
   {
     markdown =  "### foo ### b\n",
-    section =  "ATX headings",
     html =  "<h3>foo ### b</h3>\n",
-    start_line =  904,
-    end_line =  908,
-    example =  44
+    example =  44,
+    start_line =  906,
+    end_line =  910,
+    section =  "ATX headings"
   },
   {
     markdown =  "# foo#\n",
-    section =  "ATX headings",
     html =  "<h1>foo#</h1>\n",
-    start_line =  913,
-    end_line =  917,
-    example =  45
+    example =  45,
+    start_line =  915,
+    end_line =  919,
+    section =  "ATX headings"
   },
   {
     markdown =  "### foo \\###\n## foo #\\##\n# foo \\#\n",
-    section =  "ATX headings",
     html =  "<h3>foo ###</h3>\n<h2>foo ###</h2>\n<h1>foo #</h1>\n",
-    start_line =  923,
-    end_line =  931,
-    example =  46
+    example =  46,
+    start_line =  925,
+    end_line =  933,
+    section =  "ATX headings"
   },
   {
     markdown =  "****\n## foo\n****\n",
-    section =  "ATX headings",
     html =  "<hr />\n<h2>foo</h2>\n<hr />\n",
-    start_line =  937,
-    end_line =  945,
-    example =  47
+    example =  47,
+    start_line =  939,
+    end_line =  947,
+    section =  "ATX headings"
   },
   {
     markdown =  "Foo bar\n# baz\nBar foo\n",
-    section =  "ATX headings",
     html =  "<p>Foo bar</p>\n<h1>baz</h1>\n<p>Bar foo</p>\n",
-    start_line =  948,
-    end_line =  956,
-    example =  48
+    example =  48,
+    start_line =  950,
+    end_line =  958,
+    section =  "ATX headings"
   },
   {
     markdown =  "## \n#\n### ###\n",
-    section =  "ATX headings",
     html =  "<h2></h2>\n<h1></h1>\n<h3></h3>\n",
-    start_line =  961,
-    end_line =  969,
-    example =  49
+    example =  49,
+    start_line =  963,
+    end_line =  971,
+    section =  "ATX headings"
   },
   {
     markdown =  "Foo *bar*\n=========\n\nFoo *bar*\n---------\n",
-    section =  "Setext headings",
     html =  "<h1>Foo <em>bar</em></h1>\n<h2>Foo <em>bar</em></h2>\n",
-    start_line =  1004,
-    end_line =  1013,
-    example =  50
+    example =  50,
+    start_line =  1006,
+    end_line =  1015,
+    section =  "Setext headings"
   },
   {
     markdown =  "Foo *bar\nbaz*\n====\n",
-    section =  "Setext headings",
     html =  "<h1>Foo <em>bar\nbaz</em></h1>\n",
-    start_line =  1018,
-    end_line =  1025,
-    example =  51
+    example =  51,
+    start_line =  1020,
+    end_line =  1027,
+    section =  "Setext headings"
+  },
+  {
+    markdown =  "  Foo *bar\nbaz*\t\n====\n",
+    html =  "<h1>Foo <em>bar\nbaz</em></h1>\n",
+    example =  52,
+    start_line =  1034,
+    end_line =  1041,
+    section =  "Setext headings"
   },
   {
     markdown =  "Foo\n-------------------------\n\nFoo\n=\n",
-    section =  "Setext headings",
     html =  "<h2>Foo</h2>\n<h1>Foo</h1>\n",
-    start_line =  1030,
-    end_line =  1039,
-    example =  52
+    example =  53,
+    start_line =  1046,
+    end_line =  1055,
+    section =  "Setext headings"
   },
   {
     markdown =  "   Foo\n---\n\n  Foo\n-----\n\n  Foo\n  ===\n",
-    section =  "Setext headings",
     html =  "<h2>Foo</h2>\n<h2>Foo</h2>\n<h1>Foo</h1>\n",
-    start_line =  1045,
-    end_line =  1058,
-    example =  53
+    example =  54,
+    start_line =  1061,
+    end_line =  1074,
+    section =  "Setext headings"
   },
   {
     markdown =  "    Foo\n    ---\n\n    Foo\n---\n",
-    section =  "Setext headings",
     html =  "<pre><code>Foo\n---\n\nFoo\n</code></pre>\n<hr />\n",
-    start_line =  1063,
-    end_line =  1076,
-    example =  54
+    example =  55,
+    start_line =  1079,
+    end_line =  1092,
+    section =  "Setext headings"
   },
   {
     markdown =  "Foo\n   ----      \n",
-    section =  "Setext headings",
     html =  "<h2>Foo</h2>\n",
-    start_line =  1082,
-    end_line =  1087,
-    example =  55
+    example =  56,
+    start_line =  1098,
+    end_line =  1103,
+    section =  "Setext headings"
   },
   {
     markdown =  "Foo\n    ---\n",
-    section =  "Setext headings",
     html =  "<p>Foo\n---</p>\n",
-    start_line =  1092,
-    end_line =  1098,
-    example =  56
+    example =  57,
+    start_line =  1108,
+    end_line =  1114,
+    section =  "Setext headings"
   },
   {
     markdown =  "Foo\n= =\n\nFoo\n--- -\n",
-    section =  "Setext headings",
     html =  "<p>Foo\n= =</p>\n<p>Foo</p>\n<hr />\n",
-    start_line =  1103,
-    end_line =  1114,
-    example =  57
+    example =  58,
+    start_line =  1119,
+    end_line =  1130,
+    section =  "Setext headings"
   },
   {
     markdown =  "Foo  \n-----\n",
-    section =  "Setext headings",
     html =  "<h2>Foo</h2>\n",
-    start_line =  1119,
-    end_line =  1124,
-    example =  58
+    example =  59,
+    start_line =  1135,
+    end_line =  1140,
+    section =  "Setext headings"
   },
   {
     markdown =  "Foo\\\n----\n",
-    section =  "Setext headings",
     html =  "<h2>Foo\\</h2>\n",
-    start_line =  1129,
-    end_line =  1134,
-    example =  59
+    example =  60,
+    start_line =  1145,
+    end_line =  1150,
+    section =  "Setext headings"
   },
   {
     markdown =  "`Foo\n----\n`\n\n<a title=\"a lot\n---\nof dashes\"/>\n",
-    section =  "Setext headings",
     html =  "<h2>`Foo</h2>\n<p>`</p>\n<h2>&lt;a title=&quot;a lot</h2>\n<p>of dashes&quot;/&gt;</p>\n",
-    start_line =  1140,
-    end_line =  1153,
-    example =  60
+    example =  61,
+    start_line =  1156,
+    end_line =  1169,
+    section =  "Setext headings"
   },
   {
     markdown =  "> Foo\n---\n",
-    section =  "Setext headings",
     html =  "<blockquote>\n<p>Foo</p>\n</blockquote>\n<hr />\n",
-    start_line =  1159,
-    end_line =  1167,
-    example =  61
+    example =  62,
+    start_line =  1175,
+    end_line =  1183,
+    section =  "Setext headings"
   },
   {
     markdown =  "> foo\nbar\n===\n",
-    section =  "Setext headings",
     html =  "<blockquote>\n<p>foo\nbar\n===</p>\n</blockquote>\n",
-    start_line =  1170,
-    end_line =  1180,
-    example =  62
+    example =  63,
+    start_line =  1186,
+    end_line =  1196,
+    section =  "Setext headings"
   },
   {
     markdown =  "- Foo\n---\n",
-    section =  "Setext headings",
     html =  "<ul>\n<li>Foo</li>\n</ul>\n<hr />\n",
-    start_line =  1183,
-    end_line =  1191,
-    example =  63
+    example =  64,
+    start_line =  1199,
+    end_line =  1207,
+    section =  "Setext headings"
   },
   {
     markdown =  "Foo\nBar\n---\n",
-    section =  "Setext headings",
     html =  "<h2>Foo\nBar</h2>\n",
-    start_line =  1198,
-    end_line =  1205,
-    example =  64
+    example =  65,
+    start_line =  1214,
+    end_line =  1221,
+    section =  "Setext headings"
   },
   {
     markdown =  "---\nFoo\n---\nBar\n---\nBaz\n",
-    section =  "Setext headings",
     html =  "<hr />\n<h2>Foo</h2>\n<h2>Bar</h2>\n<p>Baz</p>\n",
-    start_line =  1211,
-    end_line =  1223,
-    example =  65
+    example =  66,
+    start_line =  1227,
+    end_line =  1239,
+    section =  "Setext headings"
   },
   {
     markdown =  "\n====\n",
-    section =  "Setext headings",
     html =  "<p>====</p>\n",
-    start_line =  1228,
-    end_line =  1233,
-    example =  66
+    example =  67,
+    start_line =  1244,
+    end_line =  1249,
+    section =  "Setext headings"
   },
   {
     markdown =  "---\n---\n",
-    section =  "Setext headings",
     html =  "<hr />\n<hr />\n",
-    start_line =  1240,
-    end_line =  1246,
-    example =  67
+    example =  68,
+    start_line =  1256,
+    end_line =  1262,
+    section =  "Setext headings"
   },
   {
     markdown =  "- foo\n-----\n",
-    section =  "Setext headings",
     html =  "<ul>\n<li>foo</li>\n</ul>\n<hr />\n",
-    start_line =  1249,
-    end_line =  1257,
-    example =  68
+    example =  69,
+    start_line =  1265,
+    end_line =  1273,
+    section =  "Setext headings"
   },
   {
     markdown =  "    foo\n---\n",
-    section =  "Setext headings",
     html =  "<pre><code>foo\n</code></pre>\n<hr />\n",
-    start_line =  1260,
-    end_line =  1267,
-    example =  69
+    example =  70,
+    start_line =  1276,
+    end_line =  1283,
+    section =  "Setext headings"
   },
   {
     markdown =  "> foo\n-----\n",
-    section =  "Setext headings",
     html =  "<blockquote>\n<p>foo</p>\n</blockquote>\n<hr />\n",
-    start_line =  1270,
-    end_line =  1278,
-    example =  70
+    example =  71,
+    start_line =  1286,
+    end_line =  1294,
+    section =  "Setext headings"
   },
   {
     markdown =  "\\> foo\n------\n",
-    section =  "Setext headings",
     html =  "<h2>&gt; foo</h2>\n",
-    start_line =  1284,
-    end_line =  1289,
-    example =  71
+    example =  72,
+    start_line =  1300,
+    end_line =  1305,
+    section =  "Setext headings"
   },
   {
     markdown =  "Foo\n\nbar\n---\nbaz\n",
-    section =  "Setext headings",
     html =  "<p>Foo</p>\n<h2>bar</h2>\n<p>baz</p>\n",
-    start_line =  1315,
-    end_line =  1325,
-    example =  72
+    example =  73,
+    start_line =  1331,
+    end_line =  1341,
+    section =  "Setext headings"
   },
   {
     markdown =  "Foo\nbar\n\n---\n\nbaz\n",
-    section =  "Setext headings",
     html =  "<p>Foo\nbar</p>\n<hr />\n<p>baz</p>\n",
-    start_line =  1331,
-    end_line =  1343,
-    example =  73
+    example =  74,
+    start_line =  1347,
+    end_line =  1359,
+    section =  "Setext headings"
   },
   {
     markdown =  "Foo\nbar\n* * *\nbaz\n",
-    section =  "Setext headings",
     html =  "<p>Foo\nbar</p>\n<hr />\n<p>baz</p>\n",
-    start_line =  1349,
-    end_line =  1359,
-    example =  74
+    example =  75,
+    start_line =  1365,
+    end_line =  1375,
+    section =  "Setext headings"
   },
   {
     markdown =  "Foo\nbar\n\\---\nbaz\n",
-    section =  "Setext headings",
     html =  "<p>Foo\nbar\n---\nbaz</p>\n",
-    start_line =  1364,
-    end_line =  1374,
-    example =  75
+    example =  76,
+    start_line =  1380,
+    end_line =  1390,
+    section =  "Setext headings"
   },
   {
     markdown =  "    a simple\n      indented code block\n",
-    section =  "Indented code blocks",
     html =  "<pre><code>a simple\n  indented code block\n</code></pre>\n",
-    start_line =  1392,
-    end_line =  1399,
-    example =  76
+    example =  77,
+    start_line =  1408,
+    end_line =  1415,
+    section =  "Indented code blocks"
   },
   {
     markdown =  "  - foo\n\n    bar\n",
-    section =  "Indented code blocks",
     html =  "<ul>\n<li>\n<p>foo</p>\n<p>bar</p>\n</li>\n</ul>\n",
-    start_line =  1406,
-    end_line =  1417,
-    example =  77
+    example =  78,
+    start_line =  1422,
+    end_line =  1433,
+    section =  "Indented code blocks"
   },
   {
     markdown =  "1.  foo\n\n    - bar\n",
-    section =  "Indented code blocks",
     html =  "<ol>\n<li>\n<p>foo</p>\n<ul>\n<li>bar</li>\n</ul>\n</li>\n</ol>\n",
-    start_line =  1420,
-    end_line =  1433,
-    example =  78
+    example =  79,
+    start_line =  1436,
+    end_line =  1449,
+    section =  "Indented code blocks"
   },
   {
     markdown =  "    <a/>\n    *hi*\n\n    - one\n",
-    section =  "Indented code blocks",
     html =  "<pre><code>&lt;a/&gt;\n*hi*\n\n- one\n</code></pre>\n",
-    start_line =  1440,
-    end_line =  1451,
-    example =  79
+    example =  80,
+    start_line =  1456,
+    end_line =  1467,
+    section =  "Indented code blocks"
   },
   {
     markdown =  "    chunk1\n\n    chunk2\n  \n \n \n    chunk3\n",
-    section =  "Indented code blocks",
     html =  "<pre><code>chunk1\n\nchunk2\n\n\n\nchunk3\n</code></pre>\n",
-    start_line =  1456,
-    end_line =  1473,
-    example =  80
+    example =  81,
+    start_line =  1472,
+    end_line =  1489,
+    section =  "Indented code blocks"
   },
   {
     markdown =  "    chunk1\n      \n      chunk2\n",
-    section =  "Indented code blocks",
     html =  "<pre><code>chunk1\n  \n  chunk2\n</code></pre>\n",
-    start_line =  1479,
-    end_line =  1488,
-    example =  81
+    example =  82,
+    start_line =  1495,
+    end_line =  1504,
+    section =  "Indented code blocks"
   },
   {
     markdown =  "Foo\n    bar\n\n",
-    section =  "Indented code blocks",
     html =  "<p>Foo\nbar</p>\n",
-    start_line =  1494,
-    end_line =  1501,
-    example =  82
+    example =  83,
+    start_line =  1510,
+    end_line =  1517,
+    section =  "Indented code blocks"
   },
   {
     markdown =  "    foo\nbar\n",
-    section =  "Indented code blocks",
     html =  "<pre><code>foo\n</code></pre>\n<p>bar</p>\n",
-    start_line =  1508,
-    end_line =  1515,
-    example =  83
+    example =  84,
+    start_line =  1524,
+    end_line =  1531,
+    section =  "Indented code blocks"
   },
   {
     markdown =  "# Heading\n    foo\nHeading\n------\n    foo\n----\n",
-    section =  "Indented code blocks",
     html =  "<h1>Heading</h1>\n<pre><code>foo\n</code></pre>\n<h2>Heading</h2>\n<pre><code>foo\n</code></pre>\n<hr />\n",
-    start_line =  1521,
-    end_line =  1536,
-    example =  84
+    example =  85,
+    start_line =  1537,
+    end_line =  1552,
+    section =  "Indented code blocks"
   },
   {
     markdown =  "        foo\n    bar\n",
-    section =  "Indented code blocks",
     html =  "<pre><code>    foo\nbar\n</code></pre>\n",
-    start_line =  1541,
-    end_line =  1548,
-    example =  85
+    example =  86,
+    start_line =  1557,
+    end_line =  1564,
+    section =  "Indented code blocks"
   },
   {
     markdown =  "\n    \n    foo\n    \n\n",
-    section =  "Indented code blocks",
     html =  "<pre><code>foo\n</code></pre>\n",
-    start_line =  1554,
-    end_line =  1563,
-    example =  86
+    example =  87,
+    start_line =  1570,
+    end_line =  1579,
+    section =  "Indented code blocks"
   },
   {
     markdown =  "    foo  \n",
-    section =  "Indented code blocks",
     html =  "<pre><code>foo  \n</code></pre>\n",
-    start_line =  1568,
-    end_line =  1573,
-    example =  87
+    example =  88,
+    start_line =  1584,
+    end_line =  1589,
+    section =  "Indented code blocks"
   },
   {
     markdown =  "```\n<\n >\n```\n",
-    section =  "Fenced code blocks",
     html =  "<pre><code>&lt;\n &gt;\n</code></pre>\n",
-    start_line =  1623,
-    end_line =  1632,
-    example =  88
+    example =  89,
+    start_line =  1639,
+    end_line =  1648,
+    section =  "Fenced code blocks"
   },
   {
     markdown =  "~~~\n<\n >\n~~~\n",
-    section =  "Fenced code blocks",
     html =  "<pre><code>&lt;\n &gt;\n</code></pre>\n",
-    start_line =  1637,
-    end_line =  1646,
-    example =  89
+    example =  90,
+    start_line =  1653,
+    end_line =  1662,
+    section =  "Fenced code blocks"
   },
   {
     markdown =  "``\nfoo\n``\n",
-    section =  "Fenced code blocks",
     html =  "<p><code>foo</code></p>\n",
-    start_line =  1650,
-    end_line =  1656,
-    example =  90
+    example =  91,
+    start_line =  1666,
+    end_line =  1672,
+    section =  "Fenced code blocks"
   },
   {
     markdown =  "```\naaa\n~~~\n```\n",
-    section =  "Fenced code blocks",
     html =  "<pre><code>aaa\n~~~\n</code></pre>\n",
-    start_line =  1661,
-    end_line =  1670,
-    example =  91
+    example =  92,
+    start_line =  1677,
+    end_line =  1686,
+    section =  "Fenced code blocks"
   },
   {
     markdown =  "~~~\naaa\n```\n~~~\n",
-    section =  "Fenced code blocks",
     html =  "<pre><code>aaa\n```\n</code></pre>\n",
-    start_line =  1673,
-    end_line =  1682,
-    example =  92
+    example =  93,
+    start_line =  1689,
+    end_line =  1698,
+    section =  "Fenced code blocks"
   },
   {
     markdown =  "````\naaa\n```\n``````\n",
-    section =  "Fenced code blocks",
     html =  "<pre><code>aaa\n```\n</code></pre>\n",
-    start_line =  1687,
-    end_line =  1696,
-    example =  93
+    example =  94,
+    start_line =  1703,
+    end_line =  1712,
+    section =  "Fenced code blocks"
   },
   {
     markdown =  "~~~~\naaa\n~~~\n~~~~\n",
-    section =  "Fenced code blocks",
     html =  "<pre><code>aaa\n~~~\n</code></pre>\n",
-    start_line =  1699,
-    end_line =  1708,
-    example =  94
+    example =  95,
+    start_line =  1715,
+    end_line =  1724,
+    section =  "Fenced code blocks"
   },
   {
     markdown =  "```\n",
-    section =  "Fenced code blocks",
     html =  "<pre><code></code></pre>\n",
-    start_line =  1714,
-    end_line =  1718,
-    example =  95
+    example =  96,
+    start_line =  1730,
+    end_line =  1734,
+    section =  "Fenced code blocks"
   },
   {
     markdown =  "`````\n\n```\naaa\n",
-    section =  "Fenced code blocks",
     html =  "<pre><code>\n```\naaa\n</code></pre>\n",
-    start_line =  1721,
-    end_line =  1731,
-    example =  96
+    example =  97,
+    start_line =  1737,
+    end_line =  1747,
+    section =  "Fenced code blocks"
   },
   {
     markdown =  "> ```\n> aaa\n\nbbb\n",
-    section =  "Fenced code blocks",
     html =  "<blockquote>\n<pre><code>aaa\n</code></pre>\n</blockquote>\n<p>bbb</p>\n",
-    start_line =  1734,
-    end_line =  1745,
-    example =  97
+    example =  98,
+    start_line =  1750,
+    end_line =  1761,
+    section =  "Fenced code blocks"
   },
   {
     markdown =  "```\n\n  \n```\n",
-    section =  "Fenced code blocks",
     html =  "<pre><code>\n  \n</code></pre>\n",
-    start_line =  1750,
-    end_line =  1759,
-    example =  98
+    example =  99,
+    start_line =  1766,
+    end_line =  1775,
+    section =  "Fenced code blocks"
   },
   {
     markdown =  "```\n```\n",
-    section =  "Fenced code blocks",
     html =  "<pre><code></code></pre>\n",
-    start_line =  1764,
-    end_line =  1769,
-    example =  99
+    example =  100,
+    start_line =  1780,
+    end_line =  1785,
+    section =  "Fenced code blocks"
   },
   {
     markdown =  " ```\n aaa\naaa\n```\n",
-    section =  "Fenced code blocks",
     html =  "<pre><code>aaa\naaa\n</code></pre>\n",
-    start_line =  1776,
-    end_line =  1785,
-    example =  100
+    example =  101,
+    start_line =  1792,
+    end_line =  1801,
+    section =  "Fenced code blocks"
   },
   {
     markdown =  "  ```\naaa\n  aaa\naaa\n  ```\n",
-    section =  "Fenced code blocks",
     html =  "<pre><code>aaa\naaa\naaa\n</code></pre>\n",
-    start_line =  1788,
-    end_line =  1799,
-    example =  101
+    example =  102,
+    start_line =  1804,
+    end_line =  1815,
+    section =  "Fenced code blocks"
   },
   {
     markdown =  "   ```\n   aaa\n    aaa\n  aaa\n   ```\n",
-    section =  "Fenced code blocks",
     html =  "<pre><code>aaa\n aaa\naaa\n</code></pre>\n",
-    start_line =  1802,
-    end_line =  1813,
-    example =  102
+    example =  103,
+    start_line =  1818,
+    end_line =  1829,
+    section =  "Fenced code blocks"
   },
   {
     markdown =  "    ```\n    aaa\n    ```\n",
-    section =  "Fenced code blocks",
     html =  "<pre><code>```\naaa\n```\n</code></pre>\n",
-    start_line =  1818,
-    end_line =  1827,
-    example =  103
+    example =  104,
+    start_line =  1834,
+    end_line =  1843,
+    section =  "Fenced code blocks"
   },
   {
     markdown =  "```\naaa\n  ```\n",
-    section =  "Fenced code blocks",
     html =  "<pre><code>aaa\n</code></pre>\n",
-    start_line =  1833,
-    end_line =  1840,
-    example =  104
+    example =  105,
+    start_line =  1849,
+    end_line =  1856,
+    section =  "Fenced code blocks"
   },
   {
     markdown =  "   ```\naaa\n  ```\n",
-    section =  "Fenced code blocks",
     html =  "<pre><code>aaa\n</code></pre>\n",
-    start_line =  1843,
-    end_line =  1850,
-    example =  105
+    example =  106,
+    start_line =  1859,
+    end_line =  1866,
+    section =  "Fenced code blocks"
   },
   {
     markdown =  "```\naaa\n    ```\n",
-    section =  "Fenced code blocks",
     html =  "<pre><code>aaa\n    ```\n</code></pre>\n",
-    start_line =  1855,
-    end_line =  1863,
-    example =  106
+    example =  107,
+    start_line =  1871,
+    end_line =  1879,
+    section =  "Fenced code blocks"
   },
   {
     markdown =  "``` ```\naaa\n",
-    section =  "Fenced code blocks",
-    html =  "<p><code></code>\naaa</p>\n",
-    start_line =  1869,
-    end_line =  1875,
-    example =  107
+    html =  "<p><code> </code>\naaa</p>\n",
+    example =  108,
+    start_line =  1885,
+    end_line =  1891,
+    section =  "Fenced code blocks"
   },
   {
     markdown =  "~~~~~~\naaa\n~~~ ~~\n",
-    section =  "Fenced code blocks",
     html =  "<pre><code>aaa\n~~~ ~~\n</code></pre>\n",
-    start_line =  1878,
-    end_line =  1886,
-    example =  108
+    example =  109,
+    start_line =  1894,
+    end_line =  1902,
+    section =  "Fenced code blocks"
   },
   {
     markdown =  "foo\n```\nbar\n```\nbaz\n",
-    section =  "Fenced code blocks",
     html =  "<p>foo</p>\n<pre><code>bar\n</code></pre>\n<p>baz</p>\n",
-    start_line =  1892,
-    end_line =  1903,
-    example =  109
+    example =  110,
+    start_line =  1908,
+    end_line =  1919,
+    section =  "Fenced code blocks"
   },
   {
     markdown =  "foo\n---\n~~~\nbar\n~~~\n# baz\n",
-    section =  "Fenced code blocks",
     html =  "<h2>foo</h2>\n<pre><code>bar\n</code></pre>\n<h1>baz</h1>\n",
-    start_line =  1909,
-    end_line =  1921,
-    example =  110
+    example =  111,
+    start_line =  1925,
+    end_line =  1937,
+    section =  "Fenced code blocks"
   },
   {
     markdown =  "```ruby\ndef foo(x)\n  return 3\nend\n```\n",
-    section =  "Fenced code blocks",
     html =  "<pre><code class=\"language-ruby\">def foo(x)\n  return 3\nend\n</code></pre>\n",
-    start_line =  1929,
-    end_line =  1940,
-    example =  111
+    example =  112,
+    start_line =  1947,
+    end_line =  1958,
+    section =  "Fenced code blocks"
   },
   {
     markdown =  "~~~~    ruby startline=3 $%@#$\ndef foo(x)\n  return 3\nend\n~~~~~~~\n",
-    section =  "Fenced code blocks",
     html =  "<pre><code class=\"language-ruby\">def foo(x)\n  return 3\nend\n</code></pre>\n",
-    start_line =  1943,
-    end_line =  1954,
-    example =  112
+    example =  113,
+    start_line =  1961,
+    end_line =  1972,
+    section =  "Fenced code blocks"
   },
   {
     markdown =  "````;\n````\n",
-    section =  "Fenced code blocks",
     html =  "<pre><code class=\"language-;\"></code></pre>\n",
-    start_line =  1957,
-    end_line =  1962,
-    example =  113
+    example =  114,
+    start_line =  1975,
+    end_line =  1980,
+    section =  "Fenced code blocks"
   },
   {
     markdown =  "``` aa ```\nfoo\n",
-    section =  "Fenced code blocks",
     html =  "<p><code>aa</code>\nfoo</p>\n",
-    start_line =  1967,
-    end_line =  1973,
-    example =  114
+    example =  115,
+    start_line =  1985,
+    end_line =  1991,
+    section =  "Fenced code blocks"
+  },
+  {
+    markdown =  "~~~ aa ``` ~~~\nfoo\n~~~\n",
+    html =  "<pre><code class=\"language-aa\">foo\n</code></pre>\n",
+    example =  116,
+    start_line =  1996,
+    end_line =  2003,
+    section =  "Fenced code blocks"
   },
   {
     markdown =  "```\n``` aaa\n```\n",
-    section =  "Fenced code blocks",
     html =  "<pre><code>``` aaa\n</code></pre>\n",
-    start_line =  1978,
-    end_line =  1985,
-    example =  115
+    example =  117,
+    start_line =  2008,
+    end_line =  2015,
+    section =  "Fenced code blocks"
   },
   {
     markdown =  "<table><tr><td>\n<pre>\n**Hello**,\n\n_world_.\n</pre>\n</td></tr></table>\n",
-    section =  "HTML blocks",
     html =  "<table><tr><td>\n<pre>\n**Hello**,\n<p><em>world</em>.\n</pre></p>\n</td></tr></table>\n",
-    start_line =  2055,
-    end_line =  2070,
-    example =  116
+    example =  118,
+    start_line =  2087,
+    end_line =  2102,
+    section =  "HTML blocks"
   },
   {
     markdown =  "<table>\n  <tr>\n    <td>\n           hi\n    </td>\n  </tr>\n</table>\n\nokay.\n",
-    section =  "HTML blocks",
     html =  "<table>\n  <tr>\n    <td>\n           hi\n    </td>\n  </tr>\n</table>\n<p>okay.</p>\n",
-    start_line =  2084,
-    end_line =  2103,
-    example =  117
+    example =  119,
+    start_line =  2116,
+    end_line =  2135,
+    section =  "HTML blocks"
   },
   {
     markdown =  " <div>\n  *hello*\n         <foo><a>\n",
-    section =  "HTML blocks",
     html =  " <div>\n  *hello*\n         <foo><a>\n",
-    start_line =  2106,
-    end_line =  2114,
-    example =  118
+    example =  120,
+    start_line =  2138,
+    end_line =  2146,
+    section =  "HTML blocks"
   },
   {
     markdown =  "</div>\n*foo*\n",
-    section =  "HTML blocks",
     html =  "</div>\n*foo*\n",
-    start_line =  2119,
-    end_line =  2125,
-    example =  119
+    example =  121,
+    start_line =  2151,
+    end_line =  2157,
+    section =  "HTML blocks"
   },
   {
     markdown =  "<DIV CLASS=\"foo\">\n\n*Markdown*\n\n</DIV>\n",
-    section =  "HTML blocks",
     html =  "<DIV CLASS=\"foo\">\n<p><em>Markdown</em></p>\n</DIV>\n",
-    start_line =  2130,
-    end_line =  2140,
-    example =  120
+    example =  122,
+    start_line =  2162,
+    end_line =  2172,
+    section =  "HTML blocks"
   },
   {
     markdown =  "<div id=\"foo\"\n  class=\"bar\">\n</div>\n",
-    section =  "HTML blocks",
     html =  "<div id=\"foo\"\n  class=\"bar\">\n</div>\n",
-    start_line =  2146,
-    end_line =  2154,
-    example =  121
+    example =  123,
+    start_line =  2178,
+    end_line =  2186,
+    section =  "HTML blocks"
   },
   {
     markdown =  "<div id=\"foo\" class=\"bar\n  baz\">\n</div>\n",
-    section =  "HTML blocks",
     html =  "<div id=\"foo\" class=\"bar\n  baz\">\n</div>\n",
-    start_line =  2157,
-    end_line =  2165,
-    example =  122
+    example =  124,
+    start_line =  2189,
+    end_line =  2197,
+    section =  "HTML blocks"
   },
   {
     markdown =  "<div>\n*foo*\n\n*bar*\n",
-    section =  "HTML blocks",
     html =  "<div>\n*foo*\n<p><em>bar</em></p>\n",
-    start_line =  2169,
-    end_line =  2178,
-    example =  123
+    example =  125,
+    start_line =  2201,
+    end_line =  2210,
+    section =  "HTML blocks"
   },
   {
     markdown =  "<div id=\"foo\"\n*hi*\n",
-    section =  "HTML blocks",
     html =  "<div id=\"foo\"\n*hi*\n",
-    start_line =  2185,
-    end_line =  2191,
-    example =  124
+    example =  126,
+    start_line =  2217,
+    end_line =  2223,
+    section =  "HTML blocks"
   },
   {
     markdown =  "<div class\nfoo\n",
-    section =  "HTML blocks",
     html =  "<div class\nfoo\n",
-    start_line =  2194,
-    end_line =  2200,
-    example =  125
+    example =  127,
+    start_line =  2226,
+    end_line =  2232,
+    section =  "HTML blocks"
   },
   {
     markdown =  "<div *???-&&&-<---\n*foo*\n",
-    section =  "HTML blocks",
     html =  "<div *???-&&&-<---\n*foo*\n",
-    start_line =  2206,
-    end_line =  2212,
-    example =  126
+    example =  128,
+    start_line =  2238,
+    end_line =  2244,
+    section =  "HTML blocks"
   },
   {
     markdown =  "<div><a href=\"bar\">*foo*</a></div>\n",
-    section =  "HTML blocks",
     html =  "<div><a href=\"bar\">*foo*</a></div>\n",
-    start_line =  2218,
-    end_line =  2222,
-    example =  127
+    example =  129,
+    start_line =  2250,
+    end_line =  2254,
+    section =  "HTML blocks"
   },
   {
     markdown =  "<table><tr><td>\nfoo\n</td></tr></table>\n",
-    section =  "HTML blocks",
     html =  "<table><tr><td>\nfoo\n</td></tr></table>\n",
-    start_line =  2225,
-    end_line =  2233,
-    example =  128
+    example =  130,
+    start_line =  2257,
+    end_line =  2265,
+    section =  "HTML blocks"
   },
   {
     markdown =  "<div></div>\n``` c\nint x = 33;\n```\n",
-    section =  "HTML blocks",
     html =  "<div></div>\n``` c\nint x = 33;\n```\n",
-    start_line =  2242,
-    end_line =  2252,
-    example =  129
+    example =  131,
+    start_line =  2274,
+    end_line =  2284,
+    section =  "HTML blocks"
   },
   {
     markdown =  "<a href=\"foo\">\n*bar*\n</a>\n",
-    section =  "HTML blocks",
     html =  "<a href=\"foo\">\n*bar*\n</a>\n",
-    start_line =  2259,
-    end_line =  2267,
-    example =  130
+    example =  132,
+    start_line =  2291,
+    end_line =  2299,
+    section =  "HTML blocks"
   },
   {
     markdown =  "<Warning>\n*bar*\n</Warning>\n",
-    section =  "HTML blocks",
     html =  "<Warning>\n*bar*\n</Warning>\n",
-    start_line =  2272,
-    end_line =  2280,
-    example =  131
+    example =  133,
+    start_line =  2304,
+    end_line =  2312,
+    section =  "HTML blocks"
   },
   {
     markdown =  "<i class=\"foo\">\n*bar*\n</i>\n",
-    section =  "HTML blocks",
     html =  "<i class=\"foo\">\n*bar*\n</i>\n",
-    start_line =  2283,
-    end_line =  2291,
-    example =  132
+    example =  134,
+    start_line =  2315,
+    end_line =  2323,
+    section =  "HTML blocks"
   },
   {
     markdown =  "</ins>\n*bar*\n",
-    section =  "HTML blocks",
     html =  "</ins>\n*bar*\n",
-    start_line =  2294,
-    end_line =  2300,
-    example =  133
+    example =  135,
+    start_line =  2326,
+    end_line =  2332,
+    section =  "HTML blocks"
   },
   {
     markdown =  "<del>\n*foo*\n</del>\n",
-    section =  "HTML blocks",
     html =  "<del>\n*foo*\n</del>\n",
-    start_line =  2309,
-    end_line =  2317,
-    example =  134
+    example =  136,
+    start_line =  2341,
+    end_line =  2349,
+    section =  "HTML blocks"
   },
   {
     markdown =  "<del>\n\n*foo*\n\n</del>\n",
-    section =  "HTML blocks",
     html =  "<del>\n<p><em>foo</em></p>\n</del>\n",
-    start_line =  2324,
-    end_line =  2334,
-    example =  135
+    example =  137,
+    start_line =  2356,
+    end_line =  2366,
+    section =  "HTML blocks"
   },
   {
     markdown =  "<del>*foo*</del>\n",
-    section =  "HTML blocks",
     html =  "<p><del><em>foo</em></del></p>\n",
-    start_line =  2342,
-    end_line =  2346,
-    example =  136
+    example =  138,
+    start_line =  2374,
+    end_line =  2378,
+    section =  "HTML blocks"
   },
   {
     markdown =  "<pre language=\"haskell\"><code>\nimport Text.HTML.TagSoup\n\nmain :: IO ()\nmain = print $ parseTags tags\n</code></pre>\nokay\n",
-    section =  "HTML blocks",
     html =  "<pre language=\"haskell\"><code>\nimport Text.HTML.TagSoup\n\nmain :: IO ()\nmain = print $ parseTags tags\n</code></pre>\n<p>okay</p>\n",
-    start_line =  2358,
-    end_line =  2374,
-    example =  137
+    example =  139,
+    start_line =  2390,
+    end_line =  2406,
+    section =  "HTML blocks"
   },
   {
     markdown =  "<script type=\"text/javascript\">\n// JavaScript example\n\ndocument.getElementById(\"demo\").innerHTML = \"Hello JavaScript!\";\n</script>\nokay\n",
-    section =  "HTML blocks",
     html =  "<script type=\"text/javascript\">\n// JavaScript example\n\ndocument.getElementById(\"demo\").innerHTML = \"Hello JavaScript!\";\n</script>\n<p>okay</p>\n",
-    start_line =  2379,
-    end_line =  2393,
-    example =  138
+    example =  140,
+    start_line =  2411,
+    end_line =  2425,
+    section =  "HTML blocks"
   },
   {
     markdown =  "<style\n  type=\"text/css\">\nh1 {color:red;}\n\np {color:blue;}\n</style>\nokay\n",
-    section =  "HTML blocks",
     html =  "<style\n  type=\"text/css\">\nh1 {color:red;}\n\np {color:blue;}\n</style>\n<p>okay</p>\n",
-    start_line =  2398,
-    end_line =  2414,
-    example =  139
+    example =  141,
+    start_line =  2430,
+    end_line =  2446,
+    section =  "HTML blocks"
   },
   {
     markdown =  "<style\n  type=\"text/css\">\n\nfoo\n",
-    section =  "HTML blocks",
     html =  "<style\n  type=\"text/css\">\n\nfoo\n",
-    start_line =  2421,
-    end_line =  2431,
-    example =  140
+    example =  142,
+    start_line =  2453,
+    end_line =  2463,
+    section =  "HTML blocks"
   },
   {
     markdown =  "> <div>\n> foo\n\nbar\n",
-    section =  "HTML blocks",
     html =  "<blockquote>\n<div>\nfoo\n</blockquote>\n<p>bar</p>\n",
-    start_line =  2434,
-    end_line =  2445,
-    example =  141
+    example =  143,
+    start_line =  2466,
+    end_line =  2477,
+    section =  "HTML blocks"
   },
   {
     markdown =  "- <div>\n- foo\n",
-    section =  "HTML blocks",
     html =  "<ul>\n<li>\n<div>\n</li>\n<li>foo</li>\n</ul>\n",
-    start_line =  2448,
-    end_line =  2458,
-    example =  142
+    example =  144,
+    start_line =  2480,
+    end_line =  2490,
+    section =  "HTML blocks"
   },
   {
     markdown =  "<style>p{color:red;}</style>\n*foo*\n",
-    section =  "HTML blocks",
     html =  "<style>p{color:red;}</style>\n<p><em>foo</em></p>\n",
-    start_line =  2463,
-    end_line =  2469,
-    example =  143
+    example =  145,
+    start_line =  2495,
+    end_line =  2501,
+    section =  "HTML blocks"
   },
   {
     markdown =  "<!-- foo -->*bar*\n*baz*\n",
-    section =  "HTML blocks",
     html =  "<!-- foo -->*bar*\n<p><em>baz</em></p>\n",
-    start_line =  2472,
-    end_line =  2478,
-    example =  144
+    example =  146,
+    start_line =  2504,
+    end_line =  2510,
+    section =  "HTML blocks"
   },
   {
     markdown =  "<script>\nfoo\n</script>1. *bar*\n",
-    section =  "HTML blocks",
     html =  "<script>\nfoo\n</script>1. *bar*\n",
-    start_line =  2484,
-    end_line =  2492,
-    example =  145
+    example =  147,
+    start_line =  2516,
+    end_line =  2524,
+    section =  "HTML blocks"
   },
   {
     markdown =  "<!-- Foo\n\nbar\n   baz -->\nokay\n",
-    section =  "HTML blocks",
     html =  "<!-- Foo\n\nbar\n   baz -->\n<p>okay</p>\n",
-    start_line =  2497,
-    end_line =  2509,
-    example =  146
+    example =  148,
+    start_line =  2529,
+    end_line =  2541,
+    section =  "HTML blocks"
   },
   {
     markdown =  "<?php\n\n  echo '>';\n\n?>\nokay\n",
-    section =  "HTML blocks",
     html =  "<?php\n\n  echo '>';\n\n?>\n<p>okay</p>\n",
-    start_line =  2515,
-    end_line =  2529,
-    example =  147
+    example =  149,
+    start_line =  2547,
+    end_line =  2561,
+    section =  "HTML blocks"
   },
   {
     markdown =  "<!DOCTYPE html>\n",
-    section =  "HTML blocks",
     html =  "<!DOCTYPE html>\n",
-    start_line =  2534,
-    end_line =  2538,
-    example =  148
+    example =  150,
+    start_line =  2566,
+    end_line =  2570,
+    section =  "HTML blocks"
   },
   {
     markdown =  "<![CDATA[\nfunction matchwo(a,b)\n{\n  if (a < b && a < 0) then {\n    return 1;\n\n  } else {\n\n    return 0;\n  }\n}\n]]>\nokay\n",
-    section =  "HTML blocks",
     html =  "<![CDATA[\nfunction matchwo(a,b)\n{\n  if (a < b && a < 0) then {\n    return 1;\n\n  } else {\n\n    return 0;\n  }\n}\n]]>\n<p>okay</p>\n",
-    start_line =  2543,
-    end_line =  2571,
-    example =  149
+    example =  151,
+    start_line =  2575,
+    end_line =  2603,
+    section =  "HTML blocks"
   },
   {
     markdown =  "  <!-- foo -->\n\n    <!-- foo -->\n",
-    section =  "HTML blocks",
     html =  "  <!-- foo -->\n<pre><code>&lt;!-- foo --&gt;\n</code></pre>\n",
-    start_line =  2576,
-    end_line =  2584,
-    example =  150
+    example =  152,
+    start_line =  2608,
+    end_line =  2616,
+    section =  "HTML blocks"
   },
   {
     markdown =  "  <div>\n\n    <div>\n",
-    section =  "HTML blocks",
     html =  "  <div>\n<pre><code>&lt;div&gt;\n</code></pre>\n",
-    start_line =  2587,
-    end_line =  2595,
-    example =  151
+    example =  153,
+    start_line =  2619,
+    end_line =  2627,
+    section =  "HTML blocks"
   },
   {
     markdown =  "Foo\n<div>\nbar\n</div>\n",
-    section =  "HTML blocks",
     html =  "<p>Foo</p>\n<div>\nbar\n</div>\n",
-    start_line =  2601,
-    end_line =  2611,
-    example =  152
+    example =  154,
+    start_line =  2633,
+    end_line =  2643,
+    section =  "HTML blocks"
   },
   {
     markdown =  "<div>\nbar\n</div>\n*foo*\n",
-    section =  "HTML blocks",
     html =  "<div>\nbar\n</div>\n*foo*\n",
-    start_line =  2617,
-    end_line =  2627,
-    example =  153
+    example =  155,
+    start_line =  2650,
+    end_line =  2660,
+    section =  "HTML blocks"
   },
   {
     markdown =  "Foo\n<a href=\"bar\">\nbaz\n",
-    section =  "HTML blocks",
     html =  "<p>Foo\n<a href=\"bar\">\nbaz</p>\n",
-    start_line =  2632,
-    end_line =  2640,
-    example =  154
+    example =  156,
+    start_line =  2665,
+    end_line =  2673,
+    section =  "HTML blocks"
   },
   {
     markdown =  "<div>\n\n*Emphasized* text.\n\n</div>\n",
-    section =  "HTML blocks",
     html =  "<div>\n<p><em>Emphasized</em> text.</p>\n</div>\n",
-    start_line =  2673,
-    end_line =  2683,
-    example =  155
+    example =  157,
+    start_line =  2706,
+    end_line =  2716,
+    section =  "HTML blocks"
   },
   {
     markdown =  "<div>\n*Emphasized* text.\n</div>\n",
-    section =  "HTML blocks",
     html =  "<div>\n*Emphasized* text.\n</div>\n",
-    start_line =  2686,
-    end_line =  2694,
-    example =  156
+    example =  158,
+    start_line =  2719,
+    end_line =  2727,
+    section =  "HTML blocks"
   },
   {
     markdown =  "<table>\n\n<tr>\n\n<td>\nHi\n</td>\n\n</tr>\n\n</table>\n",
-    section =  "HTML blocks",
     html =  "<table>\n<tr>\n<td>\nHi\n</td>\n</tr>\n</table>\n",
-    start_line =  2708,
-    end_line =  2728,
-    example =  157
+    example =  159,
+    start_line =  2741,
+    end_line =  2761,
+    section =  "HTML blocks"
   },
   {
     markdown =  "<table>\n\n  <tr>\n\n    <td>\n      Hi\n    </td>\n\n  </tr>\n\n</table>\n",
-    section =  "HTML blocks",
     html =  "<table>\n  <tr>\n<pre><code>&lt;td&gt;\n  Hi\n&lt;/td&gt;\n</code></pre>\n  </tr>\n</table>\n",
-    start_line =  2735,
-    end_line =  2756,
-    example =  158
+    example =  160,
+    start_line =  2768,
+    end_line =  2789,
+    section =  "HTML blocks"
   },
   {
     markdown =  "[foo]: /url \"title\"\n\n[foo]\n",
-    section =  "Link reference definitions",
     html =  "<p><a href=\"/url\" title=\"title\">foo</a></p>\n",
-    start_line =  2783,
-    end_line =  2789,
-    example =  159
+    example =  161,
+    start_line =  2816,
+    end_line =  2822,
+    section =  "Link reference definitions"
   },
   {
     markdown =  "   [foo]: \n      /url  \n           'the title'  \n\n[foo]\n",
-    section =  "Link reference definitions",
     html =  "<p><a href=\"/url\" title=\"the title\">foo</a></p>\n",
-    start_line =  2792,
-    end_line =  2800,
-    example =  160
+    example =  162,
+    start_line =  2825,
+    end_line =  2833,
+    section =  "Link reference definitions"
   },
   {
     markdown =  "[Foo*bar\\]]:my_(url) 'title (with parens)'\n\n[Foo*bar\\]]\n",
-    section =  "Link reference definitions",
     html =  "<p><a href=\"my_(url)\" title=\"title (with parens)\">Foo*bar]</a></p>\n",
-    start_line =  2803,
-    end_line =  2809,
-    example =  161
+    example =  163,
+    start_line =  2836,
+    end_line =  2842,
+    section =  "Link reference definitions"
   },
   {
-    markdown =  "[Foo bar]:\n<my%20url>\n'title'\n\n[Foo bar]\n",
-    section =  "Link reference definitions",
+    markdown =  "[Foo bar]:\n<my url>\n'title'\n\n[Foo bar]\n",
     html =  "<p><a href=\"my%20url\" title=\"title\">Foo bar</a></p>\n",
-    start_line =  2812,
-    end_line =  2820,
-    example =  162
+    example =  164,
+    start_line =  2845,
+    end_line =  2853,
+    section =  "Link reference definitions"
   },
   {
     markdown =  "[foo]: /url '\ntitle\nline1\nline2\n'\n\n[foo]\n",
-    section =  "Link reference definitions",
     html =  "<p><a href=\"/url\" title=\"\ntitle\nline1\nline2\n\">foo</a></p>\n",
-    start_line =  2825,
-    end_line =  2839,
-    example =  163
+    example =  165,
+    start_line =  2858,
+    end_line =  2872,
+    section =  "Link reference definitions"
   },
   {
     markdown =  "[foo]: /url 'title\n\nwith blank line'\n\n[foo]\n",
-    section =  "Link reference definitions",
     html =  "<p>[foo]: /url 'title</p>\n<p>with blank line'</p>\n<p>[foo]</p>\n",
-    start_line =  2844,
-    end_line =  2854,
-    example =  164
+    example =  166,
+    start_line =  2877,
+    end_line =  2887,
+    section =  "Link reference definitions"
   },
   {
     markdown =  "[foo]:\n/url\n\n[foo]\n",
-    section =  "Link reference definitions",
     html =  "<p><a href=\"/url\">foo</a></p>\n",
-    start_line =  2859,
-    end_line =  2866,
-    example =  165
+    example =  167,
+    start_line =  2892,
+    end_line =  2899,
+    section =  "Link reference definitions"
   },
   {
     markdown =  "[foo]:\n\n[foo]\n",
-    section =  "Link reference definitions",
     html =  "<p>[foo]:</p>\n<p>[foo]</p>\n",
-    start_line =  2871,
-    end_line =  2878,
-    example =  166
+    example =  168,
+    start_line =  2904,
+    end_line =  2911,
+    section =  "Link reference definitions"
+  },
+  {
+    markdown =  "[foo]: <>\n\n[foo]\n",
+    html =  "<p><a href=\"\">foo</a></p>\n",
+    example =  169,
+    start_line =  2916,
+    end_line =  2922,
+    section =  "Link reference definitions"
+  },
+  {
+    markdown =  "[foo]: <bar>(baz)\n\n[foo]\n",
+    html =  "<p>[foo]: <bar>(baz)</p>\n<p>[foo]</p>\n",
+    example =  170,
+    start_line =  2927,
+    end_line =  2934,
+    section =  "Link reference definitions"
   },
   {
     markdown =  "[foo]: /url\\bar\\*baz \"foo\\\"bar\\baz\"\n\n[foo]\n",
-    section =  "Link reference definitions",
     html =  "<p><a href=\"/url%5Cbar*baz\" title=\"foo&quot;bar\\baz\">foo</a></p>\n",
-    start_line =  2884,
-    end_line =  2890,
-    example =  167
+    example =  171,
+    start_line =  2940,
+    end_line =  2946,
+    section =  "Link reference definitions"
   },
   {
     markdown =  "[foo]\n\n[foo]: url\n",
-    section =  "Link reference definitions",
     html =  "<p><a href=\"url\">foo</a></p>\n",
-    start_line =  2895,
-    end_line =  2901,
-    example =  168
+    example =  172,
+    start_line =  2951,
+    end_line =  2957,
+    section =  "Link reference definitions"
   },
   {
     markdown =  "[foo]\n\n[foo]: first\n[foo]: second\n",
-    section =  "Link reference definitions",
     html =  "<p><a href=\"first\">foo</a></p>\n",
-    start_line =  2907,
-    end_line =  2914,
-    example =  169
+    example =  173,
+    start_line =  2963,
+    end_line =  2970,
+    section =  "Link reference definitions"
   },
   {
     markdown =  "[FOO]: /url\n\n[Foo]\n",
-    section =  "Link reference definitions",
     html =  "<p><a href=\"/url\">Foo</a></p>\n",
-    start_line =  2920,
-    end_line =  2926,
-    example =  170
+    example =  174,
+    start_line =  2976,
+    end_line =  2982,
+    section =  "Link reference definitions"
   },
   {
     markdown =  "[ΑΓΩ]: /φου\n\n[αγω]\n",
-    section =  "Link reference definitions",
     html =  "<p><a href=\"/%CF%86%CE%BF%CF%85\">αγω</a></p>\n",
-    start_line =  2929,
-    end_line =  2935,
-    example =  171
+    example =  175,
+    start_line =  2985,
+    end_line =  2991,
+    section =  "Link reference definitions"
   },
   {
     markdown =  "[foo]: /url\n",
-    section =  "Link reference definitions",
     html =  "",
-    start_line =  2941,
-    end_line =  2944,
-    example =  172
+    example =  176,
+    start_line =  2997,
+    end_line =  3000,
+    section =  "Link reference definitions"
   },
   {
     markdown =  "[\nfoo\n]: /url\nbar\n",
-    section =  "Link reference definitions",
     html =  "<p>bar</p>\n",
-    start_line =  2949,
-    end_line =  2956,
-    example =  173
+    example =  177,
+    start_line =  3005,
+    end_line =  3012,
+    section =  "Link reference definitions"
   },
   {
     markdown =  "[foo]: /url \"title\" ok\n",
-    section =  "Link reference definitions",
     html =  "<p>[foo]: /url &quot;title&quot; ok</p>\n",
-    start_line =  2962,
-    end_line =  2966,
-    example =  174
+    example =  178,
+    start_line =  3018,
+    end_line =  3022,
+    section =  "Link reference definitions"
   },
   {
     markdown =  "[foo]: /url\n\"title\" ok\n",
-    section =  "Link reference definitions",
     html =  "<p>&quot;title&quot; ok</p>\n",
-    start_line =  2971,
-    end_line =  2976,
-    example =  175
+    example =  179,
+    start_line =  3027,
+    end_line =  3032,
+    section =  "Link reference definitions"
   },
   {
     markdown =  "    [foo]: /url \"title\"\n\n[foo]\n",
-    section =  "Link reference definitions",
     html =  "<pre><code>[foo]: /url &quot;title&quot;\n</code></pre>\n<p>[foo]</p>\n",
-    start_line =  2982,
-    end_line =  2990,
-    example =  176
+    example =  180,
+    start_line =  3038,
+    end_line =  3046,
+    section =  "Link reference definitions"
   },
   {
     markdown =  "```\n[foo]: /url\n```\n\n[foo]\n",
-    section =  "Link reference definitions",
     html =  "<pre><code>[foo]: /url\n</code></pre>\n<p>[foo]</p>\n",
-    start_line =  2996,
-    end_line =  3006,
-    example =  177
+    example =  181,
+    start_line =  3052,
+    end_line =  3062,
+    section =  "Link reference definitions"
   },
   {
     markdown =  "Foo\n[bar]: /baz\n\n[bar]\n",
-    section =  "Link reference definitions",
     html =  "<p>Foo\n[bar]: /baz</p>\n<p>[bar]</p>\n",
-    start_line =  3011,
-    end_line =  3020,
-    example =  178
+    example =  182,
+    start_line =  3067,
+    end_line =  3076,
+    section =  "Link reference definitions"
   },
   {
     markdown =  "# [Foo]\n[foo]: /url\n> bar\n",
-    section =  "Link reference definitions",
     html =  "<h1><a href=\"/url\">Foo</a></h1>\n<blockquote>\n<p>bar</p>\n</blockquote>\n",
-    start_line =  3026,
-    end_line =  3035,
-    example =  179
+    example =  183,
+    start_line =  3082,
+    end_line =  3091,
+    section =  "Link reference definitions"
+  },
+  {
+    markdown =  "[foo]: /url\nbar\n===\n[foo]\n",
+    html =  "<h1>bar</h1>\n<p><a href=\"/url\">foo</a></p>\n",
+    example =  184,
+    start_line =  3093,
+    end_line =  3101,
+    section =  "Link reference definitions"
+  },
+  {
+    markdown =  "[foo]: /url\n===\n[foo]\n",
+    html =  "<p>===\n<a href=\"/url\">foo</a></p>\n",
+    example =  185,
+    start_line =  3103,
+    end_line =  3110,
+    section =  "Link reference definitions"
   },
   {
     markdown =  "[foo]: /foo-url \"foo\"\n[bar]: /bar-url\n  \"bar\"\n[baz]: /baz-url\n\n[foo],\n[bar],\n[baz]\n",
-    section =  "Link reference definitions",
     html =  "<p><a href=\"/foo-url\" title=\"foo\">foo</a>,\n<a href=\"/bar-url\" title=\"bar\">bar</a>,\n<a href=\"/baz-url\">baz</a></p>\n",
-    start_line =  3041,
-    end_line =  3054,
-    example =  180
+    example =  186,
+    start_line =  3116,
+    end_line =  3129,
+    section =  "Link reference definitions"
   },
   {
     markdown =  "[foo]\n\n> [foo]: /url\n",
-    section =  "Link reference definitions",
     html =  "<p><a href=\"/url\">foo</a></p>\n<blockquote>\n</blockquote>\n",
-    start_line =  3062,
-    end_line =  3070,
-    example =  181
+    example =  187,
+    start_line =  3137,
+    end_line =  3145,
+    section =  "Link reference definitions"
+  },
+  {
+    markdown =  "[foo]: /url\n",
+    html =  "",
+    example =  188,
+    start_line =  3154,
+    end_line =  3157,
+    section =  "Link reference definitions"
   },
   {
     markdown =  "aaa\n\nbbb\n",
-    section =  "Paragraphs",
     html =  "<p>aaa</p>\n<p>bbb</p>\n",
-    start_line =  3085,
-    end_line =  3092,
-    example =  182
+    example =  189,
+    start_line =  3171,
+    end_line =  3178,
+    section =  "Paragraphs"
   },
   {
     markdown =  "aaa\nbbb\n\nccc\nddd\n",
-    section =  "Paragraphs",
     html =  "<p>aaa\nbbb</p>\n<p>ccc\nddd</p>\n",
-    start_line =  3097,
-    end_line =  3108,
-    example =  183
+    example =  190,
+    start_line =  3183,
+    end_line =  3194,
+    section =  "Paragraphs"
   },
   {
     markdown =  "aaa\n\n\nbbb\n",
-    section =  "Paragraphs",
     html =  "<p>aaa</p>\n<p>bbb</p>\n",
-    start_line =  3113,
-    end_line =  3121,
-    example =  184
+    example =  191,
+    start_line =  3199,
+    end_line =  3207,
+    section =  "Paragraphs"
   },
   {
     markdown =  "  aaa\n bbb\n",
-    section =  "Paragraphs",
     html =  "<p>aaa\nbbb</p>\n",
-    start_line =  3126,
-    end_line =  3132,
-    example =  185
+    example =  192,
+    start_line =  3212,
+    end_line =  3218,
+    section =  "Paragraphs"
   },
   {
     markdown =  "aaa\n             bbb\n                                       ccc\n",
-    section =  "Paragraphs",
     html =  "<p>aaa\nbbb\nccc</p>\n",
-    start_line =  3138,
-    end_line =  3146,
-    example =  186
+    example =  193,
+    start_line =  3224,
+    end_line =  3232,
+    section =  "Paragraphs"
   },
   {
     markdown =  "   aaa\nbbb\n",
-    section =  "Paragraphs",
     html =  "<p>aaa\nbbb</p>\n",
-    start_line =  3152,
-    end_line =  3158,
-    example =  187
+    example =  194,
+    start_line =  3238,
+    end_line =  3244,
+    section =  "Paragraphs"
   },
   {
     markdown =  "    aaa\nbbb\n",
-    section =  "Paragraphs",
     html =  "<pre><code>aaa\n</code></pre>\n<p>bbb</p>\n",
-    start_line =  3161,
-    end_line =  3168,
-    example =  188
+    example =  195,
+    start_line =  3247,
+    end_line =  3254,
+    section =  "Paragraphs"
   },
   {
     markdown =  "aaa     \nbbb     \n",
-    section =  "Paragraphs",
     html =  "<p>aaa<br />\nbbb</p>\n",
-    start_line =  3175,
-    end_line =  3181,
-    example =  189
+    example =  196,
+    start_line =  3261,
+    end_line =  3267,
+    section =  "Paragraphs"
   },
   {
     markdown =  "  \n\naaa\n  \n\n# aaa\n\n  \n",
-    section =  "Blank lines",
     html =  "<p>aaa</p>\n<h1>aaa</h1>\n",
-    start_line =  3192,
-    end_line =  3204,
-    example =  190
+    example =  197,
+    start_line =  3278,
+    end_line =  3290,
+    section =  "Blank lines"
   },
   {
     markdown =  "> # Foo\n> bar\n> baz\n",
-    section =  "Block quotes",
     html =  "<blockquote>\n<h1>Foo</h1>\n<p>bar\nbaz</p>\n</blockquote>\n",
-    start_line =  3258,
-    end_line =  3268,
-    example =  191
+    example =  198,
+    start_line =  3344,
+    end_line =  3354,
+    section =  "Block quotes"
   },
   {
     markdown =  "># Foo\n>bar\n> baz\n",
-    section =  "Block quotes",
     html =  "<blockquote>\n<h1>Foo</h1>\n<p>bar\nbaz</p>\n</blockquote>\n",
-    start_line =  3273,
-    end_line =  3283,
-    example =  192
+    example =  199,
+    start_line =  3359,
+    end_line =  3369,
+    section =  "Block quotes"
   },
   {
     markdown =  "   > # Foo\n   > bar\n > baz\n",
-    section =  "Block quotes",
     html =  "<blockquote>\n<h1>Foo</h1>\n<p>bar\nbaz</p>\n</blockquote>\n",
-    start_line =  3288,
-    end_line =  3298,
-    example =  193
+    example =  200,
+    start_line =  3374,
+    end_line =  3384,
+    section =  "Block quotes"
   },
   {
     markdown =  "    > # Foo\n    > bar\n    > baz\n",
-    section =  "Block quotes",
     html =  "<pre><code>&gt; # Foo\n&gt; bar\n&gt; baz\n</code></pre>\n",
-    start_line =  3303,
-    end_line =  3312,
-    example =  194
+    example =  201,
+    start_line =  3389,
+    end_line =  3398,
+    section =  "Block quotes"
   },
   {
     markdown =  "> # Foo\n> bar\nbaz\n",
-    section =  "Block quotes",
     html =  "<blockquote>\n<h1>Foo</h1>\n<p>bar\nbaz</p>\n</blockquote>\n",
-    start_line =  3318,
-    end_line =  3328,
-    example =  195
+    example =  202,
+    start_line =  3404,
+    end_line =  3414,
+    section =  "Block quotes"
   },
   {
     markdown =  "> bar\nbaz\n> foo\n",
-    section =  "Block quotes",
     html =  "<blockquote>\n<p>bar\nbaz\nfoo</p>\n</blockquote>\n",
-    start_line =  3334,
-    end_line =  3344,
-    example =  196
+    example =  203,
+    start_line =  3420,
+    end_line =  3430,
+    section =  "Block quotes"
   },
   {
     markdown =  "> foo\n---\n",
-    section =  "Block quotes",
     html =  "<blockquote>\n<p>foo</p>\n</blockquote>\n<hr />\n",
-    start_line =  3358,
-    end_line =  3366,
-    example =  197
+    example =  204,
+    start_line =  3444,
+    end_line =  3452,
+    section =  "Block quotes"
   },
   {
     markdown =  "> - foo\n- bar\n",
-    section =  "Block quotes",
     html =  "<blockquote>\n<ul>\n<li>foo</li>\n</ul>\n</blockquote>\n<ul>\n<li>bar</li>\n</ul>\n",
-    start_line =  3378,
-    end_line =  3390,
-    example =  198
+    example =  205,
+    start_line =  3464,
+    end_line =  3476,
+    section =  "Block quotes"
   },
   {
     markdown =  ">     foo\n    bar\n",
-    section =  "Block quotes",
     html =  "<blockquote>\n<pre><code>foo\n</code></pre>\n</blockquote>\n<pre><code>bar\n</code></pre>\n",
-    start_line =  3396,
-    end_line =  3406,
-    example =  199
+    example =  206,
+    start_line =  3482,
+    end_line =  3492,
+    section =  "Block quotes"
   },
   {
     markdown =  "> ```\nfoo\n```\n",
-    section =  "Block quotes",
     html =  "<blockquote>\n<pre><code></code></pre>\n</blockquote>\n<p>foo</p>\n<pre><code></code></pre>\n",
-    start_line =  3409,
-    end_line =  3419,
-    example =  200
+    example =  207,
+    start_line =  3495,
+    end_line =  3505,
+    section =  "Block quotes"
   },
   {
     markdown =  "> foo\n    - bar\n",
-    section =  "Block quotes",
     html =  "<blockquote>\n<p>foo\n- bar</p>\n</blockquote>\n",
-    start_line =  3425,
-    end_line =  3433,
-    example =  201
+    example =  208,
+    start_line =  3511,
+    end_line =  3519,
+    section =  "Block quotes"
   },
   {
     markdown =  ">\n",
-    section =  "Block quotes",
     html =  "<blockquote>\n</blockquote>\n",
-    start_line =  3449,
-    end_line =  3454,
-    example =  202
+    example =  209,
+    start_line =  3535,
+    end_line =  3540,
+    section =  "Block quotes"
   },
   {
     markdown =  ">\n>  \n> \n",
-    section =  "Block quotes",
     html =  "<blockquote>\n</blockquote>\n",
-    start_line =  3457,
-    end_line =  3464,
-    example =  203
+    example =  210,
+    start_line =  3543,
+    end_line =  3550,
+    section =  "Block quotes"
   },
   {
     markdown =  ">\n> foo\n>  \n",
-    section =  "Block quotes",
     html =  "<blockquote>\n<p>foo</p>\n</blockquote>\n",
-    start_line =  3469,
-    end_line =  3477,
-    example =  204
+    example =  211,
+    start_line =  3555,
+    end_line =  3563,
+    section =  "Block quotes"
   },
   {
     markdown =  "> foo\n\n> bar\n",
-    section =  "Block quotes",
     html =  "<blockquote>\n<p>foo</p>\n</blockquote>\n<blockquote>\n<p>bar</p>\n</blockquote>\n",
-    start_line =  3482,
-    end_line =  3493,
-    example =  205
+    example =  212,
+    start_line =  3568,
+    end_line =  3579,
+    section =  "Block quotes"
   },
   {
     markdown =  "> foo\n> bar\n",
-    section =  "Block quotes",
     html =  "<blockquote>\n<p>foo\nbar</p>\n</blockquote>\n",
-    start_line =  3504,
-    end_line =  3512,
-    example =  206
+    example =  213,
+    start_line =  3590,
+    end_line =  3598,
+    section =  "Block quotes"
   },
   {
     markdown =  "> foo\n>\n> bar\n",
-    section =  "Block quotes",
     html =  "<blockquote>\n<p>foo</p>\n<p>bar</p>\n</blockquote>\n",
-    start_line =  3517,
-    end_line =  3526,
-    example =  207
+    example =  214,
+    start_line =  3603,
+    end_line =  3612,
+    section =  "Block quotes"
   },
   {
     markdown =  "foo\n> bar\n",
-    section =  "Block quotes",
     html =  "<p>foo</p>\n<blockquote>\n<p>bar</p>\n</blockquote>\n",
-    start_line =  3531,
-    end_line =  3539,
-    example =  208
+    example =  215,
+    start_line =  3617,
+    end_line =  3625,
+    section =  "Block quotes"
   },
   {
     markdown =  "> aaa\n***\n> bbb\n",
-    section =  "Block quotes",
     html =  "<blockquote>\n<p>aaa</p>\n</blockquote>\n<hr />\n<blockquote>\n<p>bbb</p>\n</blockquote>\n",
-    start_line =  3545,
-    end_line =  3557,
-    example =  209
+    example =  216,
+    start_line =  3631,
+    end_line =  3643,
+    section =  "Block quotes"
   },
   {
     markdown =  "> bar\nbaz\n",
-    section =  "Block quotes",
     html =  "<blockquote>\n<p>bar\nbaz</p>\n</blockquote>\n",
-    start_line =  3563,
-    end_line =  3571,
-    example =  210
+    example =  217,
+    start_line =  3649,
+    end_line =  3657,
+    section =  "Block quotes"
   },
   {
     markdown =  "> bar\n\nbaz\n",
-    section =  "Block quotes",
     html =  "<blockquote>\n<p>bar</p>\n</blockquote>\n<p>baz</p>\n",
-    start_line =  3574,
-    end_line =  3583,
-    example =  211
+    example =  218,
+    start_line =  3660,
+    end_line =  3669,
+    section =  "Block quotes"
   },
   {
     markdown =  "> bar\n>\nbaz\n",
-    section =  "Block quotes",
     html =  "<blockquote>\n<p>bar</p>\n</blockquote>\n<p>baz</p>\n",
-    start_line =  3586,
-    end_line =  3595,
-    example =  212
+    example =  219,
+    start_line =  3672,
+    end_line =  3681,
+    section =  "Block quotes"
   },
   {
     markdown =  "> > > foo\nbar\n",
-    section =  "Block quotes",
     html =  "<blockquote>\n<blockquote>\n<blockquote>\n<p>foo\nbar</p>\n</blockquote>\n</blockquote>\n</blockquote>\n",
-    start_line =  3602,
-    end_line =  3614,
-    example =  213
+    example =  220,
+    start_line =  3688,
+    end_line =  3700,
+    section =  "Block quotes"
   },
   {
     markdown =  ">>> foo\n> bar\n>>baz\n",
-    section =  "Block quotes",
     html =  "<blockquote>\n<blockquote>\n<blockquote>\n<p>foo\nbar\nbaz</p>\n</blockquote>\n</blockquote>\n</blockquote>\n",
-    start_line =  3617,
-    end_line =  3631,
-    example =  214
+    example =  221,
+    start_line =  3703,
+    end_line =  3717,
+    section =  "Block quotes"
   },
   {
     markdown =  ">     code\n\n>    not code\n",
-    section =  "Block quotes",
     html =  "<blockquote>\n<pre><code>code\n</code></pre>\n</blockquote>\n<blockquote>\n<p>not code</p>\n</blockquote>\n",
-    start_line =  3639,
-    end_line =  3651,
-    example =  215
+    example =  222,
+    start_line =  3725,
+    end_line =  3737,
+    section =  "Block quotes"
   },
   {
     markdown =  "A paragraph\nwith two lines.\n\n    indented code\n\n> A block quote.\n",
-    section =  "List items",
     html =  "<p>A paragraph\nwith two lines.</p>\n<pre><code>indented code\n</code></pre>\n<blockquote>\n<p>A block quote.</p>\n</blockquote>\n",
-    start_line =  3694,
-    end_line =  3709,
-    example =  216
+    example =  223,
+    start_line =  3779,
+    end_line =  3794,
+    section =  "List items"
   },
   {
     markdown =  "1.  A paragraph\n    with two lines.\n\n        indented code\n\n    > A block quote.\n",
-    section =  "List items",
     html =  "<ol>\n<li>\n<p>A paragraph\nwith two lines.</p>\n<pre><code>indented code\n</code></pre>\n<blockquote>\n<p>A block quote.</p>\n</blockquote>\n</li>\n</ol>\n",
-    start_line =  3716,
-    end_line =  3735,
-    example =  217
+    example =  224,
+    start_line =  3801,
+    end_line =  3820,
+    section =  "List items"
   },
   {
     markdown =  "- one\n\n two\n",
-    section =  "List items",
     html =  "<ul>\n<li>one</li>\n</ul>\n<p>two</p>\n",
-    start_line =  3749,
-    end_line =  3758,
-    example =  218
+    example =  225,
+    start_line =  3834,
+    end_line =  3843,
+    section =  "List items"
   },
   {
     markdown =  "- one\n\n  two\n",
-    section =  "List items",
     html =  "<ul>\n<li>\n<p>one</p>\n<p>two</p>\n</li>\n</ul>\n",
-    start_line =  3761,
-    end_line =  3772,
-    example =  219
+    example =  226,
+    start_line =  3846,
+    end_line =  3857,
+    section =  "List items"
   },
   {
     markdown =  " -    one\n\n     two\n",
-    section =  "List items",
     html =  "<ul>\n<li>one</li>\n</ul>\n<pre><code> two\n</code></pre>\n",
-    start_line =  3775,
-    end_line =  3785,
-    example =  220
+    example =  227,
+    start_line =  3860,
+    end_line =  3870,
+    section =  "List items"
   },
   {
     markdown =  " -    one\n\n      two\n",
-    section =  "List items",
     html =  "<ul>\n<li>\n<p>one</p>\n<p>two</p>\n</li>\n</ul>\n",
-    start_line =  3788,
-    end_line =  3799,
-    example =  221
+    example =  228,
+    start_line =  3873,
+    end_line =  3884,
+    section =  "List items"
   },
   {
     markdown =  "   > > 1.  one\n>>\n>>     two\n",
-    section =  "List items",
     html =  "<blockquote>\n<blockquote>\n<ol>\n<li>\n<p>one</p>\n<p>two</p>\n</li>\n</ol>\n</blockquote>\n</blockquote>\n",
-    start_line =  3810,
-    end_line =  3825,
-    example =  222
+    example =  229,
+    start_line =  3895,
+    end_line =  3910,
+    section =  "List items"
   },
   {
     markdown =  ">>- one\n>>\n  >  > two\n",
-    section =  "List items",
     html =  "<blockquote>\n<blockquote>\n<ul>\n<li>one</li>\n</ul>\n<p>two</p>\n</blockquote>\n</blockquote>\n",
-    start_line =  3837,
-    end_line =  3850,
-    example =  223
+    example =  230,
+    start_line =  3922,
+    end_line =  3935,
+    section =  "List items"
   },
   {
     markdown =  "-one\n\n2.two\n",
-    section =  "List items",
     html =  "<p>-one</p>\n<p>2.two</p>\n",
-    start_line =  3856,
-    end_line =  3863,
-    example =  224
+    example =  231,
+    start_line =  3941,
+    end_line =  3948,
+    section =  "List items"
   },
   {
     markdown =  "- foo\n\n\n  bar\n",
-    section =  "List items",
     html =  "<ul>\n<li>\n<p>foo</p>\n<p>bar</p>\n</li>\n</ul>\n",
-    start_line =  3869,
-    end_line =  3881,
-    example =  225
+    example =  232,
+    start_line =  3954,
+    end_line =  3966,
+    section =  "List items"
   },
   {
     markdown =  "1.  foo\n\n    ```\n    bar\n    ```\n\n    baz\n\n    > bam\n",
-    section =  "List items",
     html =  "<ol>\n<li>\n<p>foo</p>\n<pre><code>bar\n</code></pre>\n<p>baz</p>\n<blockquote>\n<p>bam</p>\n</blockquote>\n</li>\n</ol>\n",
-    start_line =  3886,
-    end_line =  3908,
-    example =  226
+    example =  233,
+    start_line =  3971,
+    end_line =  3993,
+    section =  "List items"
   },
   {
     markdown =  "- Foo\n\n      bar\n\n\n      baz\n",
-    section =  "List items",
     html =  "<ul>\n<li>\n<p>Foo</p>\n<pre><code>bar\n\n\nbaz\n</code></pre>\n</li>\n</ul>\n",
-    start_line =  3914,
-    end_line =  3932,
-    example =  227
+    example =  234,
+    start_line =  3999,
+    end_line =  4017,
+    section =  "List items"
   },
   {
     markdown =  "123456789. ok\n",
-    section =  "List items",
     html =  "<ol start=\"123456789\">\n<li>ok</li>\n</ol>\n",
-    start_line =  3936,
-    end_line =  3942,
-    example =  228
+    example =  235,
+    start_line =  4021,
+    end_line =  4027,
+    section =  "List items"
   },
   {
     markdown =  "1234567890. not ok\n",
-    section =  "List items",
     html =  "<p>1234567890. not ok</p>\n",
-    start_line =  3945,
-    end_line =  3949,
-    example =  229
+    example =  236,
+    start_line =  4030,
+    end_line =  4034,
+    section =  "List items"
   },
   {
     markdown =  "0. ok\n",
-    section =  "List items",
     html =  "<ol start=\"0\">\n<li>ok</li>\n</ol>\n",
-    start_line =  3954,
-    end_line =  3960,
-    example =  230
+    example =  237,
+    start_line =  4039,
+    end_line =  4045,
+    section =  "List items"
   },
   {
     markdown =  "003. ok\n",
-    section =  "List items",
     html =  "<ol start=\"3\">\n<li>ok</li>\n</ol>\n",
-    start_line =  3963,
-    end_line =  3969,
-    example =  231
+    example =  238,
+    start_line =  4048,
+    end_line =  4054,
+    section =  "List items"
   },
   {
     markdown =  "-1. not ok\n",
-    section =  "List items",
     html =  "<p>-1. not ok</p>\n",
-    start_line =  3974,
-    end_line =  3978,
-    example =  232
+    example =  239,
+    start_line =  4059,
+    end_line =  4063,
+    section =  "List items"
   },
   {
     markdown =  "- foo\n\n      bar\n",
-    section =  "List items",
     html =  "<ul>\n<li>\n<p>foo</p>\n<pre><code>bar\n</code></pre>\n</li>\n</ul>\n",
-    start_line =  3998,
-    end_line =  4010,
-    example =  233
+    example =  240,
+    start_line =  4082,
+    end_line =  4094,
+    section =  "List items"
   },
   {
     markdown =  "  10.  foo\n\n           bar\n",
-    section =  "List items",
     html =  "<ol start=\"10\">\n<li>\n<p>foo</p>\n<pre><code>bar\n</code></pre>\n</li>\n</ol>\n",
-    start_line =  4015,
-    end_line =  4027,
-    example =  234
+    example =  241,
+    start_line =  4099,
+    end_line =  4111,
+    section =  "List items"
   },
   {
     markdown =  "    indented code\n\nparagraph\n\n    more code\n",
-    section =  "List items",
     html =  "<pre><code>indented code\n</code></pre>\n<p>paragraph</p>\n<pre><code>more code\n</code></pre>\n",
-    start_line =  4034,
-    end_line =  4046,
-    example =  235
+    example =  242,
+    start_line =  4118,
+    end_line =  4130,
+    section =  "List items"
   },
   {
     markdown =  "1.     indented code\n\n   paragraph\n\n       more code\n",
-    section =  "List items",
     html =  "<ol>\n<li>\n<pre><code>indented code\n</code></pre>\n<p>paragraph</p>\n<pre><code>more code\n</code></pre>\n</li>\n</ol>\n",
-    start_line =  4049,
-    end_line =  4065,
-    example =  236
+    example =  243,
+    start_line =  4133,
+    end_line =  4149,
+    section =  "List items"
   },
   {
     markdown =  "1.      indented code\n\n   paragraph\n\n       more code\n",
-    section =  "List items",
     html =  "<ol>\n<li>\n<pre><code> indented code\n</code></pre>\n<p>paragraph</p>\n<pre><code>more code\n</code></pre>\n</li>\n</ol>\n",
-    start_line =  4071,
-    end_line =  4087,
-    example =  237
+    example =  244,
+    start_line =  4155,
+    end_line =  4171,
+    section =  "List items"
   },
   {
     markdown =  "   foo\n\nbar\n",
-    section =  "List items",
     html =  "<p>foo</p>\n<p>bar</p>\n",
-    start_line =  4098,
-    end_line =  4105,
-    example =  238
+    example =  245,
+    start_line =  4182,
+    end_line =  4189,
+    section =  "List items"
   },
   {
     markdown =  "-    foo\n\n  bar\n",
-    section =  "List items",
     html =  "<ul>\n<li>foo</li>\n</ul>\n<p>bar</p>\n",
-    start_line =  4108,
-    end_line =  4117,
-    example =  239
+    example =  246,
+    start_line =  4192,
+    end_line =  4201,
+    section =  "List items"
   },
   {
     markdown =  "-  foo\n\n   bar\n",
-    section =  "List items",
     html =  "<ul>\n<li>\n<p>foo</p>\n<p>bar</p>\n</li>\n</ul>\n",
-    start_line =  4125,
-    end_line =  4136,
-    example =  240
+    example =  247,
+    start_line =  4209,
+    end_line =  4220,
+    section =  "List items"
   },
   {
     markdown =  "-\n  foo\n-\n  ```\n  bar\n  ```\n-\n      baz\n",
-    section =  "List items",
     html =  "<ul>\n<li>foo</li>\n<li>\n<pre><code>bar\n</code></pre>\n</li>\n<li>\n<pre><code>baz\n</code></pre>\n</li>\n</ul>\n",
-    start_line =  4153,
-    end_line =  4174,
-    example =  241
+    example =  248,
+    start_line =  4237,
+    end_line =  4258,
+    section =  "List items"
   },
   {
     markdown =  "-   \n  foo\n",
-    section =  "List items",
     html =  "<ul>\n<li>foo</li>\n</ul>\n",
-    start_line =  4179,
-    end_line =  4186,
-    example =  242
+    example =  249,
+    start_line =  4263,
+    end_line =  4270,
+    section =  "List items"
   },
   {
     markdown =  "-\n\n  foo\n",
-    section =  "List items",
     html =  "<ul>\n<li></li>\n</ul>\n<p>foo</p>\n",
-    start_line =  4193,
-    end_line =  4202,
-    example =  243
+    example =  250,
+    start_line =  4277,
+    end_line =  4286,
+    section =  "List items"
   },
   {
     markdown =  "- foo\n-\n- bar\n",
-    section =  "List items",
     html =  "<ul>\n<li>foo</li>\n<li></li>\n<li>bar</li>\n</ul>\n",
-    start_line =  4207,
-    end_line =  4217,
-    example =  244
+    example =  251,
+    start_line =  4291,
+    end_line =  4301,
+    section =  "List items"
   },
   {
     markdown =  "- foo\n-   \n- bar\n",
-    section =  "List items",
     html =  "<ul>\n<li>foo</li>\n<li></li>\n<li>bar</li>\n</ul>\n",
-    start_line =  4222,
-    end_line =  4232,
-    example =  245
+    example =  252,
+    start_line =  4306,
+    end_line =  4316,
+    section =  "List items"
   },
   {
     markdown =  "1. foo\n2.\n3. bar\n",
-    section =  "List items",
     html =  "<ol>\n<li>foo</li>\n<li></li>\n<li>bar</li>\n</ol>\n",
-    start_line =  4237,
-    end_line =  4247,
-    example =  246
+    example =  253,
+    start_line =  4321,
+    end_line =  4331,
+    section =  "List items"
   },
   {
     markdown =  "*\n",
-    section =  "List items",
     html =  "<ul>\n<li></li>\n</ul>\n",
-    start_line =  4252,
-    end_line =  4258,
-    example =  247
+    example =  254,
+    start_line =  4336,
+    end_line =  4342,
+    section =  "List items"
   },
   {
     markdown =  "foo\n*\n\nfoo\n1.\n",
-    section =  "List items",
     html =  "<p>foo\n*</p>\n<p>foo\n1.</p>\n",
-    start_line =  4262,
-    end_line =  4273,
-    example =  248
+    example =  255,
+    start_line =  4346,
+    end_line =  4357,
+    section =  "List items"
   },
   {
     markdown =  " 1.  A paragraph\n     with two lines.\n\n         indented code\n\n     > A block quote.\n",
-    section =  "List items",
     html =  "<ol>\n<li>\n<p>A paragraph\nwith two lines.</p>\n<pre><code>indented code\n</code></pre>\n<blockquote>\n<p>A block quote.</p>\n</blockquote>\n</li>\n</ol>\n",
-    start_line =  4284,
-    end_line =  4303,
-    example =  249
+    example =  256,
+    start_line =  4368,
+    end_line =  4387,
+    section =  "List items"
   },
   {
     markdown =  "  1.  A paragraph\n      with two lines.\n\n          indented code\n\n      > A block quote.\n",
-    section =  "List items",
     html =  "<ol>\n<li>\n<p>A paragraph\nwith two lines.</p>\n<pre><code>indented code\n</code></pre>\n<blockquote>\n<p>A block quote.</p>\n</blockquote>\n</li>\n</ol>\n",
-    start_line =  4308,
-    end_line =  4327,
-    example =  250
+    example =  257,
+    start_line =  4392,
+    end_line =  4411,
+    section =  "List items"
   },
   {
     markdown =  "   1.  A paragraph\n       with two lines.\n\n           indented code\n\n       > A block quote.\n",
-    section =  "List items",
     html =  "<ol>\n<li>\n<p>A paragraph\nwith two lines.</p>\n<pre><code>indented code\n</code></pre>\n<blockquote>\n<p>A block quote.</p>\n</blockquote>\n</li>\n</ol>\n",
-    start_line =  4332,
-    end_line =  4351,
-    example =  251
+    example =  258,
+    start_line =  4416,
+    end_line =  4435,
+    section =  "List items"
   },
   {
     markdown =  "    1.  A paragraph\n        with two lines.\n\n            indented code\n\n        > A block quote.\n",
-    section =  "List items",
     html =  "<pre><code>1.  A paragraph\n    with two lines.\n\n        indented code\n\n    &gt; A block quote.\n</code></pre>\n",
-    start_line =  4356,
-    end_line =  4371,
-    example =  252
+    example =  259,
+    start_line =  4440,
+    end_line =  4455,
+    section =  "List items"
   },
   {
     markdown =  "  1.  A paragraph\nwith two lines.\n\n          indented code\n\n      > A block quote.\n",
-    section =  "List items",
     html =  "<ol>\n<li>\n<p>A paragraph\nwith two lines.</p>\n<pre><code>indented code\n</code></pre>\n<blockquote>\n<p>A block quote.</p>\n</blockquote>\n</li>\n</ol>\n",
-    start_line =  4386,
-    end_line =  4405,
-    example =  253
+    example =  260,
+    start_line =  4470,
+    end_line =  4489,
+    section =  "List items"
   },
   {
     markdown =  "  1.  A paragraph\n    with two lines.\n",
-    section =  "List items",
     html =  "<ol>\n<li>A paragraph\nwith two lines.</li>\n</ol>\n",
-    start_line =  4410,
-    end_line =  4418,
-    example =  254
+    example =  261,
+    start_line =  4494,
+    end_line =  4502,
+    section =  "List items"
   },
   {
     markdown =  "> 1. > Blockquote\ncontinued here.\n",
-    section =  "List items",
     html =  "<blockquote>\n<ol>\n<li>\n<blockquote>\n<p>Blockquote\ncontinued here.</p>\n</blockquote>\n</li>\n</ol>\n</blockquote>\n",
-    start_line =  4423,
-    end_line =  4437,
-    example =  255
+    example =  262,
+    start_line =  4507,
+    end_line =  4521,
+    section =  "List items"
   },
   {
     markdown =  "> 1. > Blockquote\n> continued here.\n",
-    section =  "List items",
     html =  "<blockquote>\n<ol>\n<li>\n<blockquote>\n<p>Blockquote\ncontinued here.</p>\n</blockquote>\n</li>\n</ol>\n</blockquote>\n",
-    start_line =  4440,
-    end_line =  4454,
-    example =  256
+    example =  263,
+    start_line =  4524,
+    end_line =  4538,
+    section =  "List items"
   },
   {
     markdown =  "- foo\n  - bar\n    - baz\n      - boo\n",
-    section =  "List items",
     html =  "<ul>\n<li>foo\n<ul>\n<li>bar\n<ul>\n<li>baz\n<ul>\n<li>boo</li>\n</ul>\n</li>\n</ul>\n</li>\n</ul>\n</li>\n</ul>\n",
-    start_line =  4467,
-    end_line =  4488,
-    example =  257
+    example =  264,
+    start_line =  4552,
+    end_line =  4573,
+    section =  "List items"
   },
   {
     markdown =  "- foo\n - bar\n  - baz\n   - boo\n",
-    section =  "List items",
     html =  "<ul>\n<li>foo</li>\n<li>bar</li>\n<li>baz</li>\n<li>boo</li>\n</ul>\n",
-    start_line =  4493,
-    end_line =  4505,
-    example =  258
+    example =  265,
+    start_line =  4578,
+    end_line =  4590,
+    section =  "List items"
   },
   {
     markdown =  "10) foo\n    - bar\n",
-    section =  "List items",
     html =  "<ol start=\"10\">\n<li>foo\n<ul>\n<li>bar</li>\n</ul>\n</li>\n</ol>\n",
-    start_line =  4510,
-    end_line =  4521,
-    example =  259
+    example =  266,
+    start_line =  4595,
+    end_line =  4606,
+    section =  "List items"
   },
   {
     markdown =  "10) foo\n   - bar\n",
-    section =  "List items",
     html =  "<ol start=\"10\">\n<li>foo</li>\n</ol>\n<ul>\n<li>bar</li>\n</ul>\n",
-    start_line =  4526,
-    end_line =  4536,
-    example =  260
+    example =  267,
+    start_line =  4611,
+    end_line =  4621,
+    section =  "List items"
   },
   {
     markdown =  "- - foo\n",
-    section =  "List items",
     html =  "<ul>\n<li>\n<ul>\n<li>foo</li>\n</ul>\n</li>\n</ul>\n",
-    start_line =  4541,
-    end_line =  4551,
-    example =  261
+    example =  268,
+    start_line =  4626,
+    end_line =  4636,
+    section =  "List items"
   },
   {
     markdown =  "1. - 2. foo\n",
-    section =  "List items",
     html =  "<ol>\n<li>\n<ul>\n<li>\n<ol start=\"2\">\n<li>foo</li>\n</ol>\n</li>\n</ul>\n</li>\n</ol>\n",
-    start_line =  4554,
-    end_line =  4568,
-    example =  262
+    example =  269,
+    start_line =  4639,
+    end_line =  4653,
+    section =  "List items"
   },
   {
     markdown =  "- # Foo\n- Bar\n  ---\n  baz\n",
-    section =  "List items",
     html =  "<ul>\n<li>\n<h1>Foo</h1>\n</li>\n<li>\n<h2>Bar</h2>\nbaz</li>\n</ul>\n",
-    start_line =  4573,
-    end_line =  4587,
-    example =  263
+    example =  270,
+    start_line =  4658,
+    end_line =  4672,
+    section =  "List items"
   },
   {
     markdown =  "- foo\n- bar\n+ baz\n",
-    section =  "Lists",
     html =  "<ul>\n<li>foo</li>\n<li>bar</li>\n</ul>\n<ul>\n<li>baz</li>\n</ul>\n",
-    start_line =  4809,
-    end_line =  4821,
-    example =  264
+    example =  271,
+    start_line =  4894,
+    end_line =  4906,
+    section =  "Lists"
   },
   {
     markdown =  "1. foo\n2. bar\n3) baz\n",
-    section =  "Lists",
     html =  "<ol>\n<li>foo</li>\n<li>bar</li>\n</ol>\n<ol start=\"3\">\n<li>baz</li>\n</ol>\n",
-    start_line =  4824,
-    end_line =  4836,
-    example =  265
+    example =  272,
+    start_line =  4909,
+    end_line =  4921,
+    section =  "Lists"
   },
   {
     markdown =  "Foo\n- bar\n- baz\n",
-    section =  "Lists",
     html =  "<p>Foo</p>\n<ul>\n<li>bar</li>\n<li>baz</li>\n</ul>\n",
-    start_line =  4843,
-    end_line =  4853,
-    example =  266
+    example =  273,
+    start_line =  4928,
+    end_line =  4938,
+    section =  "Lists"
   },
   {
     markdown =  "The number of windows in my house is\n14.  The number of doors is 6.\n",
-    section =  "Lists",
     html =  "<p>The number of windows in my house is\n14.  The number of doors is 6.</p>\n",
-    start_line =  4920,
-    end_line =  4926,
-    example =  267
+    example =  274,
+    start_line =  5005,
+    end_line =  5011,
+    section =  "Lists"
   },
   {
     markdown =  "The number of windows in my house is\n1.  The number of doors is 6.\n",
-    section =  "Lists",
     html =  "<p>The number of windows in my house is</p>\n<ol>\n<li>The number of doors is 6.</li>\n</ol>\n",
-    start_line =  4930,
-    end_line =  4938,
-    example =  268
+    example =  275,
+    start_line =  5015,
+    end_line =  5023,
+    section =  "Lists"
   },
   {
     markdown =  "- foo\n\n- bar\n\n\n- baz\n",
-    section =  "Lists",
     html =  "<ul>\n<li>\n<p>foo</p>\n</li>\n<li>\n<p>bar</p>\n</li>\n<li>\n<p>baz</p>\n</li>\n</ul>\n",
-    start_line =  4944,
-    end_line =  4963,
-    example =  269
+    example =  276,
+    start_line =  5029,
+    end_line =  5048,
+    section =  "Lists"
   },
   {
     markdown =  "- foo\n  - bar\n    - baz\n\n\n      bim\n",
-    section =  "Lists",
     html =  "<ul>\n<li>foo\n<ul>\n<li>bar\n<ul>\n<li>\n<p>baz</p>\n<p>bim</p>\n</li>\n</ul>\n</li>\n</ul>\n</li>\n</ul>\n",
-    start_line =  4965,
-    end_line =  4987,
-    example =  270
+    example =  277,
+    start_line =  5050,
+    end_line =  5072,
+    section =  "Lists"
   },
   {
     markdown =  "- foo\n- bar\n\n<!-- -->\n\n- baz\n- bim\n",
-    section =  "Lists",
     html =  "<ul>\n<li>foo</li>\n<li>bar</li>\n</ul>\n<!-- -->\n<ul>\n<li>baz</li>\n<li>bim</li>\n</ul>\n",
-    start_line =  4995,
-    end_line =  5013,
-    example =  271
+    example =  278,
+    start_line =  5080,
+    end_line =  5098,
+    section =  "Lists"
   },
   {
     markdown =  "-   foo\n\n    notcode\n\n-   foo\n\n<!-- -->\n\n    code\n",
-    section =  "Lists",
     html =  "<ul>\n<li>\n<p>foo</p>\n<p>notcode</p>\n</li>\n<li>\n<p>foo</p>\n</li>\n</ul>\n<!-- -->\n<pre><code>code\n</code></pre>\n",
-    start_line =  5016,
-    end_line =  5039,
-    example =  272
+    example =  279,
+    start_line =  5101,
+    end_line =  5124,
+    section =  "Lists"
   },
   {
-    markdown =  "- a\n - b\n  - c\n   - d\n    - e\n   - f\n  - g\n - h\n- i\n",
-    section =  "Lists",
-    html =  "<ul>\n<li>a</li>\n<li>b</li>\n<li>c</li>\n<li>d</li>\n<li>e</li>\n<li>f</li>\n<li>g</li>\n<li>h</li>\n<li>i</li>\n</ul>\n",
-    start_line =  5047,
-    end_line =  5069,
-    example =  273
+    markdown =  "- a\n - b\n  - c\n   - d\n  - e\n - f\n- g\n",
+    html =  "<ul>\n<li>a</li>\n<li>b</li>\n<li>c</li>\n<li>d</li>\n<li>e</li>\n<li>f</li>\n<li>g</li>\n</ul>\n",
+    example =  280,
+    start_line =  5132,
+    end_line =  5150,
+    section =  "Lists"
+  },
+  {
+    markdown =  "1. a\n\n  2. b\n\n   3. c\n",
+    html =  "<ol>\n<li>\n<p>a</p>\n</li>\n<li>\n<p>b</p>\n</li>\n<li>\n<p>c</p>\n</li>\n</ol>\n",
+    example =  281,
+    start_line =  5153,
+    end_line =  5171,
+    section =  "Lists"
+  },
+  {
+    markdown =  "- a\n - b\n  - c\n   - d\n    - e\n",
+    html =  "<ul>\n<li>a</li>\n<li>b</li>\n<li>c</li>\n<li>d\n- e</li>\n</ul>\n",
+    example =  282,
+    start_line =  5177,
+    end_line =  5191,
+    section =  "Lists"
   },
   {
     markdown =  "1. a\n\n  2. b\n\n    3. c\n",
-    section =  "Lists",
-    html =  "<ol>\n<li>\n<p>a</p>\n</li>\n<li>\n<p>b</p>\n</li>\n<li>\n<p>c</p>\n</li>\n</ol>\n",
-    start_line =  5072,
-    end_line =  5090,
-    example =  274
+    html =  "<ol>\n<li>\n<p>a</p>\n</li>\n<li>\n<p>b</p>\n</li>\n</ol>\n<pre><code>3. c\n</code></pre>\n",
+    example =  283,
+    start_line =  5197,
+    end_line =  5214,
+    section =  "Lists"
   },
   {
     markdown =  "- a\n- b\n\n- c\n",
-    section =  "Lists",
     html =  "<ul>\n<li>\n<p>a</p>\n</li>\n<li>\n<p>b</p>\n</li>\n<li>\n<p>c</p>\n</li>\n</ul>\n",
-    start_line =  5096,
-    end_line =  5113,
-    example =  275
+    example =  284,
+    start_line =  5220,
+    end_line =  5237,
+    section =  "Lists"
   },
   {
     markdown =  "* a\n*\n\n* c\n",
-    section =  "Lists",
     html =  "<ul>\n<li>\n<p>a</p>\n</li>\n<li></li>\n<li>\n<p>c</p>\n</li>\n</ul>\n",
-    start_line =  5118,
-    end_line =  5133,
-    example =  276
+    example =  285,
+    start_line =  5242,
+    end_line =  5257,
+    section =  "Lists"
   },
   {
     markdown =  "- a\n- b\n\n  c\n- d\n",
-    section =  "Lists",
     html =  "<ul>\n<li>\n<p>a</p>\n</li>\n<li>\n<p>b</p>\n<p>c</p>\n</li>\n<li>\n<p>d</p>\n</li>\n</ul>\n",
-    start_line =  5140,
-    end_line =  5159,
-    example =  277
+    example =  286,
+    start_line =  5264,
+    end_line =  5283,
+    section =  "Lists"
   },
   {
     markdown =  "- a\n- b\n\n  [ref]: /url\n- d\n",
-    section =  "Lists",
     html =  "<ul>\n<li>\n<p>a</p>\n</li>\n<li>\n<p>b</p>\n</li>\n<li>\n<p>d</p>\n</li>\n</ul>\n",
-    start_line =  5162,
-    end_line =  5180,
-    example =  278
+    example =  287,
+    start_line =  5286,
+    end_line =  5304,
+    section =  "Lists"
   },
   {
     markdown =  "- a\n- ```\n  b\n\n\n  ```\n- c\n",
-    section =  "Lists",
     html =  "<ul>\n<li>a</li>\n<li>\n<pre><code>b\n\n\n</code></pre>\n</li>\n<li>c</li>\n</ul>\n",
-    start_line =  5185,
-    end_line =  5204,
-    example =  279
+    example =  288,
+    start_line =  5309,
+    end_line =  5328,
+    section =  "Lists"
   },
   {
     markdown =  "- a\n  - b\n\n    c\n- d\n",
-    section =  "Lists",
     html =  "<ul>\n<li>a\n<ul>\n<li>\n<p>b</p>\n<p>c</p>\n</li>\n</ul>\n</li>\n<li>d</li>\n</ul>\n",
-    start_line =  5211,
-    end_line =  5229,
-    example =  280
+    example =  289,
+    start_line =  5335,
+    end_line =  5353,
+    section =  "Lists"
   },
   {
     markdown =  "* a\n  > b\n  >\n* c\n",
-    section =  "Lists",
     html =  "<ul>\n<li>a\n<blockquote>\n<p>b</p>\n</blockquote>\n</li>\n<li>c</li>\n</ul>\n",
-    start_line =  5235,
-    end_line =  5249,
-    example =  281
+    example =  290,
+    start_line =  5359,
+    end_line =  5373,
+    section =  "Lists"
   },
   {
     markdown =  "- a\n  > b\n  ```\n  c\n  ```\n- d\n",
-    section =  "Lists",
     html =  "<ul>\n<li>a\n<blockquote>\n<p>b</p>\n</blockquote>\n<pre><code>c\n</code></pre>\n</li>\n<li>d</li>\n</ul>\n",
-    start_line =  5255,
-    end_line =  5273,
-    example =  282
+    example =  291,
+    start_line =  5379,
+    end_line =  5397,
+    section =  "Lists"
   },
   {
     markdown =  "- a\n",
-    section =  "Lists",
     html =  "<ul>\n<li>a</li>\n</ul>\n",
-    start_line =  5278,
-    end_line =  5284,
-    example =  283
+    example =  292,
+    start_line =  5402,
+    end_line =  5408,
+    section =  "Lists"
   },
   {
     markdown =  "- a\n  - b\n",
-    section =  "Lists",
     html =  "<ul>\n<li>a\n<ul>\n<li>b</li>\n</ul>\n</li>\n</ul>\n",
-    start_line =  5287,
-    end_line =  5298,
-    example =  284
+    example =  293,
+    start_line =  5411,
+    end_line =  5422,
+    section =  "Lists"
   },
   {
     markdown =  "1. ```\n   foo\n   ```\n\n   bar\n",
-    section =  "Lists",
     html =  "<ol>\n<li>\n<pre><code>foo\n</code></pre>\n<p>bar</p>\n</li>\n</ol>\n",
-    start_line =  5304,
-    end_line =  5318,
-    example =  285
+    example =  294,
+    start_line =  5428,
+    end_line =  5442,
+    section =  "Lists"
   },
   {
     markdown =  "* foo\n  * bar\n\n  baz\n",
-    section =  "Lists",
     html =  "<ul>\n<li>\n<p>foo</p>\n<ul>\n<li>bar</li>\n</ul>\n<p>baz</p>\n</li>\n</ul>\n",
-    start_line =  5323,
-    end_line =  5338,
-    example =  286
+    example =  295,
+    start_line =  5447,
+    end_line =  5462,
+    section =  "Lists"
   },
   {
     markdown =  "- a\n  - b\n  - c\n\n- d\n  - e\n  - f\n",
-    section =  "Lists",
     html =  "<ul>\n<li>\n<p>a</p>\n<ul>\n<li>b</li>\n<li>c</li>\n</ul>\n</li>\n<li>\n<p>d</p>\n<ul>\n<li>e</li>\n<li>f</li>\n</ul>\n</li>\n</ul>\n",
-    start_line =  5341,
-    end_line =  5366,
-    example =  287
+    example =  296,
+    start_line =  5465,
+    end_line =  5490,
+    section =  "Lists"
   },
   {
     markdown =  "`hi`lo`\n",
-    section =  "Inlines",
     html =  "<p><code>hi</code>lo`</p>\n",
-    start_line =  5375,
-    end_line =  5379,
-    example =  288
+    example =  297,
+    start_line =  5499,
+    end_line =  5503,
+    section =  "Inlines"
   },
   {
     markdown =  "\\!\\\"\\#\\$\\%\\&\\'\\(\\)\\*\\+\\,\\-\\.\\/\\:\\;\\<\\=\\>\\?\\@\\[\\\\\\]\\^\\_\\`\\{\\|\\}\\~\n",
-    section =  "Backslash escapes",
     html =  "<p>!&quot;#$%&amp;'()*+,-./:;&lt;=&gt;?@[\\]^_`{|}~</p>\n",
-    start_line =  5389,
-    end_line =  5393,
-    example =  289
+    example =  298,
+    start_line =  5513,
+    end_line =  5517,
+    section =  "Backslash escapes"
   },
   {
     markdown =  "\\\t\\A\\a\\ \\3\\φ\\«\n",
-    section =  "Backslash escapes",
     html =  "<p>\\\t\\A\\a\\ \\3\\φ\\«</p>\n",
-    start_line =  5399,
-    end_line =  5403,
-    example =  290
+    example =  299,
+    start_line =  5523,
+    end_line =  5527,
+    section =  "Backslash escapes"
   },
   {
-    markdown =  "\\*not emphasized*\n\\<br/> not a tag\n\\[not a link](/foo)\n\\`not code`\n1\\. not a list\n\\* not a list\n\\# not a heading\n\\[foo]: /url \"not a reference\"\n",
-    section =  "Backslash escapes",
-    html =  "<p>*not emphasized*\n&lt;br/&gt; not a tag\n[not a link](/foo)\n`not code`\n1. not a list\n* not a list\n# not a heading\n[foo]: /url &quot;not a reference&quot;</p>\n",
-    start_line =  5409,
-    end_line =  5427,
-    example =  291
+    markdown =  "\\*not emphasized*\n\\<br/> not a tag\n\\[not a link](/foo)\n\\`not code`\n1\\. not a list\n\\* not a list\n\\# not a heading\n\\[foo]: /url \"not a reference\"\n\\&ouml; not a character entity\n",
+    html =  "<p>*not emphasized*\n&lt;br/&gt; not a tag\n[not a link](/foo)\n`not code`\n1. not a list\n* not a list\n# not a heading\n[foo]: /url &quot;not a reference&quot;\n&amp;ouml; not a character entity</p>\n",
+    example =  300,
+    start_line =  5533,
+    end_line =  5553,
+    section =  "Backslash escapes"
   },
   {
     markdown =  "\\\\*emphasis*\n",
-    section =  "Backslash escapes",
     html =  "<p>\\<em>emphasis</em></p>\n",
-    start_line =  5432,
-    end_line =  5436,
-    example =  292
+    example =  301,
+    start_line =  5558,
+    end_line =  5562,
+    section =  "Backslash escapes"
   },
   {
     markdown =  "foo\\\nbar\n",
-    section =  "Backslash escapes",
     html =  "<p>foo<br />\nbar</p>\n",
-    start_line =  5441,
-    end_line =  5447,
-    example =  293
+    example =  302,
+    start_line =  5567,
+    end_line =  5573,
+    section =  "Backslash escapes"
   },
   {
     markdown =  "`` \\[\\` ``\n",
-    section =  "Backslash escapes",
     html =  "<p><code>\\[\\`</code></p>\n",
-    start_line =  5453,
-    end_line =  5457,
-    example =  294
+    example =  303,
+    start_line =  5579,
+    end_line =  5583,
+    section =  "Backslash escapes"
   },
   {
     markdown =  "    \\[\\]\n",
-    section =  "Backslash escapes",
     html =  "<pre><code>\\[\\]\n</code></pre>\n",
-    start_line =  5460,
-    end_line =  5465,
-    example =  295
+    example =  304,
+    start_line =  5586,
+    end_line =  5591,
+    section =  "Backslash escapes"
   },
   {
     markdown =  "~~~\n\\[\\]\n~~~\n",
-    section =  "Backslash escapes",
     html =  "<pre><code>\\[\\]\n</code></pre>\n",
-    start_line =  5468,
-    end_line =  5475,
-    example =  296
+    example =  305,
+    start_line =  5594,
+    end_line =  5601,
+    section =  "Backslash escapes"
   },
   {
     markdown =  "<http://example.com?find=\\*>\n",
-    section =  "Backslash escapes",
     html =  "<p><a href=\"http://example.com?find=%5C*\">http://example.com?find=\\*</a></p>\n",
-    start_line =  5478,
-    end_line =  5482,
-    example =  297
+    example =  306,
+    start_line =  5604,
+    end_line =  5608,
+    section =  "Backslash escapes"
   },
   {
     markdown =  "<a href=\"/bar\\/)\">\n",
-    section =  "Backslash escapes",
     html =  "<a href=\"/bar\\/)\">\n",
-    start_line =  5485,
-    end_line =  5489,
-    example =  298
+    example =  307,
+    start_line =  5611,
+    end_line =  5615,
+    section =  "Backslash escapes"
   },
   {
     markdown =  "[foo](/bar\\* \"ti\\*tle\")\n",
-    section =  "Backslash escapes",
     html =  "<p><a href=\"/bar*\" title=\"ti*tle\">foo</a></p>\n",
-    start_line =  5495,
-    end_line =  5499,
-    example =  299
+    example =  308,
+    start_line =  5621,
+    end_line =  5625,
+    section =  "Backslash escapes"
   },
   {
     markdown =  "[foo]\n\n[foo]: /bar\\* \"ti\\*tle\"\n",
-    section =  "Backslash escapes",
     html =  "<p><a href=\"/bar*\" title=\"ti*tle\">foo</a></p>\n",
-    start_line =  5502,
-    end_line =  5508,
-    example =  300
+    example =  309,
+    start_line =  5628,
+    end_line =  5634,
+    section =  "Backslash escapes"
   },
   {
     markdown =  "``` foo\\+bar\nfoo\n```\n",
-    section =  "Backslash escapes",
     html =  "<pre><code class=\"language-foo+bar\">foo\n</code></pre>\n",
-    start_line =  5511,
-    end_line =  5518,
-    example =  301
+    example =  310,
+    start_line =  5637,
+    end_line =  5644,
+    section =  "Backslash escapes"
   },
   {
     markdown =  "&nbsp; &amp; &copy; &AElig; &Dcaron;\n&frac34; &HilbertSpace; &DifferentialD;\n&ClockwiseContourIntegral; &ngE;\n",
-    section =  "Entity and numeric character references",
     html =  "<p>  &amp; © Æ Ď\n¾ ℋ ⅆ\n∲ ≧̸</p>\n",
-    start_line =  5538,
-    end_line =  5546,
-    example =  302
+    example =  311,
+    start_line =  5674,
+    end_line =  5682,
+    section =  "Entity and numeric character references"
   },
   {
-    markdown =  "&#35; &#1234; &#992; &#98765432; &#0;\n",
-    section =  "Entity and numeric character references",
-    html =  "<p># Ӓ Ϡ � �</p>\n",
-    start_line =  5557,
-    end_line =  5561,
-    example =  303
+    markdown =  "&#35; &#1234; &#992; &#0;\n",
+    html =  "<p># Ӓ Ϡ �</p>\n",
+    example =  312,
+    start_line =  5693,
+    end_line =  5697,
+    section =  "Entity and numeric character references"
   },
   {
     markdown =  "&#X22; &#XD06; &#xcab;\n",
-    section =  "Entity and numeric character references",
     html =  "<p>&quot; ആ ಫ</p>\n",
-    start_line =  5570,
-    end_line =  5574,
-    example =  304
+    example =  313,
+    start_line =  5706,
+    end_line =  5710,
+    section =  "Entity and numeric character references"
   },
   {
-    markdown =  "&nbsp &x; &#; &#x;\n&ThisIsNotDefined; &hi?;\n",
-    section =  "Entity and numeric character references",
-    html =  "<p>&amp;nbsp &amp;x; &amp;#; &amp;#x;\n&amp;ThisIsNotDefined; &amp;hi?;</p>\n",
-    start_line =  5579,
-    end_line =  5585,
-    example =  305
+    markdown =  "&nbsp &x; &#; &#x;\n&#987654321;\n&#abcdef0;\n&ThisIsNotDefined; &hi?;\n",
+    html =  "<p>&amp;nbsp &amp;x; &amp;#; &amp;#x;\n&amp;#987654321;\n&amp;#abcdef0;\n&amp;ThisIsNotDefined; &amp;hi?;</p>\n",
+    example =  314,
+    start_line =  5715,
+    end_line =  5725,
+    section =  "Entity and numeric character references"
   },
   {
     markdown =  "&copy\n",
-    section =  "Entity and numeric character references",
     html =  "<p>&amp;copy</p>\n",
-    start_line =  5592,
-    end_line =  5596,
-    example =  306
+    example =  315,
+    start_line =  5732,
+    end_line =  5736,
+    section =  "Entity and numeric character references"
   },
   {
     markdown =  "&MadeUpEntity;\n",
-    section =  "Entity and numeric character references",
     html =  "<p>&amp;MadeUpEntity;</p>\n",
-    start_line =  5602,
-    end_line =  5606,
-    example =  307
+    example =  316,
+    start_line =  5742,
+    end_line =  5746,
+    section =  "Entity and numeric character references"
   },
   {
     markdown =  "<a href=\"&ouml;&ouml;.html\">\n",
-    section =  "Entity and numeric character references",
     html =  "<a href=\"&ouml;&ouml;.html\">\n",
-    start_line =  5613,
-    end_line =  5617,
-    example =  308
+    example =  317,
+    start_line =  5753,
+    end_line =  5757,
+    section =  "Entity and numeric character references"
   },
   {
     markdown =  "[foo](/f&ouml;&ouml; \"f&ouml;&ouml;\")\n",
-    section =  "Entity and numeric character references",
     html =  "<p><a href=\"/f%C3%B6%C3%B6\" title=\"föö\">foo</a></p>\n",
-    start_line =  5620,
-    end_line =  5624,
-    example =  309
+    example =  318,
+    start_line =  5760,
+    end_line =  5764,
+    section =  "Entity and numeric character references"
   },
   {
     markdown =  "[foo]\n\n[foo]: /f&ouml;&ouml; \"f&ouml;&ouml;\"\n",
-    section =  "Entity and numeric character references",
     html =  "<p><a href=\"/f%C3%B6%C3%B6\" title=\"föö\">foo</a></p>\n",
-    start_line =  5627,
-    end_line =  5633,
-    example =  310
+    example =  319,
+    start_line =  5767,
+    end_line =  5773,
+    section =  "Entity and numeric character references"
   },
   {
     markdown =  "``` f&ouml;&ouml;\nfoo\n```\n",
-    section =  "Entity and numeric character references",
     html =  "<pre><code class=\"language-föö\">foo\n</code></pre>\n",
-    start_line =  5636,
-    end_line =  5643,
-    example =  311
+    example =  320,
+    start_line =  5776,
+    end_line =  5783,
+    section =  "Entity and numeric character references"
   },
   {
     markdown =  "`f&ouml;&ouml;`\n",
-    section =  "Entity and numeric character references",
     html =  "<p><code>f&amp;ouml;&amp;ouml;</code></p>\n",
-    start_line =  5649,
-    end_line =  5653,
-    example =  312
+    example =  321,
+    start_line =  5789,
+    end_line =  5793,
+    section =  "Entity and numeric character references"
   },
   {
     markdown =  "    f&ouml;f&ouml;\n",
-    section =  "Entity and numeric character references",
     html =  "<pre><code>f&amp;ouml;f&amp;ouml;\n</code></pre>\n",
-    start_line =  5656,
-    end_line =  5661,
-    example =  313
+    example =  322,
+    start_line =  5796,
+    end_line =  5801,
+    section =  "Entity and numeric character references"
+  },
+  {
+    markdown =  "&#42;foo&#42;\n*foo*\n",
+    html =  "<p>*foo*\n<em>foo</em></p>\n",
+    example =  323,
+    start_line =  5808,
+    end_line =  5814,
+    section =  "Entity and numeric character references"
+  },
+  {
+    markdown =  "&#42; foo\n\n* foo\n",
+    html =  "<p>* foo</p>\n<ul>\n<li>foo</li>\n</ul>\n",
+    example =  324,
+    start_line =  5816,
+    end_line =  5825,
+    section =  "Entity and numeric character references"
+  },
+  {
+    markdown =  "foo&#10;&#10;bar\n",
+    html =  "<p>foo\n\nbar</p>\n",
+    example =  325,
+    start_line =  5827,
+    end_line =  5833,
+    section =  "Entity and numeric character references"
+  },
+  {
+    markdown =  "&#9;foo\n",
+    html =  "<p>\tfoo</p>\n",
+    example =  326,
+    start_line =  5835,
+    end_line =  5839,
+    section =  "Entity and numeric character references"
+  },
+  {
+    markdown =  "[a](url &quot;tit&quot;)\n",
+    html =  "<p>[a](url &quot;tit&quot;)</p>\n",
+    example =  327,
+    start_line =  5842,
+    end_line =  5846,
+    section =  "Entity and numeric character references"
   },
   {
     markdown =  "`foo`\n",
-    section =  "Code spans",
     html =  "<p><code>foo</code></p>\n",
-    start_line =  5678,
-    end_line =  5682,
-    example =  314
+    example =  328,
+    start_line =  5870,
+    end_line =  5874,
+    section =  "Code spans"
   },
   {
-    markdown =  "`` foo ` bar  ``\n",
-    section =  "Code spans",
+    markdown =  "`` foo ` bar ``\n",
     html =  "<p><code>foo ` bar</code></p>\n",
-    start_line =  5688,
-    end_line =  5692,
-    example =  315
+    example =  329,
+    start_line =  5881,
+    end_line =  5885,
+    section =  "Code spans"
   },
   {
     markdown =  "` `` `\n",
-    section =  "Code spans",
     html =  "<p><code>``</code></p>\n",
-    start_line =  5698,
-    end_line =  5702,
-    example =  316
+    example =  330,
+    start_line =  5891,
+    end_line =  5895,
+    section =  "Code spans"
   },
   {
-    markdown =  "``\nfoo\n``\n",
-    section =  "Code spans",
-    html =  "<p><code>foo</code></p>\n",
-    start_line =  5707,
-    end_line =  5713,
-    example =  317
+    markdown =  "`  ``  `\n",
+    html =  "<p><code> `` </code></p>\n",
+    example =  331,
+    start_line =  5899,
+    end_line =  5903,
+    section =  "Code spans"
   },
   {
-    markdown =  "`foo   bar\n  baz`\n",
-    section =  "Code spans",
-    html =  "<p><code>foo bar baz</code></p>\n",
-    start_line =  5719,
-    end_line =  5724,
-    example =  318
+    markdown =  "` a`\n",
+    html =  "<p><code> a</code></p>\n",
+    example =  332,
+    start_line =  5908,
+    end_line =  5912,
+    section =  "Code spans"
   },
   {
-    markdown =  "`a  b`\n",
-    section =  "Code spans",
-    html =  "<p><code>a  b</code></p>\n",
-    start_line =  5730,
-    end_line =  5734,
-    example =  319
+    markdown =  "` b `\n",
+    html =  "<p><code> b </code></p>\n",
+    example =  333,
+    start_line =  5917,
+    end_line =  5921,
+    section =  "Code spans"
   },
   {
-    markdown =  "`foo `` bar`\n",
-    section =  "Code spans",
-    html =  "<p><code>foo `` bar</code></p>\n",
-    start_line =  5750,
-    end_line =  5754,
-    example =  320
+    markdown =  "` `\n`  `\n",
+    html =  "<p><code> </code>\n<code>  </code></p>\n",
+    example =  334,
+    start_line =  5925,
+    end_line =  5931,
+    section =  "Code spans"
+  },
+  {
+    markdown =  "``\nfoo\nbar  \nbaz\n``\n",
+    html =  "<p><code>foo bar   baz</code></p>\n",
+    example =  335,
+    start_line =  5936,
+    end_line =  5944,
+    section =  "Code spans"
+  },
+  {
+    markdown =  "``\nfoo \n``\n",
+    html =  "<p><code>foo </code></p>\n",
+    example =  336,
+    start_line =  5946,
+    end_line =  5952,
+    section =  "Code spans"
+  },
+  {
+    markdown =  "`foo   bar \nbaz`\n",
+    html =  "<p><code>foo   bar  baz</code></p>\n",
+    example =  337,
+    start_line =  5957,
+    end_line =  5962,
+    section =  "Code spans"
   },
   {
     markdown =  "`foo\\`bar`\n",
-    section =  "Code spans",
     html =  "<p><code>foo\\</code>bar`</p>\n",
-    start_line =  5760,
-    end_line =  5764,
-    example =  321
+    example =  338,
+    start_line =  5974,
+    end_line =  5978,
+    section =  "Code spans"
+  },
+  {
+    markdown =  "``foo`bar``\n",
+    html =  "<p><code>foo`bar</code></p>\n",
+    example =  339,
+    start_line =  5985,
+    end_line =  5989,
+    section =  "Code spans"
+  },
+  {
+    markdown =  "` foo `` bar `\n",
+    html =  "<p><code>foo `` bar</code></p>\n",
+    example =  340,
+    start_line =  5991,
+    end_line =  5995,
+    section =  "Code spans"
   },
   {
     markdown =  "*foo`*`\n",
-    section =  "Code spans",
     html =  "<p>*foo<code>*</code></p>\n",
-    start_line =  5776,
-    end_line =  5780,
-    example =  322
+    example =  341,
+    start_line =  6003,
+    end_line =  6007,
+    section =  "Code spans"
   },
   {
     markdown =  "[not a `link](/foo`)\n",
-    section =  "Code spans",
     html =  "<p>[not a <code>link](/foo</code>)</p>\n",
-    start_line =  5785,
-    end_line =  5789,
-    example =  323
+    example =  342,
+    start_line =  6012,
+    end_line =  6016,
+    section =  "Code spans"
   },
   {
     markdown =  "`<a href=\"`\">`\n",
-    section =  "Code spans",
     html =  "<p><code>&lt;a href=&quot;</code>&quot;&gt;`</p>\n",
-    start_line =  5795,
-    end_line =  5799,
-    example =  324
+    example =  343,
+    start_line =  6022,
+    end_line =  6026,
+    section =  "Code spans"
   },
   {
     markdown =  "<a href=\"`\">`\n",
-    section =  "Code spans",
     html =  "<p><a href=\"`\">`</p>\n",
-    start_line =  5804,
-    end_line =  5808,
-    example =  325
+    example =  344,
+    start_line =  6031,
+    end_line =  6035,
+    section =  "Code spans"
   },
   {
     markdown =  "`<http://foo.bar.`baz>`\n",
-    section =  "Code spans",
     html =  "<p><code>&lt;http://foo.bar.</code>baz&gt;`</p>\n",
-    start_line =  5813,
-    end_line =  5817,
-    example =  326
+    example =  345,
+    start_line =  6040,
+    end_line =  6044,
+    section =  "Code spans"
   },
   {
     markdown =  "<http://foo.bar.`baz>`\n",
-    section =  "Code spans",
     html =  "<p><a href=\"http://foo.bar.%60baz\">http://foo.bar.`baz</a>`</p>\n",
-    start_line =  5822,
-    end_line =  5826,
-    example =  327
+    example =  346,
+    start_line =  6049,
+    end_line =  6053,
+    section =  "Code spans"
   },
   {
     markdown =  "```foo``\n",
-    section =  "Code spans",
     html =  "<p>```foo``</p>\n",
-    start_line =  5832,
-    end_line =  5836,
-    example =  328
+    example =  347,
+    start_line =  6059,
+    end_line =  6063,
+    section =  "Code spans"
   },
   {
     markdown =  "`foo\n",
-    section =  "Code spans",
     html =  "<p>`foo</p>\n",
-    start_line =  5839,
-    end_line =  5843,
-    example =  329
+    example =  348,
+    start_line =  6066,
+    end_line =  6070,
+    section =  "Code spans"
   },
   {
     markdown =  "`foo``bar``\n",
-    section =  "Code spans",
     html =  "<p>`foo<code>bar</code></p>\n",
-    start_line =  5848,
-    end_line =  5852,
-    example =  330
+    example =  349,
+    start_line =  6075,
+    end_line =  6079,
+    section =  "Code spans"
   },
   {
     markdown =  "*foo bar*\n",
-    section =  "Emphasis and strong emphasis",
     html =  "<p><em>foo bar</em></p>\n",
-    start_line =  6061,
-    end_line =  6065,
-    example =  331
+    example =  350,
+    start_line =  6292,
+    end_line =  6296,
+    section =  "Emphasis and strong emphasis"
   },
   {
     markdown =  "a * foo bar*\n",
-    section =  "Emphasis and strong emphasis",
     html =  "<p>a * foo bar*</p>\n",
-    start_line =  6071,
-    end_line =  6075,
-    example =  332
+    example =  351,
+    start_line =  6302,
+    end_line =  6306,
+    section =  "Emphasis and strong emphasis"
   },
   {
     markdown =  "a*\"foo\"*\n",
-    section =  "Emphasis and strong emphasis",
     html =  "<p>a*&quot;foo&quot;*</p>\n",
-    start_line =  6082,
-    end_line =  6086,
-    example =  333
+    example =  352,
+    start_line =  6313,
+    end_line =  6317,
+    section =  "Emphasis and strong emphasis"
   },
   {
     markdown =  "* a *\n",
-    section =  "Emphasis and strong emphasis",
     html =  "<p>* a *</p>\n",
-    start_line =  6091,
-    end_line =  6095,
-    example =  334
+    example =  353,
+    start_line =  6322,
+    end_line =  6326,
+    section =  "Emphasis and strong emphasis"
   },
   {
     markdown =  "foo*bar*\n",
-    section =  "Emphasis and strong emphasis",
     html =  "<p>foo<em>bar</em></p>\n",
-    start_line =  6100,
-    end_line =  6104,
-    example =  335
+    example =  354,
+    start_line =  6331,
+    end_line =  6335,
+    section =  "Emphasis and strong emphasis"
   },
   {
     markdown =  "5*6*78\n",
-    section =  "Emphasis and strong emphasis",
     html =  "<p>5<em>6</em>78</p>\n",
-    start_line =  6107,
-    end_line =  6111,
-    example =  336
+    example =  355,
+    start_line =  6338,
+    end_line =  6342,
+    section =  "Emphasis and strong emphasis"
   },
   {
     markdown =  "_foo bar_\n",
-    section =  "Emphasis and strong emphasis",
     html =  "<p><em>foo bar</em></p>\n",
-    start_line =  6116,
-    end_line =  6120,
-    example =  337
+    example =  356,
+    start_line =  6347,
+    end_line =  6351,
+    section =  "Emphasis and strong emphasis"
   },
   {
     markdown =  "_ foo bar_\n",
-    section =  "Emphasis and strong emphasis",
     html =  "<p>_ foo bar_</p>\n",
-    start_line =  6126,
-    end_line =  6130,
-    example =  338
+    example =  357,
+    start_line =  6357,
+    end_line =  6361,
+    section =  "Emphasis and strong emphasis"
   },
   {
     markdown =  "a_\"foo\"_\n",
-    section =  "Emphasis and strong emphasis",
     html =  "<p>a_&quot;foo&quot;_</p>\n",
-    start_line =  6136,
-    end_line =  6140,
-    example =  339
+    example =  358,
+    start_line =  6367,
+    end_line =  6371,
+    section =  "Emphasis and strong emphasis"
   },
   {
     markdown =  "foo_bar_\n",
-    section =  "Emphasis and strong emphasis",
     html =  "<p>foo_bar_</p>\n",
-    start_line =  6145,
-    end_line =  6149,
-    example =  340
+    example =  359,
+    start_line =  6376,
+    end_line =  6380,
+    section =  "Emphasis and strong emphasis"
   },
   {
     markdown =  "5_6_78\n",
-    section =  "Emphasis and strong emphasis",
     html =  "<p>5_6_78</p>\n",
-    start_line =  6152,
-    end_line =  6156,
-    example =  341
+    example =  360,
+    start_line =  6383,
+    end_line =  6387,
+    section =  "Emphasis and strong emphasis"
   },
   {
     markdown =  "пристаням_стремятся_\n",
-    section =  "Emphasis and strong emphasis",
     html =  "<p>пристаням_стремятся_</p>\n",
-    start_line =  6159,
-    end_line =  6163,
-    example =  342
+    example =  361,
+    start_line =  6390,
+    end_line =  6394,
+    section =  "Emphasis and strong emphasis"
   },
   {
     markdown =  "aa_\"bb\"_cc\n",
-    section =  "Emphasis and strong emphasis",
     html =  "<p>aa_&quot;bb&quot;_cc</p>\n",
-    start_line =  6169,
-    end_line =  6173,
-    example =  343
+    example =  362,
+    start_line =  6400,
+    end_line =  6404,
+    section =  "Emphasis and strong emphasis"
   },
   {
     markdown =  "foo-_(bar)_\n",
-    section =  "Emphasis and strong emphasis",
     html =  "<p>foo-<em>(bar)</em></p>\n",
-    start_line =  6180,
-    end_line =  6184,
-    example =  344
+    example =  363,
+    start_line =  6411,
+    end_line =  6415,
+    section =  "Emphasis and strong emphasis"
   },
   {
     markdown =  "_foo*\n",
-    section =  "Emphasis and strong emphasis",
     html =  "<p>_foo*</p>\n",
-    start_line =  6192,
-    end_line =  6196,
-    example =  345
+    example =  364,
+    start_line =  6423,
+    end_line =  6427,
+    section =  "Emphasis and strong emphasis"
   },
   {
     markdown =  "*foo bar *\n",
-    section =  "Emphasis and strong emphasis",
     html =  "<p>*foo bar *</p>\n",
-    start_line =  6202,
-    end_line =  6206,
-    example =  346
+    example =  365,
+    start_line =  6433,
+    end_line =  6437,
+    section =  "Emphasis and strong emphasis"
   },
   {
     markdown =  "*foo bar\n*\n",
-    section =  "Emphasis and strong emphasis",
     html =  "<p>*foo bar\n*</p>\n",
-    start_line =  6211,
-    end_line =  6217,
-    example =  347
+    example =  366,
+    start_line =  6442,
+    end_line =  6448,
+    section =  "Emphasis and strong emphasis"
   },
   {
     markdown =  "*(*foo)\n",
-    section =  "Emphasis and strong emphasis",
     html =  "<p>*(*foo)</p>\n",
-    start_line =  6224,
-    end_line =  6228,
-    example =  348
+    example =  367,
+    start_line =  6455,
+    end_line =  6459,
+    section =  "Emphasis and strong emphasis"
   },
   {
     markdown =  "*(*foo*)*\n",
-    section =  "Emphasis and strong emphasis",
     html =  "<p><em>(<em>foo</em>)</em></p>\n",
-    start_line =  6234,
-    end_line =  6238,
-    example =  349
+    example =  368,
+    start_line =  6465,
+    end_line =  6469,
+    section =  "Emphasis and strong emphasis"
   },
   {
     markdown =  "*foo*bar\n",
-    section =  "Emphasis and strong emphasis",
     html =  "<p><em>foo</em>bar</p>\n",
-    start_line =  6243,
-    end_line =  6247,
-    example =  350
+    example =  369,
+    start_line =  6474,
+    end_line =  6478,
+    section =  "Emphasis and strong emphasis"
   },
   {
     markdown =  "_foo bar _\n",
-    section =  "Emphasis and strong emphasis",
     html =  "<p>_foo bar _</p>\n",
-    start_line =  6256,
-    end_line =  6260,
-    example =  351
+    example =  370,
+    start_line =  6487,
+    end_line =  6491,
+    section =  "Emphasis and strong emphasis"
   },
   {
     markdown =  "_(_foo)\n",
-    section =  "Emphasis and strong emphasis",
     html =  "<p>_(_foo)</p>\n",
-    start_line =  6266,
-    end_line =  6270,
-    example =  352
+    example =  371,
+    start_line =  6497,
+    end_line =  6501,
+    section =  "Emphasis and strong emphasis"
   },
   {
     markdown =  "_(_foo_)_\n",
-    section =  "Emphasis and strong emphasis",
     html =  "<p><em>(<em>foo</em>)</em></p>\n",
-    start_line =  6275,
-    end_line =  6279,
-    example =  353
+    example =  372,
+    start_line =  6506,
+    end_line =  6510,
+    section =  "Emphasis and strong emphasis"
   },
   {
     markdown =  "_foo_bar\n",
-    section =  "Emphasis and strong emphasis",
     html =  "<p>_foo_bar</p>\n",
-    start_line =  6284,
-    end_line =  6288,
-    example =  354
+    example =  373,
+    start_line =  6515,
+    end_line =  6519,
+    section =  "Emphasis and strong emphasis"
   },
   {
     markdown =  "_пристаням_стремятся\n",
-    section =  "Emphasis and strong emphasis",
     html =  "<p>_пристаням_стремятся</p>\n",
-    start_line =  6291,
-    end_line =  6295,
-    example =  355
+    example =  374,
+    start_line =  6522,
+    end_line =  6526,
+    section =  "Emphasis and strong emphasis"
   },
   {
     markdown =  "_foo_bar_baz_\n",
-    section =  "Emphasis and strong emphasis",
     html =  "<p><em>foo_bar_baz</em></p>\n",
-    start_line =  6298,
-    end_line =  6302,
-    example =  356
+    example =  375,
+    start_line =  6529,
+    end_line =  6533,
+    section =  "Emphasis and strong emphasis"
   },
   {
     markdown =  "_(bar)_.\n",
-    section =  "Emphasis and strong emphasis",
     html =  "<p><em>(bar)</em>.</p>\n",
-    start_line =  6309,
-    end_line =  6313,
-    example =  357
+    example =  376,
+    start_line =  6540,
+    end_line =  6544,
+    section =  "Emphasis and strong emphasis"
   },
   {
     markdown =  "**foo bar**\n",
-    section =  "Emphasis and strong emphasis",
     html =  "<p><strong>foo bar</strong></p>\n",
-    start_line =  6318,
-    end_line =  6322,
-    example =  358
+    example =  377,
+    start_line =  6549,
+    end_line =  6553,
+    section =  "Emphasis and strong emphasis"
   },
   {
     markdown =  "** foo bar**\n",
-    section =  "Emphasis and strong emphasis",
     html =  "<p>** foo bar**</p>\n",
-    start_line =  6328,
-    end_line =  6332,
-    example =  359
+    example =  378,
+    start_line =  6559,
+    end_line =  6563,
+    section =  "Emphasis and strong emphasis"
   },
   {
     markdown =  "a**\"foo\"**\n",
-    section =  "Emphasis and strong emphasis",
     html =  "<p>a**&quot;foo&quot;**</p>\n",
-    start_line =  6339,
-    end_line =  6343,
-    example =  360
+    example =  379,
+    start_line =  6570,
+    end_line =  6574,
+    section =  "Emphasis and strong emphasis"
   },
   {
     markdown =  "foo**bar**\n",
-    section =  "Emphasis and strong emphasis",
     html =  "<p>foo<strong>bar</strong></p>\n",
-    start_line =  6348,
-    end_line =  6352,
-    example =  361
+    example =  380,
+    start_line =  6579,
+    end_line =  6583,
+    section =  "Emphasis and strong emphasis"
   },
   {
     markdown =  "__foo bar__\n",
-    section =  "Emphasis and strong emphasis",
     html =  "<p><strong>foo bar</strong></p>\n",
-    start_line =  6357,
-    end_line =  6361,
-    example =  362
+    example =  381,
+    start_line =  6588,
+    end_line =  6592,
+    section =  "Emphasis and strong emphasis"
   },
   {
     markdown =  "__ foo bar__\n",
-    section =  "Emphasis and strong emphasis",
     html =  "<p>__ foo bar__</p>\n",
-    start_line =  6367,
-    end_line =  6371,
-    example =  363
+    example =  382,
+    start_line =  6598,
+    end_line =  6602,
+    section =  "Emphasis and strong emphasis"
   },
   {
     markdown =  "__\nfoo bar__\n",
-    section =  "Emphasis and strong emphasis",
     html =  "<p>__\nfoo bar__</p>\n",
-    start_line =  6375,
-    end_line =  6381,
-    example =  364
+    example =  383,
+    start_line =  6606,
+    end_line =  6612,
+    section =  "Emphasis and strong emphasis"
   },
   {
     markdown =  "a__\"foo\"__\n",
-    section =  "Emphasis and strong emphasis",
     html =  "<p>a__&quot;foo&quot;__</p>\n",
-    start_line =  6387,
-    end_line =  6391,
-    example =  365
+    example =  384,
+    start_line =  6618,
+    end_line =  6622,
+    section =  "Emphasis and strong emphasis"
   },
   {
     markdown =  "foo__bar__\n",
-    section =  "Emphasis and strong emphasis",
     html =  "<p>foo__bar__</p>\n",
-    start_line =  6396,
-    end_line =  6400,
-    example =  366
+    example =  385,
+    start_line =  6627,
+    end_line =  6631,
+    section =  "Emphasis and strong emphasis"
   },
   {
     markdown =  "5__6__78\n",
-    section =  "Emphasis and strong emphasis",
     html =  "<p>5__6__78</p>\n",
-    start_line =  6403,
-    end_line =  6407,
-    example =  367
+    example =  386,
+    start_line =  6634,
+    end_line =  6638,
+    section =  "Emphasis and strong emphasis"
   },
   {
     markdown =  "пристаням__стремятся__\n",
-    section =  "Emphasis and strong emphasis",
     html =  "<p>пристаням__стремятся__</p>\n",
-    start_line =  6410,
-    end_line =  6414,
-    example =  368
+    example =  387,
+    start_line =  6641,
+    end_line =  6645,
+    section =  "Emphasis and strong emphasis"
   },
   {
     markdown =  "__foo, __bar__, baz__\n",
-    section =  "Emphasis and strong emphasis",
     html =  "<p><strong>foo, <strong>bar</strong>, baz</strong></p>\n",
-    start_line =  6417,
-    end_line =  6421,
-    example =  369
+    example =  388,
+    start_line =  6648,
+    end_line =  6652,
+    section =  "Emphasis and strong emphasis"
   },
   {
     markdown =  "foo-__(bar)__\n",
-    section =  "Emphasis and strong emphasis",
     html =  "<p>foo-<strong>(bar)</strong></p>\n",
-    start_line =  6428,
-    end_line =  6432,
-    example =  370
+    example =  389,
+    start_line =  6659,
+    end_line =  6663,
+    section =  "Emphasis and strong emphasis"
   },
   {
     markdown =  "**foo bar **\n",
-    section =  "Emphasis and strong emphasis",
     html =  "<p>**foo bar **</p>\n",
-    start_line =  6441,
-    end_line =  6445,
-    example =  371
+    example =  390,
+    start_line =  6672,
+    end_line =  6676,
+    section =  "Emphasis and strong emphasis"
   },
   {
     markdown =  "**(**foo)\n",
-    section =  "Emphasis and strong emphasis",
     html =  "<p>**(**foo)</p>\n",
-    start_line =  6454,
-    end_line =  6458,
-    example =  372
+    example =  391,
+    start_line =  6685,
+    end_line =  6689,
+    section =  "Emphasis and strong emphasis"
   },
   {
     markdown =  "*(**foo**)*\n",
-    section =  "Emphasis and strong emphasis",
     html =  "<p><em>(<strong>foo</strong>)</em></p>\n",
-    start_line =  6464,
-    end_line =  6468,
-    example =  373
+    example =  392,
+    start_line =  6695,
+    end_line =  6699,
+    section =  "Emphasis and strong emphasis"
   },
   {
     markdown =  "**Gomphocarpus (*Gomphocarpus physocarpus*, syn.\n*Asclepias physocarpa*)**\n",
-    section =  "Emphasis and strong emphasis",
     html =  "<p><strong>Gomphocarpus (<em>Gomphocarpus physocarpus</em>, syn.\n<em>Asclepias physocarpa</em>)</strong></p>\n",
-    start_line =  6471,
-    end_line =  6477,
-    example =  374
+    example =  393,
+    start_line =  6702,
+    end_line =  6708,
+    section =  "Emphasis and strong emphasis"
   },
   {
     markdown =  "**foo \"*bar*\" foo**\n",
-    section =  "Emphasis and strong emphasis",
     html =  "<p><strong>foo &quot;<em>bar</em>&quot; foo</strong></p>\n",
-    start_line =  6480,
-    end_line =  6484,
-    example =  375
+    example =  394,
+    start_line =  6711,
+    end_line =  6715,
+    section =  "Emphasis and strong emphasis"
   },
   {
     markdown =  "**foo**bar\n",
-    section =  "Emphasis and strong emphasis",
     html =  "<p><strong>foo</strong>bar</p>\n",
-    start_line =  6489,
-    end_line =  6493,
-    example =  376
+    example =  395,
+    start_line =  6720,
+    end_line =  6724,
+    section =  "Emphasis and strong emphasis"
   },
   {
     markdown =  "__foo bar __\n",
-    section =  "Emphasis and strong emphasis",
     html =  "<p>__foo bar __</p>\n",
-    start_line =  6501,
-    end_line =  6505,
-    example =  377
+    example =  396,
+    start_line =  6732,
+    end_line =  6736,
+    section =  "Emphasis and strong emphasis"
   },
   {
     markdown =  "__(__foo)\n",
-    section =  "Emphasis and strong emphasis",
     html =  "<p>__(__foo)</p>\n",
-    start_line =  6511,
-    end_line =  6515,
-    example =  378
+    example =  397,
+    start_line =  6742,
+    end_line =  6746,
+    section =  "Emphasis and strong emphasis"
   },
   {
     markdown =  "_(__foo__)_\n",
-    section =  "Emphasis and strong emphasis",
     html =  "<p><em>(<strong>foo</strong>)</em></p>\n",
-    start_line =  6521,
-    end_line =  6525,
-    example =  379
+    example =  398,
+    start_line =  6752,
+    end_line =  6756,
+    section =  "Emphasis and strong emphasis"
   },
   {
     markdown =  "__foo__bar\n",
-    section =  "Emphasis and strong emphasis",
     html =  "<p>__foo__bar</p>\n",
-    start_line =  6530,
-    end_line =  6534,
-    example =  380
+    example =  399,
+    start_line =  6761,
+    end_line =  6765,
+    section =  "Emphasis and strong emphasis"
   },
   {
     markdown =  "__пристаням__стремятся\n",
-    section =  "Emphasis and strong emphasis",
     html =  "<p>__пристаням__стремятся</p>\n",
-    start_line =  6537,
-    end_line =  6541,
-    example =  381
+    example =  400,
+    start_line =  6768,
+    end_line =  6772,
+    section =  "Emphasis and strong emphasis"
   },
   {
     markdown =  "__foo__bar__baz__\n",
-    section =  "Emphasis and strong emphasis",
     html =  "<p><strong>foo__bar__baz</strong></p>\n",
-    start_line =  6544,
-    end_line =  6548,
-    example =  382
+    example =  401,
+    start_line =  6775,
+    end_line =  6779,
+    section =  "Emphasis and strong emphasis"
   },
   {
     markdown =  "__(bar)__.\n",
-    section =  "Emphasis and strong emphasis",
     html =  "<p><strong>(bar)</strong>.</p>\n",
-    start_line =  6555,
-    end_line =  6559,
-    example =  383
+    example =  402,
+    start_line =  6786,
+    end_line =  6790,
+    section =  "Emphasis and strong emphasis"
   },
   {
     markdown =  "*foo [bar](/url)*\n",
-    section =  "Emphasis and strong emphasis",
     html =  "<p><em>foo <a href=\"/url\">bar</a></em></p>\n",
-    start_line =  6567,
-    end_line =  6571,
-    example =  384
+    example =  403,
+    start_line =  6798,
+    end_line =  6802,
+    section =  "Emphasis and strong emphasis"
   },
   {
     markdown =  "*foo\nbar*\n",
-    section =  "Emphasis and strong emphasis",
     html =  "<p><em>foo\nbar</em></p>\n",
-    start_line =  6574,
-    end_line =  6580,
-    example =  385
+    example =  404,
+    start_line =  6805,
+    end_line =  6811,
+    section =  "Emphasis and strong emphasis"
   },
   {
     markdown =  "_foo __bar__ baz_\n",
-    section =  "Emphasis and strong emphasis",
     html =  "<p><em>foo <strong>bar</strong> baz</em></p>\n",
-    start_line =  6586,
-    end_line =  6590,
-    example =  386
+    example =  405,
+    start_line =  6817,
+    end_line =  6821,
+    section =  "Emphasis and strong emphasis"
   },
   {
     markdown =  "_foo _bar_ baz_\n",
-    section =  "Emphasis and strong emphasis",
     html =  "<p><em>foo <em>bar</em> baz</em></p>\n",
-    start_line =  6593,
-    end_line =  6597,
-    example =  387
+    example =  406,
+    start_line =  6824,
+    end_line =  6828,
+    section =  "Emphasis and strong emphasis"
   },
   {
     markdown =  "__foo_ bar_\n",
-    section =  "Emphasis and strong emphasis",
     html =  "<p><em><em>foo</em> bar</em></p>\n",
-    start_line =  6600,
-    end_line =  6604,
-    example =  388
+    example =  407,
+    start_line =  6831,
+    end_line =  6835,
+    section =  "Emphasis and strong emphasis"
   },
   {
     markdown =  "*foo *bar**\n",
-    section =  "Emphasis and strong emphasis",
     html =  "<p><em>foo <em>bar</em></em></p>\n",
-    start_line =  6607,
-    end_line =  6611,
-    example =  389
+    example =  408,
+    start_line =  6838,
+    end_line =  6842,
+    section =  "Emphasis and strong emphasis"
   },
   {
     markdown =  "*foo **bar** baz*\n",
-    section =  "Emphasis and strong emphasis",
     html =  "<p><em>foo <strong>bar</strong> baz</em></p>\n",
-    start_line =  6614,
-    end_line =  6618,
-    example =  390
+    example =  409,
+    start_line =  6845,
+    end_line =  6849,
+    section =  "Emphasis and strong emphasis"
   },
   {
     markdown =  "*foo**bar**baz*\n",
-    section =  "Emphasis and strong emphasis",
     html =  "<p><em>foo<strong>bar</strong>baz</em></p>\n",
-    start_line =  6620,
-    end_line =  6624,
-    example =  391
+    example =  410,
+    start_line =  6851,
+    end_line =  6855,
+    section =  "Emphasis and strong emphasis"
+  },
+  {
+    markdown =  "*foo**bar*\n",
+    html =  "<p><em>foo**bar</em></p>\n",
+    example =  411,
+    start_line =  6875,
+    end_line =  6879,
+    section =  "Emphasis and strong emphasis"
   },
   {
     markdown =  "***foo** bar*\n",
-    section =  "Emphasis and strong emphasis",
     html =  "<p><em><strong>foo</strong> bar</em></p>\n",
-    start_line =  6645,
-    end_line =  6649,
-    example =  392
+    example =  412,
+    start_line =  6888,
+    end_line =  6892,
+    section =  "Emphasis and strong emphasis"
   },
   {
     markdown =  "*foo **bar***\n",
-    section =  "Emphasis and strong emphasis",
     html =  "<p><em>foo <strong>bar</strong></em></p>\n",
-    start_line =  6652,
-    end_line =  6656,
-    example =  393
+    example =  413,
+    start_line =  6895,
+    end_line =  6899,
+    section =  "Emphasis and strong emphasis"
   },
   {
     markdown =  "*foo**bar***\n",
-    section =  "Emphasis and strong emphasis",
     html =  "<p><em>foo<strong>bar</strong></em></p>\n",
-    start_line =  6659,
-    end_line =  6663,
-    example =  394
+    example =  414,
+    start_line =  6902,
+    end_line =  6906,
+    section =  "Emphasis and strong emphasis"
+  },
+  {
+    markdown =  "foo***bar***baz\n",
+    html =  "<p>foo<em><strong>bar</strong></em>baz</p>\n",
+    example =  415,
+    start_line =  6913,
+    end_line =  6917,
+    section =  "Emphasis and strong emphasis"
+  },
+  {
+    markdown =  "foo******bar*********baz\n",
+    html =  "<p>foo<strong><strong><strong>bar</strong></strong></strong>***baz</p>\n",
+    example =  416,
+    start_line =  6919,
+    end_line =  6923,
+    section =  "Emphasis and strong emphasis"
   },
   {
     markdown =  "*foo **bar *baz* bim** bop*\n",
-    section =  "Emphasis and strong emphasis",
     html =  "<p><em>foo <strong>bar <em>baz</em> bim</strong> bop</em></p>\n",
-    start_line =  6668,
-    end_line =  6672,
-    example =  395
+    example =  417,
+    start_line =  6928,
+    end_line =  6932,
+    section =  "Emphasis and strong emphasis"
   },
   {
     markdown =  "*foo [*bar*](/url)*\n",
-    section =  "Emphasis and strong emphasis",
     html =  "<p><em>foo <a href=\"/url\"><em>bar</em></a></em></p>\n",
-    start_line =  6675,
-    end_line =  6679,
-    example =  396
+    example =  418,
+    start_line =  6935,
+    end_line =  6939,
+    section =  "Emphasis and strong emphasis"
   },
   {
     markdown =  "** is not an empty emphasis\n",
-    section =  "Emphasis and strong emphasis",
     html =  "<p>** is not an empty emphasis</p>\n",
-    start_line =  6684,
-    end_line =  6688,
-    example =  397
+    example =  419,
+    start_line =  6944,
+    end_line =  6948,
+    section =  "Emphasis and strong emphasis"
   },
   {
     markdown =  "**** is not an empty strong emphasis\n",
-    section =  "Emphasis and strong emphasis",
     html =  "<p>**** is not an empty strong emphasis</p>\n",
-    start_line =  6691,
-    end_line =  6695,
-    example =  398
+    example =  420,
+    start_line =  6951,
+    end_line =  6955,
+    section =  "Emphasis and strong emphasis"
   },
   {
     markdown =  "**foo [bar](/url)**\n",
-    section =  "Emphasis and strong emphasis",
     html =  "<p><strong>foo <a href=\"/url\">bar</a></strong></p>\n",
-    start_line =  6704,
-    end_line =  6708,
-    example =  399
+    example =  421,
+    start_line =  6964,
+    end_line =  6968,
+    section =  "Emphasis and strong emphasis"
   },
   {
     markdown =  "**foo\nbar**\n",
-    section =  "Emphasis and strong emphasis",
     html =  "<p><strong>foo\nbar</strong></p>\n",
-    start_line =  6711,
-    end_line =  6717,
-    example =  400
+    example =  422,
+    start_line =  6971,
+    end_line =  6977,
+    section =  "Emphasis and strong emphasis"
   },
   {
     markdown =  "__foo _bar_ baz__\n",
-    section =  "Emphasis and strong emphasis",
     html =  "<p><strong>foo <em>bar</em> baz</strong></p>\n",
-    start_line =  6723,
-    end_line =  6727,
-    example =  401
+    example =  423,
+    start_line =  6983,
+    end_line =  6987,
+    section =  "Emphasis and strong emphasis"
   },
   {
     markdown =  "__foo __bar__ baz__\n",
-    section =  "Emphasis and strong emphasis",
     html =  "<p><strong>foo <strong>bar</strong> baz</strong></p>\n",
-    start_line =  6730,
-    end_line =  6734,
-    example =  402
+    example =  424,
+    start_line =  6990,
+    end_line =  6994,
+    section =  "Emphasis and strong emphasis"
   },
   {
     markdown =  "____foo__ bar__\n",
-    section =  "Emphasis and strong emphasis",
     html =  "<p><strong><strong>foo</strong> bar</strong></p>\n",
-    start_line =  6737,
-    end_line =  6741,
-    example =  403
+    example =  425,
+    start_line =  6997,
+    end_line =  7001,
+    section =  "Emphasis and strong emphasis"
   },
   {
     markdown =  "**foo **bar****\n",
-    section =  "Emphasis and strong emphasis",
     html =  "<p><strong>foo <strong>bar</strong></strong></p>\n",
-    start_line =  6744,
-    end_line =  6748,
-    example =  404
+    example =  426,
+    start_line =  7004,
+    end_line =  7008,
+    section =  "Emphasis and strong emphasis"
   },
   {
     markdown =  "**foo *bar* baz**\n",
-    section =  "Emphasis and strong emphasis",
     html =  "<p><strong>foo <em>bar</em> baz</strong></p>\n",
-    start_line =  6751,
-    end_line =  6755,
-    example =  405
+    example =  427,
+    start_line =  7011,
+    end_line =  7015,
+    section =  "Emphasis and strong emphasis"
   },
   {
     markdown =  "**foo*bar*baz**\n",
-    section =  "Emphasis and strong emphasis",
     html =  "<p><strong>foo<em>bar</em>baz</strong></p>\n",
-    start_line =  6758,
-    end_line =  6762,
-    example =  406
+    example =  428,
+    start_line =  7018,
+    end_line =  7022,
+    section =  "Emphasis and strong emphasis"
   },
   {
     markdown =  "***foo* bar**\n",
-    section =  "Emphasis and strong emphasis",
     html =  "<p><strong><em>foo</em> bar</strong></p>\n",
-    start_line =  6765,
-    end_line =  6769,
-    example =  407
+    example =  429,
+    start_line =  7025,
+    end_line =  7029,
+    section =  "Emphasis and strong emphasis"
   },
   {
     markdown =  "**foo *bar***\n",
-    section =  "Emphasis and strong emphasis",
     html =  "<p><strong>foo <em>bar</em></strong></p>\n",
-    start_line =  6772,
-    end_line =  6776,
-    example =  408
+    example =  430,
+    start_line =  7032,
+    end_line =  7036,
+    section =  "Emphasis and strong emphasis"
   },
   {
     markdown =  "**foo *bar **baz**\nbim* bop**\n",
-    section =  "Emphasis and strong emphasis",
     html =  "<p><strong>foo <em>bar <strong>baz</strong>\nbim</em> bop</strong></p>\n",
-    start_line =  6781,
-    end_line =  6787,
-    example =  409
+    example =  431,
+    start_line =  7041,
+    end_line =  7047,
+    section =  "Emphasis and strong emphasis"
   },
   {
     markdown =  "**foo [*bar*](/url)**\n",
-    section =  "Emphasis and strong emphasis",
     html =  "<p><strong>foo <a href=\"/url\"><em>bar</em></a></strong></p>\n",
-    start_line =  6790,
-    end_line =  6794,
-    example =  410
+    example =  432,
+    start_line =  7050,
+    end_line =  7054,
+    section =  "Emphasis and strong emphasis"
   },
   {
     markdown =  "__ is not an empty emphasis\n",
-    section =  "Emphasis and strong emphasis",
     html =  "<p>__ is not an empty emphasis</p>\n",
-    start_line =  6799,
-    end_line =  6803,
-    example =  411
+    example =  433,
+    start_line =  7059,
+    end_line =  7063,
+    section =  "Emphasis and strong emphasis"
   },
   {
     markdown =  "____ is not an empty strong emphasis\n",
-    section =  "Emphasis and strong emphasis",
     html =  "<p>____ is not an empty strong emphasis</p>\n",
-    start_line =  6806,
-    end_line =  6810,
-    example =  412
+    example =  434,
+    start_line =  7066,
+    end_line =  7070,
+    section =  "Emphasis and strong emphasis"
   },
   {
     markdown =  "foo ***\n",
-    section =  "Emphasis and strong emphasis",
     html =  "<p>foo ***</p>\n",
-    start_line =  6816,
-    end_line =  6820,
-    example =  413
+    example =  435,
+    start_line =  7076,
+    end_line =  7080,
+    section =  "Emphasis and strong emphasis"
   },
   {
     markdown =  "foo *\\**\n",
-    section =  "Emphasis and strong emphasis",
     html =  "<p>foo <em>*</em></p>\n",
-    start_line =  6823,
-    end_line =  6827,
-    example =  414
+    example =  436,
+    start_line =  7083,
+    end_line =  7087,
+    section =  "Emphasis and strong emphasis"
   },
   {
     markdown =  "foo *_*\n",
-    section =  "Emphasis and strong emphasis",
     html =  "<p>foo <em>_</em></p>\n",
-    start_line =  6830,
-    end_line =  6834,
-    example =  415
+    example =  437,
+    start_line =  7090,
+    end_line =  7094,
+    section =  "Emphasis and strong emphasis"
   },
   {
     markdown =  "foo *****\n",
-    section =  "Emphasis and strong emphasis",
     html =  "<p>foo *****</p>\n",
-    start_line =  6837,
-    end_line =  6841,
-    example =  416
+    example =  438,
+    start_line =  7097,
+    end_line =  7101,
+    section =  "Emphasis and strong emphasis"
   },
   {
     markdown =  "foo **\\***\n",
-    section =  "Emphasis and strong emphasis",
     html =  "<p>foo <strong>*</strong></p>\n",
-    start_line =  6844,
-    end_line =  6848,
-    example =  417
+    example =  439,
+    start_line =  7104,
+    end_line =  7108,
+    section =  "Emphasis and strong emphasis"
   },
   {
     markdown =  "foo **_**\n",
-    section =  "Emphasis and strong emphasis",
     html =  "<p>foo <strong>_</strong></p>\n",
-    start_line =  6851,
-    end_line =  6855,
-    example =  418
+    example =  440,
+    start_line =  7111,
+    end_line =  7115,
+    section =  "Emphasis and strong emphasis"
   },
   {
     markdown =  "**foo*\n",
-    section =  "Emphasis and strong emphasis",
     html =  "<p>*<em>foo</em></p>\n",
-    start_line =  6862,
-    end_line =  6866,
-    example =  419
+    example =  441,
+    start_line =  7122,
+    end_line =  7126,
+    section =  "Emphasis and strong emphasis"
   },
   {
     markdown =  "*foo**\n",
-    section =  "Emphasis and strong emphasis",
     html =  "<p><em>foo</em>*</p>\n",
-    start_line =  6869,
-    end_line =  6873,
-    example =  420
+    example =  442,
+    start_line =  7129,
+    end_line =  7133,
+    section =  "Emphasis and strong emphasis"
   },
   {
     markdown =  "***foo**\n",
-    section =  "Emphasis and strong emphasis",
     html =  "<p>*<strong>foo</strong></p>\n",
-    start_line =  6876,
-    end_line =  6880,
-    example =  421
+    example =  443,
+    start_line =  7136,
+    end_line =  7140,
+    section =  "Emphasis and strong emphasis"
   },
   {
     markdown =  "****foo*\n",
-    section =  "Emphasis and strong emphasis",
     html =  "<p>***<em>foo</em></p>\n",
-    start_line =  6883,
-    end_line =  6887,
-    example =  422
+    example =  444,
+    start_line =  7143,
+    end_line =  7147,
+    section =  "Emphasis and strong emphasis"
   },
   {
     markdown =  "**foo***\n",
-    section =  "Emphasis and strong emphasis",
     html =  "<p><strong>foo</strong>*</p>\n",
-    start_line =  6890,
-    end_line =  6894,
-    example =  423
+    example =  445,
+    start_line =  7150,
+    end_line =  7154,
+    section =  "Emphasis and strong emphasis"
   },
   {
     markdown =  "*foo****\n",
-    section =  "Emphasis and strong emphasis",
     html =  "<p><em>foo</em>***</p>\n",
-    start_line =  6897,
-    end_line =  6901,
-    example =  424
+    example =  446,
+    start_line =  7157,
+    end_line =  7161,
+    section =  "Emphasis and strong emphasis"
   },
   {
     markdown =  "foo ___\n",
-    section =  "Emphasis and strong emphasis",
     html =  "<p>foo ___</p>\n",
-    start_line =  6907,
-    end_line =  6911,
-    example =  425
+    example =  447,
+    start_line =  7167,
+    end_line =  7171,
+    section =  "Emphasis and strong emphasis"
   },
   {
     markdown =  "foo _\\__\n",
-    section =  "Emphasis and strong emphasis",
     html =  "<p>foo <em>_</em></p>\n",
-    start_line =  6914,
-    end_line =  6918,
-    example =  426
+    example =  448,
+    start_line =  7174,
+    end_line =  7178,
+    section =  "Emphasis and strong emphasis"
   },
   {
     markdown =  "foo _*_\n",
-    section =  "Emphasis and strong emphasis",
     html =  "<p>foo <em>*</em></p>\n",
-    start_line =  6921,
-    end_line =  6925,
-    example =  427
+    example =  449,
+    start_line =  7181,
+    end_line =  7185,
+    section =  "Emphasis and strong emphasis"
   },
   {
     markdown =  "foo _____\n",
-    section =  "Emphasis and strong emphasis",
     html =  "<p>foo _____</p>\n",
-    start_line =  6928,
-    end_line =  6932,
-    example =  428
+    example =  450,
+    start_line =  7188,
+    end_line =  7192,
+    section =  "Emphasis and strong emphasis"
   },
   {
     markdown =  "foo __\\___\n",
-    section =  "Emphasis and strong emphasis",
     html =  "<p>foo <strong>_</strong></p>\n",
-    start_line =  6935,
-    end_line =  6939,
-    example =  429
+    example =  451,
+    start_line =  7195,
+    end_line =  7199,
+    section =  "Emphasis and strong emphasis"
   },
   {
     markdown =  "foo __*__\n",
-    section =  "Emphasis and strong emphasis",
     html =  "<p>foo <strong>*</strong></p>\n",
-    start_line =  6942,
-    end_line =  6946,
-    example =  430
+    example =  452,
+    start_line =  7202,
+    end_line =  7206,
+    section =  "Emphasis and strong emphasis"
   },
   {
     markdown =  "__foo_\n",
-    section =  "Emphasis and strong emphasis",
     html =  "<p>_<em>foo</em></p>\n",
-    start_line =  6949,
-    end_line =  6953,
-    example =  431
+    example =  453,
+    start_line =  7209,
+    end_line =  7213,
+    section =  "Emphasis and strong emphasis"
   },
   {
     markdown =  "_foo__\n",
-    section =  "Emphasis and strong emphasis",
     html =  "<p><em>foo</em>_</p>\n",
-    start_line =  6960,
-    end_line =  6964,
-    example =  432
+    example =  454,
+    start_line =  7220,
+    end_line =  7224,
+    section =  "Emphasis and strong emphasis"
   },
   {
     markdown =  "___foo__\n",
-    section =  "Emphasis and strong emphasis",
     html =  "<p>_<strong>foo</strong></p>\n",
-    start_line =  6967,
-    end_line =  6971,
-    example =  433
+    example =  455,
+    start_line =  7227,
+    end_line =  7231,
+    section =  "Emphasis and strong emphasis"
   },
   {
     markdown =  "____foo_\n",
-    section =  "Emphasis and strong emphasis",
     html =  "<p>___<em>foo</em></p>\n",
-    start_line =  6974,
-    end_line =  6978,
-    example =  434
+    example =  456,
+    start_line =  7234,
+    end_line =  7238,
+    section =  "Emphasis and strong emphasis"
   },
   {
     markdown =  "__foo___\n",
-    section =  "Emphasis and strong emphasis",
     html =  "<p><strong>foo</strong>_</p>\n",
-    start_line =  6981,
-    end_line =  6985,
-    example =  435
+    example =  457,
+    start_line =  7241,
+    end_line =  7245,
+    section =  "Emphasis and strong emphasis"
   },
   {
     markdown =  "_foo____\n",
-    section =  "Emphasis and strong emphasis",
     html =  "<p><em>foo</em>___</p>\n",
-    start_line =  6988,
-    end_line =  6992,
-    example =  436
+    example =  458,
+    start_line =  7248,
+    end_line =  7252,
+    section =  "Emphasis and strong emphasis"
   },
   {
     markdown =  "**foo**\n",
-    section =  "Emphasis and strong emphasis",
     html =  "<p><strong>foo</strong></p>\n",
-    start_line =  6998,
-    end_line =  7002,
-    example =  437
+    example =  459,
+    start_line =  7258,
+    end_line =  7262,
+    section =  "Emphasis and strong emphasis"
   },
   {
     markdown =  "*_foo_*\n",
-    section =  "Emphasis and strong emphasis",
     html =  "<p><em><em>foo</em></em></p>\n",
-    start_line =  7005,
-    end_line =  7009,
-    example =  438
+    example =  460,
+    start_line =  7265,
+    end_line =  7269,
+    section =  "Emphasis and strong emphasis"
   },
   {
     markdown =  "__foo__\n",
-    section =  "Emphasis and strong emphasis",
     html =  "<p><strong>foo</strong></p>\n",
-    start_line =  7012,
-    end_line =  7016,
-    example =  439
+    example =  461,
+    start_line =  7272,
+    end_line =  7276,
+    section =  "Emphasis and strong emphasis"
   },
   {
     markdown =  "_*foo*_\n",
-    section =  "Emphasis and strong emphasis",
     html =  "<p><em><em>foo</em></em></p>\n",
-    start_line =  7019,
-    end_line =  7023,
-    example =  440
+    example =  462,
+    start_line =  7279,
+    end_line =  7283,
+    section =  "Emphasis and strong emphasis"
   },
   {
     markdown =  "****foo****\n",
-    section =  "Emphasis and strong emphasis",
     html =  "<p><strong><strong>foo</strong></strong></p>\n",
-    start_line =  7029,
-    end_line =  7033,
-    example =  441
+    example =  463,
+    start_line =  7289,
+    end_line =  7293,
+    section =  "Emphasis and strong emphasis"
   },
   {
     markdown =  "____foo____\n",
-    section =  "Emphasis and strong emphasis",
     html =  "<p><strong><strong>foo</strong></strong></p>\n",
-    start_line =  7036,
-    end_line =  7040,
-    example =  442
+    example =  464,
+    start_line =  7296,
+    end_line =  7300,
+    section =  "Emphasis and strong emphasis"
   },
   {
     markdown =  "******foo******\n",
-    section =  "Emphasis and strong emphasis",
     html =  "<p><strong><strong><strong>foo</strong></strong></strong></p>\n",
-    start_line =  7047,
-    end_line =  7051,
-    example =  443
+    example =  465,
+    start_line =  7307,
+    end_line =  7311,
+    section =  "Emphasis and strong emphasis"
   },
   {
     markdown =  "***foo***\n",
-    section =  "Emphasis and strong emphasis",
     html =  "<p><em><strong>foo</strong></em></p>\n",
-    start_line =  7056,
-    end_line =  7060,
-    example =  444
+    example =  466,
+    start_line =  7316,
+    end_line =  7320,
+    section =  "Emphasis and strong emphasis"
   },
   {
     markdown =  "_____foo_____\n",
-    section =  "Emphasis and strong emphasis",
     html =  "<p><em><strong><strong>foo</strong></strong></em></p>\n",
-    start_line =  7063,
-    end_line =  7067,
-    example =  445
+    example =  467,
+    start_line =  7323,
+    end_line =  7327,
+    section =  "Emphasis and strong emphasis"
   },
   {
     markdown =  "*foo _bar* baz_\n",
-    section =  "Emphasis and strong emphasis",
     html =  "<p><em>foo _bar</em> baz_</p>\n",
-    start_line =  7072,
-    end_line =  7076,
-    example =  446
+    example =  468,
+    start_line =  7332,
+    end_line =  7336,
+    section =  "Emphasis and strong emphasis"
   },
   {
     markdown =  "*foo __bar *baz bim__ bam*\n",
-    section =  "Emphasis and strong emphasis",
     html =  "<p><em>foo <strong>bar *baz bim</strong> bam</em></p>\n",
-    start_line =  7079,
-    end_line =  7083,
-    example =  447
+    example =  469,
+    start_line =  7339,
+    end_line =  7343,
+    section =  "Emphasis and strong emphasis"
   },
   {
     markdown =  "**foo **bar baz**\n",
-    section =  "Emphasis and strong emphasis",
     html =  "<p>**foo <strong>bar baz</strong></p>\n",
-    start_line =  7088,
-    end_line =  7092,
-    example =  448
+    example =  470,
+    start_line =  7348,
+    end_line =  7352,
+    section =  "Emphasis and strong emphasis"
   },
   {
     markdown =  "*foo *bar baz*\n",
-    section =  "Emphasis and strong emphasis",
     html =  "<p>*foo <em>bar baz</em></p>\n",
-    start_line =  7095,
-    end_line =  7099,
-    example =  449
+    example =  471,
+    start_line =  7355,
+    end_line =  7359,
+    section =  "Emphasis and strong emphasis"
   },
   {
     markdown =  "*[bar*](/url)\n",
-    section =  "Emphasis and strong emphasis",
     html =  "<p>*<a href=\"/url\">bar*</a></p>\n",
-    start_line =  7104,
-    end_line =  7108,
-    example =  450
+    example =  472,
+    start_line =  7364,
+    end_line =  7368,
+    section =  "Emphasis and strong emphasis"
   },
   {
     markdown =  "_foo [bar_](/url)\n",
-    section =  "Emphasis and strong emphasis",
     html =  "<p>_foo <a href=\"/url\">bar_</a></p>\n",
-    start_line =  7111,
-    end_line =  7115,
-    example =  451
+    example =  473,
+    start_line =  7371,
+    end_line =  7375,
+    section =  "Emphasis and strong emphasis"
   },
   {
     markdown =  "*<img src=\"foo\" title=\"*\"/>\n",
-    section =  "Emphasis and strong emphasis",
     html =  "<p>*<img src=\"foo\" title=\"*\"/></p>\n",
-    start_line =  7118,
-    end_line =  7122,
-    example =  452
+    example =  474,
+    start_line =  7378,
+    end_line =  7382,
+    section =  "Emphasis and strong emphasis"
   },
   {
     markdown =  "**<a href=\"**\">\n",
-    section =  "Emphasis and strong emphasis",
     html =  "<p>**<a href=\"**\"></p>\n",
-    start_line =  7125,
-    end_line =  7129,
-    example =  453
+    example =  475,
+    start_line =  7385,
+    end_line =  7389,
+    section =  "Emphasis and strong emphasis"
   },
   {
     markdown =  "__<a href=\"__\">\n",
-    section =  "Emphasis and strong emphasis",
     html =  "<p>__<a href=\"__\"></p>\n",
-    start_line =  7132,
-    end_line =  7136,
-    example =  454
+    example =  476,
+    start_line =  7392,
+    end_line =  7396,
+    section =  "Emphasis and strong emphasis"
   },
   {
     markdown =  "*a `*`*\n",
-    section =  "Emphasis and strong emphasis",
     html =  "<p><em>a <code>*</code></em></p>\n",
-    start_line =  7139,
-    end_line =  7143,
-    example =  455
+    example =  477,
+    start_line =  7399,
+    end_line =  7403,
+    section =  "Emphasis and strong emphasis"
   },
   {
     markdown =  "_a `_`_\n",
-    section =  "Emphasis and strong emphasis",
     html =  "<p><em>a <code>_</code></em></p>\n",
-    start_line =  7146,
-    end_line =  7150,
-    example =  456
+    example =  478,
+    start_line =  7406,
+    end_line =  7410,
+    section =  "Emphasis and strong emphasis"
   },
   {
     markdown =  "**a<http://foo.bar/?q=**>\n",
-    section =  "Emphasis and strong emphasis",
     html =  "<p>**a<a href=\"http://foo.bar/?q=**\">http://foo.bar/?q=**</a></p>\n",
-    start_line =  7153,
-    end_line =  7157,
-    example =  457
+    example =  479,
+    start_line =  7413,
+    end_line =  7417,
+    section =  "Emphasis and strong emphasis"
   },
   {
     markdown =  "__a<http://foo.bar/?q=__>\n",
-    section =  "Emphasis and strong emphasis",
     html =  "<p>__a<a href=\"http://foo.bar/?q=__\">http://foo.bar/?q=__</a></p>\n",
-    start_line =  7160,
-    end_line =  7164,
-    example =  458
+    example =  480,
+    start_line =  7420,
+    end_line =  7424,
+    section =  "Emphasis and strong emphasis"
   },
   {
     markdown =  "[link](/uri \"title\")\n",
-    section =  "Links",
     html =  "<p><a href=\"/uri\" title=\"title\">link</a></p>\n",
-    start_line =  7241,
-    end_line =  7245,
-    example =  459
+    example =  481,
+    start_line =  7503,
+    end_line =  7507,
+    section =  "Links"
   },
   {
     markdown =  "[link](/uri)\n",
-    section =  "Links",
     html =  "<p><a href=\"/uri\">link</a></p>\n",
-    start_line =  7250,
-    end_line =  7254,
-    example =  460
+    example =  482,
+    start_line =  7512,
+    end_line =  7516,
+    section =  "Links"
   },
   {
     markdown =  "[link]()\n",
-    section =  "Links",
     html =  "<p><a href=\"\">link</a></p>\n",
-    start_line =  7259,
-    end_line =  7263,
-    example =  461
+    example =  483,
+    start_line =  7521,
+    end_line =  7525,
+    section =  "Links"
   },
   {
     markdown =  "[link](<>)\n",
-    section =  "Links",
     html =  "<p><a href=\"\">link</a></p>\n",
-    start_line =  7266,
-    end_line =  7270,
-    example =  462
+    example =  484,
+    start_line =  7528,
+    end_line =  7532,
+    section =  "Links"
   },
   {
     markdown =  "[link](/my uri)\n",
-    section =  "Links",
     html =  "<p>[link](/my uri)</p>\n",
-    start_line =  7276,
-    end_line =  7280,
-    example =  463
+    example =  485,
+    start_line =  7537,
+    end_line =  7541,
+    section =  "Links"
   },
   {
     markdown =  "[link](</my uri>)\n",
-    section =  "Links",
-    html =  "<p>[link](&lt;/my uri&gt;)</p>\n",
-    start_line =  7283,
-    end_line =  7287,
-    example =  464
+    html =  "<p><a href=\"/my%20uri\">link</a></p>\n",
+    example =  486,
+    start_line =  7543,
+    end_line =  7547,
+    section =  "Links"
   },
   {
     markdown =  "[link](foo\nbar)\n",
-    section =  "Links",
     html =  "<p>[link](foo\nbar)</p>\n",
-    start_line =  7290,
-    end_line =  7296,
-    example =  465
+    example =  487,
+    start_line =  7552,
+    end_line =  7558,
+    section =  "Links"
   },
   {
     markdown =  "[link](<foo\nbar>)\n",
-    section =  "Links",
     html =  "<p>[link](<foo\nbar>)</p>\n",
-    start_line =  7299,
-    end_line =  7305,
-    example =  466
+    example =  488,
+    start_line =  7560,
+    end_line =  7566,
+    section =  "Links"
+  },
+  {
+    markdown =  "[a](<b)c>)\n",
+    html =  "<p><a href=\"b)c\">a</a></p>\n",
+    example =  489,
+    start_line =  7571,
+    end_line =  7575,
+    section =  "Links"
+  },
+  {
+    markdown =  "[link](<foo\\>)\n",
+    html =  "<p>[link](&lt;foo&gt;)</p>\n",
+    example =  490,
+    start_line =  7579,
+    end_line =  7583,
+    section =  "Links"
+  },
+  {
+    markdown =  "[a](<b)c\n[a](<b)c>\n[a](<b>c)\n",
+    html =  "<p>[a](&lt;b)c\n[a](&lt;b)c&gt;\n[a](<b>c)</p>\n",
+    example =  491,
+    start_line =  7588,
+    end_line =  7596,
+    section =  "Links"
   },
   {
     markdown =  "[link](\\(foo\\))\n",
-    section =  "Links",
     html =  "<p><a href=\"(foo)\">link</a></p>\n",
-    start_line =  7309,
-    end_line =  7313,
-    example =  467
+    example =  492,
+    start_line =  7600,
+    end_line =  7604,
+    section =  "Links"
   },
   {
     markdown =  "[link](foo(and(bar)))\n",
-    section =  "Links",
     html =  "<p><a href=\"foo(and(bar))\">link</a></p>\n",
-    start_line =  7318,
-    end_line =  7322,
-    example =  468
+    example =  493,
+    start_line =  7609,
+    end_line =  7613,
+    section =  "Links"
   },
   {
     markdown =  "[link](foo\\(and\\(bar\\))\n",
-    section =  "Links",
     html =  "<p><a href=\"foo(and(bar)\">link</a></p>\n",
-    start_line =  7327,
-    end_line =  7331,
-    example =  469
+    example =  494,
+    start_line =  7618,
+    end_line =  7622,
+    section =  "Links"
   },
   {
     markdown =  "[link](<foo(and(bar)>)\n",
-    section =  "Links",
     html =  "<p><a href=\"foo(and(bar)\">link</a></p>\n",
-    start_line =  7334,
-    end_line =  7338,
-    example =  470
+    example =  495,
+    start_line =  7625,
+    end_line =  7629,
+    section =  "Links"
   },
   {
     markdown =  "[link](foo\\)\\:)\n",
-    section =  "Links",
     html =  "<p><a href=\"foo):\">link</a></p>\n",
-    start_line =  7344,
-    end_line =  7348,
-    example =  471
+    example =  496,
+    start_line =  7635,
+    end_line =  7639,
+    section =  "Links"
   },
   {
     markdown =  "[link](#fragment)\n\n[link](http://example.com#fragment)\n\n[link](http://example.com?foo=3#frag)\n",
-    section =  "Links",
     html =  "<p><a href=\"#fragment\">link</a></p>\n<p><a href=\"http://example.com#fragment\">link</a></p>\n<p><a href=\"http://example.com?foo=3#frag\">link</a></p>\n",
-    start_line =  7353,
-    end_line =  7363,
-    example =  472
+    example =  497,
+    start_line =  7644,
+    end_line =  7654,
+    section =  "Links"
   },
   {
     markdown =  "[link](foo\\bar)\n",
-    section =  "Links",
     html =  "<p><a href=\"foo%5Cbar\">link</a></p>\n",
-    start_line =  7369,
-    end_line =  7373,
-    example =  473
+    example =  498,
+    start_line =  7660,
+    end_line =  7664,
+    section =  "Links"
   },
   {
     markdown =  "[link](foo%20b&auml;)\n",
-    section =  "Links",
     html =  "<p><a href=\"foo%20b%C3%A4\">link</a></p>\n",
-    start_line =  7385,
-    end_line =  7389,
-    example =  474
+    example =  499,
+    start_line =  7676,
+    end_line =  7680,
+    section =  "Links"
   },
   {
     markdown =  "[link](\"title\")\n",
-    section =  "Links",
     html =  "<p><a href=\"%22title%22\">link</a></p>\n",
-    start_line =  7396,
-    end_line =  7400,
-    example =  475
+    example =  500,
+    start_line =  7687,
+    end_line =  7691,
+    section =  "Links"
   },
   {
     markdown =  "[link](/url \"title\")\n[link](/url 'title')\n[link](/url (title))\n",
-    section =  "Links",
     html =  "<p><a href=\"/url\" title=\"title\">link</a>\n<a href=\"/url\" title=\"title\">link</a>\n<a href=\"/url\" title=\"title\">link</a></p>\n",
-    start_line =  7405,
-    end_line =  7413,
-    example =  476
+    example =  501,
+    start_line =  7696,
+    end_line =  7704,
+    section =  "Links"
   },
   {
     markdown =  "[link](/url \"title \\\"&quot;\")\n",
-    section =  "Links",
     html =  "<p><a href=\"/url\" title=\"title &quot;&quot;\">link</a></p>\n",
-    start_line =  7419,
-    end_line =  7423,
-    example =  477
+    example =  502,
+    start_line =  7710,
+    end_line =  7714,
+    section =  "Links"
   },
   {
     markdown =  "[link](/url \"title\")\n",
-    section =  "Links",
     html =  "<p><a href=\"/url%C2%A0%22title%22\">link</a></p>\n",
-    start_line =  7429,
-    end_line =  7433,
-    example =  478
+    example =  503,
+    start_line =  7720,
+    end_line =  7724,
+    section =  "Links"
   },
   {
     markdown =  "[link](/url \"title \"and\" title\")\n",
-    section =  "Links",
     html =  "<p>[link](/url &quot;title &quot;and&quot; title&quot;)</p>\n",
-    start_line =  7438,
-    end_line =  7442,
-    example =  479
+    example =  504,
+    start_line =  7729,
+    end_line =  7733,
+    section =  "Links"
   },
   {
     markdown =  "[link](/url 'title \"and\" title')\n",
-    section =  "Links",
     html =  "<p><a href=\"/url\" title=\"title &quot;and&quot; title\">link</a></p>\n",
-    start_line =  7447,
-    end_line =  7451,
-    example =  480
+    example =  505,
+    start_line =  7738,
+    end_line =  7742,
+    section =  "Links"
   },
   {
     markdown =  "[link](   /uri\n  \"title\"  )\n",
-    section =  "Links",
     html =  "<p><a href=\"/uri\" title=\"title\">link</a></p>\n",
-    start_line =  7471,
-    end_line =  7476,
-    example =  481
+    example =  506,
+    start_line =  7762,
+    end_line =  7767,
+    section =  "Links"
   },
   {
     markdown =  "[link] (/uri)\n",
-    section =  "Links",
     html =  "<p>[link] (/uri)</p>\n",
-    start_line =  7482,
-    end_line =  7486,
-    example =  482
+    example =  507,
+    start_line =  7773,
+    end_line =  7777,
+    section =  "Links"
   },
   {
     markdown =  "[link [foo [bar]]](/uri)\n",
-    section =  "Links",
     html =  "<p><a href=\"/uri\">link [foo [bar]]</a></p>\n",
-    start_line =  7492,
-    end_line =  7496,
-    example =  483
+    example =  508,
+    start_line =  7783,
+    end_line =  7787,
+    section =  "Links"
   },
   {
     markdown =  "[link] bar](/uri)\n",
-    section =  "Links",
     html =  "<p>[link] bar](/uri)</p>\n",
-    start_line =  7499,
-    end_line =  7503,
-    example =  484
+    example =  509,
+    start_line =  7790,
+    end_line =  7794,
+    section =  "Links"
   },
   {
     markdown =  "[link [bar](/uri)\n",
-    section =  "Links",
     html =  "<p>[link <a href=\"/uri\">bar</a></p>\n",
-    start_line =  7506,
-    end_line =  7510,
-    example =  485
+    example =  510,
+    start_line =  7797,
+    end_line =  7801,
+    section =  "Links"
   },
   {
     markdown =  "[link \\[bar](/uri)\n",
-    section =  "Links",
     html =  "<p><a href=\"/uri\">link [bar</a></p>\n",
-    start_line =  7513,
-    end_line =  7517,
-    example =  486
+    example =  511,
+    start_line =  7804,
+    end_line =  7808,
+    section =  "Links"
   },
   {
     markdown =  "[link *foo **bar** `#`*](/uri)\n",
-    section =  "Links",
     html =  "<p><a href=\"/uri\">link <em>foo <strong>bar</strong> <code>#</code></em></a></p>\n",
-    start_line =  7522,
-    end_line =  7526,
-    example =  487
+    example =  512,
+    start_line =  7813,
+    end_line =  7817,
+    section =  "Links"
   },
   {
     markdown =  "[![moon](moon.jpg)](/uri)\n",
-    section =  "Links",
     html =  "<p><a href=\"/uri\"><img src=\"moon.jpg\" alt=\"moon\" /></a></p>\n",
-    start_line =  7529,
-    end_line =  7533,
-    example =  488
+    example =  513,
+    start_line =  7820,
+    end_line =  7824,
+    section =  "Links"
   },
   {
     markdown =  "[foo [bar](/uri)](/uri)\n",
-    section =  "Links",
     html =  "<p>[foo <a href=\"/uri\">bar</a>](/uri)</p>\n",
-    start_line =  7538,
-    end_line =  7542,
-    example =  489
+    example =  514,
+    start_line =  7829,
+    end_line =  7833,
+    section =  "Links"
   },
   {
     markdown =  "[foo *[bar [baz](/uri)](/uri)*](/uri)\n",
-    section =  "Links",
     html =  "<p>[foo <em>[bar <a href=\"/uri\">baz</a>](/uri)</em>](/uri)</p>\n",
-    start_line =  7545,
-    end_line =  7549,
-    example =  490
+    example =  515,
+    start_line =  7836,
+    end_line =  7840,
+    section =  "Links"
   },
   {
     markdown =  "![[[foo](uri1)](uri2)](uri3)\n",
-    section =  "Links",
     html =  "<p><img src=\"uri3\" alt=\"[foo](uri2)\" /></p>\n",
-    start_line =  7552,
-    end_line =  7556,
-    example =  491
+    example =  516,
+    start_line =  7843,
+    end_line =  7847,
+    section =  "Links"
   },
   {
     markdown =  "*[foo*](/uri)\n",
-    section =  "Links",
     html =  "<p>*<a href=\"/uri\">foo*</a></p>\n",
-    start_line =  7562,
-    end_line =  7566,
-    example =  492
+    example =  517,
+    start_line =  7853,
+    end_line =  7857,
+    section =  "Links"
   },
   {
     markdown =  "[foo *bar](baz*)\n",
-    section =  "Links",
     html =  "<p><a href=\"baz*\">foo *bar</a></p>\n",
-    start_line =  7569,
-    end_line =  7573,
-    example =  493
+    example =  518,
+    start_line =  7860,
+    end_line =  7864,
+    section =  "Links"
   },
   {
     markdown =  "*foo [bar* baz]\n",
-    section =  "Links",
     html =  "<p><em>foo [bar</em> baz]</p>\n",
-    start_line =  7579,
-    end_line =  7583,
-    example =  494
+    example =  519,
+    start_line =  7870,
+    end_line =  7874,
+    section =  "Links"
   },
   {
     markdown =  "[foo <bar attr=\"](baz)\">\n",
-    section =  "Links",
     html =  "<p>[foo <bar attr=\"](baz)\"></p>\n",
-    start_line =  7589,
-    end_line =  7593,
-    example =  495
+    example =  520,
+    start_line =  7880,
+    end_line =  7884,
+    section =  "Links"
   },
   {
     markdown =  "[foo`](/uri)`\n",
-    section =  "Links",
     html =  "<p>[foo<code>](/uri)</code></p>\n",
-    start_line =  7596,
-    end_line =  7600,
-    example =  496
+    example =  521,
+    start_line =  7887,
+    end_line =  7891,
+    section =  "Links"
   },
   {
     markdown =  "[foo<http://example.com/?search=](uri)>\n",
-    section =  "Links",
     html =  "<p>[foo<a href=\"http://example.com/?search=%5D(uri)\">http://example.com/?search=](uri)</a></p>\n",
-    start_line =  7603,
-    end_line =  7607,
-    example =  497
+    example =  522,
+    start_line =  7894,
+    end_line =  7898,
+    section =  "Links"
   },
   {
     markdown =  "[foo][bar]\n\n[bar]: /url \"title\"\n",
-    section =  "Links",
     html =  "<p><a href=\"/url\" title=\"title\">foo</a></p>\n",
-    start_line =  7641,
-    end_line =  7647,
-    example =  498
+    example =  523,
+    start_line =  7932,
+    end_line =  7938,
+    section =  "Links"
   },
   {
     markdown =  "[link [foo [bar]]][ref]\n\n[ref]: /uri\n",
-    section =  "Links",
     html =  "<p><a href=\"/uri\">link [foo [bar]]</a></p>\n",
-    start_line =  7656,
-    end_line =  7662,
-    example =  499
+    example =  524,
+    start_line =  7947,
+    end_line =  7953,
+    section =  "Links"
   },
   {
     markdown =  "[link \\[bar][ref]\n\n[ref]: /uri\n",
-    section =  "Links",
     html =  "<p><a href=\"/uri\">link [bar</a></p>\n",
-    start_line =  7665,
-    end_line =  7671,
-    example =  500
+    example =  525,
+    start_line =  7956,
+    end_line =  7962,
+    section =  "Links"
   },
   {
     markdown =  "[link *foo **bar** `#`*][ref]\n\n[ref]: /uri\n",
-    section =  "Links",
     html =  "<p><a href=\"/uri\">link <em>foo <strong>bar</strong> <code>#</code></em></a></p>\n",
-    start_line =  7676,
-    end_line =  7682,
-    example =  501
+    example =  526,
+    start_line =  7967,
+    end_line =  7973,
+    section =  "Links"
   },
   {
     markdown =  "[![moon](moon.jpg)][ref]\n\n[ref]: /uri\n",
-    section =  "Links",
     html =  "<p><a href=\"/uri\"><img src=\"moon.jpg\" alt=\"moon\" /></a></p>\n",
-    start_line =  7685,
-    end_line =  7691,
-    example =  502
+    example =  527,
+    start_line =  7976,
+    end_line =  7982,
+    section =  "Links"
   },
   {
     markdown =  "[foo [bar](/uri)][ref]\n\n[ref]: /uri\n",
-    section =  "Links",
     html =  "<p>[foo <a href=\"/uri\">bar</a>]<a href=\"/uri\">ref</a></p>\n",
-    start_line =  7696,
-    end_line =  7702,
-    example =  503
+    example =  528,
+    start_line =  7987,
+    end_line =  7993,
+    section =  "Links"
   },
   {
     markdown =  "[foo *bar [baz][ref]*][ref]\n\n[ref]: /uri\n",
-    section =  "Links",
     html =  "<p>[foo <em>bar <a href=\"/uri\">baz</a></em>]<a href=\"/uri\">ref</a></p>\n",
-    start_line =  7705,
-    end_line =  7711,
-    example =  504
+    example =  529,
+    start_line =  7996,
+    end_line =  8002,
+    section =  "Links"
   },
   {
     markdown =  "*[foo*][ref]\n\n[ref]: /uri\n",
-    section =  "Links",
     html =  "<p>*<a href=\"/uri\">foo*</a></p>\n",
-    start_line =  7720,
-    end_line =  7726,
-    example =  505
+    example =  530,
+    start_line =  8011,
+    end_line =  8017,
+    section =  "Links"
   },
   {
     markdown =  "[foo *bar][ref]\n\n[ref]: /uri\n",
-    section =  "Links",
     html =  "<p><a href=\"/uri\">foo *bar</a></p>\n",
-    start_line =  7729,
-    end_line =  7735,
-    example =  506
+    example =  531,
+    start_line =  8020,
+    end_line =  8026,
+    section =  "Links"
   },
   {
     markdown =  "[foo <bar attr=\"][ref]\">\n\n[ref]: /uri\n",
-    section =  "Links",
     html =  "<p>[foo <bar attr=\"][ref]\"></p>\n",
-    start_line =  7741,
-    end_line =  7747,
-    example =  507
+    example =  532,
+    start_line =  8032,
+    end_line =  8038,
+    section =  "Links"
   },
   {
     markdown =  "[foo`][ref]`\n\n[ref]: /uri\n",
-    section =  "Links",
     html =  "<p>[foo<code>][ref]</code></p>\n",
-    start_line =  7750,
-    end_line =  7756,
-    example =  508
+    example =  533,
+    start_line =  8041,
+    end_line =  8047,
+    section =  "Links"
   },
   {
     markdown =  "[foo<http://example.com/?search=][ref]>\n\n[ref]: /uri\n",
-    section =  "Links",
     html =  "<p>[foo<a href=\"http://example.com/?search=%5D%5Bref%5D\">http://example.com/?search=][ref]</a></p>\n",
-    start_line =  7759,
-    end_line =  7765,
-    example =  509
+    example =  534,
+    start_line =  8050,
+    end_line =  8056,
+    section =  "Links"
   },
   {
     markdown =  "[foo][BaR]\n\n[bar]: /url \"title\"\n",
-    section =  "Links",
     html =  "<p><a href=\"/url\" title=\"title\">foo</a></p>\n",
-    start_line =  7770,
-    end_line =  7776,
-    example =  510
+    example =  535,
+    start_line =  8061,
+    end_line =  8067,
+    section =  "Links"
   },
   {
     markdown =  "[Толпой][Толпой] is a Russian word.\n\n[ТОЛПОЙ]: /url\n",
-    section =  "Links",
     html =  "<p><a href=\"/url\">Толпой</a> is a Russian word.</p>\n",
-    start_line =  7781,
-    end_line =  7787,
-    example =  511
+    example =  536,
+    start_line =  8072,
+    end_line =  8078,
+    section =  "Links"
   },
   {
     markdown =  "[Foo\n  bar]: /url\n\n[Baz][Foo bar]\n",
-    section =  "Links",
     html =  "<p><a href=\"/url\">Baz</a></p>\n",
-    start_line =  7793,
-    end_line =  7800,
-    example =  512
+    example =  537,
+    start_line =  8084,
+    end_line =  8091,
+    section =  "Links"
   },
   {
     markdown =  "[foo] [bar]\n\n[bar]: /url \"title\"\n",
-    section =  "Links",
     html =  "<p>[foo] <a href=\"/url\" title=\"title\">bar</a></p>\n",
-    start_line =  7806,
-    end_line =  7812,
-    example =  513
+    example =  538,
+    start_line =  8097,
+    end_line =  8103,
+    section =  "Links"
   },
   {
     markdown =  "[foo]\n[bar]\n\n[bar]: /url \"title\"\n",
-    section =  "Links",
     html =  "<p>[foo]\n<a href=\"/url\" title=\"title\">bar</a></p>\n",
-    start_line =  7815,
-    end_line =  7823,
-    example =  514
+    example =  539,
+    start_line =  8106,
+    end_line =  8114,
+    section =  "Links"
   },
   {
     markdown =  "[foo]: /url1\n\n[foo]: /url2\n\n[bar][foo]\n",
-    section =  "Links",
     html =  "<p><a href=\"/url1\">bar</a></p>\n",
-    start_line =  7856,
-    end_line =  7864,
-    example =  515
+    example =  540,
+    start_line =  8147,
+    end_line =  8155,
+    section =  "Links"
   },
   {
     markdown =  "[bar][foo\\!]\n\n[foo!]: /url\n",
-    section =  "Links",
     html =  "<p>[bar][foo!]</p>\n",
-    start_line =  7871,
-    end_line =  7877,
-    example =  516
+    example =  541,
+    start_line =  8162,
+    end_line =  8168,
+    section =  "Links"
   },
   {
     markdown =  "[foo][ref[]\n\n[ref[]: /uri\n",
-    section =  "Links",
     html =  "<p>[foo][ref[]</p>\n<p>[ref[]: /uri</p>\n",
-    start_line =  7883,
-    end_line =  7890,
-    example =  517
+    example =  542,
+    start_line =  8174,
+    end_line =  8181,
+    section =  "Links"
   },
   {
     markdown =  "[foo][ref[bar]]\n\n[ref[bar]]: /uri\n",
-    section =  "Links",
     html =  "<p>[foo][ref[bar]]</p>\n<p>[ref[bar]]: /uri</p>\n",
-    start_line =  7893,
-    end_line =  7900,
-    example =  518
+    example =  543,
+    start_line =  8184,
+    end_line =  8191,
+    section =  "Links"
   },
   {
     markdown =  "[[[foo]]]\n\n[[[foo]]]: /url\n",
-    section =  "Links",
     html =  "<p>[[[foo]]]</p>\n<p>[[[foo]]]: /url</p>\n",
-    start_line =  7903,
-    end_line =  7910,
-    example =  519
+    example =  544,
+    start_line =  8194,
+    end_line =  8201,
+    section =  "Links"
   },
   {
     markdown =  "[foo][ref\\[]\n\n[ref\\[]: /uri\n",
-    section =  "Links",
     html =  "<p><a href=\"/uri\">foo</a></p>\n",
-    start_line =  7913,
-    end_line =  7919,
-    example =  520
+    example =  545,
+    start_line =  8204,
+    end_line =  8210,
+    section =  "Links"
   },
   {
     markdown =  "[bar\\\\]: /uri\n\n[bar\\\\]\n",
-    section =  "Links",
     html =  "<p><a href=\"/uri\">bar\\</a></p>\n",
-    start_line =  7924,
-    end_line =  7930,
-    example =  521
+    example =  546,
+    start_line =  8215,
+    end_line =  8221,
+    section =  "Links"
   },
   {
     markdown =  "[]\n\n[]: /uri\n",
-    section =  "Links",
     html =  "<p>[]</p>\n<p>[]: /uri</p>\n",
-    start_line =  7935,
-    end_line =  7942,
-    example =  522
+    example =  547,
+    start_line =  8226,
+    end_line =  8233,
+    section =  "Links"
   },
   {
     markdown =  "[\n ]\n\n[\n ]: /uri\n",
-    section =  "Links",
     html =  "<p>[\n]</p>\n<p>[\n]: /uri</p>\n",
-    start_line =  7945,
-    end_line =  7956,
-    example =  523
+    example =  548,
+    start_line =  8236,
+    end_line =  8247,
+    section =  "Links"
   },
   {
     markdown =  "[foo][]\n\n[foo]: /url \"title\"\n",
-    section =  "Links",
     html =  "<p><a href=\"/url\" title=\"title\">foo</a></p>\n",
-    start_line =  7968,
-    end_line =  7974,
-    example =  524
+    example =  549,
+    start_line =  8259,
+    end_line =  8265,
+    section =  "Links"
   },
   {
     markdown =  "[*foo* bar][]\n\n[*foo* bar]: /url \"title\"\n",
-    section =  "Links",
     html =  "<p><a href=\"/url\" title=\"title\"><em>foo</em> bar</a></p>\n",
-    start_line =  7977,
-    end_line =  7983,
-    example =  525
+    example =  550,
+    start_line =  8268,
+    end_line =  8274,
+    section =  "Links"
   },
   {
     markdown =  "[Foo][]\n\n[foo]: /url \"title\"\n",
-    section =  "Links",
     html =  "<p><a href=\"/url\" title=\"title\">Foo</a></p>\n",
-    start_line =  7988,
-    end_line =  7994,
-    example =  526
+    example =  551,
+    start_line =  8279,
+    end_line =  8285,
+    section =  "Links"
   },
   {
     markdown =  "[foo] \n[]\n\n[foo]: /url \"title\"\n",
-    section =  "Links",
     html =  "<p><a href=\"/url\" title=\"title\">foo</a>\n[]</p>\n",
-    start_line =  8001,
-    end_line =  8009,
-    example =  527
+    example =  552,
+    start_line =  8292,
+    end_line =  8300,
+    section =  "Links"
   },
   {
     markdown =  "[foo]\n\n[foo]: /url \"title\"\n",
-    section =  "Links",
     html =  "<p><a href=\"/url\" title=\"title\">foo</a></p>\n",
-    start_line =  8021,
-    end_line =  8027,
-    example =  528
+    example =  553,
+    start_line =  8312,
+    end_line =  8318,
+    section =  "Links"
   },
   {
     markdown =  "[*foo* bar]\n\n[*foo* bar]: /url \"title\"\n",
-    section =  "Links",
     html =  "<p><a href=\"/url\" title=\"title\"><em>foo</em> bar</a></p>\n",
-    start_line =  8030,
-    end_line =  8036,
-    example =  529
+    example =  554,
+    start_line =  8321,
+    end_line =  8327,
+    section =  "Links"
   },
   {
     markdown =  "[[*foo* bar]]\n\n[*foo* bar]: /url \"title\"\n",
-    section =  "Links",
     html =  "<p>[<a href=\"/url\" title=\"title\"><em>foo</em> bar</a>]</p>\n",
-    start_line =  8039,
-    end_line =  8045,
-    example =  530
+    example =  555,
+    start_line =  8330,
+    end_line =  8336,
+    section =  "Links"
   },
   {
     markdown =  "[[bar [foo]\n\n[foo]: /url\n",
-    section =  "Links",
     html =  "<p>[[bar <a href=\"/url\">foo</a></p>\n",
-    start_line =  8048,
-    end_line =  8054,
-    example =  531
+    example =  556,
+    start_line =  8339,
+    end_line =  8345,
+    section =  "Links"
   },
   {
     markdown =  "[Foo]\n\n[foo]: /url \"title\"\n",
-    section =  "Links",
     html =  "<p><a href=\"/url\" title=\"title\">Foo</a></p>\n",
-    start_line =  8059,
-    end_line =  8065,
-    example =  532
+    example =  557,
+    start_line =  8350,
+    end_line =  8356,
+    section =  "Links"
   },
   {
     markdown =  "[foo] bar\n\n[foo]: /url\n",
-    section =  "Links",
     html =  "<p><a href=\"/url\">foo</a> bar</p>\n",
-    start_line =  8070,
-    end_line =  8076,
-    example =  533
+    example =  558,
+    start_line =  8361,
+    end_line =  8367,
+    section =  "Links"
   },
   {
     markdown =  "\\[foo]\n\n[foo]: /url \"title\"\n",
-    section =  "Links",
     html =  "<p>[foo]</p>\n",
-    start_line =  8082,
-    end_line =  8088,
-    example =  534
+    example =  559,
+    start_line =  8373,
+    end_line =  8379,
+    section =  "Links"
   },
   {
     markdown =  "[foo*]: /url\n\n*[foo*]\n",
-    section =  "Links",
     html =  "<p>*<a href=\"/url\">foo*</a></p>\n",
-    start_line =  8094,
-    end_line =  8100,
-    example =  535
+    example =  560,
+    start_line =  8385,
+    end_line =  8391,
+    section =  "Links"
   },
   {
     markdown =  "[foo][bar]\n\n[foo]: /url1\n[bar]: /url2\n",
-    section =  "Links",
     html =  "<p><a href=\"/url2\">foo</a></p>\n",
-    start_line =  8106,
-    end_line =  8113,
-    example =  536
+    example =  561,
+    start_line =  8397,
+    end_line =  8404,
+    section =  "Links"
   },
   {
     markdown =  "[foo][]\n\n[foo]: /url1\n",
-    section =  "Links",
     html =  "<p><a href=\"/url1\">foo</a></p>\n",
-    start_line =  8115,
-    end_line =  8121,
-    example =  537
+    example =  562,
+    start_line =  8406,
+    end_line =  8412,
+    section =  "Links"
   },
   {
     markdown =  "[foo]()\n\n[foo]: /url1\n",
-    section =  "Links",
     html =  "<p><a href=\"\">foo</a></p>\n",
-    start_line =  8125,
-    end_line =  8131,
-    example =  538
+    example =  563,
+    start_line =  8416,
+    end_line =  8422,
+    section =  "Links"
   },
   {
     markdown =  "[foo](not a link)\n\n[foo]: /url1\n",
-    section =  "Links",
     html =  "<p><a href=\"/url1\">foo</a>(not a link)</p>\n",
-    start_line =  8133,
-    end_line =  8139,
-    example =  539
+    example =  564,
+    start_line =  8424,
+    end_line =  8430,
+    section =  "Links"
   },
   {
     markdown =  "[foo][bar][baz]\n\n[baz]: /url\n",
-    section =  "Links",
     html =  "<p>[foo]<a href=\"/url\">bar</a></p>\n",
-    start_line =  8144,
-    end_line =  8150,
-    example =  540
+    example =  565,
+    start_line =  8435,
+    end_line =  8441,
+    section =  "Links"
   },
   {
     markdown =  "[foo][bar][baz]\n\n[baz]: /url1\n[bar]: /url2\n",
-    section =  "Links",
     html =  "<p><a href=\"/url2\">foo</a><a href=\"/url1\">baz</a></p>\n",
-    start_line =  8156,
-    end_line =  8163,
-    example =  541
+    example =  566,
+    start_line =  8447,
+    end_line =  8454,
+    section =  "Links"
   },
   {
     markdown =  "[foo][bar][baz]\n\n[baz]: /url1\n[foo]: /url2\n",
-    section =  "Links",
     html =  "<p>[foo]<a href=\"/url1\">bar</a></p>\n",
-    start_line =  8169,
-    end_line =  8176,
-    example =  542
+    example =  567,
+    start_line =  8460,
+    end_line =  8467,
+    section =  "Links"
   },
   {
     markdown =  "![foo](/url \"title\")\n",
-    section =  "Images",
     html =  "<p><img src=\"/url\" alt=\"foo\" title=\"title\" /></p>\n",
-    start_line =  8192,
-    end_line =  8196,
-    example =  543
+    example =  568,
+    start_line =  8483,
+    end_line =  8487,
+    section =  "Images"
   },
   {
     markdown =  "![foo *bar*]\n\n[foo *bar*]: train.jpg \"train & tracks\"\n",
-    section =  "Images",
     html =  "<p><img src=\"train.jpg\" alt=\"foo bar\" title=\"train &amp; tracks\" /></p>\n",
-    start_line =  8199,
-    end_line =  8205,
-    example =  544
+    example =  569,
+    start_line =  8490,
+    end_line =  8496,
+    section =  "Images"
   },
   {
     markdown =  "![foo ![bar](/url)](/url2)\n",
-    section =  "Images",
     html =  "<p><img src=\"/url2\" alt=\"foo bar\" /></p>\n",
-    start_line =  8208,
-    end_line =  8212,
-    example =  545
+    example =  570,
+    start_line =  8499,
+    end_line =  8503,
+    section =  "Images"
   },
   {
     markdown =  "![foo [bar](/url)](/url2)\n",
-    section =  "Images",
     html =  "<p><img src=\"/url2\" alt=\"foo bar\" /></p>\n",
-    start_line =  8215,
-    end_line =  8219,
-    example =  546
+    example =  571,
+    start_line =  8506,
+    end_line =  8510,
+    section =  "Images"
   },
   {
     markdown =  "![foo *bar*][]\n\n[foo *bar*]: train.jpg \"train & tracks\"\n",
-    section =  "Images",
     html =  "<p><img src=\"train.jpg\" alt=\"foo bar\" title=\"train &amp; tracks\" /></p>\n",
-    start_line =  8229,
-    end_line =  8235,
-    example =  547
+    example =  572,
+    start_line =  8520,
+    end_line =  8526,
+    section =  "Images"
   },
   {
     markdown =  "![foo *bar*][foobar]\n\n[FOOBAR]: train.jpg \"train & tracks\"\n",
-    section =  "Images",
     html =  "<p><img src=\"train.jpg\" alt=\"foo bar\" title=\"train &amp; tracks\" /></p>\n",
-    start_line =  8238,
-    end_line =  8244,
-    example =  548
+    example =  573,
+    start_line =  8529,
+    end_line =  8535,
+    section =  "Images"
   },
   {
     markdown =  "![foo](train.jpg)\n",
-    section =  "Images",
     html =  "<p><img src=\"train.jpg\" alt=\"foo\" /></p>\n",
-    start_line =  8247,
-    end_line =  8251,
-    example =  549
+    example =  574,
+    start_line =  8538,
+    end_line =  8542,
+    section =  "Images"
   },
   {
     markdown =  "My ![foo bar](/path/to/train.jpg  \"title\"   )\n",
-    section =  "Images",
     html =  "<p>My <img src=\"/path/to/train.jpg\" alt=\"foo bar\" title=\"title\" /></p>\n",
-    start_line =  8254,
-    end_line =  8258,
-    example =  550
+    example =  575,
+    start_line =  8545,
+    end_line =  8549,
+    section =  "Images"
   },
   {
     markdown =  "![foo](<url>)\n",
-    section =  "Images",
     html =  "<p><img src=\"url\" alt=\"foo\" /></p>\n",
-    start_line =  8261,
-    end_line =  8265,
-    example =  551
+    example =  576,
+    start_line =  8552,
+    end_line =  8556,
+    section =  "Images"
   },
   {
     markdown =  "![](/url)\n",
-    section =  "Images",
     html =  "<p><img src=\"/url\" alt=\"\" /></p>\n",
-    start_line =  8268,
-    end_line =  8272,
-    example =  552
+    example =  577,
+    start_line =  8559,
+    end_line =  8563,
+    section =  "Images"
   },
   {
     markdown =  "![foo][bar]\n\n[bar]: /url\n",
-    section =  "Images",
     html =  "<p><img src=\"/url\" alt=\"foo\" /></p>\n",
-    start_line =  8277,
-    end_line =  8283,
-    example =  553
+    example =  578,
+    start_line =  8568,
+    end_line =  8574,
+    section =  "Images"
   },
   {
     markdown =  "![foo][bar]\n\n[BAR]: /url\n",
-    section =  "Images",
     html =  "<p><img src=\"/url\" alt=\"foo\" /></p>\n",
-    start_line =  8286,
-    end_line =  8292,
-    example =  554
+    example =  579,
+    start_line =  8577,
+    end_line =  8583,
+    section =  "Images"
   },
   {
     markdown =  "![foo][]\n\n[foo]: /url \"title\"\n",
-    section =  "Images",
     html =  "<p><img src=\"/url\" alt=\"foo\" title=\"title\" /></p>\n",
-    start_line =  8297,
-    end_line =  8303,
-    example =  555
+    example =  580,
+    start_line =  8588,
+    end_line =  8594,
+    section =  "Images"
   },
   {
     markdown =  "![*foo* bar][]\n\n[*foo* bar]: /url \"title\"\n",
-    section =  "Images",
     html =  "<p><img src=\"/url\" alt=\"foo bar\" title=\"title\" /></p>\n",
-    start_line =  8306,
-    end_line =  8312,
-    example =  556
+    example =  581,
+    start_line =  8597,
+    end_line =  8603,
+    section =  "Images"
   },
   {
     markdown =  "![Foo][]\n\n[foo]: /url \"title\"\n",
-    section =  "Images",
     html =  "<p><img src=\"/url\" alt=\"Foo\" title=\"title\" /></p>\n",
-    start_line =  8317,
-    end_line =  8323,
-    example =  557
+    example =  582,
+    start_line =  8608,
+    end_line =  8614,
+    section =  "Images"
   },
   {
     markdown =  "![foo] \n[]\n\n[foo]: /url \"title\"\n",
-    section =  "Images",
     html =  "<p><img src=\"/url\" alt=\"foo\" title=\"title\" />\n[]</p>\n",
-    start_line =  8329,
-    end_line =  8337,
-    example =  558
+    example =  583,
+    start_line =  8620,
+    end_line =  8628,
+    section =  "Images"
   },
   {
     markdown =  "![foo]\n\n[foo]: /url \"title\"\n",
-    section =  "Images",
     html =  "<p><img src=\"/url\" alt=\"foo\" title=\"title\" /></p>\n",
-    start_line =  8342,
-    end_line =  8348,
-    example =  559
+    example =  584,
+    start_line =  8633,
+    end_line =  8639,
+    section =  "Images"
   },
   {
     markdown =  "![*foo* bar]\n\n[*foo* bar]: /url \"title\"\n",
-    section =  "Images",
     html =  "<p><img src=\"/url\" alt=\"foo bar\" title=\"title\" /></p>\n",
-    start_line =  8351,
-    end_line =  8357,
-    example =  560
+    example =  585,
+    start_line =  8642,
+    end_line =  8648,
+    section =  "Images"
   },
   {
     markdown =  "![[foo]]\n\n[[foo]]: /url \"title\"\n",
-    section =  "Images",
     html =  "<p>![[foo]]</p>\n<p>[[foo]]: /url &quot;title&quot;</p>\n",
-    start_line =  8362,
-    end_line =  8369,
-    example =  561
+    example =  586,
+    start_line =  8653,
+    end_line =  8660,
+    section =  "Images"
   },
   {
     markdown =  "![Foo]\n\n[foo]: /url \"title\"\n",
-    section =  "Images",
     html =  "<p><img src=\"/url\" alt=\"Foo\" title=\"title\" /></p>\n",
-    start_line =  8374,
-    end_line =  8380,
-    example =  562
+    example =  587,
+    start_line =  8665,
+    end_line =  8671,
+    section =  "Images"
   },
   {
     markdown =  "!\\[foo]\n\n[foo]: /url \"title\"\n",
-    section =  "Images",
     html =  "<p>![foo]</p>\n",
-    start_line =  8386,
-    end_line =  8392,
-    example =  563
+    example =  588,
+    start_line =  8677,
+    end_line =  8683,
+    section =  "Images"
   },
   {
     markdown =  "\\![foo]\n\n[foo]: /url \"title\"\n",
-    section =  "Images",
     html =  "<p>!<a href=\"/url\" title=\"title\">foo</a></p>\n",
-    start_line =  8398,
-    end_line =  8404,
-    example =  564
+    example =  589,
+    start_line =  8689,
+    end_line =  8695,
+    section =  "Images"
   },
   {
     markdown =  "<http://foo.bar.baz>\n",
-    section =  "Autolinks",
     html =  "<p><a href=\"http://foo.bar.baz\">http://foo.bar.baz</a></p>\n",
-    start_line =  8431,
-    end_line =  8435,
-    example =  565
+    example =  590,
+    start_line =  8722,
+    end_line =  8726,
+    section =  "Autolinks"
   },
   {
     markdown =  "<http://foo.bar.baz/test?q=hello&id=22&boolean>\n",
-    section =  "Autolinks",
     html =  "<p><a href=\"http://foo.bar.baz/test?q=hello&amp;id=22&amp;boolean\">http://foo.bar.baz/test?q=hello&amp;id=22&amp;boolean</a></p>\n",
-    start_line =  8438,
-    end_line =  8442,
-    example =  566
+    example =  591,
+    start_line =  8729,
+    end_line =  8733,
+    section =  "Autolinks"
   },
   {
     markdown =  "<irc://foo.bar:2233/baz>\n",
-    section =  "Autolinks",
     html =  "<p><a href=\"irc://foo.bar:2233/baz\">irc://foo.bar:2233/baz</a></p>\n",
-    start_line =  8445,
-    end_line =  8449,
-    example =  567
+    example =  592,
+    start_line =  8736,
+    end_line =  8740,
+    section =  "Autolinks"
   },
   {
     markdown =  "<MAILTO:FOO@BAR.BAZ>\n",
-    section =  "Autolinks",
     html =  "<p><a href=\"MAILTO:FOO@BAR.BAZ\">MAILTO:FOO@BAR.BAZ</a></p>\n",
-    start_line =  8454,
-    end_line =  8458,
-    example =  568
+    example =  593,
+    start_line =  8745,
+    end_line =  8749,
+    section =  "Autolinks"
   },
   {
     markdown =  "<a+b+c:d>\n",
-    section =  "Autolinks",
     html =  "<p><a href=\"a+b+c:d\">a+b+c:d</a></p>\n",
-    start_line =  8466,
-    end_line =  8470,
-    example =  569
+    example =  594,
+    start_line =  8757,
+    end_line =  8761,
+    section =  "Autolinks"
   },
   {
     markdown =  "<made-up-scheme://foo,bar>\n",
-    section =  "Autolinks",
     html =  "<p><a href=\"made-up-scheme://foo,bar\">made-up-scheme://foo,bar</a></p>\n",
-    start_line =  8473,
-    end_line =  8477,
-    example =  570
+    example =  595,
+    start_line =  8764,
+    end_line =  8768,
+    section =  "Autolinks"
   },
   {
     markdown =  "<http://../>\n",
-    section =  "Autolinks",
     html =  "<p><a href=\"http://../\">http://../</a></p>\n",
-    start_line =  8480,
-    end_line =  8484,
-    example =  571
+    example =  596,
+    start_line =  8771,
+    end_line =  8775,
+    section =  "Autolinks"
   },
   {
     markdown =  "<localhost:5001/foo>\n",
-    section =  "Autolinks",
     html =  "<p><a href=\"localhost:5001/foo\">localhost:5001/foo</a></p>\n",
-    start_line =  8487,
-    end_line =  8491,
-    example =  572
+    example =  597,
+    start_line =  8778,
+    end_line =  8782,
+    section =  "Autolinks"
   },
   {
     markdown =  "<http://foo.bar/baz bim>\n",
-    section =  "Autolinks",
     html =  "<p>&lt;http://foo.bar/baz bim&gt;</p>\n",
-    start_line =  8496,
-    end_line =  8500,
-    example =  573
+    example =  598,
+    start_line =  8787,
+    end_line =  8791,
+    section =  "Autolinks"
   },
   {
     markdown =  "<http://example.com/\\[\\>\n",
-    section =  "Autolinks",
     html =  "<p><a href=\"http://example.com/%5C%5B%5C\">http://example.com/\\[\\</a></p>\n",
-    start_line =  8505,
-    end_line =  8509,
-    example =  574
+    example =  599,
+    start_line =  8796,
+    end_line =  8800,
+    section =  "Autolinks"
   },
   {
     markdown =  "<foo@bar.example.com>\n",
-    section =  "Autolinks",
     html =  "<p><a href=\"mailto:foo@bar.example.com\">foo@bar.example.com</a></p>\n",
-    start_line =  8527,
-    end_line =  8531,
-    example =  575
+    example =  600,
+    start_line =  8818,
+    end_line =  8822,
+    section =  "Autolinks"
   },
   {
     markdown =  "<foo+special@Bar.baz-bar0.com>\n",
-    section =  "Autolinks",
     html =  "<p><a href=\"mailto:foo+special@Bar.baz-bar0.com\">foo+special@Bar.baz-bar0.com</a></p>\n",
-    start_line =  8534,
-    end_line =  8538,
-    example =  576
+    example =  601,
+    start_line =  8825,
+    end_line =  8829,
+    section =  "Autolinks"
   },
   {
     markdown =  "<foo\\+@bar.example.com>\n",
-    section =  "Autolinks",
     html =  "<p>&lt;foo+@bar.example.com&gt;</p>\n",
-    start_line =  8543,
-    end_line =  8547,
-    example =  577
+    example =  602,
+    start_line =  8834,
+    end_line =  8838,
+    section =  "Autolinks"
   },
   {
     markdown =  "<>\n",
-    section =  "Autolinks",
     html =  "<p>&lt;&gt;</p>\n",
-    start_line =  8552,
-    end_line =  8556,
-    example =  578
+    example =  603,
+    start_line =  8843,
+    end_line =  8847,
+    section =  "Autolinks"
   },
   {
     markdown =  "< http://foo.bar >\n",
-    section =  "Autolinks",
     html =  "<p>&lt; http://foo.bar &gt;</p>\n",
-    start_line =  8559,
-    end_line =  8563,
-    example =  579
+    example =  604,
+    start_line =  8850,
+    end_line =  8854,
+    section =  "Autolinks"
   },
   {
     markdown =  "<m:abc>\n",
-    section =  "Autolinks",
     html =  "<p>&lt;m:abc&gt;</p>\n",
-    start_line =  8566,
-    end_line =  8570,
-    example =  580
+    example =  605,
+    start_line =  8857,
+    end_line =  8861,
+    section =  "Autolinks"
   },
   {
     markdown =  "<foo.bar.baz>\n",
-    section =  "Autolinks",
     html =  "<p>&lt;foo.bar.baz&gt;</p>\n",
-    start_line =  8573,
-    end_line =  8577,
-    example =  581
+    example =  606,
+    start_line =  8864,
+    end_line =  8868,
+    section =  "Autolinks"
   },
   {
     markdown =  "http://example.com\n",
-    section =  "Autolinks",
     html =  "<p>http://example.com</p>\n",
-    start_line =  8580,
-    end_line =  8584,
-    example =  582
+    example =  607,
+    start_line =  8871,
+    end_line =  8875,
+    section =  "Autolinks"
   },
   {
     markdown =  "foo@bar.example.com\n",
-    section =  "Autolinks",
     html =  "<p>foo@bar.example.com</p>\n",
-    start_line =  8587,
-    end_line =  8591,
-    example =  583
+    example =  608,
+    start_line =  8878,
+    end_line =  8882,
+    section =  "Autolinks"
   },
   {
     markdown =  "<a><bab><c2c>\n",
-    section =  "Raw HTML",
     html =  "<p><a><bab><c2c></p>\n",
-    start_line =  8669,
-    end_line =  8673,
-    example =  584
+    example =  609,
+    start_line =  8960,
+    end_line =  8964,
+    section =  "Raw HTML"
   },
   {
     markdown =  "<a/><b2/>\n",
-    section =  "Raw HTML",
     html =  "<p><a/><b2/></p>\n",
-    start_line =  8678,
-    end_line =  8682,
-    example =  585
+    example =  610,
+    start_line =  8969,
+    end_line =  8973,
+    section =  "Raw HTML"
   },
   {
     markdown =  "<a  /><b2\ndata=\"foo\" >\n",
-    section =  "Raw HTML",
     html =  "<p><a  /><b2\ndata=\"foo\" ></p>\n",
-    start_line =  8687,
-    end_line =  8693,
-    example =  586
+    example =  611,
+    start_line =  8978,
+    end_line =  8984,
+    section =  "Raw HTML"
   },
   {
     markdown =  "<a foo=\"bar\" bam = 'baz <em>\"</em>'\n_boolean zoop:33=zoop:33 />\n",
-    section =  "Raw HTML",
     html =  "<p><a foo=\"bar\" bam = 'baz <em>\"</em>'\n_boolean zoop:33=zoop:33 /></p>\n",
-    start_line =  8698,
-    end_line =  8704,
-    example =  587
+    example =  612,
+    start_line =  8989,
+    end_line =  8995,
+    section =  "Raw HTML"
   },
   {
     markdown =  "Foo <responsive-image src=\"foo.jpg\" />\n",
-    section =  "Raw HTML",
     html =  "<p>Foo <responsive-image src=\"foo.jpg\" /></p>\n",
-    start_line =  8709,
-    end_line =  8713,
-    example =  588
+    example =  613,
+    start_line =  9000,
+    end_line =  9004,
+    section =  "Raw HTML"
   },
   {
     markdown =  "<33> <__>\n",
-    section =  "Raw HTML",
     html =  "<p>&lt;33&gt; &lt;__&gt;</p>\n",
-    start_line =  8718,
-    end_line =  8722,
-    example =  589
+    example =  614,
+    start_line =  9009,
+    end_line =  9013,
+    section =  "Raw HTML"
   },
   {
     markdown =  "<a h*#ref=\"hi\">\n",
-    section =  "Raw HTML",
     html =  "<p>&lt;a h*#ref=&quot;hi&quot;&gt;</p>\n",
-    start_line =  8727,
-    end_line =  8731,
-    example =  590
+    example =  615,
+    start_line =  9018,
+    end_line =  9022,
+    section =  "Raw HTML"
   },
   {
     markdown =  "<a href=\"hi'> <a href=hi'>\n",
-    section =  "Raw HTML",
     html =  "<p>&lt;a href=&quot;hi'&gt; &lt;a href=hi'&gt;</p>\n",
-    start_line =  8736,
-    end_line =  8740,
-    example =  591
+    example =  616,
+    start_line =  9027,
+    end_line =  9031,
+    section =  "Raw HTML"
   },
   {
-    markdown =  "< a><\nfoo><bar/ >\n",
-    section =  "Raw HTML",
-    html =  "<p>&lt; a&gt;&lt;\nfoo&gt;&lt;bar/ &gt;</p>\n",
-    start_line =  8745,
-    end_line =  8751,
-    example =  592
+    markdown =  "< a><\nfoo><bar/ >\n<foo bar=baz\nbim!bop />\n",
+    html =  "<p>&lt; a&gt;&lt;\nfoo&gt;&lt;bar/ &gt;\n&lt;foo bar=baz\nbim!bop /&gt;</p>\n",
+    example =  617,
+    start_line =  9036,
+    end_line =  9046,
+    section =  "Raw HTML"
   },
   {
     markdown =  "<a href='bar'title=title>\n",
-    section =  "Raw HTML",
     html =  "<p>&lt;a href='bar'title=title&gt;</p>\n",
-    start_line =  8756,
-    end_line =  8760,
-    example =  593
+    example =  618,
+    start_line =  9051,
+    end_line =  9055,
+    section =  "Raw HTML"
   },
   {
     markdown =  "</a></foo >\n",
-    section =  "Raw HTML",
     html =  "<p></a></foo ></p>\n",
-    start_line =  8765,
-    end_line =  8769,
-    example =  594
+    example =  619,
+    start_line =  9060,
+    end_line =  9064,
+    section =  "Raw HTML"
   },
   {
     markdown =  "</a href=\"foo\">\n",
-    section =  "Raw HTML",
     html =  "<p>&lt;/a href=&quot;foo&quot;&gt;</p>\n",
-    start_line =  8774,
-    end_line =  8778,
-    example =  595
+    example =  620,
+    start_line =  9069,
+    end_line =  9073,
+    section =  "Raw HTML"
   },
   {
     markdown =  "foo <!-- this is a\ncomment - with hyphen -->\n",
-    section =  "Raw HTML",
     html =  "<p>foo <!-- this is a\ncomment - with hyphen --></p>\n",
-    start_line =  8783,
-    end_line =  8789,
-    example =  596
+    example =  621,
+    start_line =  9078,
+    end_line =  9084,
+    section =  "Raw HTML"
   },
   {
     markdown =  "foo <!-- not a comment -- two hyphens -->\n",
-    section =  "Raw HTML",
     html =  "<p>foo &lt;!-- not a comment -- two hyphens --&gt;</p>\n",
-    start_line =  8792,
-    end_line =  8796,
-    example =  597
+    example =  622,
+    start_line =  9087,
+    end_line =  9091,
+    section =  "Raw HTML"
   },
   {
     markdown =  "foo <!--> foo -->\n\nfoo <!-- foo--->\n",
-    section =  "Raw HTML",
     html =  "<p>foo &lt;!--&gt; foo --&gt;</p>\n<p>foo &lt;!-- foo---&gt;</p>\n",
-    start_line =  8801,
-    end_line =  8808,
-    example =  598
+    example =  623,
+    start_line =  9096,
+    end_line =  9103,
+    section =  "Raw HTML"
   },
   {
     markdown =  "foo <?php echo $a; ?>\n",
-    section =  "Raw HTML",
     html =  "<p>foo <?php echo $a; ?></p>\n",
-    start_line =  8813,
-    end_line =  8817,
-    example =  599
+    example =  624,
+    start_line =  9108,
+    end_line =  9112,
+    section =  "Raw HTML"
   },
   {
     markdown =  "foo <!ELEMENT br EMPTY>\n",
-    section =  "Raw HTML",
     html =  "<p>foo <!ELEMENT br EMPTY></p>\n",
-    start_line =  8822,
-    end_line =  8826,
-    example =  600
+    example =  625,
+    start_line =  9117,
+    end_line =  9121,
+    section =  "Raw HTML"
   },
   {
     markdown =  "foo <![CDATA[>&<]]>\n",
-    section =  "Raw HTML",
     html =  "<p>foo <![CDATA[>&<]]></p>\n",
-    start_line =  8831,
-    end_line =  8835,
-    example =  601
+    example =  626,
+    start_line =  9126,
+    end_line =  9130,
+    section =  "Raw HTML"
   },
   {
     markdown =  "foo <a href=\"&ouml;\">\n",
-    section =  "Raw HTML",
     html =  "<p>foo <a href=\"&ouml;\"></p>\n",
-    start_line =  8841,
-    end_line =  8845,
-    example =  602
+    example =  627,
+    start_line =  9136,
+    end_line =  9140,
+    section =  "Raw HTML"
   },
   {
     markdown =  "foo <a href=\"\\*\">\n",
-    section =  "Raw HTML",
     html =  "<p>foo <a href=\"\\*\"></p>\n",
-    start_line =  8850,
-    end_line =  8854,
-    example =  603
+    example =  628,
+    start_line =  9145,
+    end_line =  9149,
+    section =  "Raw HTML"
   },
   {
     markdown =  "<a href=\"\\\"\">\n",
-    section =  "Raw HTML",
     html =  "<p>&lt;a href=&quot;&quot;&quot;&gt;</p>\n",
-    start_line =  8857,
-    end_line =  8861,
-    example =  604
+    example =  629,
+    start_line =  9152,
+    end_line =  9156,
+    section =  "Raw HTML"
   },
   {
     markdown =  "foo  \nbaz\n",
-    section =  "Hard line breaks",
     html =  "<p>foo<br />\nbaz</p>\n",
-    start_line =  8871,
-    end_line =  8877,
-    example =  605
+    example =  630,
+    start_line =  9166,
+    end_line =  9172,
+    section =  "Hard line breaks"
   },
   {
     markdown =  "foo\\\nbaz\n",
-    section =  "Hard line breaks",
     html =  "<p>foo<br />\nbaz</p>\n",
-    start_line =  8883,
-    end_line =  8889,
-    example =  606
+    example =  631,
+    start_line =  9178,
+    end_line =  9184,
+    section =  "Hard line breaks"
   },
   {
     markdown =  "foo       \nbaz\n",
-    section =  "Hard line breaks",
     html =  "<p>foo<br />\nbaz</p>\n",
-    start_line =  8894,
-    end_line =  8900,
-    example =  607
+    example =  632,
+    start_line =  9189,
+    end_line =  9195,
+    section =  "Hard line breaks"
   },
   {
     markdown =  "foo  \n     bar\n",
-    section =  "Hard line breaks",
     html =  "<p>foo<br />\nbar</p>\n",
-    start_line =  8905,
-    end_line =  8911,
-    example =  608
+    example =  633,
+    start_line =  9200,
+    end_line =  9206,
+    section =  "Hard line breaks"
   },
   {
     markdown =  "foo\\\n     bar\n",
-    section =  "Hard line breaks",
     html =  "<p>foo<br />\nbar</p>\n",
-    start_line =  8914,
-    end_line =  8920,
-    example =  609
+    example =  634,
+    start_line =  9209,
+    end_line =  9215,
+    section =  "Hard line breaks"
   },
   {
     markdown =  "*foo  \nbar*\n",
-    section =  "Hard line breaks",
     html =  "<p><em>foo<br />\nbar</em></p>\n",
-    start_line =  8926,
-    end_line =  8932,
-    example =  610
+    example =  635,
+    start_line =  9221,
+    end_line =  9227,
+    section =  "Hard line breaks"
   },
   {
     markdown =  "*foo\\\nbar*\n",
-    section =  "Hard line breaks",
     html =  "<p><em>foo<br />\nbar</em></p>\n",
-    start_line =  8935,
-    end_line =  8941,
-    example =  611
+    example =  636,
+    start_line =  9230,
+    end_line =  9236,
+    section =  "Hard line breaks"
   },
   {
-    markdown =  "`code  \nspan`\n",
-    section =  "Hard line breaks",
-    html =  "<p><code>code span</code></p>\n",
-    start_line =  8946,
-    end_line =  8951,
-    example =  612
+    markdown =  "`code \nspan`\n",
+    html =  "<p><code>code  span</code></p>\n",
+    example =  637,
+    start_line =  9241,
+    end_line =  9246,
+    section =  "Hard line breaks"
   },
   {
     markdown =  "`code\\\nspan`\n",
-    section =  "Hard line breaks",
     html =  "<p><code>code\\ span</code></p>\n",
-    start_line =  8954,
-    end_line =  8959,
-    example =  613
+    example =  638,
+    start_line =  9249,
+    end_line =  9254,
+    section =  "Hard line breaks"
   },
   {
     markdown =  "<a href=\"foo  \nbar\">\n",
-    section =  "Hard line breaks",
     html =  "<p><a href=\"foo  \nbar\"></p>\n",
-    start_line =  8964,
-    end_line =  8970,
-    example =  614
+    example =  639,
+    start_line =  9259,
+    end_line =  9265,
+    section =  "Hard line breaks"
   },
   {
     markdown =  "<a href=\"foo\\\nbar\">\n",
-    section =  "Hard line breaks",
     html =  "<p><a href=\"foo\\\nbar\"></p>\n",
-    start_line =  8973,
-    end_line =  8979,
-    example =  615
+    example =  640,
+    start_line =  9268,
+    end_line =  9274,
+    section =  "Hard line breaks"
   },
   {
     markdown =  "foo\\\n",
-    section =  "Hard line breaks",
     html =  "<p>foo\\</p>\n",
-    start_line =  8986,
-    end_line =  8990,
-    example =  616
+    example =  641,
+    start_line =  9281,
+    end_line =  9285,
+    section =  "Hard line breaks"
   },
   {
     markdown =  "foo  \n",
-    section =  "Hard line breaks",
     html =  "<p>foo</p>\n",
-    start_line =  8993,
-    end_line =  8997,
-    example =  617
+    example =  642,
+    start_line =  9288,
+    end_line =  9292,
+    section =  "Hard line breaks"
   },
   {
     markdown =  "### foo\\\n",
-    section =  "Hard line breaks",
     html =  "<h3>foo\\</h3>\n",
-    start_line =  9000,
-    end_line =  9004,
-    example =  618
+    example =  643,
+    start_line =  9295,
+    end_line =  9299,
+    section =  "Hard line breaks"
   },
   {
     markdown =  "### foo  \n",
-    section =  "Hard line breaks",
     html =  "<h3>foo</h3>\n",
-    start_line =  9007,
-    end_line =  9011,
-    example =  619
+    example =  644,
+    start_line =  9302,
+    end_line =  9306,
+    section =  "Hard line breaks"
   },
   {
     markdown =  "foo\nbaz\n",
-    section =  "Soft line breaks",
     html =  "<p>foo\nbaz</p>\n",
-    start_line =  9022,
-    end_line =  9028,
-    example =  620
+    example =  645,
+    start_line =  9317,
+    end_line =  9323,
+    section =  "Soft line breaks"
   },
   {
     markdown =  "foo \n baz\n",
-    section =  "Soft line breaks",
     html =  "<p>foo\nbaz</p>\n",
-    start_line =  9034,
-    end_line =  9040,
-    example =  621
+    example =  646,
+    start_line =  9329,
+    end_line =  9335,
+    section =  "Soft line breaks"
   },
   {
     markdown =  "hello $.;'there\n",
-    section =  "Textual content",
     html =  "<p>hello $.;'there</p>\n",
-    start_line =  9054,
-    end_line =  9058,
-    example =  622
+    example =  647,
+    start_line =  9349,
+    end_line =  9353,
+    section =  "Textual content"
   },
   {
     markdown =  "Foo χρῆν\n",
-    section =  "Textual content",
     html =  "<p>Foo χρῆν</p>\n",
-    start_line =  9061,
-    end_line =  9065,
-    example =  623
+    example =  648,
+    start_line =  9356,
+    end_line =  9360,
+    section =  "Textual content"
   },
   {
     markdown =  "Multiple     spaces\n",
-    section =  "Textual content",
     html =  "<p>Multiple     spaces</p>\n",
-    start_line =  9070,
-    end_line =  9074,
-    example =  624
+    example =  649,
+    start_line =  9365,
+    end_line =  9369,
+    section =  "Textual content"
   }
 }

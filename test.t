@@ -11,7 +11,7 @@ local tests = require 'spec-tests'
 subtest("spec tests (cmark)", function()
   for _,test in ipairs(tests) do
     local doc  = cmark.parse_string(test.markdown, cmark.OPT_DEFAULT)
-    local html = cmark.render_html(doc, cmark.OPT_DEFAULT)
+    local html = cmark.render_html(doc, cmark.OPT_DEFAULT + cmark.OPT_UNSAFE)
     is(html, test.html, "example " .. tostring(test.example) ..
            " (lines " .. tostring(test.start_line) .. " - " ..
            tostring(test.end_line) .. ")")
@@ -21,7 +21,7 @@ end)
 local b = builder
 
 local builds = function(node, expected, description)
-  local rendered = cmark.render_html(node, cmark.OPT_DEFAULT)
+  local rendered = cmark.render_html(node, cmark.OPT_DEFAULT + cmark.OPT_UNSAFE)
   return is(rendered, expected, description)
 end
 
