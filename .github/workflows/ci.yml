@@ -12,7 +12,7 @@ jobs:
     - uses: leafo/gh-actions-luarocks@v2
     - name: Build and test
       run: |
-          export VERSION=`grep CMARK_VERSION_STRING ext/cmark_version.h | awk '{print $3}'`
+          export VERSION=`grep CMARK_VERSION_STRING ext/cmark_version.h |  awk '{gsub(/["]*/,""); print $3)}'`
           export REVISION=1
           sed -e "s/_VERSION/${VERSION}/g; s/_REVISION/${REVISION}/g" < rockspec.in > cmark-${VERSION}-${REVISION}.rockspec
           luarocks --local make cmark-${VERSION}-${REVISION}.rockspec
@@ -27,7 +27,7 @@ jobs:
     - uses: leafo/gh-actions-luarocks@v2
     - name: Build and test
       run: |
-          export VERSION=`grep CMARK_VERSION_STRING ext/cmark_version.h | awk '{print $3}'`
+          export VERSION=`grep CMARK_VERSION_STRING ext/cmark_version.h |  awk '{gsub(/["]*/,""); print $3)}'`
           export REVISION=1
           sed -e "s/_VERSION/${VERSION}/g; s/_REVISION/${REVISION}/g" < rockspec.in > cmark-${VERSION}-${REVISION}.rockspec
           luarocks --local make cmark-${VERSION}-${REVISION}.rockspec
