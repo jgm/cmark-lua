@@ -190,9 +190,9 @@ static link_type get_link_type(cmark_node *node) {
       realurllen -= 7;
       isemail = true;
     }
-    if (realurllen == link_text->as.literal.len &&
-        strncmp(realurl, (char *)link_text->as.literal.data,
-                link_text->as.literal.len) == 0) {
+    if (realurllen == link_text->len &&
+        strncmp(realurl, (char *)link_text->data,
+                link_text->len) == 0) {
       if (isemail) {
         return EMAIL_AUTOLINK;
       } else {
@@ -265,7 +265,7 @@ static int S_render_node(cmark_renderer *renderer, cmark_node *node,
           case 4: LIT("iv"); break;
           case 5: LIT("v"); break;
           default: LIT("i"); break;
-	  }
+          }
           LIT("}{");
           OUT(list_number_string, false, NORMAL);
           LIT("}");
