@@ -9,15 +9,15 @@
 #  ifndef CMARK_EXPORT
 #    ifdef cmark_EXPORTS
         /* We are building this library */
-#      define CMARK_EXPORT __attribute__((visibility("default")))
+#      define CMARK_EXPORT 
 #    else
         /* We are using this library */
-#      define CMARK_EXPORT __attribute__((visibility("default")))
+#      define CMARK_EXPORT 
 #    endif
 #  endif
 
 #  ifndef CMARK_NO_EXPORT
-#    define CMARK_NO_EXPORT __attribute__((visibility("hidden")))
+#    define CMARK_NO_EXPORT 
 #  endif
 #endif
 
@@ -33,6 +33,7 @@
 #  define CMARK_DEPRECATED_NO_EXPORT CMARK_NO_EXPORT CMARK_DEPRECATED
 #endif
 
+/* NOLINTNEXTLINE(readability-avoid-unconditional-preprocessor-if) */
 #if 0 /* DEFINE_NO_DEPRECATED */
 #  ifndef CMARK_NO_DEPRECATED
 #    define CMARK_NO_DEPRECATED
