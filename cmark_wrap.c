@@ -4361,6 +4361,40 @@ fail:
 }
 
 
+static int _wrap_parser_new_with_mem_into_root(lua_State* L) {
+  int SWIG_arg = 0;
+  int arg1 ;
+  cmark_mem *arg2 = (cmark_mem *) 0 ;
+  cmark_node *arg3 = (cmark_node *) 0 ;
+  cmark_parser *result = 0 ;
+  
+  SWIG_check_num_args("cmark_parser_new_with_mem_into_root",3,3)
+  if(!lua_isnumber(L,1)) SWIG_fail_arg("cmark_parser_new_with_mem_into_root",1,"int");
+  if(!SWIG_isptrtype(L,2)) SWIG_fail_arg("cmark_parser_new_with_mem_into_root",2,"cmark_mem *");
+  if(!SWIG_isptrtype(L,3)) SWIG_fail_arg("cmark_parser_new_with_mem_into_root",3,"cmark_node *");
+  arg1 = (int)lua_tonumber(L, 1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_cmark_mem,0))){
+    SWIG_fail_ptr("parser_new_with_mem_into_root",2,SWIGTYPE_p_cmark_mem);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,3,(void**)&arg3,SWIGTYPE_p_cmark_node,0))){
+    SWIG_fail_ptr("parser_new_with_mem_into_root",3,SWIGTYPE_p_cmark_node);
+  }
+  
+  result = (cmark_parser *)cmark_parser_new_with_mem_into_root(arg1,arg2,arg3);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_cmark_parser,0); SWIG_arg++; 
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
 static int _wrap_parser_free(lua_State* L) {
   int SWIG_arg = 0;
   cmark_parser *arg1 = (cmark_parser *) 0 ;
@@ -4777,6 +4811,7 @@ static swig_lua_method swig_SwigModule_methods[]= {
     { "consolidate_text_nodes", _wrap_consolidate_text_nodes},
     { "parser_new", _wrap_parser_new},
     { "parser_new_with_mem", _wrap_parser_new_with_mem},
+    { "parser_new_with_mem_into_root", _wrap_parser_new_with_mem_into_root},
     { "parser_free", _wrap_parser_free},
     { "parser_feed", _wrap_parser_feed},
     { "parser_finish", _wrap_parser_finish},
